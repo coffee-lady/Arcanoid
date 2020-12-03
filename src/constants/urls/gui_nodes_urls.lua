@@ -1,0 +1,3 @@
+local GuiNodesUrls = {}
+
+return GuiNodesUrls

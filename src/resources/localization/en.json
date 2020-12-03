@@ -1,0 +1,14 @@
+{
+    "scenes": {
+        "game": {},
+        "game_end": {},
+        "game_victory": {},
+        "pack_select": {},
+        "start": {}
+    },
+
+    "popups": {
+        "game_pause": {},
+        "restart_game": {}
+    }
+}

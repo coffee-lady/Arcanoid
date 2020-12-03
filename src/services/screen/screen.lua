@@ -23,6 +23,12 @@ function ScreenService:on_resize(callback)
     end)
 end
 
+function ScreenService:on_message(message_id)
+    if message_id == 'window_update' then
+        self:on_resize()
+    end
+end
+
 function ScreenService:update()
     self.start_coords = rendercam.screen_to_world_2d(0, 0, false)
     self.end_coords = rendercam.screen_to_world_2d(rendercam.window.x, rendercam.window.y, false)
