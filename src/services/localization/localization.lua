@@ -1,14 +1,14 @@
 local LocalizationService = {}
 
-function LocalizationService:init()
-    local json_data = sys.load_resource('/src/resources/localization/localization.json')
+function LocalizationService:init(localization)
+    local json_data = sys.load_resource('/src/resources/localization/' .. localization .. '.json')
     self.data = json.decode(json_data)
 
     self.listeners = {}
 end
 
 function LocalizationService:change(localization)
-    local json_data = sys.load_resource('/src/resources/localization/' + localization + '.json')
+    local json_data = sys.load_resource('/src/resources/localization/' .. localization .. '.json')
     self.data = json.decode(json_data)
 
     for i = 1, #self.listeners do

@@ -1,6 +1,6 @@
 [project]
-title = Arcanoid
-dependencies = https://github.com/britzl/monarch/archive/master.zip,https://github.com/rgrams/rendercam/archive/v1.0.1.zip,https://github.com/subsoap/defos/archive/master.zip
+title = Christmas Arcanoid
+dependencies = https://github.com/britzl/monarch/archive/master.zip,https://github.com/rgrams/rendercam/archive/v1.0.1.zip,https://github.com/subsoap/defsave/archive/master.zip
 custom_resources = /src/resources
 
 [bootstrap]
