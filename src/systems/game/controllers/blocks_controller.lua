@@ -10,10 +10,7 @@ local BlocksGridConfig = Config.game.blocks_grid
 local BlocksController = {}
 
 function BlocksController:build()
-    local blocks = BlockBuilder:build(BlocksGridConfig.block_height,
-            BlocksGridConfig.top_padding,
-            BlocksGridConfig.sides_padding,
-            BlocksGridConfig.indent_between)
+    local blocks = BlockBuilder:build(BlocksGridConfig)
 
     for i = 1, #blocks do
         blocks[i].id = BlockView:create(blocks[i])

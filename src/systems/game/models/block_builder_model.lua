@@ -8,7 +8,7 @@ local ScreenService = Services.screen
 
 local BlocksBuilder = {}
 
-function BlocksBuilder:build(block_height, top_padding, sides_padding, indent_between)
+function BlocksBuilder:build(config)
     local blocks = {}
     local start_coords, end_coords = ScreenService:get_coords()
     local sizes = ScreenService:get_sizes()
@@ -16,18 +16,18 @@ function BlocksBuilder:build(block_height, top_padding, sides_padding, indent_be
 
     local pos = vmath.vector3(0, 0, 0)
 
-    local start_y = end_coords.y - top_padding - block_height / 2
+    local start_y = end_coords.y - config.top_padding - config.block_height / 2
     local grid_size = level_data.sizes
 
     for _, row in pairs(level_data.grid) do
-        local block_length = (sizes.x - 2 * sides_padding - (grid_size.x - 1) * indent_between) / grid_size.x
-        local start_x = start_coords.x + sides_padding + block_length / 2
-        pos.y = start_y - row[1].pos.y * block_height - (row[1].pos.y) * indent_between
+        local block_length = (sizes.x - 2 * config.sides_padding - (grid_size.x - 1) * config.indent_between) / grid_size.x
+        local start_x = start_coords.x + config.sides_padding + block_length / 2
+        pos.y = start_y - row[1].pos.y * config.block_height - (row[1].pos.y) * config.indent_between
 
         for i = 1, #row do
             local scale = block_length / GameDataService:get_block_property(row[i].block, 'width')
 
-            pos.x = start_x + row[i].pos.x * block_length + row[i].pos.x * indent_between
+            pos.x = start_x + row[i].pos.x * block_length + row[i].pos.x * config.indent_between
 
             blocks[#blocks + 1] = BlockModel:new(pos, scale, row[i].block)
         end

@@ -14,10 +14,6 @@ local ScenesService = Services.scenes
 
 function init(self)
 	ScreenService:init()
-	-- ObserverService:observe(ScreenService.ON_RESIZE)
-	-- ScreenService:on_resize(function ()
-	-- 	ObserverService:next(ScreenService.ON_RESIZE)
-	-- end)
 
 	ScenesService.init()
 
