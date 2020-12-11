@@ -1,31 +1,26 @@
+local App = require('src.app')
+
+local LocalizConfig = App.config.localization
+local Observable = App.libs.event_observation.observable
+
 local LocalizationService = {}
 
-function LocalizationService:init(localization)
-    local json_data = sys.load_resource('/src/resources/localization/' .. localization .. '.json')
-    self.data = json.decode(json_data)
+function LocalizationService:init(lang)
+    self.cache = {}
+    self.changes = Observable:new()
 
-    self.listeners = {}
+    self:change(lang)
 end
 
-function LocalizationService:change(localization)
-    local json_data = sys.load_resource('/src/resources/localization/' .. localization .. '.json')
-    self.data = json.decode(json_data)
-
-    for i = 1, #self.listeners do
-        msg.post(self.listeners[i], 'localization_changed')
+function LocalizationService:change(lang)
+    if not self.cache[lang] then
+        local json_data = sys.load_resource(LocalizConfig:get_resource_path(lang))
+        self.cache[lang] = json.decode(json_data)
     end
-end
 
-function LocalizationService:add_change_listener(listener)
-    self.listeners[#self.listeners + 1] = listener
-end
+    self.data = self.cache[lang]
 
-function LocalizationService:remove_change_listener(listener)
-    for i = 1, #self.listeners do
-        if self.listeners[i] == listener then
-            table.remove(self.listeners, i)
-        end
-    end
+    self.changes:next()
 end
 
 return LocalizationService
