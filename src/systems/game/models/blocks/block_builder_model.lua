@@ -44,23 +44,6 @@ function BlocksBuilder:_update_blocks(blocks)
     end
 end
 
-function BlocksBuilder:calculate_pos(start, block_length, scale, block, grid_block)
-    local pos = vmath.vector3(0, 0, 0)
-
-    pos.x = start.x + grid_block.pos.x * block_length + grid_block.pos.x * self.config.indent_between
-
-    local indent_top = block.default_height * scale.y / 2 + grid_block.pos.y * block.default_height * scale.y
-    pos.y = start.y - indent_top - grid_block.pos.y * self.config.indent_between
-
-    return pos
-end
-
-function BlocksBuilder:calculate_scale(block_length, block)
-    local scale = block_length / block.default_width
-
-    return vmath.vector3(scale, scale, scale)
-end
-
 function BlocksBuilder:get_block_length()
     local sizes = ScreenService:get_sizes()
     local grid_size = self.level_data.sizes
@@ -79,6 +62,23 @@ function BlocksBuilder:get_start_pos(block_length)
     start.y = end_coords.y - self.config.top_padding
 
     return start
+end
+
+function BlocksBuilder:calculate_scale(block_length, block)
+    local scale = block_length / block.default_width
+
+    return vmath.vector3(scale, scale, scale)
+end
+
+function BlocksBuilder:calculate_pos(start, block_length, scale, block, grid_block)
+    local pos = vmath.vector3(0, 0, 0)
+
+    pos.x = start.x + grid_block.pos.x * block_length + grid_block.pos.x * self.config.indent_between
+
+    local indent_top = block.default_height * scale.y / 2 + grid_block.pos.y * block.default_height * scale.y
+    pos.y = start.y - indent_top - grid_block.pos.y * self.config.indent_between
+
+    return pos
 end
 
 return BlocksBuilder
