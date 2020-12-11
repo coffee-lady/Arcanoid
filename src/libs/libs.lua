@@ -5,6 +5,7 @@ local Libs = {
     gui = require('src.libs.gui.gui'),
     event_observation = require('src.libs.event_observation.event_observation'),
     middleclass = require('src.libs.middleclass.middleclass'),
+    resources_storage = require('src.libs.resources_storage.resources_storage'),
 }
 
 return Libs

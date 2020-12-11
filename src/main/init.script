@@ -9,7 +9,7 @@ local ForkJoin = Libs.event_observation.fork_join
 
 local ScenesUrls = Constants.urls.scenes
 
-local FilesService = Services.files_service
+local LocalStorage = Services.local_storage
 local ScreenService = Services.screen
 local LocalizationService = Services.localization
 local ScenesService = Services.scenes
@@ -27,7 +27,7 @@ function init(self)
 
 	LocalizationService:init(Config.localization.default_lang)
 
-	FilesService:init('Christmas Arcanoid')
+	LocalStorage:init('Christmas Arcanoid')
 end
 
 function on_message(self, message_id, message, sender)

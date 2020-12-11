@@ -3,6 +3,7 @@
         "lives": 2,
         "destroyable": true,
         "width": 264,
+        "height": 134,
         "color": [0.74, 0.98, 1, 1]
     },
     "block_blue": {

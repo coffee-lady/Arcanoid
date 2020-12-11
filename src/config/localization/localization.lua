@@ -1,11 +1,13 @@
 local LocalizationConfig = {
     default_lang = 'en',
-    path = '/src/resources/localization/',
-    file_type = '.json',
+    file = {
+        path = '/src/resources/localization/',
+        type = 'json',
+    }
 }
 
-function LocalizationConfig:get_resource_path(lang)
-    return self.path .. lang .. self.file_type
+function LocalizationConfig:get_file_path(lang)
+    return self.file.path .. lang .. '.' .. self.file.type
 end
 
 return LocalizationConfig

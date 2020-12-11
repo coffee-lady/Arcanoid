@@ -1,5 +1,6 @@
 local App = require('src.app')
 
+local ResourcesService = App.libs.resources_storage
 local LocalizConfig = App.config.localization
 local Observable = App.libs.event_observation.observable
 
@@ -14,8 +15,7 @@ end
 
 function LocalizationService:change(lang)
     if not self.cache[lang] then
-        local json_data = sys.load_resource(LocalizConfig:get_resource_path(lang))
-        self.cache[lang] = json.decode(json_data)
+        self.cache[lang] = ResourcesService:get(LocalizConfig:get_file_path(lang), LocalizConfig.file.type)
     end
 
     self.data = self.cache[lang]
