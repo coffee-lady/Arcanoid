@@ -1,6 +1,4 @@
-local App = require('src.app')
-
-local Services = App.services
+local Services = require('src.services.services')
 
 local FilesService = Services.files_service
 

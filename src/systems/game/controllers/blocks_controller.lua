@@ -13,7 +13,7 @@ function BlocksController:build()
     local blocks = BlockBuilder:build(BlocksGridConfig)
 
     for i = 1, #blocks do
-        blocks[i].id = BlockView:create(blocks[i])
+        BlockView:create(blocks[i])
     end
 
     return blocks

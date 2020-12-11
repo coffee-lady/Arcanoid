@@ -1,8 +1,7 @@
 local App = require('src.app')
 local BlockModel = require('src.systems.game.models.block_model')
 local GameDataService = require('src.systems.game.game_data_service')
-
-local Services = App.services
+local Services = require('src.services.services')
 
 local ScreenService = Services.screen
 

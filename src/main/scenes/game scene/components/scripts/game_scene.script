@@ -1,7 +1,11 @@
 local GameSystem = require('src.systems.game_system')
+local Services = require('src.services.services')
+
+local ScreenService = Services.screen
 
 function init(self)
 	GameSystem:init()
+	ScreenService:add_listener(msg.url())
 end
 
 function final(self)
@@ -13,7 +17,7 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-	GameSystem:on_message(message_id)
+	ScreenService:on_message(message_id)
 end
 
 function on_input(self, action_id, action)

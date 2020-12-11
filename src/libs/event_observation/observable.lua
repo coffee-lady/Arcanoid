@@ -5,9 +5,12 @@ local Observable = class('Observable')
 
 function Observable:initialize()
     self.subscribers = {}
+    self.completed = false
 end
 
 function Observable:next(value)
+    if self.completed then return end
+
     for i =  1, #self.subscribers do
         self.subscribers[i]:next(value)
     end
@@ -28,6 +31,14 @@ function Observable:remove(subscriber)
             table.remove(self.subscribers, i)
             break
         end
+    end
+end
+
+function Observable:complete()
+    for i =  1, #self.subscribers do
+        self.subscribers[i]:complete()
+        self.subscribers[i]:unsubscribe()
+        self.completed = true
     end
 end
 

@@ -1,4 +1,7 @@
+local App = require('src.app')
 local rendercam = require('rendercam.rendercam')
+
+local Observable = App.libs.event_observation.observable
 
 local RENDERCAM_WINDOW_UPDATE = hash('window_update')
 
@@ -10,24 +13,37 @@ local ScreenService = {
     ON_RESIZE = 'screen_resize',
 }
 
-function ScreenService:init(callback)
-    self:add_listener(msg.url())
-
-    self:update(callback)
-end
-
-function ScreenService:on_message(message_id, callback)
-    if message_id == RENDERCAM_WINDOW_UPDATE then
-        self:update(callback)
-    end
-end
-
-function ScreenService:update(callback)
+local function update(self, callback)
     timer.delay(self.update_delay, false, function ()
         self.start_coords = rendercam.screen_to_world_2d(0, 0, false)
         self.end_coords = rendercam.screen_to_world_2d(rendercam.window.x, rendercam.window.y, false)
         self.sizes = rendercam.screen_to_world_2d(rendercam.window.x, rendercam.window.y, true)
-        if callback then callback() end
+
+    if callback then callback() end
+    end)
+end
+
+function ScreenService:init()
+    self:add_listener(msg.url())
+
+    self.init_observer = Observable:new()
+    self.observer = Observable:new()
+
+    update(self, function ()
+        self.init_observer:next()
+        self.init_observer:complete()
+    end)
+end
+
+function ScreenService:on_message(message_id)
+    if message_id == RENDERCAM_WINDOW_UPDATE then
+        self:update()
+    end
+end
+
+function ScreenService:update()
+    update(self, function ()
+        self.observer:next()
     end)
 end
 

@@ -7,6 +7,7 @@ local Subscriber = class('Subscriber', Subscription)
 function Subscriber:initialize(next, complete, _unsubs_behavior)
     Subscription.initialize(self, _unsubs_behavior)
     self.observer = Observer:new(next, complete)
+    self.completed = false
 end
 
 function Subscriber:next(value)
@@ -19,6 +20,7 @@ end
 
 function Subscriber:unsubscribe()
     Subscription.unsubscribe(self)
+    self.completed = true
 end
 
 return Subscriber

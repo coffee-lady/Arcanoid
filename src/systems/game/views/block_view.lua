@@ -1,10 +1,10 @@
 local BlockView = {}
 
 function BlockView:create(block)
-    local id = factory.create(msg.url('/game_scene#factory'), block.pos, nil, nil, block.scale)
-    go.set(msg.url('game_scene', id, 'sprite'), 'tint', block.color)
+    block.id = factory.create(msg.url('/game_scene#factory'), block.pos, nil, nil, block.scale)
+    go.set(msg.url('game_scene', block.id, 'sprite'), 'tint', block.color)
 
-    return id
+    return block.id
 end
 
 function BlockView:rebuild(block)
