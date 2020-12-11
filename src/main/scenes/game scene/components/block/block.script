@@ -1,7 +1,5 @@
 local App = require('src.app')
 
-local Messages = App.constants.messages
-
 function init(self)
 
 end

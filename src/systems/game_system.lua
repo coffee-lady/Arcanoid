@@ -4,7 +4,6 @@ local BlocksController = require('src.systems.game.controllers.blocks_controller
 
 local Services = App.services
 
--- local GameObserver = require('src.systems.game.services.observer')
 local ScreenService = Services.screen
 
 local GameSceneSystem = {}

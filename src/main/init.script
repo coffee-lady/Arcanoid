@@ -6,20 +6,19 @@ local Constants = App.constants
 
 local ScenesUrls = Constants.urls.scenes
 
-local ObserverService = Services.observer
-local DataService = Services.data
+local FilesService = Services.files_service
 local ScreenService = Services.screen
 local LocalizationService = Services.localization
 local ScenesService = Services.scenes
 
 function init(self)
-	ScreenService:init()
-
-	ScenesService.init()
-
+	ScreenService:init(function ()
+		ScenesService.init()
+	end)
+	
 	LocalizationService:init(Config.localization.default_lang)
 
-	DataService:init('Christmas Arcanoid')
+	FilesService:init('Christmas Arcanoid')
 end
 
 function on_message(self, message_id, message, sender)

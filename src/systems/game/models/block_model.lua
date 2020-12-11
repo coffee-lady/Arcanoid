@@ -6,7 +6,7 @@ function Block:new(pos, scale, block_type)
     local color = GameDataService:get_block_property(block_type, 'color')
     local block = {
         pos = vmath.vector3(pos.x, pos.y, 0),
-        scale = vmath.vector3(scale, 1, 1),
+        scale = vmath.vector3(scale, scale, scale),
         block_type = block_type,
         lives = GameDataService:get_block_property(block_type, 'lives'),
         color = vmath.vector4(color[1], color[2], color[3], color[4]),

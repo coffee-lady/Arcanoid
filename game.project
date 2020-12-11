@@ -13,7 +13,7 @@ use_accelerometer = 0
 
 [display]
 width = 640
-height = 1136
+height = 1366
 
 [ios]
 app_icon_120x120 = /assets/app_icons/icon_120.png
@@ -43,6 +43,7 @@ input_method = HiddenInputField
 shared_state = 1
 
 [physics]
-gravity_y = -1000.0
+gravity_y = 1000.0
 scale = 0.01
+allow_dynamic_transforms = 1
 

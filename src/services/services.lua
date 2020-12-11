@@ -1,6 +1,6 @@
 local Services = {
     scenes = require('src.services.scenes.scenes'),
-    data = require('src.services.data.data'),
+    files_service = require('src.services.files_service.files_service'),
     screen = require('src.services.screen.screen'),
     localization = require('src.services.localization.localization'),
 }

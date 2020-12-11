@@ -3,7 +3,8 @@ local Libs = {
     coords = require('src.libs.coords.lib_coords'),
     easings = require('src.libs.easings.easings'),
     gui = require('src.libs.gui.gui'),
-    observer = require('src.libs.observer.observer'),
+    event_observation = require('src.libs.event_observation.event_observation'),
+    middleclass = require('src.libs.middleclass.middleclass'),
 }
 
 return Libs

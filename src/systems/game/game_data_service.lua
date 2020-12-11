@@ -2,15 +2,15 @@ local App = require('src.app')
 
 local Services = App.services
 
-local DataService = Services.data
+local FilesService = Services.files_service
 
 local GameDataService = {}
 
 function GameDataService:init(level)
     self.current_level = level
 
-    if not DataService:get('levels', 'current') then
-        DataService:set('levels', 'current', level)
+    if not FilesService:get('levels', 'current') then
+        FilesService:set('levels', 'current', level)
     end
 
     self:set_level(self.current_level)

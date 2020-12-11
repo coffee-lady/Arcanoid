@@ -20,10 +20,7 @@ function BlocksController:build()
 end
 
 function BlocksController:rebuild(blocks)
-    BlockBuilder:rebuild(blocks, BlocksGridConfig.block_height,
-        BlocksGridConfig.top_padding,
-        BlocksGridConfig.sides_padding,
-        BlocksGridConfig.indent_between)
+    BlockBuilder:rebuild(blocks, BlocksGridConfig)
 
     for i = 1, #blocks do
         BlockView:rebuild(blocks[i])
