@@ -1,10 +1,13 @@
 local App = require('src.app')
-local BlockBuilder = require('src.systems.game.models.blocks.block_builder_model')
-local BlockView = require('src.systems.game.views.block_view')
+local Models = require('src.systems.game.models.models')
+local Views = require('src.systems.game.views.views')
+
+local BlockBuilder = Models.block_builder
+local BlockView = Views.block
 
 local Config = App.config
 
-local BlocksGridConfig = Config.game.blocks_grid
+local BlocksGridConfig = Config.game.blocks
 
 local BlocksController = {}
 

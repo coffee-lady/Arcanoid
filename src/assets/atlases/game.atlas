@@ -1,57 +1,57 @@
 images {
-  image: "/src/assets/images/game/chimney.png"
+  image: "/src/assets/images/game/blocks/chimney.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/christmas_decor_green.png"
+  image: "/src/assets/images/game/blocks/christmas_decor_green.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_8
 }
 images {
-  image: "/src/assets/images/game/christmas_decor_orange.png"
+  image: "/src/assets/images/game/blocks/christmas_decor_orange.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/christmas_decor_red.png"
+  image: "/src/assets/images/game/blocks/christmas_decor_red.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/christmas_decor_snowflake.png"
+  image: "/src/assets/images/game/blocks/christmas_decor_snowflake.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/game_ball.png"
+  image: "/src/assets/images/game/game ball/game_ball.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/platform.png"
+  image: "/src/assets/images/game/platform/platform.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/snowglobe_house.png"
+  image: "/src/assets/images/game/blocks/snowglobe_house.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/snowglobe_lollipop.png"
+  image: "/src/assets/images/game/blocks/snowglobe_lollipop.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/snowglobe_sleigh.png"
+  image: "/src/assets/images/game/blocks/snowglobe_sleigh.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/snowglobe_snowflake.png"
+  image: "/src/assets/images/game/blocks/snowglobe_snowflake.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/snowglobe_snowman.png"
+  image: "/src/assets/images/game/blocks/snowglobe_snowman.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/bg.jpg"
+  image: "/src/assets/images/game/backgrounds/bg.jpg"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/block.png"
+  image: "/src/assets/images/game/blocks/block.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 margin: 0

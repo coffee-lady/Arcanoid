@@ -4,7 +4,7 @@ instances {
   prototype: "/rendercam/camera.go"
   position {
     x: 320.0
-    y: 683.0
+    y: 475.0
     z: 0.0
   }
   rotation {
@@ -16,13 +16,18 @@ instances {
   component_properties {
     id: "script"
     properties {
+      id: "nearZ"
+      value: "-100.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
       id: "useViewArea"
       value: "true"
       type: PROPERTY_TYPE_BOOLEAN
     }
     properties {
       id: "viewArea"
-      value: "640.0, 1366.0, 0.0"
+      value: "640.0, 950.0, 0.0"
       type: PROPERTY_TYPE_VECTOR3
     }
     properties {

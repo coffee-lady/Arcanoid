@@ -1,5 +1,12 @@
-local BlocksController = require('src.systems.game.controllers.blocks_controller')
-local Level = require('src.systems.game.models.level.level_model')
+local Models = require('src.systems.game.models.models')
+local Controllers = require('src.systems.game.controllers.controllers')
+
+local BlocksController = Controllers.blocks
+local BallController = Controllers.ball
+local WallsController = Controllers.walls
+local PlatformController = Controllers.platform
+
+local Level = Models.level
 
 local Services = require('src.services.services')
 
@@ -12,9 +19,13 @@ function GameSceneSystem:init()
 
     self.blocks = BlocksController:build(self.level:get_data())
 
-    ScreenService.observer:subscribe(function ()
+    ScreenService.observer:subscribe(function()
         BlocksController:rebuild(self.blocks)
     end)
+
+    BallController:init()
+    WallsController:init()
+    PlatformController:init()
 end
 
 return GameSceneSystem

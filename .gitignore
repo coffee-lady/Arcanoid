@@ -9,3 +9,4 @@ Thumbs.db
 .cproject
 .vscode
 builtins
+.lua-format

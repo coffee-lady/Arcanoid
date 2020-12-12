@@ -9,22 +9,31 @@ function BlockView:initialize(block)
     block.id = factory.create(msg.url(FACTORY), block.pos, nil, nil, block.scale)
     self.block = block
 
-    local color = block.color
-    self:set_color(vmath.vector4(color[1], color[2], color[3], color[4]))
-
-    block.observer:subscribe(function ()
+    block.update_observer:subscribe(function()
         self:rebuild()
     end)
+
+    self:set_sprite()
+    self:rebuild()
 end
 
 function BlockView:rebuild()
-    go.set_position(self.block.pos, self.block.id)
-    go.set_scale(self.block.scale, self.block.id)
+    self:update_pos()
+    self:update_scale()
 end
 
-function BlockView:set_color(color)
-    self.color = color
-    go.set(msg.url(nil, self.block.id, 'sprite'), 'tint', color)
+function BlockView:update_pos()
+    go.set_position(self.block.pos, self.block.id)
+end
+
+function BlockView:set_sprite()
+    msg.post(msg.url(nil, self.block.id, 'sprite'), 'play_animation', {
+        id = self.block.sprite
+    })
+end
+
+function BlockView:update_scale()
+    go.set_scale(self.block.scale, self.block.id)
 end
 
 return BlockView

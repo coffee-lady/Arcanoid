@@ -23,7 +23,9 @@ function BlocksBuilder:build(level_data, config)
 end
 
 function BlocksBuilder:rebuild(blocks, config)
-    if not config then config = self.config end
+    if not config then
+        config = self.config
+    end
 
     self:_update_blocks(blocks)
 end
@@ -55,11 +57,12 @@ end
 
 function BlocksBuilder:get_start_pos(block_length)
     local start_coords, end_coords = ScreenService:get_coords()
+    local sizes = ScreenService:get_sizes()
 
     local start = {}
 
     start.x = start_coords.x + self.config.sides_padding + block_length / 2
-    start.y = end_coords.y - self.config.top_padding
+    start.y = end_coords.y - self.config.top_padding * sizes.y
 
     return start
 end

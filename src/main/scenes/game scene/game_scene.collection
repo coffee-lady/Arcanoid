@@ -4,7 +4,7 @@ instances {
   prototype: "/src/main/scenes/game scene/components/ball/ball.go"
   position {
     x: 320.0
-    y: 119.0
+    y: 364.0
     z: 0.0
   }
   rotation {
@@ -14,8 +14,28 @@ instances {
     w: 1.0
   }
   scale3 {
-    x: 0.6
-    y: 0.6
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "platform"
+  prototype: "/src/main/scenes/game scene/components/platform/platform.go"
+  position {
+    x: 320.0
+    y: 126.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
     z: 1.0
   }
 }
@@ -24,6 +44,7 @@ embedded_instances {
   id: "game_scene"
   children: "ball"
   children: "bg"
+  children: "platform"
   children: "walls"
   data: "components {\n"
   "  id: \"game_scene\"\n"
@@ -115,8 +136,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 319.0
-    y: 701.0
+    x: 320.0
+    y: 475.0
     z: -1.0
   }
   rotation {
@@ -126,9 +147,9 @@ embedded_instances {
     w: 0.70710677
   }
   scale3 {
-    x: 0.977
-    y: 0.934
-    z: 1.143
+    x: 1.0
+    y: 1.0
+    z: 1.0
   }
 }
 embedded_instances {
@@ -161,7 +182,7 @@ embedded_instances {
   "  id: \"collisionobject\"\n"
   "  type: \"collisionobject\"\n"
   "  data: \"collision_shape: \\\"\\\"\\n"
-  "type: COLLISION_OBJECT_TYPE_STATIC\\n"
+  "type: COLLISION_OBJECT_TYPE_KINEMATIC\\n"
   "mass: 0.0\\n"
   "friction: 0.0\\n"
   "restitution: 1.0\\n"
@@ -184,8 +205,8 @@ embedded_instances {
   "    index: 0\\n"
   "    count: 3\\n"
   "  }\\n"
-  "  data: 20.0\\n"
-  "  data: 683.0\\n"
+  "  data: 0.5\\n"
+  "  data: 475.0\\n"
   "  data: 10.0\\n"
   "}\\n"
   "linear_damping: 0.0\\n"
@@ -206,8 +227,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: -20.0
-    y: 683.0
+    x: -1.0
+    y: 475.0
     z: 0.0
   }
   rotation {
@@ -218,7 +239,7 @@ embedded_instances {
   }
   scale3 {
     x: 1.0
-    y: 6.716
+    y: 1.0
     z: 1.0
   }
 }
@@ -228,7 +249,7 @@ embedded_instances {
   "  id: \"collisionobject\"\n"
   "  type: \"collisionobject\"\n"
   "  data: \"collision_shape: \\\"\\\"\\n"
-  "type: COLLISION_OBJECT_TYPE_STATIC\\n"
+  "type: COLLISION_OBJECT_TYPE_KINEMATIC\\n"
   "mass: 0.0\\n"
   "friction: 0.0\\n"
   "restitution: 1.0\\n"
@@ -251,8 +272,8 @@ embedded_instances {
   "    index: 0\\n"
   "    count: 3\\n"
   "  }\\n"
-  "  data: 20.0\\n"
-  "  data: 683.0\\n"
+  "  data: 0.5\\n"
+  "  data: 475.0\\n"
   "  data: 10.0\\n"
   "}\\n"
   "linear_damping: 0.0\\n"
@@ -273,8 +294,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 660.0
-    y: 683.0
+    x: 640.0
+    y: 475.0
     z: 0.0
   }
   rotation {
@@ -285,7 +306,7 @@ embedded_instances {
   }
   scale3 {
     x: 1.0
-    y: 6.716
+    y: 1.0
     z: 1.0
   }
 }
@@ -295,7 +316,7 @@ embedded_instances {
   "  id: \"collisionobject\"\n"
   "  type: \"collisionobject\"\n"
   "  data: \"collision_shape: \\\"\\\"\\n"
-  "type: COLLISION_OBJECT_TYPE_STATIC\\n"
+  "type: COLLISION_OBJECT_TYPE_KINEMATIC\\n"
   "mass: 0.0\\n"
   "friction: 0.0\\n"
   "restitution: 1.0\\n"
@@ -318,8 +339,8 @@ embedded_instances {
   "    index: 0\\n"
   "    count: 3\\n"
   "  }\\n"
-  "  data: 360.0\\n"
-  "  data: 20.0\\n"
+  "  data: 320.0\\n"
+  "  data: 0.5\\n"
   "  data: 10.0\\n"
   "}\\n"
   "linear_damping: 0.0\\n"
@@ -341,7 +362,7 @@ embedded_instances {
   ""
   position {
     x: 320.0
-    y: 1386.0
+    y: 950.0
     z: 0.0
   }
   rotation {
@@ -362,7 +383,7 @@ embedded_instances {
   "  id: \"collisionobject\"\n"
   "  type: \"collisionobject\"\n"
   "  data: \"collision_shape: \\\"\\\"\\n"
-  "type: COLLISION_OBJECT_TYPE_STATIC\\n"
+  "type: COLLISION_OBJECT_TYPE_KINEMATIC\\n"
   "mass: 0.0\\n"
   "friction: 0.0\\n"
   "restitution: 1.0\\n"
@@ -385,8 +406,8 @@ embedded_instances {
   "    index: 0\\n"
   "    count: 3\\n"
   "  }\\n"
-  "  data: 360.0\\n"
-  "  data: 20.0\\n"
+  "  data: 320.0\\n"
+  "  data: 0.5\\n"
   "  data: 10.0\\n"
   "}\\n"
   "linear_damping: 0.0\\n"
@@ -408,7 +429,7 @@ embedded_instances {
   ""
   position {
     x: 320.0
-    y: -20.0
+    y: -1.0
     z: 0.0
   }
   rotation {
@@ -419,7 +440,7 @@ embedded_instances {
   }
   scale3 {
     x: 1.0
-    y: 6.716
+    y: 1.0
     z: 1.0
   }
 }

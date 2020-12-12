@@ -1,25 +1,27 @@
-local App = require('src.app')
-local rendercam = require('rendercam.rendercam')
+local App = require("src.app")
+local rendercam = require("rendercam.rendercam")
 
 local Observable = App.libs.event_observation.observable
 
-local RENDERCAM_WINDOW_UPDATE = hash('window_update')
+local RENDERCAM_WINDOW_UPDATE = hash("window_update")
 
 local ScreenService = {
     start_coords = nil,
     end_coords = nil,
     sizes = {},
     update_delay = 0.05,
-    ON_RESIZE = 'screen_resize',
+    ON_RESIZE = "screen_resize"
 }
 
 local function update(self, callback)
-    timer.delay(self.update_delay, false, function ()
+    timer.delay(self.update_delay, false, function()
         self.start_coords = rendercam.screen_to_world_2d(0, 0, false)
         self.end_coords = rendercam.screen_to_world_2d(rendercam.window.x, rendercam.window.y, false)
         self.sizes = rendercam.screen_to_world_2d(rendercam.window.x, rendercam.window.y, true)
 
-    if callback then callback() end
+        if callback then
+            callback()
+        end
     end)
 end
 
@@ -29,7 +31,7 @@ function ScreenService:init()
     self.init_observer = Observable:new()
     self.observer = Observable:new()
 
-    update(self, function ()
+    update(self, function()
         self.init_observer:next()
         self.init_observer:complete()
     end)
@@ -42,7 +44,7 @@ function ScreenService:on_message(message_id)
 end
 
 function ScreenService:update()
-    update(self, function ()
+    update(self, function()
         self.observer:next()
     end)
 end
