@@ -4,26 +4,20 @@ local Services = require('src.services.services')
 local ScreenService = Services.screen
 
 function init(self)
-	GameSystem:init()
-	ScreenService:add_listener(msg.url())
+    msg.post('.', 'acquire_input_focus')
+
+    GameSystem:init()
+    ScreenService:add_listener(msg.url())
 end
 
-function final(self)
-
+function on_message(self, message_id, message, sender)
+    ScreenService:on_message(message_id)
 end
 
 function update(self, dt)
 
 end
 
-function on_message(self, message_id, message, sender)
-	ScreenService:on_message(message_id)
-end
-
 function on_input(self, action_id, action)
-	msg.post('.', 'acquire_input_focus')
-end
-
-function on_reload(self)
-
+    GameSystem:on_input(action_id, action)
 end

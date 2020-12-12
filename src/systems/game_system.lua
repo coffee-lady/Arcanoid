@@ -28,4 +28,8 @@ function GameSceneSystem:init()
     PlatformController:init()
 end
 
+function GameSceneSystem:on_input(action_id, action)
+    PlatformController:on_input(action_id, action)
+end
+
 return GameSceneSystem
