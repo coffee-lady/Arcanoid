@@ -6,10 +6,13 @@ local PlatformView = class('PlatformView')
 local Services = require('src.services.services')
 local ScreenService = Services.screen
 
+local URLS = App.constants.urls.scenes.game_scene
+local PROP = App.constants.go_props
+
 function PlatformView:initialize(platform)
     self.platform = platform
-    self.url = '/platform'
-    self.size = go.get(msg.url(nil, self.url, 'sprite'), 'size')
+    self.url = URLS.platform
+    self.size = go.get(msg.url(nil, self.url, PROP.sprite), PROP.size)
 
     self.platform.update_observer:subscribe(function()
         self:update_velocity()

@@ -15,21 +15,21 @@ local LocalizationService = Services.localization
 local ScenesService = Services.scenes
 
 function init(self)
-	ScreenService:init()
+    ScreenService:init()
 
-	ScenesService:init()
+    ScenesService:init()
 
-	local init_subs = ForkJoin(ScenesService.init_observer, ScreenService.init_observer)
-	
-	init_subs:subscribe(function ()
-		ScenesService:switch_to_scene(ScenesUrls.game_scene)
-	end)
+    local init_subs = ForkJoin(ScenesService.init_observer, ScreenService.init_observer)
 
-	LocalizationService:init(Config.localization.default_lang)
+    init_subs:subscribe(function()
+        ScenesService:switch_to_scene(ScenesUrls.game_scene.main)
+    end)
 
-	LocalStorage:init('Christmas Arcanoid')
+    LocalizationService:init(Config.localization.default_lang)
+
+    LocalStorage:init('Christmas Arcanoid')
 end
 
 function on_message(self, message_id, message, sender)
-	ScenesService:on_message(message_id)
+    ScenesService:on_message(message_id)
 end

@@ -1,5 +1,5 @@
 local GameMessages = {
-    block_rebuild = hash('block_rebuild'),
+    collision_response = hash('collision_response')
 }
 
 return GameMessages
