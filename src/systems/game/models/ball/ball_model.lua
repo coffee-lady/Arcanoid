@@ -19,8 +19,4 @@ function Ball:update_speed(speed)
     end
 end
 
-function Ball:on_collision()
-    print('collision')
-end
-
 return Ball
