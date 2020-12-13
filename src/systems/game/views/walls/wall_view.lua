@@ -13,7 +13,7 @@ function WallView:initialize(url, rel_coords_start)
 
     self:update()
 
-    ScreenService.observer:subscribe(function()
+    ScreenService.update_observer:subscribe(function()
         self:update()
     end)
 end

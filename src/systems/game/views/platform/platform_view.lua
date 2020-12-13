@@ -18,7 +18,7 @@ function PlatformView:initialize(platform)
         self:update_velocity()
     end)
 
-    ScreenService.observer:subscribe(function()
+    ScreenService.update_observer:subscribe(function()
         self:update_scale()
         self:update_pos()
     end)

@@ -24,10 +24,11 @@ end
 
 local Block = class('Block')
 
-function Block:initialize(block_type)
+function Block:initialize(block_type, grid_pos)
     self.pos = {}
 
     self.type = block_type
+    self.grid_pos = grid_pos
     self.default_width = get_prop(self.type, 'width')
     self.default_height = get_prop(self.type, 'height')
     self.destroyable = get_prop(self.type, 'destroyable')
@@ -61,7 +62,6 @@ function Block:on_collision()
     self.lives_observer:next()
 
     if self.lives == 0 then
-        print('end')
         self:delete()
     end
 end

@@ -29,7 +29,7 @@ function ScreenService:init()
     self:add_listener(msg.url())
 
     self.init_observer = Observable:new()
-    self.observer = Observable:new()
+    self.update_observer = Observable:new()
 
     update(self, function()
         self.init_observer:next()
@@ -45,7 +45,7 @@ end
 
 function ScreenService:update()
     update(self, function()
-        self.observer:next()
+        self.update_observer:next()
     end)
 end
 

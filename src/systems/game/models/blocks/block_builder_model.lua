@@ -13,7 +13,7 @@ function BlocksBuilder:build(level_data, config)
 
     for _, row in pairs(self.level_data.grid) do
         for i = 1, #row do
-            blocks[#blocks + 1] = BlockModel:new(row[i].block)
+            blocks[#blocks + 1] = BlockModel:new(row[i].block, row[i].pos)
         end
     end
 
@@ -34,14 +34,12 @@ function BlocksBuilder:_update_blocks(blocks)
     local block_length = self:get_block_length()
     local start = self:get_start_pos(block_length)
 
-    local k = 1
-    for _, row in pairs(self.level_data.grid) do
-        for i = 1, #row do
-            local scale = self:calculate_scale(block_length, blocks[k])
-            local pos = self:calculate_pos(start, block_length, scale, blocks[k], row[i])
+    for i = 1, #blocks do
+        if blocks[i] then
+            local scale = self:calculate_scale(block_length, blocks[i])
+            local pos = self:calculate_pos(start, block_length, scale, blocks[i])
 
-            blocks[k]:update(pos, scale)
-            k = k + 1
+            blocks[i]:update(pos, scale)
         end
     end
 end
@@ -73,13 +71,14 @@ function BlocksBuilder:calculate_scale(block_length, block)
     return vmath.vector3(scale, scale, scale)
 end
 
-function BlocksBuilder:calculate_pos(start, block_length, scale, block, grid_block)
+function BlocksBuilder:calculate_pos(start, block_length, scale, block)
     local pos = vmath.vector3(0, 0, 0)
+    local grid_pos = block.grid_pos
 
-    pos.x = start.x + grid_block.pos.x * block_length + grid_block.pos.x * self.config.indent_between
+    pos.x = start.x + grid_pos.x * block_length + grid_pos.x * self.config.indent_between
 
-    local indent_top = block.default_height * scale.y / 2 + grid_block.pos.y * block.default_height * scale.y
-    pos.y = start.y - indent_top - grid_block.pos.y * self.config.indent_between
+    local indent_top = block.default_height * scale.y / 2 + grid_pos.y * block.default_height * scale.y
+    pos.y = start.y - indent_top - grid_pos.y * self.config.indent_between
 
     return pos
 end

@@ -21,12 +21,20 @@ function BallView:initialize(ball)
         self:update_velocity()
     end)
 
-    ScreenService.observer:subscribe(function()
+    ScreenService.update_observer:subscribe(function()
         self:update_scale()
     end)
 
     self:update_velocity()
     self:update_scale()
+end
+
+function BallView:update()
+    local velocity = go.get(msg.url(nil, self.url, PROP.collisionobject), PROP.linear_velocity)
+
+    if velocity.x == 0 or velocity.y == 0 then
+        self:update_velocity()
+    end
 end
 
 function BallView:update_velocity()
