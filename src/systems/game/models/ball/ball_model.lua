@@ -2,7 +2,7 @@ local App = require('src.app')
 local GameServices = require('src.systems.game.services.services')
 
 local class = App.libs.middleclass
-local BallConfig = App.config.game.ball
+local BallConfig = App.config.game.go.ball
 local Observable = App.libs.event_observation.observable
 
 local GameSceneUrls = App.constants.urls.scenes.game_scene

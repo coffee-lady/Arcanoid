@@ -1,0 +1,22 @@
+local Models = require('src.systems.game.models.models')
+local Views = require('src.systems.game.views.views')
+
+local Lives = Models.lives
+local LivesView = Views.lives
+
+local PlatformController = {}
+
+function PlatformController:init()
+    self.lives = Lives:new()
+    self.lives_view = LivesView:new()
+
+    self.lives.increase_observer:subscribe(function(count)
+        self.lives_view:show(count)
+    end)
+
+    self.lives.decrease_observer:subscribe(function(count)
+        self.lives_view:hide(count + 1)
+    end)
+end
+
+return PlatformController

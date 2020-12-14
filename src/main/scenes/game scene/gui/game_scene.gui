@@ -1,4 +1,8 @@
-script: ""
+script: "/src/main/scenes/game scene/gui/game_scene.gui_script"
+textures {
+  name: "game"
+  texture: "/src/assets/atlases/game.atlas"
+}
 background_color {
   x: 0.0
   y: 0.0

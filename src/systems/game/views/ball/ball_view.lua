@@ -10,7 +10,7 @@ local ScreenService = Services.screen
 
 local PROP = App.constants.go_props
 
-local BallConfig = App.config.game.ball
+local BallConfig = App.config.game.go.ball
 
 function BallView:initialize(ball)
     self.ball = ball

@@ -10,12 +10,12 @@ local ScreenService = Services.screen
 
 local Config = App.config
 
-local BlocksGridConfig = Config.game.blocks
+local BlocksConfig = Config.game.go.blocks
 
 local BlocksController = {}
 
 function BlocksController:build(level_data)
-    self.blocks = BlockBuilder:build(level_data, BlocksGridConfig)
+    self.blocks = BlockBuilder:build(level_data, BlocksConfig)
 
     for i = 1, #self.blocks do
         local block = self.blocks[i]

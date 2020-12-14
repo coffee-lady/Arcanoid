@@ -2,7 +2,7 @@ local App = require('src.app')
 local Views = require('src.systems.game.views.views')
 
 local WallView = Views.wall
-local WallsConfig = App.config.game.walls
+local WallsConfig = App.config.game.go.walls
 local WallsConst = App.constants.urls.scenes.game_scene.walls
 
 local WallsController = {}

@@ -1,0 +1,10 @@
+local GameGOConfig = {
+    blocks = require('src.config.game.game objects.blocks_config'),
+    ball = require('src.config.game.game objects.ball_config'),
+    platform = require('src.config.game.game objects.platform_config'),
+    walls = require('src.config.game.game objects.walls_config'),
+
+    start_level = 1
+}
+
+return GameGOConfig

@@ -6,8 +6,8 @@ local class = App.libs.middleclass
 local ResourcesService = App.libs.resources_storage
 local LocalStorage = Services.local_storage
 
-local GameConfig = App.config.game
-local GameRes = GameConfig.resources
+local GameConfig = App.config.game.go
+local GameRes = App.config.game.resources
 
 local Level = class('Level')
 

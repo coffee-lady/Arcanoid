@@ -1,7 +1,7 @@
 local App = require('src.app')
 
 local class = App.libs.middleclass
-local PlatformConfig = App.config.game.platform
+local PlatformConfig = App.config.game.go.platform
 local Observable = App.libs.event_observation.observable
 
 local Platform = class('Platform')
