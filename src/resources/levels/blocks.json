@@ -3,7 +3,7 @@
         "lives": 2,
         "destroyable": true,
         "width": 200,
-        "height": 210,
+        "height": 200,
         "sprite": "snowglobe_snowflake"
     },
     "snowglobe_house": {
@@ -20,6 +20,30 @@
     },
     "snowglobe_snowman": {
         "sprite": "snowglobe_snowman"
+    },
+    "snowglobe_gifts": {
+        "sprite": "snowglobe_gifts"
+    },
+    "snowglobe_misletoe": {
+        "sprite": "snowglobe_misletoe"
+    },
+    "snowglobe_candle": {
+        "sprite": "snowglobe_candle"
+    },
+    "snowglobe_lamp": {
+        "sprite": "snowglobe_lamp"
+    },
+    "snowglobe_tree": {
+        "sprite": "snowglobe_tree"
+    },
+    "snowglobe_gifts_sleigh": {
+        "sprite": "snowglobe_gifts_sleigh"
+    },
+    "snowglobe_fireplace": {
+        "sprite": "snowglobe_fireplace"
+    },
+    "snowglobe_decorated_tree": {
+        "sprite": "snowglobe_decorated_tree"
     },
     "chimney": {
         "sprite": "chimney",
