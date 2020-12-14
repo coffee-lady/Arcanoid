@@ -9,7 +9,6 @@ local BallController = {}
 function BallController:init()
     self.ball = Ball:new()
     self.ball_view = BallView:new(self.ball)
-    self.ball_view:subscribe_to_collision()
 end
 
 return BallController

@@ -117,7 +117,7 @@ embedded_instances {
   data: "embedded_components {\n"
   "  id: \"sprite\"\n"
   "  type: \"sprite\"\n"
-  "  data: \"tile_set: \\\"/src/assets/atlases/game.atlas\\\"\\n"
+  "  data: \"tile_set: \\\"/src/assets/atlases/backgrounds.atlas\\\"\\n"
   "default_animation: \\\"bg\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
   "blend_mode: BLEND_MODE_ALPHA\\n"
@@ -143,8 +143,8 @@ embedded_instances {
   rotation {
     x: 0.0
     y: 0.0
-    z: 0.70710677
-    w: 0.70710677
+    z: 0.0
+    w: 1.0
   }
   scale3 {
     x: 1.0

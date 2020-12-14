@@ -3,22 +3,6 @@ images {
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/christmas_decor_green.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_8
-}
-images {
-  image: "/src/assets/images/game/blocks/christmas_decor_orange.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
-  image: "/src/assets/images/game/blocks/christmas_decor_red.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
-  image: "/src/assets/images/game/blocks/christmas_decor_snowflake.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
   image: "/src/assets/images/game/game ball/game_ball.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
@@ -44,14 +28,6 @@ images {
 }
 images {
   image: "/src/assets/images/game/blocks/snowglobe_snowman.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
-  image: "/src/assets/images/game/backgrounds/bg.jpg"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
-  image: "/src/assets/images/game/blocks/block.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 margin: 0
