@@ -8,7 +8,7 @@ local GameMsgService = GameServices.msg
 
 local ResourcesLib = App.libs.resources_storage
 local GameRes = App.config.game.resources
-local MSG = App.constants.messages.game
+local MSG = App.constants.messages.common
 
 local blocks_types = ResourcesLib:get(GameRes:get_blocks_data_filepath(), GameRes.blocks_data.type)
 

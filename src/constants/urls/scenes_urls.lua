@@ -7,6 +7,7 @@ local ScenesUrls = {
         factory = '/game_scene#factory',
         ball = '/ball',
         platform = '/platform',
+        losing_zone = '/losing_zone',
         walls = {
             wall_left = '/wall_left',
             wall_top = '/wall_top',

@@ -1,18 +1,17 @@
 local App = require('src.app')
-local GameSystem = require('src.systems.game_system')
-local Services = require('src.services.services')
 local GameServices = require('src.systems.game.services.services')
 
-local ScreenService = Services.screen
 local GameMsgService = GameServices.msg
+
 local MSG = App.constants.messages.common
+local GameSceneUrls = App.constants.urls.scenes.game_scene
 
 function init(self)
-    self.id = go.get_id()
+    self.id = GameSceneUrls.losing_zone
 end
 
 function on_message(self, message_id, message, sender)
-    if message_id == MSG.collision_response then
+    if message_id == MSG.trigger_response then
         GameMsgService:send(self.id, message_id, message)
     end
 end

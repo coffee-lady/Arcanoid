@@ -3,6 +3,7 @@ local GameGOConfig = {
     ball = require('src.config.game.game objects.ball_config'),
     platform = require('src.config.game.game objects.platform_config'),
     walls = require('src.config.game.game objects.walls_config'),
+    losing_zone = require('src.config.game.game objects.losing_zone_config'),
 
     start_level = 1
 }
