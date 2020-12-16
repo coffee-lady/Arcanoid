@@ -20,7 +20,7 @@ embedded_components {
   "type: COLLISION_OBJECT_TYPE_TRIGGER\n"
   "mass: 0.0\n"
   "friction: 0.0\n"
-  "restitution: 0.0\n"
+  "restitution: 1.0\n"
   "group: \"default\"\n"
   "mask: \"default\"\n"
   "embedded_collision_shape {\n"

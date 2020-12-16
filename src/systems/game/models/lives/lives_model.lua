@@ -1,10 +1,16 @@
 local App = require('src.app')
+local GameServices = require('src.systems.game.services.services')
 local class = App.libs.middleclass
 
 local Config = App.config
 local Observable = App.libs.event_observation.observable
 
+local GameMsgService = GameServices.msg
+
 local LivesConfig = Config.game.player.lives
+local GameMSG = App.constants.messages.game
+
+local SUBSCRIPTION_URL = 'LivesModel'
 
 local Lives = class('LivesModel')
 
@@ -12,6 +18,10 @@ function Lives:initialize()
     self.count = LivesConfig.count
     self.increase_observer = Observable:new()
     self.decrease_observer = Observable:new()
+
+    GameMsgService:on(SUBSCRIPTION_URL, GameMSG.lost_ball, function()
+        self:decrease()
+    end)
 end
 
 function Lives:increase()

@@ -6,6 +6,7 @@ local Libs = {
     event_observation = require('src.libs.event_observation.event_observation'),
     middleclass = require('src.libs.middleclass.middleclass'),
     resources_storage = require('src.libs.resources_storage.resources_storage'),
+    event_msg_service = require('src.libs.event msg service.event_msg_service')
 }
 
 return Libs

@@ -1,12 +1,16 @@
 local App = require('src.app')
 local Models = require('src.systems.game.models.models')
 local Views = require('src.systems.game.views.views')
+local GameServices = require('src.systems.game.services.services')
 
 local Ball = Models.ball
 local BallView = Views.ball
 local LosingZone = Models.losing_zone
 local LosingZoneView = Views.losing_zone
 
+local GameMsgService = GameServices.msg
+
+local GameMSG = App.constants.messages.game
 local GameSceneUrls = App.constants.urls.scenes.game_scene
 
 local BallController = {}
@@ -21,6 +25,7 @@ function BallController:init()
     self.losing_zone.triggered_observer:subscribe(function(message)
         if message.other_id == hash(GameSceneUrls.ball) then
             self.ball:reset()
+            GameMsgService:send(nil, GameMSG.lost_ball)
         end
     end)
 end

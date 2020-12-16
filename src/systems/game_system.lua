@@ -1,5 +1,4 @@
 local Controllers = require('src.systems.game.controllers.controllers')
-local GameServices = require('src.systems.game.services.services')
 
 local BlocksController = Controllers.blocks
 local BallController = Controllers.ball
@@ -7,13 +6,9 @@ local WallsController = Controllers.walls
 local PlatformController = Controllers.platform
 local LevelController = Controllers.level
 
-local GameMsgService = GameServices.msg
-
 local GameSceneSystem = {}
 
 function GameSceneSystem:init()
-    GameMsgService:init()
-
     LevelController:init()
 
     BlocksController:build(LevelController:get_data())
@@ -25,10 +20,6 @@ end
 
 function GameSceneSystem:on_input(action_id, action)
     PlatformController:on_input(action_id, action)
-end
-
-function GameSceneSystem:on_message(message_id, message)
-
 end
 
 return GameSceneSystem

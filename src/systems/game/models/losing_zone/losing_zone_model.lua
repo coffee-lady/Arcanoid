@@ -12,7 +12,7 @@ local GameSceneUrls = App.constants.urls.scenes.game_scene
 
 local GameMsgService = GameServices.msg
 
-local MSG = App.constants.messages.game
+local MSG = App.constants.messages.common
 
 local LosingZone = class('LosingZone')
 

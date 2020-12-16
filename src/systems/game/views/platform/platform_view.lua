@@ -15,10 +15,6 @@ function PlatformView:initialize(platform)
     self.size = go.get(msg.url(nil, self.url, PROP.sprite), PROP.size)
 
     self.platform.update_observer:subscribe(function()
-        self:update_velocity()
-    end)
-
-    ScreenService.update_observer:subscribe(function()
         self:update_scale()
         self:update_pos()
     end)

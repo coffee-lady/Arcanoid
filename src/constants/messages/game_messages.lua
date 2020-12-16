@@ -1,6 +1,5 @@
 local GameMessages = {
-    collision_response = hash('collision_response'),
-    trigger_response = hash('trigger_response')
+    lost_ball = hash('lost_ball')
 }
 
 return GameMessages

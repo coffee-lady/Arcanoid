@@ -1,4 +1,6 @@
 local App = require('src.app')
+local Services = require('src.services.services')
+local ScreenService = Services.screen
 
 local class = App.libs.middleclass
 local PlatformConfig = App.config.game.go.platform
@@ -10,14 +12,16 @@ function Platform:initialize()
     self.update_observer = Observable:new()
     self.bottom_padding = PlatformConfig.bottom_padding
 
-    self:update_length(PlatformConfig.scale)
+    self:update_scale(PlatformConfig.scale)
+
+    ScreenService.update_observer:subscribe(function()
+        self:update_scale()
+    end)
 end
 
-function Platform:update_length(rel_scale)
-    if rel_scale >= PlatformConfig.min_scale and rel_scale <= PlatformConfig.max_scale then
-        self.rel_scale = rel_scale
-        self.update_observer:next()
-    end
+function Platform:update_scale(rel_scale)
+    self.rel_scale = rel_scale
+    self.update_observer:next()
 end
 
 return Platform

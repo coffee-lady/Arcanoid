@@ -5,7 +5,7 @@ local LivesController = Controllers.lives
 local GameSceneGUISystem = {}
 
 function GameSceneGUISystem:init()
-    LivesController:init()
+    -- LivesController:init()
 end
 
 return GameSceneGUISystem

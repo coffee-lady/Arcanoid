@@ -4,9 +4,9 @@ local Views = require('src.systems.game.views.views')
 local Lives = Models.lives
 local LivesView = Views.lives
 
-local PlatformController = {}
+local LivesController = {}
 
-function PlatformController:init()
+function LivesController:init()
     self.lives = Lives:new()
     self.lives_view = LivesView:new()
 
@@ -19,4 +19,4 @@ function PlatformController:init()
     end)
 end
 
-return PlatformController
+return LivesController
