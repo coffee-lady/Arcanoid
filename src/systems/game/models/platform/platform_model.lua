@@ -12,16 +12,11 @@ function Platform:initialize()
     self.update_observer = Observable:new()
     self.bottom_padding = PlatformConfig.bottom_padding
 
-    self:update_scale(PlatformConfig.scale)
+    self.rel_scale = PlatformConfig.scale
 
     ScreenService.update_observer:subscribe(function()
-        self:update_scale()
+        self.update_observer:next()
     end)
-end
-
-function Platform:update_scale(rel_scale)
-    self.rel_scale = rel_scale
-    self.update_observer:next()
 end
 
 return Platform
