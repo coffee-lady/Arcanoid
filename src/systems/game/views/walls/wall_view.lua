@@ -7,30 +7,37 @@ local ScreenService = Services.screen
 local WallView = class('WallView')
 
 function WallView:initialize(url, rel_coords_start)
-    self.rel_start = rel_coords_start
     self.url = url
+    self.rel_start = rel_coords_start
     self.sizes = ScreenService:get_sizes()
-
-    self:update()
-
-    ScreenService.update_observer:subscribe(function()
-        self:update()
-    end)
+    self.scale = vmath.vector3()
+    self.pos = vmath.vector3()
 end
 
-function WallView:update()
+function WallView:reset()
+    self:reset_pos()
+    self:reset_scale()
+end
+
+function WallView:reset_pos()
     local start_coords = ScreenService:get_coords()
     local sizes = ScreenService:get_sizes()
 
-    local pos = vmath.vector3()
-    pos.x = start_coords.x + self.rel_start.x * sizes.x
-    pos.y = start_coords.y + self.rel_start.y * sizes.y
+    self.pos.x = start_coords.x + self.rel_start.x * sizes.x
+    self.pos.y = start_coords.y + self.rel_start.y * sizes.y
 
+    go.set_position(self.pos, self.url)
+end
+
+function WallView:reset_scale()
+    local sizes = ScreenService:get_sizes()
     local scale_factor = sizes.x > sizes.y and sizes.x / self.sizes.x or sizes.y / self.sizes.y
-    local scale = vmath.vector3(scale_factor, scale_factor, scale_factor)
 
-    go.set_position(pos, self.url)
-    go.set_scale(scale, self.url)
+    self.scale.x = scale_factor
+    self.scale.y = scale_factor
+    self.scale.z = scale_factor
+
+    go.set_scale(self.scale, self.url)
 end
 
 return WallView

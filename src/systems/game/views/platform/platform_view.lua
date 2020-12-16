@@ -2,6 +2,7 @@ local App = require('src.app')
 local class = App.libs.middleclass
 
 local PlatformView = class('PlatformView')
+local PlatformConfig = App.config.game.go.platform
 
 local Services = require('src.services.services')
 local ScreenService = Services.screen
@@ -9,52 +10,48 @@ local ScreenService = Services.screen
 local URLS = App.constants.urls.scenes.game_scene
 local PROP = App.constants.go_props
 
-function PlatformView:initialize(platform)
-    self.platform = platform
+function PlatformView:initialize()
     self.url = URLS.platform
     self.size = go.get(msg.url(nil, self.url, PROP.sprite), PROP.size)
-
-    self.platform.update_observer:subscribe(function()
-        self:update_scale()
-        self:update_pos()
-    end)
-
-    self:update_scale()
-    self:update_pos()
+    self.pos = vmath.vector3()
 end
 
 function PlatformView:update_scale()
     local sizes = ScreenService:get_sizes()
 
-    self.scale = self.platform.rel_scale * sizes.x / self.size.x
+    self.scale = PlatformConfig.scale * sizes.x / self.size.x
+
     go.set_scale(self.scale, self.url)
 end
 
-function PlatformView:update_pos(pos)
-    local sizes = ScreenService:get_sizes()
+function PlatformView:set_pos(pos_x)
     local start_coords, end_coords = ScreenService:get_coords()
+    local min_x = start_coords.x + self.size.x * self.scale / 2
+    local max_x = end_coords.x - self.size.x * self.scale / 2
 
-    if pos then
-        if pos.x < start_coords.x + self.size.x * self.scale / 2 then
-            pos.x = start_coords.x + self.size.x * self.scale / 2
-        end
-
-        if pos.x > end_coords.x - self.size.x * self.scale / 2 then
-            pos.x = end_coords.x - self.size.x * self.scale / 2
-        end
-
-        go.set_position(pos, self.url)
-        self.pos = pos
-        return
+    if pos_x < min_x then
+        self.pos.x = min_x
+    elseif pos_x > max_x then
+        self.pos.x = max_x
+    else
+        self.pos.x = pos_x
     end
 
-    self.pos = vmath.vector3(start_coords.x + sizes.x / 2, start_coords.y + sizes.y * self.platform.bottom_padding, 0)
+    go.set_position(self.pos, self.url)
+end
+
+function PlatformView:reset_pos()
+    local sizes = ScreenService:get_sizes()
+    local start_coords = ScreenService:get_coords()
+
+    self.pos.x = start_coords.x + sizes.x / 2
+    self.pos.y = start_coords.y + sizes.y * PlatformConfig.bottom_padding
 
     go.set_position(self.pos, self.url)
 end
 
 function PlatformView:on_moving_platform(action)
-    self:update_pos(vmath.vector3(action.screen_x, self.pos.y, 0))
+    self:set_pos(action.screen_x)
 end
 
 return PlatformView

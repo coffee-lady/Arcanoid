@@ -3,6 +3,9 @@ local Models = require('src.systems.game.models.models')
 local Views = require('src.systems.game.views.views')
 local GameServices = require('src.systems.game.services.services')
 
+local Services = require('src.services.services')
+local ScreenService = Services.screen
+
 local Ball = Models.ball
 local BallView = Views.ball
 local LosingZone = Models.losing_zone
@@ -19,12 +22,22 @@ function BallController:init()
     self.ball = Ball:new()
     self.ball_view = BallView:new(self.ball)
 
+    self.ball.update_speed_observer:subscribe(function(speed)
+        self.ball_view:update_speed(speed)
+    end)
+
+    self.ball:reset()
+
     self.losing_zone = LosingZone:new()
-    self.losing_zone_view = LosingZoneView:new(self.losing_zone)
+    self.losing_zone_view = LosingZoneView:new()
+
+    ScreenService.update_observer:subscribe(function()
+        self.ball:reset()
+        self.losing_zone_view:reset()
+    end)
 
     self.losing_zone.triggered_observer:subscribe(function(message)
         if message.other_id == hash(GameSceneUrls.ball) then
-            self.ball:reset()
             GameMsgService:send(nil, GameMSG.lost_ball)
         end
     end)

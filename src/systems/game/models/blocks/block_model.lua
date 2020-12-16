@@ -37,7 +37,6 @@ function Block:initialize(block_type, grid_pos)
 
     self.update_observer = Observable:new()
     self.lives_observer = Observable:new()
-
 end
 
 function Block:update(pos, scale)
