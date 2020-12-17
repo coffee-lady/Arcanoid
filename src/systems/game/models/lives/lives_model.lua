@@ -5,7 +5,7 @@ local class = App.libs.middleclass
 local Config = App.config
 local Observable = App.libs.event_observation.observable
 
-local GameMsgService = GameServices.msg
+local GameGuiMsgService = GameServices.gui_msg
 
 local LivesConfig = Config.game.player.lives
 local GameMSG = App.constants.messages.game
@@ -19,7 +19,7 @@ function Lives:initialize()
     self.increase_observer = Observable:new()
     self.decrease_observer = Observable:new()
 
-    GameMsgService:on(SUBSCRIPTION_URL, GameMSG.lost_ball, function()
+    GameGuiMsgService:on(SUBSCRIPTION_URL, GameMSG.lost_ball, function()
         self:decrease()
     end)
 end

@@ -68,7 +68,7 @@ embedded_instances {
   children: "platform"
   children: "walls"
   data: "components {\n"
-  "  id: \"game_scene\"\n"
+  "  id: \"gui\"\n"
   "  component: \"/src/main/scenes/game scene/gui/game_scene.gui\"\n"
   "  position {\n"
   "    x: 0.0\n"

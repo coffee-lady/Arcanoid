@@ -12,6 +12,7 @@ local LosingZone = Models.losing_zone
 local LosingZoneView = Views.losing_zone
 
 local GameMsgService = GameServices.msg
+local GameGuiMsgService = GameServices.gui_msg
 
 local GameMSG = App.constants.messages.game
 local GameSceneUrls = App.constants.urls.scenes.game_scene
@@ -39,6 +40,7 @@ function BallController:init()
     self.losing_zone.triggered_observer:subscribe(function(message)
         if message.other_id == hash(GameSceneUrls.ball) then
             GameMsgService:send(nil, GameMSG.lost_ball)
+            GameGuiMsgService:post(GameSceneUrls.gui, nil, GameMSG.lost_ball)
         end
     end)
 end

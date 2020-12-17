@@ -11,7 +11,7 @@ function init(self)
 end
 
 function on_message(self, message_id, message, sender)
-    if message_id == MSG.trigger_response then
+    if message_id == MSG.collision_response then
         GameMsgService:send(self.id, message_id, message)
     end
 end

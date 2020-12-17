@@ -13,7 +13,8 @@ local ScenesUrls = {
             wall_top = '/wall_top',
             wall_right = '/wall_right',
             wall_bottom = '/wall_bottom'
-        }
+        },
+        gui = '/game_scene#gui'
     },
     game_victory_scene = {
         main = 'game_victory_scene'

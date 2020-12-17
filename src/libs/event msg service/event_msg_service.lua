@@ -9,7 +9,7 @@ function EventMSGServiceLib:initialize()
     self._subs = {}
 end
 
-local function _create_subs(self, message_id)
+local function create_subs(self, message_id)
     self._subs[message_id] = {
         observer = Observable:new(),
         subscribers = {}
@@ -18,14 +18,14 @@ local function _create_subs(self, message_id)
     return self._subs[message_id]
 end
 
-local function _send_to_all_subscribers(self, message_id, message)
+local function send_to_all_subscribers(self, message_id, message)
     local subscribers = self._subs[message_id].subscribers
     for i = 1, #subscribers do
         subscribers[i]:next(message)
     end
 end
 
-local function _send_to_reciever(self, receiver, message_id, message)
+local function send_to_receiver(self, receiver, message_id, message)
     local subscribers = self._subs[message_id].subscribers
 
     for i = 1, #subscribers do
@@ -35,23 +35,44 @@ local function _send_to_reciever(self, receiver, message_id, message)
     end
 end
 
+local function post_to_scene(scene, receiver, message_id, message)
+    local data = {
+        receiver = receiver,
+        data = message
+    }
+
+    msg.post(scene, message_id, data)
+end
+
+local function post_to_receiver(receiver, message_id, message)
+    msg.post(receiver, message_id, message)
+end
+
+function EventMSGServiceLib:post(scene, receiver, message_id, message)
+    if scene then
+        post_to_scene(scene, receiver, message_id, message)
+    else
+        post_to_receiver(receiver, message_id, message)
+    end
+end
+
 function EventMSGServiceLib:send(receiver, message_id, message)
     if not self._subs[message_id] then
-        _create_subs(self, message_id)
+        create_subs(self, message_id)
     end
 
     if receiver then
-        _send_to_reciever(self, receiver, message_id, message)
+        send_to_receiver(self, receiver, message_id, message)
         return
     end
 
-    _send_to_all_subscribers(self, message_id, message)
+    send_to_all_subscribers(self, message_id, message)
 end
 
 function EventMSGServiceLib:on(subscriber, message_id, callback)
     local subs = self._subs[message_id]
     if not subs then
-        subs = _create_subs(self, message_id)
+        subs = create_subs(self, message_id)
     end
 
     local new_subs = subs.observer:subscribe(callback)

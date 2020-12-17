@@ -15,7 +15,7 @@ function LosingZone:initialize()
     self.url = GameSceneUrls.losing_zone
     self.triggered_observer = Observable:new()
 
-    GameMsgService:on(self.url, MSG.trigger_response, function(message)
+    GameMsgService:on(self.url, MSG.collision_response, function(message)
         self.triggered_observer:next(message)
     end)
 end
