@@ -1,7 +1,4 @@
 local ScenesUrls = {
-    game_end_scene = {
-        main = 'game_end_scene'
-    },
     game_scene = {
         main = 'game_scene',
         factory = '/game_scene#factory',

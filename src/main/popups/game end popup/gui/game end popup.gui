@@ -1,11 +1,11 @@
-script: "/src/main/scenes/game scene/gui/game_scene.gui_script"
+script: ""
 fonts {
-  name: "DosisMedium"
-  font: "/src/assets/fonts/DosisMedium.font"
+  name: "KaushanScriptRegular"
+  font: "/src/assets/fonts/KaushanScriptRegular.font"
 }
 textures {
-  name: "game"
-  texture: "/src/assets/atlases/game.atlas"
+  name: "backgrounds"
+  texture: "/src/assets/atlases/backgrounds.atlas"
 }
 background_color {
   x: 0.0
@@ -16,10 +16,64 @@ background_color {
 nodes {
   position {
     x: 320.0
+    y: 475.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 640.0
     y: 950.0
     z: 0.0
     w: 1.0
   }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  type: TYPE_BOX
+  blend_mode: BLEND_MODE_ALPHA
+  texture: ""
+  id: "bg"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
+  pivot: PIVOT_CENTER
+  adjust_mode: ADJUST_MODE_FIT
+  layer: "main"
+  inherit_alpha: true
+  slice9 {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 0.0
+  }
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 0.3
+  template_node_child: false
+  size_mode: SIZE_MODE_MANUAL
+}
+nodes {
+  position {
+    x: 0.0
+    y: 109.0
+    z: 0.0
+    w: 1.0
+  }
   rotation {
     x: 0.0
     y: 0.0
@@ -33,8 +87,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 1.0
-    y: 1.0
+    x: 640.0
+    y: 950.0
     z: 0.0
     w: 1.0
   }
@@ -44,22 +98,33 @@ nodes {
     z: 1.0
     w: 1.0
   }
-  type: TYPE_PARTICLEFX
-  id: "snow_particlefx"
+  type: TYPE_BOX
+  blend_mode: BLEND_MODE_ALPHA
+  texture: ""
+  id: "root"
   xanchor: XANCHOR_LEFT
   yanchor: YANCHOR_TOP
-  adjust_mode: ADJUST_MODE_ZOOM
-  layer: "snow"
-  inherit_alpha: true
-  alpha: 1.0
+  pivot: PIVOT_SW
+  adjust_mode: ADJUST_MODE_FIT
+  layer: "main"
+  inherit_alpha: false
+  slice9 {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 0.0
+  }
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 0.0
   template_node_child: false
-  size_mode: SIZE_MODE_AUTO
-  particlefx: "game_background"
+  size_mode: SIZE_MODE_MANUAL
 }
 nodes {
   position {
     x: 320.0
-    y: 899.0
+    y: 479.0
     z: 0.0
     w: 1.0
   }
@@ -70,14 +135,14 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 1.0
-    y: 1.0
+    x: 0.9
+    y: 0.9
     z: 1.0
     w: 1.0
   }
   size {
-    x: 200.0
-    y: 100.0
+    x: 589.0
+    y: 978.0
     z: 0.0
     w: 1.0
   }
@@ -89,67 +154,13 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: ""
-  id: "energy_container"
-  xanchor: XANCHOR_LEFT
-  yanchor: YANCHOR_TOP
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  layer: "main"
-  inherit_alpha: true
-  slice9 {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 0.0
-  template_node_child: false
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
-    x: -31.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 52.0
-    y: 52.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: "game/energy"
-  id: "energy_icon"
+  texture: "backgrounds/lost_popup_bg"
+  id: "popup_bg"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_FIT
-  parent: "energy_container"
+  parent: "root"
   layer: "main"
   inherit_alpha: false
   slice9 {
@@ -167,8 +178,8 @@ nodes {
 }
 nodes {
   position {
-    x: 8.0
-    y: 0.0
+    x: 437.0
+    y: 202.0
     z: 0.0
     w: 1.0
   }
@@ -179,97 +190,34 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 0.4
-    y: 0.4
+    x: 0.9
+    y: 0.9
     z: 1.0
     w: 1.0
   }
   size {
-    x: 200.0
-    y: 100.0
+    x: 196.0
+    y: 56.0
     z: 0.0
     w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_TEXT
-  blend_mode: BLEND_MODE_ALPHA
-  text: "32\n"
-  ""
-  font: "DosisMedium"
-  id: "energy_amount"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_W
-  outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  shadow {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  adjust_mode: ADJUST_MODE_FIT
-  line_break: false
-  parent: "energy_container"
-  layer: "main"
-  inherit_alpha: false
-  alpha: 1.0
-  outline_alpha: 1.0
-  shadow_alpha: 1.0
-  template_node_child: false
-  text_leading: 1.0
-  text_tracking: 0.0
-}
-nodes {
-  position {
-    x: 101.0
-    y: 900.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 200.0
-    y: 100.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.2745
+    y: 0.376875
+    z: 0.45
     w: 1.0
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: ""
-  id: "pause_container"
-  xanchor: XANCHOR_LEFT
-  yanchor: YANCHOR_TOP
+  texture: "backgrounds/btn"
+  id: "button_restart"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_FIT
+  parent: "root"
   layer: "main"
-  inherit_alpha: true
+  inherit_alpha: false
   slice9 {
     x: 0.0
     y: 0.0
@@ -279,13 +227,13 @@ nodes {
   clipping_mode: CLIPPING_MODE_NONE
   clipping_visible: true
   clipping_inverted: false
-  alpha: 0.0
+  alpha: 1.0
   template_node_child: false
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
   position {
-    x: -14.0
+    x: 0.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -297,8 +245,8 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 0.4
-    y: 0.4
+    x: 0.3
+    y: 0.3
     z: 1.0
     w: 1.0
   }
@@ -316,12 +264,12 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "Pause"
-  font: "DosisMedium"
-  id: "pause_text"
+  text: "Restart"
+  font: "KaushanScriptRegular"
+  id: "button_restart_text"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_W
+  pivot: PIVOT_CENTER
   outline {
     x: 1.0
     y: 1.0
@@ -336,9 +284,9 @@ nodes {
   }
   adjust_mode: ADJUST_MODE_FIT
   line_break: false
-  parent: "pause_container"
+  parent: "button_restart"
   layer: "main"
-  inherit_alpha: false
+  inherit_alpha: true
   alpha: 1.0
   outline_alpha: 1.0
   shadow_alpha: 1.0
@@ -348,8 +296,8 @@ nodes {
 }
 nodes {
   position {
-    x: -49.0
-    y: 0.0
+    x: 214.0
+    y: 202.0
     z: 0.0
     w: 1.0
   }
@@ -360,32 +308,32 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 0.6
-    y: 0.6
+    x: 0.9
+    y: 0.9
     z: 1.0
     w: 1.0
   }
   size {
-    x: 76.0
-    y: 76.0
+    x: 196.0
+    y: 56.0
     z: 0.0
     w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.2745
+    y: 0.376875
+    z: 0.45
     w: 1.0
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "game/pause_button"
-  id: "pause_icon"
+  texture: "backgrounds/btn"
+  id: "button_back"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_FIT
-  parent: "pause_container"
+  parent: "root"
   layer: "main"
   inherit_alpha: false
   slice9 {
@@ -400,17 +348,136 @@ nodes {
   alpha: 1.0
   template_node_child: false
   size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 0.3
+    y: 0.3
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "Back home"
+  font: "KaushanScriptRegular"
+  id: "button_back_text"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_FIT
+  line_break: false
+  parent: "button_back"
+  layer: "main"
+  inherit_alpha: true
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
+}
+nodes {
+  position {
+    x: 320.0
+    y: 347.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 0.7
+    y: 0.7
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.2745
+    y: 0.376875
+    z: 0.45
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "Oops... You lost"
+  font: "KaushanScriptRegular"
+  id: "title"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_FIT
+  line_break: false
+  parent: "root"
+  layer: "main"
+  inherit_alpha: true
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
 }
 layers {
   name: "main"
 }
-layers {
-  name: "snow"
-}
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
 max_nodes: 512
-particlefxs {
-  name: "game_background"
-  particlefx: "/src/assets/particlefx/backgrounds/game_background.particlefx"
-}

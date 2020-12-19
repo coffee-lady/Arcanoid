@@ -1,6 +1,6 @@
 local PopupsUrls = {
-    game_pause  = hash('game_pause_popup'),
-    restart_game  = hash('restart_game_popup'),
+    game_pause = hash('game_pause_popup'),
+    game_end_popup = hash('game_end_popup')
 }
 
 return PopupsUrls
