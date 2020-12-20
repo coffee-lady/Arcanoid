@@ -1,9 +1,6 @@
 local App = require('src.app')
-local GameSystem = require('src.systems.game_system')
-local Services = require('src.services.services')
 local GameServices = require('src.systems.game.services.services')
 
-local ScreenService = Services.screen
 local GameMsgService = GameServices.msg
 local MSG = App.constants.messages.common
 

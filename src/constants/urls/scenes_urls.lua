@@ -16,8 +16,8 @@ local ScenesUrls = {
     game_victory_scene = {
         main = 'game_victory_scene'
     },
-    pack_select_scene = {
-        main = 'pack_select_scene'
+    pack_selection_scene = {
+        main = 'pack_selection_scene'
     },
     start_scene = {
         main = 'start_scene'

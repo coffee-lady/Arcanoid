@@ -1,4 +1,4 @@
-local GameViews = {
+local Views = {
     ball = require('src.systems.game.views.ball.ball_view'),
     block = require('src.systems.game.views.blocks.block_view'),
     wall = require('src.systems.game.views.walls.wall_view'),
@@ -7,4 +7,4 @@ local GameViews = {
     losing_zone = require('src.systems.game.views.losing_zone.losing_zone_view')
 }
 
-return GameViews
+return Views

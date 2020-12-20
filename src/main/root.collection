@@ -109,7 +109,7 @@ embedded_instances {
   id: "scenes"
   children: "game_scene"
   children: "game_victory_scene"
-  children: "pack_select_scene"
+  children: "pack_selection_scene"
   children: "start_scene"
   data: ""
   position {
@@ -372,7 +372,7 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "pack_select_scene"
+  id: "pack_selection_scene"
   data: "components {\n"
   "  id: \"screen_proxy\"\n"
   "  component: \"/monarch/screen_proxy.script\"\n"
@@ -389,14 +389,14 @@ embedded_instances {
   "  }\n"
   "  properties {\n"
   "    id: \"screen_id\"\n"
-  "    value: \"pack_select_scene\"\n"
+  "    value: \"pack_selection_scene\"\n"
   "    type: PROPERTY_TYPE_HASH\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
   "  id: \"collectionproxy\"\n"
   "  type: \"collectionproxy\"\n"
-  "  data: \"collection: \\\"/src/main/scenes/pack select scene/pack_select_scene.collection\\\"\\n"
+  "  data: \"collection: \\\"/src/main/scenes/pack selection scene/pack_selection_scene.collection\\\"\\n"
   "exclude: false\\n"
   "\"\n"
   "  position {\n"

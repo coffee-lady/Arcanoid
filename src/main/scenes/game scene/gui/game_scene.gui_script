@@ -1,10 +1,7 @@
-local App = require('src.app')
-local GameGUISystem = require('src.systems.game_gui_system')
-local Services = require('src.services.services')
+local GameGUISystem = require('src.systems.game.gui_system')
 
 function init(self)
     GameGUISystem:init()
-    gui.play_particlefx(gui.get_node('particlefx'))
 end
 
 function on_message(self, message_id, message)

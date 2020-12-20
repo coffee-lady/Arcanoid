@@ -1,5 +1,5 @@
 local App = require('src.app')
-local GameSystem = require('src.systems.game_system')
+local GameSystem = require('src.systems.game.go_system')
 local Services = require('src.services.services')
 
 local ScreenService = Services.screen
