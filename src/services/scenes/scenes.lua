@@ -16,37 +16,45 @@ function ScenesService:on_message(message_id)
     if message_id == hash('init_monarch') then
         self.init_observer:next()
         self.init_observer:complete()
-	end
+    end
 end
 
 function ScenesService:switch_to_scene(scene_id, scene_data, reload, callback)
     monarch.show(scene_id, {
         clear = true,
         reload = reload and reload or false,
-        sequential = true,
+        sequential = true
     }, scene_data, function()
-        if callback then callback() end
+        if callback then
+            callback()
+        end
     end)
 end
 
 function ScenesService:back_to_prev_scene(scene_data, callback)
     monarch.back(scene_data, function()
-        if callback then callback() end
+        if callback then
+            callback()
+        end
     end)
 end
 
 function ScenesService:open_popup(popup_id, popup_data, callback)
     monarch.show(popup_id, {
         clear = true,
-        sequential = true,
+        sequential = true
     }, popup_data, function()
-        if callback then callback() end
+        if callback then
+            callback()
+        end
     end)
 end
 
 function ScenesService:close_popup(popup_id, callback)
     monarch.unload(popup_id, function()
-        if callback then callback() end
+        if callback then
+            callback()
+        end
     end)
 end
 

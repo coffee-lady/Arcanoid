@@ -1,5 +1,5 @@
 local GuiLib = {
-    buttons = require('src.libs.gui.button.lib_gui_button'),
+    button = require('src.libs.gui.button.button')
 }
 
 return GuiLib

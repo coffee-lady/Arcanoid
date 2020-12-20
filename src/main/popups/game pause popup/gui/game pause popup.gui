@@ -286,7 +286,7 @@ nodes {
   line_break: false
   parent: "button_continue"
   layer: "main"
-  inherit_alpha: true
+  inherit_alpha: false
   alpha: 1.0
   outline_alpha: 1.0
   shadow_alpha: 1.0
@@ -404,7 +404,7 @@ nodes {
   line_break: false
   parent: "button_restart"
   layer: "main"
-  inherit_alpha: true
+  inherit_alpha: false
   alpha: 1.0
   outline_alpha: 1.0
   shadow_alpha: 1.0
@@ -522,7 +522,7 @@ nodes {
   line_break: false
   parent: "button_back"
   layer: "main"
-  inherit_alpha: true
+  inherit_alpha: false
   alpha: 1.0
   outline_alpha: 1.0
   shadow_alpha: 1.0
@@ -585,7 +585,7 @@ nodes {
   line_break: false
   parent: "root"
   layer: "main"
-  inherit_alpha: true
+  inherit_alpha: false
   alpha: 1.0
   outline_alpha: 1.0
   shadow_alpha: 1.0

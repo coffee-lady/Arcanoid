@@ -1,5 +1,5 @@
 local App = require('src.app')
-local GameSystem = require('src.systems.game.go_system')
+local GameSystem = require('src.systems.game.go.go_system')
 local Services = require('src.services.services')
 
 local ScreenService = Services.screen
@@ -17,5 +17,7 @@ function on_message(self, message_id, message, sender)
 end
 
 function on_input(self, action_id, action)
-    GameSystem:on_input(action_id, action)
+    if action_id then
+        GameSystem:on_input(action_id, action)
+    end
 end
