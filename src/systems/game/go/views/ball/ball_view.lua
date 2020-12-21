@@ -18,6 +18,8 @@ local BallView = class('BallView')
 
 function BallView:initialize()
     self.url = GameSceneUrls.ball
+    self.co_url = msg.url(nil, self.url, PROP.collisionobject)
+
     self.pos = vmath.vector3()
     self.size = go.get(msg.url(nil, self.url, PROP.sprite), PROP.size)
 
@@ -29,15 +31,21 @@ function BallView:initialize()
 end
 
 function BallView:update_speed(speed)
-    local url = msg.url(nil, self.url, PROP.collisionobject)
-
-    go.set(url, PROP.linear_velocity, speed)
+    go.set(self.co_url, PROP.linear_velocity, speed)
 end
 
 function BallView:stop_ball()
-    local url = msg.url(nil, self.url, PROP.collisionobject)
+    self.speed_snapshot = go.get(self.co_url, PROP.linear_velocity)
 
-    go.set(url, PROP.linear_velocity, ZERO_SPEED)
+    go.set(self.co_url, PROP.linear_velocity, ZERO_SPEED)
+end
+
+function BallView:resume_moving()
+    if not self.speed_snapshot then
+        return
+    end
+
+    go.set(self.co_url, PROP.linear_velocity, self.speed_snapshot)
 end
 
 function BallView:reset()

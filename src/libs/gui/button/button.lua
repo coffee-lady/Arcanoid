@@ -6,13 +6,16 @@ local ComplexAnimation = AnimationsLib.complex_animation
 
 local Button = class('Button')
 
-function Button:initialize(button, on_click)
-    self._button = button
+function Button:initialize(url, animation_config, on_click)
+    self._button = gui.get_node(url)
     self._color = gui.get_color(self._button)
-    self._scale = gui.get_scale(button)
+    self._scale = gui.get_scale(self._button)
     self._is_pressed = false
     self._easing = gui.EASING_INCUBIC
     self._on_click = on_click
+
+    local A = animation_config
+    self:animate_click(A.blackout, A.scale, A.duration, A.easing)
 end
 
 local function set_non_negative(prop, blackout)
@@ -38,7 +41,7 @@ local function create_complex_anim(node, scale, color, duration, easing)
     return anim
 end
 
-function Button:animate_click(blackout, new_scale, duration, easing)
+function Button:animate_click(blackout, scale, duration, easing)
     self.animation_released = create_complex_anim(self._button, self._scale, self._color, duration, easing)
 
     local color_to = vmath.vector4()
@@ -47,7 +50,7 @@ function Button:animate_click(blackout, new_scale, duration, easing)
     color_to.z = set_non_negative(self._color.z, blackout)
     color_to.w = 1
 
-    self.animation_pressed = create_complex_anim(self._button, new_scale, color_to, duration, easing)
+    self.animation_pressed = create_complex_anim(self._button, scale, color_to, duration, easing)
 end
 
 function Button:on_click(action)

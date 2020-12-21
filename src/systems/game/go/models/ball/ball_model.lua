@@ -16,6 +16,7 @@ local Ball = class('Ball')
 function Ball:initialize()
     self.url = GameSceneUrls.ball
     self.update_speed_observer = Observable:new()
+    self.co_url = msg.url(nil, self.url, PROP.collisionobject)
 
     GameMsgService:on(hash(self.url), MSG.collision_response, function(message)
         self:check_speed()
@@ -35,7 +36,7 @@ function Ball:reset_speed()
 end
 
 function Ball:check_speed()
-    local speed = go.get(msg.url(nil, self.url, PROP.collisionobject), PROP.linear_velocity)
+    local speed = go.get(self.co_url, PROP.linear_velocity)
 
     if speed.x == 0 or speed.y == 0 then
         speed = BallConfig.start_speed

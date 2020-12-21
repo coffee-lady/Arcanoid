@@ -15,17 +15,17 @@
     },
     "start_scene": {
         "title": "Christmas\nArcanoid",
-        "button_play_text": "Play"
+        "button_play_text": "Play!"
     },
     "game_pause_popup": {
         "title": "Pause",
         "button_back_text": "Back home",
+        "button_continue_text": "Continue",
         "button_restart_text": "Restart"
     },
     "game_end_popup": {
         "title": "Oops... You lost",
         "button_restart_text": "Restart",
-        "button_continue_text": "Continue",
         "button_back_text": "Back home"
     }
 }

@@ -22,7 +22,7 @@ function init(self)
     local init_subs = ForkJoin(ScenesService.init_observer, ScreenService.init_observer)
 
     init_subs:subscribe(function()
-        ScenesService:switch_to_scene(ScenesUrls.game_scene.main)
+        ScenesService:switch_to_scene(ScenesUrls.start_scene.main)
     end)
 
     LocalizationService:init(Config.localization.default_lang)

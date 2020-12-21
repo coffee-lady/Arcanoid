@@ -11,6 +11,7 @@ local MSG = App.constants.messages
 local LivesController = Controllers.lives
 local PauseButtonController = Controllers.pause_button
 local LocalizationController = Controllers.localization
+local EffectsController = Controllers.effects
 
 local GameSceneGUISystem = {}
 
@@ -23,6 +24,8 @@ function GameSceneGUISystem:init()
     LocalizationService.changes:subscribe(function()
         GameGuiMsgService:send(nil, MSG.common.localization_change)
     end)
+
+    EffectsController:init()
 end
 
 function GameSceneGUISystem:on_message(message_id, message)

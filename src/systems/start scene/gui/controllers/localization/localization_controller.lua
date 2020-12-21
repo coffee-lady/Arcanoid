@@ -1,14 +1,14 @@
 local App = require('src.app')
-local GameServices = require('src.systems.game.services.services')
+local SceneServices = require('src.systems.start scene.services.services')
 local Services = require('src.services.services')
 
-local GameGuiMsgService = GameServices.gui_msg
+local SceneGuiMsgService = SceneServices.gui_msg
 local LocalizationService = Services.localization
 local LocalizationLib = App.libs.localization
 
 local MSG = App.constants.messages
 local URL = App.constants.urls
-local GameGuiURL = URL.gui_nodes.game_scene
+local SceneGuiURL = URL.gui_nodes.start_scene
 
 local SUBSCRIPTION = 'LocalizationController'
 
@@ -17,16 +17,16 @@ local LocalizationController = {}
 function LocalizationController:init()
     self:update()
 
-    GameGuiMsgService:on(SUBSCRIPTION, MSG.common.localization_change, function()
+    SceneGuiMsgService:on(SUBSCRIPTION, MSG.common.localization_change, function()
         self:update()
     end)
 end
 
 function LocalizationController:update()
-    local TEXT_DATA = LocalizationService:get(URL.scenes.game_scene.main)
+    local TEXT_DATA = LocalizationService:get(URL.scenes.start_scene.main)
     LocalizationLib:update_gui({{
-        node = gui.get_node(GameGuiURL.text.pause_text),
-        text = TEXT_DATA.pause_text
+        node = gui.get_node(SceneGuiURL.text.button_play_text),
+        text = TEXT_DATA.button_play_text
     }})
 end
 

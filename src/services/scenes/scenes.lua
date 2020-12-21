@@ -19,43 +19,34 @@ function ScenesService:on_message(message_id)
     end
 end
 
+function ScenesService:post(screen_id, message_id, message)
+    return monarch.post(screen_id, message_id, message)
+end
+
 function ScenesService:switch_to_scene(scene_id, scene_data, reload, callback)
     monarch.show(scene_id, {
         clear = true,
         reload = reload and reload or false,
         sequential = true
-    }, scene_data, function()
-        if callback then
-            callback()
-        end
-    end)
+    }, scene_data, callback)
 end
 
 function ScenesService:back_to_prev_scene(scene_data, callback)
-    monarch.back(scene_data, function()
-        if callback then
-            callback()
-        end
-    end)
+    monarch.back(scene_data, callback)
+end
+
+function ScenesService:is_visible(screen_id)
+    return monarch.is_visible(screen_id)
 end
 
 function ScenesService:open_popup(popup_id, popup_data, callback)
     monarch.show(popup_id, {
-        clear = true,
         sequential = true
-    }, popup_data, function()
-        if callback then
-            callback()
-        end
-    end)
+    }, popup_data, callback)
 end
 
 function ScenesService:close_popup(popup_id, callback)
-    monarch.unload(popup_id, function()
-        if callback then
-            callback()
-        end
-    end)
+    monarch.unload(popup_id, callback)
 end
 
 function ScenesService:get_scene_data(screen_id)

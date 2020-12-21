@@ -1,4 +1,4 @@
-script: ""
+script: "/src/main/scenes/start scene/gui/scripts/start_scene.gui_script"
 fonts {
   name: "KaushanScriptRegular"
   font: "/src/assets/fonts/KaushanScriptRegular.font"
@@ -150,15 +150,15 @@ nodes {
     w: 1.0
   }
   size {
-    x: 311.0
-    y: 140.0
+    x: 341.0
+    y: 92.0
     z: 0.0
     w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.0425
+    y: 0.198125
+    z: 0.25
     w: 1.0
   }
   type: TYPE_BOX
@@ -187,7 +187,7 @@ nodes {
 nodes {
   position {
     x: 0.0
-    y: 10.0
+    y: 0.0
     z: 0.0
     w: 1.0
   }
@@ -198,8 +198,8 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 0.65
-    y: 0.65
+    x: 0.45
+    y: 0.45
     z: 1.0
     w: 1.0
   }
@@ -247,9 +247,56 @@ nodes {
   text_leading: 1.0
   text_tracking: 0.0
 }
+nodes {
+  position {
+    x: 320.0
+    y: 950.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 1.0
+    y: 1.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_PARTICLEFX
+  id: "snow_particlefx"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  adjust_mode: ADJUST_MODE_FIT
+  layer: "main"
+  inherit_alpha: true
+  alpha: 1.0
+  template_node_child: false
+  size_mode: SIZE_MODE_AUTO
+  particlefx: "snow_particlefx"
+}
 layers {
   name: "main"
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
 max_nodes: 512
+particlefxs {
+  name: "snow_particlefx"
+  particlefx: "/src/assets/particlefx/backgrounds/game_background.particlefx"
+}

@@ -83,4 +83,15 @@ function EventMSGServiceLib:on(subscriber, message_id, callback)
     return new_subs
 end
 
+function EventMSGServiceLib:reset()
+    for _, obj in pairs(self._subs) do
+        local subscriptions = obj.subscribers
+        for i = 1, #subscriptions do
+            subscriptions[i]:unsubscribe()
+        end
+    end
+
+    self._subs = {}
+end
+
 return EventMSGServiceLib

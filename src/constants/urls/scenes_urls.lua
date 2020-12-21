@@ -1,6 +1,7 @@
 local ScenesUrls = {
     game_scene = {
         main = 'game_scene',
+        scene = 'game_scene:/scene',
         factory = '/game_scene#factory',
         ball = '/ball',
         platform = '/platform',

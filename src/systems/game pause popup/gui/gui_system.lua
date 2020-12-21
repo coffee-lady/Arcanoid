@@ -1,15 +1,43 @@
+local App = require('src.app')
 local Controllers = require('src.systems.game pause popup.gui.controllers.controllers')
-local GameServices = require('src.systems.game pause popup.services.services')
+local PopupServices = require('src.systems.game pause popup.services.services')
+local Services = require('src.services.services')
 
-local GameGuiMsgService = GameServices.gui_msg
+local PopupGuiMsgService = PopupServices.gui_msg
+local LocalizationService = Services.localization
 
-local GameSceneGUISystem = {}
+local MSG = App.constants.messages
 
-function GameSceneGUISystem:init()
+local PopupController = Controllers.popup
+local LocalizationController = Controllers.localization
+
+local PausePopupGUISystem = {}
+
+function PausePopupGUISystem:init()
+    PopupController:init()
+
+    LocalizationController:init()
+
+    self.local_subs = LocalizationService.changes:subscribe(function()
+        PopupGuiMsgService:send(nil, MSG.common.localization_change)
+    end)
 end
 
-function GameSceneGUISystem:on_message(message_id, message)
-    GameGuiMsgService:send(message.receiver, message_id, message.data)
+function PausePopupGUISystem:on_message(message_id, message)
+    PopupGuiMsgService:send(message.receiver, message_id, message.data)
 end
 
-return GameSceneGUISystem
+function PausePopupGUISystem:on_input(action_id, action)
+    PopupGuiMsgService:send(nil, action_id, action)
+end
+
+function PausePopupGUISystem:final()
+    PopupController:final()
+    LocalizationController:final()
+
+    self.local_subs:unsubscribe()
+
+    PopupGuiMsgService:reset()
+end
+
+return PausePopupGUISystem

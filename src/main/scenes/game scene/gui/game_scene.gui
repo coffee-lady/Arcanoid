@@ -1,4 +1,4 @@
-script: "/src/main/scenes/game scene/gui/game_scene.gui_script"
+script: "/src/main/scenes/game scene/gui/scripts/game_scene.gui_script"
 fonts {
   name: "DosisMedium"
   font: "/src/assets/fonts/DosisMedium.font"

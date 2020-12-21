@@ -47,6 +47,11 @@ function BallController:init()
     GameMsgService:on(GameSceneUrls.main, GameMSG.pause, function()
         self.ball_view:stop_ball()
     end)
+
+    GameMsgService:on(GameSceneUrls.main, GameMSG.continue, function()
+        self.ball_view:resume_moving()
+    end)
+
 end
 
 return BallController

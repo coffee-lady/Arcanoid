@@ -9,15 +9,17 @@ function Observable:initialize()
 end
 
 function Observable:next(value)
-    if self.completed then return end
+    if self.completed then
+        return
+    end
 
-    for i =  1, #self.subscribers do
+    for i = 1, #self.subscribers do
         self.subscribers[i]:next(value)
     end
 end
 
 function Observable:subscribe(next, complete)
-    local subscription = Subscriber:new(next, complete, function (subscriber)
+    local subscription = Subscriber:new(next, complete, function(subscriber)
         self:remove(subscriber)
     end)
 
@@ -26,8 +28,8 @@ function Observable:subscribe(next, complete)
 end
 
 function Observable:remove(subscriber)
-    for i =  1, #self.subscribers do
-        if self.subscribers[i].subscriber == subscriber then
+    for i = 1, #self.subscribers do
+        if self.subscribers[i].subs == subscriber then
             table.remove(self.subscribers, i)
             break
         end
@@ -35,7 +37,7 @@ function Observable:remove(subscriber)
 end
 
 function Observable:complete()
-    for i =  1, #self.subscribers do
+    for i = 1, #self.subscribers do
         self.subscribers[i]:complete()
         self.subscribers[i]:unsubscribe()
         self.completed = true
