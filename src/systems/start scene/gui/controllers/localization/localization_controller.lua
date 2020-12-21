@@ -9,6 +9,7 @@ local LocalizationLib = App.libs.localization
 local MSG = App.constants.messages
 local URL = App.constants.urls
 local SceneGuiURL = URL.gui_nodes.start_scene
+local SCENE_URL = URL.scenes.start_scene.main
 
 local SUBSCRIPTION = 'LocalizationController'
 
@@ -23,7 +24,7 @@ function LocalizationController:init()
 end
 
 function LocalizationController:update()
-    local TEXT_DATA = LocalizationService:get(URL.scenes.start_scene.main)
+    local TEXT_DATA = LocalizationService:get(SCENE_URL)
     LocalizationLib:update_gui({{
         node = gui.get_node(SceneGuiURL.text.button_play_text),
         text = TEXT_DATA.button_play_text

@@ -1,5 +1,5 @@
 local App = require('src.app')
 
-local GameMsgService = App.libs.event_msg_service:new()
+local SceneMsgService = App.libs.event_msg_service:new()
 
-return GameMsgService
+return SceneMsgService

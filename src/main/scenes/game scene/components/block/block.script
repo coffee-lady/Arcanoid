@@ -1,7 +1,7 @@
 local App = require('src.app')
 local GameServices = require('src.systems.game.services.services')
 
-local GameMsgService = GameServices.msg
+local SceneMsgService = GameServices.msg
 
 local MSG = App.constants.messages.common
 
@@ -11,6 +11,6 @@ end
 
 function on_message(self, message_id, message, sender)
     if message_id == MSG.collision_response then
-        GameMsgService:send(self.id, message_id, message)
+        SceneMsgService:send(self.id, message_id, message)
     end
 end

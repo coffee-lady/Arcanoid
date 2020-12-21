@@ -11,11 +11,11 @@ local BallView = Views.ball
 local LosingZone = Models.losing_zone
 local LosingZoneView = Views.losing_zone
 
-local GameMsgService = GameServices.msg
-local GameGuiMsgService = GameServices.gui_msg
+local SceneMsgService = GameServices.msg
+local SceneGuiMsgService = GameServices.gui_msg
 
-local GameMSG = App.constants.messages.game
-local GameSceneUrls = App.constants.urls.scenes.game_scene
+local SceneMSG = App.constants.messages.game
+local SceneUrls = App.constants.urls.scenes.game_scene
 
 local BallController = {}
 
@@ -38,17 +38,18 @@ function BallController:init()
     end)
 
     self.losing_zone.triggered_observer:subscribe(function(message)
-        if message.other_id == hash(GameSceneUrls.ball) then
-            GameMsgService:send(nil, GameMSG.lost_ball)
-            GameGuiMsgService:post(GameSceneUrls.gui, nil, GameMSG.lost_ball)
+        if message.other_id == hash(SceneUrls.ball) then
+            SceneMsgService:send(nil, SceneMSG.lost_ball)
+            SceneGuiMsgService:post(SceneUrls.gui, nil, SceneMSG.lost_ball)
         end
     end)
 
-    GameMsgService:on(GameSceneUrls.main, GameMSG.pause, function()
+    SceneMsgService:on(SceneUrls.main, SceneMSG.pause, function()
+        print('pause')
         self.ball_view:stop_ball()
     end)
 
-    GameMsgService:on(GameSceneUrls.main, GameMSG.continue, function()
+    SceneMsgService:on(SceneUrls.main, SceneMSG.continue, function()
         self.ball_view:resume_moving()
     end)
 

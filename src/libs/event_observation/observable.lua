@@ -42,6 +42,8 @@ function Observable:complete()
         self.subscribers[i]:unsubscribe()
         self.completed = true
     end
+
+    self.subscribers = nil
 end
 
 return Observable

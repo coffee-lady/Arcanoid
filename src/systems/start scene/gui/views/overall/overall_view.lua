@@ -12,24 +12,24 @@ local Actions = App.constants.actions
 local URL = App.constants.urls
 local SceneGuiURL = URL.gui_nodes.start_scene
 
-local SUBSCRIPTION = 'PlayButtonView'
+local SUBSCRIPTION = 'OverallView'
 
-local PlayButtonView = class('PlayButtonView')
+local OverallView = class('OverallView')
 
-function PlayButtonView:initialize()
-    self.click_observer = Observable:new()
+function OverallView:initialize()
+    self.play_game_observer = Observable:new()
 
-    self.button = Button:new(SceneGuiURL.button_play, GUIButtonConfig, function()
-        self.click_observer:next()
+    self.play_button = Button:new(SceneGuiURL.button_play, GUIButtonConfig, function()
+        self.play_game_observer:next()
     end)
 
     SceneGuiMsgService:on(SUBSCRIPTION, Actions.click, function(action)
-        self.button:on_click(action)
+        self.play_button:on_click(action)
     end)
 end
 
-function PlayButtonView:final()
-    self.click_observer:complete()
+function OverallView:final()
+    self.play_game_observer:complete()
 end
 
-return PlayButtonView
+return OverallView

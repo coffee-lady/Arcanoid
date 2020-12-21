@@ -2,7 +2,7 @@ local App = require('src.app')
 local GameServices = require('src.systems.game.services.services')
 local Services = require('src.services.services')
 
-local GameGuiMsgService = GameServices.gui_msg
+local SceneGuiMsgService = GameServices.gui_msg
 local LocalizationService = Services.localization
 local LocalizationLib = App.libs.localization
 
@@ -17,7 +17,7 @@ local LocalizationController = {}
 function LocalizationController:init()
     self:update()
 
-    GameGuiMsgService:on(SUBSCRIPTION, MSG.common.localization_change, function()
+    SceneGuiMsgService:on(SUBSCRIPTION, MSG.common.localization_change, function()
         self:update()
     end)
 end

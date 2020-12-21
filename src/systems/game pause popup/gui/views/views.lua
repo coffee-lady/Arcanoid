@@ -1,5 +1,5 @@
 local Views = {
-    popup = require('src.systems.game pause popup.gui.views.popup.popup_view')
+    overall = require('src.systems.game pause popup.gui.views.overall.overall_view')
 }
 
 return Views

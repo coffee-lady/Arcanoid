@@ -10,12 +10,12 @@ local MSG = App.constants.messages
 
 local LocalizationController = Controllers.localization
 local EffectsController = Controllers.effects
-local PlayButtonController = Controllers.play_button
+local OverallController = Controllers.overall
 
 local StartSceneGUISystem = {}
 
 function StartSceneGUISystem:init()
-    PlayButtonController:init()
+    OverallController:init()
 
     LocalizationController:init()
 
@@ -31,7 +31,7 @@ function StartSceneGUISystem:on_input(action_id, action)
 end
 
 function StartSceneGUISystem:final()
-    PlayButtonController:final()
+    OverallController:final()
 
     self.local_subs:unsubscribe()
 

@@ -3,37 +3,45 @@ local Controllers = require('src.systems.game.gui.controllers.controllers')
 local GameServices = require('src.systems.game.services.services')
 local Services = require('src.services.services')
 
-local GameGuiMsgService = GameServices.gui_msg
+local SceneGuiMsgService = GameServices.gui_msg
 
 local LocalizationService = Services.localization
 
 local MSG = App.constants.messages
 local LivesController = Controllers.lives
-local PauseButtonController = Controllers.pause_button
+local OverallController = Controllers.overall
 local LocalizationController = Controllers.localization
 local EffectsController = Controllers.effects
 
-local GameSceneGUISystem = {}
+local GameGUISystem = {}
 
-function GameSceneGUISystem:init()
+function GameGUISystem:init()
     LivesController:init()
-    PauseButtonController:init()
+    OverallController:init()
 
     LocalizationController:init()
 
-    LocalizationService.changes:subscribe(function()
-        GameGuiMsgService:send(nil, MSG.common.localization_change)
+    self.local_subs = LocalizationService.changes:subscribe(function()
+        SceneGuiMsgService:send(nil, MSG.common.localization_change)
     end)
 
     EffectsController:init()
 end
 
-function GameSceneGUISystem:on_message(message_id, message)
-    GameGuiMsgService:send(message.receiver, message_id, message.data)
+function GameGUISystem:on_message(message_id, message)
+    SceneGuiMsgService:send(message.receiver, message_id, message.data)
 end
 
-function GameSceneGUISystem:on_input(action_id, action)
-    GameGuiMsgService:send(nil, action_id, action)
+function GameGUISystem:on_input(action_id, action)
+    SceneGuiMsgService:send(nil, action_id, action)
 end
 
-return GameSceneGUISystem
+function GameGUISystem:final()
+    OverallController:final()
+
+    self.local_subs:unsubscribe()
+
+    SceneGuiMsgService:reset()
+end
+
+return GameGUISystem

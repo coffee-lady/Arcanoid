@@ -8,13 +8,13 @@ local LocalizationService = Services.localization
 
 local MSG = App.constants.messages
 
-local PopupController = Controllers.popup
+local OverallController = Controllers.overall
 local LocalizationController = Controllers.localization
 
 local PausePopupGUISystem = {}
 
 function PausePopupGUISystem:init()
-    PopupController:init()
+    OverallController:init()
 
     LocalizationController:init()
 
@@ -32,7 +32,7 @@ function PausePopupGUISystem:on_input(action_id, action)
 end
 
 function PausePopupGUISystem:final()
-    PopupController:final()
+    OverallController:final()
     LocalizationController:final()
 
     self.local_subs:unsubscribe()
