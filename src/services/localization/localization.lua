@@ -23,4 +23,8 @@ function LocalizationService:change(lang)
     self.changes:next()
 end
 
+function LocalizationService:get(scene)
+    return self.data[scene]
+end
+
 return LocalizationService

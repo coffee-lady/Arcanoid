@@ -20,7 +20,7 @@ function PauseButtonController:init()
 
     self.button_view.click_observer:subscribe(function()
         GameMsgService:post(GameSceneUrls.main, nil, GameMSG.pause)
-        ScenesService:open_popup(URL.popups.game_pause)
+        ScenesService:open_popup(URL.popups.game_pause_popup)
     end)
 end
 

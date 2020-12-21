@@ -1,35 +1,31 @@
 {
-    "scenes": {
-        "game": {
-            "pause_text": "Pause"
-        },
-        "game_victory": {
-            "title": "You won",
-            "congrats_text": "Congratulations!",
-            "pack_title": "Pack ",
-            "level_title": "Level "
-        },
-        "pack_select": {
-            "level_title": "Level ",
-            "pack_title": "Pack ",
-            "continue_text": "Continue from\nlast passed level"
-        },
-        "start": {
-            "title": "Christmas\nArcanoid",
-            "button_play_text": "Play"
-        }
+    "game_scene": {
+        "pause_text": "Pause"
     },
-    "popups": {
-        "game_pause": {
-            "title": "Pause",
-            "button_back_text": "Back home",
-            "button_restart_text": "Restart"
-        },
-        "game_end": {
-            "title": "Oops... You lost",
-            "button_restart_text": "Restart",
-            "button_continue_text": "Continue",
-            "button_back_text": "Back home"
-        }
+    "game_victory_scene": {
+        "title": "You won",
+        "congrats_text": "Congratulations!",
+        "pack_title": "Pack ",
+        "level_title": "Level "
+    },
+    "pack_selection_scene": {
+        "level_title": "Level ",
+        "pack_title": "Pack ",
+        "continue_text": "Continue from\nlast passed level"
+    },
+    "start_scene": {
+        "title": "Christmas\nArcanoid",
+        "button_play_text": "Play"
+    },
+    "game_pause_popup": {
+        "title": "Pause",
+        "button_back_text": "Back home",
+        "button_restart_text": "Restart"
+    },
+    "game_end_popup": {
+        "title": "Oops... You lost",
+        "button_restart_text": "Restart",
+        "button_continue_text": "Continue",
+        "button_back_text": "Back home"
     }
 }

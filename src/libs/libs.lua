@@ -7,7 +7,8 @@ local Libs = {
     middleclass = require('src.libs.middleclass.middleclass'),
     resources_storage = require('src.libs.resources_storage.resources_storage'),
     event_msg_service = require('src.libs.event msg service.event_msg_service'),
-    animations = require('src.libs.animations.animations')
+    animations = require('src.libs.animations.animations'),
+    localization = require('src.libs.localization.localization')
 }
 
 return Libs
