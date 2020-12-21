@@ -12,6 +12,8 @@ function WallView:initialize(url, rel_coords_start)
     self.sizes = ScreenService:get_sizes()
     self._scale = vmath.vector3()
     self.pos = vmath.vector3()
+
+    self:reset()
 end
 
 function WallView:reset()

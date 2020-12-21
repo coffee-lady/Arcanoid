@@ -9,6 +9,7 @@ local PROP = App.constants.go_props
 function BlockView:initialize(block)
     block.id = factory.create(URLS.factory, block.pos, nil, nil, block.scale)
     self.obj = block
+    self.sprite_url = msg.url(nil, self.obj.id, PROP.sprite)
 
     block.update_observer:subscribe(function()
         self:rebuild()
@@ -28,7 +29,7 @@ function BlockView:update_pos()
 end
 
 function BlockView:set_sprite()
-    msg.post(msg.url(nil, self.obj.id, PROP.sprite), PROP.play_animation, {
+    msg.post(self.sprite_url, PROP.play_animation, {
         id = self.obj.sprite
     })
 end

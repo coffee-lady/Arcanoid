@@ -71,7 +71,7 @@ images {
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/cracks.png"
+  image: "/src/assets/images/game/snowglobe/cracks.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
@@ -80,6 +80,18 @@ images {
 }
 images {
   image: "/src/assets/images/game/gui/pause_button.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/snowglobe/shard.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/snowglobe/snowglobe_bottom.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/snowglobe/snowglobe_top.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 margin: 0

@@ -412,5 +412,5 @@ adjust_reference: ADJUST_REFERENCE_PARENT
 max_nodes: 512
 particlefxs {
   name: "game_background"
-  particlefx: "/src/assets/particlefx/backgrounds/game_background.particlefx"
+  particlefx: "/src/assets/particlefx/backgrounds/snow.particlefx"
 }
