@@ -45,7 +45,6 @@ function BallController:init()
     end)
 
     SceneMsgService:on(SceneUrls.main, SceneMSG.pause, function()
-        print('pause')
         self.ball_view:stop_ball()
     end)
 
