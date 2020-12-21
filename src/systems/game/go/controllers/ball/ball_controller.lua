@@ -43,6 +43,10 @@ function BallController:init()
             GameGuiMsgService:post(GameSceneUrls.gui, nil, GameMSG.lost_ball)
         end
     end)
+
+    GameMsgService:on(GameSceneUrls.main, GameMSG.pause, function()
+        self.ball_view:stop_ball()
+    end)
 end
 
 return BallController

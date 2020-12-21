@@ -25,6 +25,7 @@ local GuiNodesUrls = {
         energy_container = 'energy_container',
         energy_amount = 'energy_amount',
         pause_button = 'pause_button',
+        pause_container = 'pause_container',
         text = {
             pause_text = 'pause_text'
         }

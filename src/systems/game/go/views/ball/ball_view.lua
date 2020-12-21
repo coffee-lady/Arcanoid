@@ -9,9 +9,10 @@ local GameMsgService = GameServices.msg
 
 local GameSceneUrls = App.constants.urls.scenes.game_scene
 local PROP = App.constants.go_props
-local MSG = App.constants.messages.common
 local GameMSG = App.constants.messages.game
 local BallConfig = App.config.game.go.ball
+
+local ZERO_SPEED = vmath.vector3()
 
 local BallView = class('BallView')
 
@@ -31,6 +32,12 @@ function BallView:update_speed(speed)
     local url = msg.url(nil, self.url, PROP.collisionobject)
 
     go.set(url, PROP.linear_velocity, speed)
+end
+
+function BallView:stop_ball()
+    local url = msg.url(nil, self.url, PROP.collisionobject)
+
+    go.set(url, PROP.linear_velocity, ZERO_SPEED)
 end
 
 function BallView:reset()

@@ -6,12 +6,13 @@ local ComplexAnimation = AnimationsLib.complex_animation
 
 local Button = class('Button')
 
-function Button:initialize(button)
+function Button:initialize(button, on_click)
     self._button = button
     self._color = gui.get_color(self._button)
     self._scale = gui.get_scale(button)
     self._is_pressed = false
     self._easing = gui.EASING_INCUBIC
+    self._on_click = on_click
 end
 
 local function set_non_negative(prop, blackout)
@@ -30,49 +31,43 @@ local function create_complex_anim(node, scale, color, duration, easing)
     anim:set({
         duration = duration,
         easing = easing,
+        playback = gui.PLAYBACK_ONCE_FORWARD,
         delay = 0
     })
 
     return anim
 end
 
-function Button:animate_click(blackout, delta_scale, duration, easing)
+function Button:animate_click(blackout, new_scale, duration, easing)
     self.animation_released = create_complex_anim(self._button, self._scale, self._color, duration, easing)
-
-    local scale_to = vmath.vector3()
-    scale_to.x = self._scale.x - delta_scale.x * self._scale.x
-    scale_to.y = self._scale.y - delta_scale.y * self._scale.y
 
     local color_to = vmath.vector4()
     color_to.x = set_non_negative(self._color.x, blackout)
     color_to.y = set_non_negative(self._color.y, blackout)
     color_to.z = set_non_negative(self._color.z, blackout)
+    color_to.w = 1
 
-    self.animation_pressed = create_complex_anim(self._button, scale_to, color_to, duration, easing)
-end
-
-local function on_pressed(self)
-    Animator():play(self.animation_pressed)
-
-    self._is_pressed = true
-end
-
-local function on_released(self)
-    Animator():play(self.animation_released)
-
-    self._is_pressed = false
+    self.animation_pressed = create_complex_anim(self._button, new_scale, color_to, duration, easing)
 end
 
 function Button:on_click(action)
-    if action.pressed then
-        if gui.pick_node(self._button, action.x, action.y) and not self._is_pressed then
-            on_pressed(self)
-        end
+    local is_button_click = gui.pick_node(self._button, action.screen_x, action.screen_y)
+
+    if action.pressed and is_button_click then
+        Animator():play(self.animation_pressed)
+        self._is_pressed = true
+        return
     end
 
     if action.released then
-        if self._is_pressed then
-            on_released(self)
+        Animator():play(self.animation_released)
+
+        if is_button_click and self._is_pressed then
+            self._is_pressed = false
+
+            if self._on_click then
+                self._on_click()
+            end
         end
     end
 end
