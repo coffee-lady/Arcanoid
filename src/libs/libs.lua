@@ -8,7 +8,8 @@ local Libs = {
     resources_storage = require('src.libs.resources_storage.resources_storage'),
     event_msg_service = require('src.libs.event msg service.event_msg_service'),
     animations = require('src.libs.animations.animations'),
-    localization = require('src.libs.localization.localization')
+    localization = require('src.libs.localization.localization'),
+    scenes_transitions = require('src.libs.scenes_transitions.scenes_transitions')
 }
 
 return Libs

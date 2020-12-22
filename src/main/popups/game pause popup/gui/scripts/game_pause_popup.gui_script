@@ -8,8 +8,8 @@ function init(self)
     PopupGUISystem:init()
 end
 
-function on_message(self, message_id, message)
-    PopupGUISystem:on_message(message_id, message)
+function on_message(self, message_id, message, sender)
+    PopupGUISystem:on_message(message_id, message, sender)
 end
 
 function on_input(self, action_id, action)

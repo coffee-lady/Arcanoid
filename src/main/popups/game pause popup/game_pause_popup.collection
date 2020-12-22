@@ -3,7 +3,7 @@ scale_along_z: 0
 embedded_instances {
   id: "scene"
   data: "components {\n"
-  "  id: \"game pause popup\"\n"
+  "  id: \"gui\"\n"
   "  component: \"/src/main/popups/game pause popup/gui/game_pause_popup.gui\"\n"
   "  position {\n"
   "    x: 0.0\n"

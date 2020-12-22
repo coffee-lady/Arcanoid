@@ -4,8 +4,8 @@ function init(self)
     GameGUISystem:init()
 end
 
-function on_message(self, message_id, message)
-    GameGUISystem:on_message(message_id, message)
+function on_message(self, message_id, message, sender)
+    GameGUISystem:on_message(message_id, message, sender)
 end
 
 function on_input(self, action_id, action)

@@ -1,19 +1,20 @@
-local monarch = require('monarch.monarch')
-
 local App = require('src.app')
+local monarch = require('monarch.monarch')
 local Observable = App.libs.event_observation.observable
 
 local ScenesService = {}
 
 ScenesService.transitions = require('src.services.scenes.scenes_transitions.scenes_transitions')
 
+local INIT_MONARCH = 'init_monarch'
+
 function ScenesService:init()
-    msg.post("#", "init_monarch")
+    msg.post('#', INIT_MONARCH)
     self.init_observer = Observable:new()
 end
 
 function ScenesService:on_message(message_id)
-    if message_id == hash('init_monarch') then
+    if message_id == hash(INIT_MONARCH) then
         self.init_observer:next()
         self.init_observer:complete()
     end

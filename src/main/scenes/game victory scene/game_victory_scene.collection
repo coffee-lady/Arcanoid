@@ -3,7 +3,7 @@ scale_along_z: 0
 embedded_instances {
   id: "scene"
   data: "components {\n"
-  "  id: \"game_victory_scene\"\n"
+  "  id: \"gui\"\n"
   "  component: \"/src/main/scenes/game victory scene/gui/game_victory_scene.gui\"\n"
   "  position {\n"
   "    x: 0.0\n"

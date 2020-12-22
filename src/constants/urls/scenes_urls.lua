@@ -2,7 +2,7 @@ local ScenesUrls = {
     game_scene = {
         main = 'game_scene',
         scene = 'game_scene:/scene',
-        factory = '/game_scene#factory',
+        factory = '/scene#factory',
         ball = '/ball',
         platform = '/platform',
         losing_zone = '/losing_zone',
@@ -12,7 +12,7 @@ local ScenesUrls = {
             wall_right = '/wall_right',
             wall_bottom = '/wall_bottom'
         },
-        gui = '/game_scene#gui'
+        gui = '/scene#gui'
     },
     game_victory_scene = {
         main = 'game_victory_scene'

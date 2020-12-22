@@ -3,7 +3,7 @@ scale_along_z: 0
 embedded_instances {
   id: "scene"
   data: "components {\n"
-  "  id: \"pack_select_scene\"\n"
+  "  id: \"gui\"\n"
   "  component: \"/src/main/scenes/pack selection scene/gui/pack_selection_scene.gui\"\n"
   "  position {\n"
   "    x: 0.0\n"

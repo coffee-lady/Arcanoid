@@ -9,6 +9,10 @@ function init(self)
     StartSceneGUISystem:init()
 end
 
+function on_message(self, message_id, message, sender)
+    StartSceneGUISystem:on_message(message_id, message, sender)
+end
+
 function on_input(self, action_id, action)
     if action_id then
         StartSceneGUISystem:on_input(action_id, action)

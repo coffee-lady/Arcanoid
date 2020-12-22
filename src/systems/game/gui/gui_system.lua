@@ -4,10 +4,14 @@ local GameServices = require('src.systems.game.services.services')
 local Services = require('src.services.services')
 
 local SceneGuiMsgService = GameServices.gui_msg
-
+local ScenesTransitions = App.libs.scenes_transitions
 local LocalizationService = Services.localization
 
+local URL = App.constants.urls
 local MSG = App.constants.messages
+local TransitionSettings = App.config.transitions.game_scene
+local SceneGuiURLs = URL.gui_nodes.game_scene
+
 local LivesController = Controllers.lives
 local OverallController = Controllers.overall
 local LocalizationController = Controllers.localization
@@ -26,10 +30,15 @@ function GameGUISystem:init()
     end)
 
     EffectsController:init()
+
+    self.transition = ScenesTransitions:new(SceneGuiURLs.root)
+    self.transition:auto_set(TransitionSettings)
 end
 
-function GameGUISystem:on_message(message_id, message)
+function GameGUISystem:on_message(message_id, message, sender)
     SceneGuiMsgService:send(message.receiver, message_id, message.data)
+
+    self.transition:on_message(message_id, message, sender)
 end
 
 function GameGUISystem:on_input(action_id, action)
@@ -42,6 +51,7 @@ function GameGUISystem:final()
     self.local_subs:unsubscribe()
 
     SceneGuiMsgService:reset()
+    self.transition:final()
 end
 
 return GameGUISystem

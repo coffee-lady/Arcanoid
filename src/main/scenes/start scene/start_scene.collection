@@ -3,7 +3,7 @@ scale_along_z: 0
 embedded_instances {
   id: "scene"
   data: "components {\n"
-  "  id: \"start_scene\"\n"
+  "  id: \"gui\"\n"
   "  component: \"/src/main/scenes/start scene/gui/start_scene.gui\"\n"
   "  position {\n"
   "    x: 0.0\n"

@@ -22,6 +22,7 @@ local GuiNodesUrls = {
         }
     },
     game_scene = {
+        root = 'root',
         energy_container = 'energy_container',
         energy_amount = 'energy_amount',
         pause_button = 'pause_button',
@@ -47,6 +48,7 @@ local GuiNodesUrls = {
         }
     },
     pack_select_scene = {
+        root = 'root',
         pack_icon = 'pack_icon',
         text = {
             level_title = 'level_title',
@@ -55,6 +57,7 @@ local GuiNodesUrls = {
         }
     },
     start_scene = {
+        root = 'root',
         snow_particlefx = 'snow_particlefx',
         button_play = 'button_play',
         text = {

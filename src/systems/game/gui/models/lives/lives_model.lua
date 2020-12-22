@@ -42,7 +42,7 @@ function Lives:decrease()
     self.decrease_observer:next(self.count)
 
     if self.count == 0 then
-        SceneGuiMsgService:post(URL.scenes.game_scene.main, nil, GameMSG.losing)
+        SceneGuiMsgService:post(URL.scenes.game_scene.scene, nil, GameMSG.losing)
     end
 end
 
