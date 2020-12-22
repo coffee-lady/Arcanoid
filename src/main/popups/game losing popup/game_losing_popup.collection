@@ -4,7 +4,7 @@ embedded_instances {
   id: "scene"
   data: "components {\n"
   "  id: \"game end popup\"\n"
-  "  component: \"/src/main/popups/game end popup/gui/game end popup.gui\"\n"
+  "  component: \"/src/main/popups/game losing popup/gui/game_losing_popup.gui\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"

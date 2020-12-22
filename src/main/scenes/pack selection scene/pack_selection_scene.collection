@@ -4,7 +4,7 @@ embedded_instances {
   id: "scene"
   data: "components {\n"
   "  id: \"pack_select_scene\"\n"
-  "  component: \"/src/main/scenes/pack selection scene/gui/pack_select_scene.gui\"\n"
+  "  component: \"/src/main/scenes/pack selection scene/gui/pack_selection_scene.gui\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"

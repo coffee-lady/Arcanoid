@@ -1,0 +1,23 @@
+local App = require('src.app')
+local SceneGUISystem = require('src.systems.game victory scene.gui.gui_system')
+
+local MSG = App.constants.messages.common
+
+function init(self)
+    msg.post('.', MSG.acquire_input_focus)
+    SceneGUISystem:init()
+end
+
+function on_message(self, message_id, message)
+    SceneGUISystem:on_message(message_id, message)
+end
+
+function on_input(self, action_id, action)
+    if action_id then
+        SceneGUISystem:on_input(action_id, action)
+    end
+end
+
+function final(self)
+    SceneGUISystem:final()
+end

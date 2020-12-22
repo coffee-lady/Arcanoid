@@ -1,3 +1,0 @@
-local Views = {}
-
-return Views

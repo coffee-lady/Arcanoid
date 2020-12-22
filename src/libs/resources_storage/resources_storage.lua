@@ -1,6 +1,9 @@
 local ResourcesStorageService = {}
 
-ResourcesStorageService.types = { json = 'json', lua = 'lua' }
+ResourcesStorageService.types = {
+    json = 'json',
+    lua = 'lua'
+}
 ResourcesStorageService.cache = {}
 
 function ResourcesStorageService:get(filename, type)
@@ -19,6 +22,10 @@ end
 
 function ResourcesStorageService:get_json_data(filename)
     local data = sys.load_resource(filename)
+    if not data then
+        return nil
+    end
+
     local decoded = json.decode(data)
     self.cache[filename] = decoded
 

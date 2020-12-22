@@ -11,7 +11,7 @@ local GuiNodesUrls = {
             button_restart_text = 'button_restart_text'
         }
     },
-    game_end_popup = {
+    game_losing_popup = {
         root = 'root',
         button_restart = 'button_restart',
         button_back = 'button_back',
@@ -32,14 +32,18 @@ local GuiNodesUrls = {
         }
     },
     game_victory_scene = {
+        root = 'root',
         snow_particlefx = 'snow_particlefx',
-        energy_container = 'energy_container',
-        pause_container = 'pause_container',
-        pause_icon = 'pause_icon',
-        energy_amount = 'energy_amount',
-        energy_icon = 'energy_icon',
+        pack_icon = 'pack_icon',
+        button_next = 'button_next',
+        button_back = 'button_back',
         text = {
-            pause_text = 'pause_text'
+            title = 'title',
+            congrats_text = 'congrats_text',
+            level_title = 'level_title',
+            pack_title = 'pack_title',
+            button_next_text = 'button_next_text',
+            button_back_text = 'button_back_text'
         }
     },
     pack_select_scene = {

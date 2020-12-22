@@ -6,7 +6,9 @@
         "title": "You won",
         "congrats_text": "Congratulations!",
         "pack_title": "Pack ",
-        "level_title": "Level "
+        "level_title": "Level ",
+        "button_next_text": "Next level",
+        "button_back_text": "Back home"
     },
     "pack_selection_scene": {
         "level_title": "Level ",
@@ -23,7 +25,7 @@
         "button_continue_text": "Continue",
         "button_restart_text": "Restart"
     },
-    "game_end_popup": {
+    "game_losing_popup": {
         "title": "Oops... You lost",
         "button_restart_text": "Restart",
         "button_back_text": "Back home"

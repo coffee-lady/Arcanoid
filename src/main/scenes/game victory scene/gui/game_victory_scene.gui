@@ -1,4 +1,4 @@
-script: ""
+script: "/src/main/scenes/game victory scene/gui/scripts/game_victory_scene.gui_script"
 fonts {
   name: "KaushanScriptRegular"
   font: "/src/assets/fonts/KaushanScriptRegular.font"
@@ -27,8 +27,8 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 0.7
-    y: 0.7
+    x: 0.8
+    y: 0.8
     z: 1.0
     w: 1.0
   }
@@ -157,8 +157,8 @@ nodes {
   text: "You won"
   font: "KaushanScriptRegular"
   id: "title"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
   pivot: PIVOT_CENTER
   outline {
     x: 1.0
@@ -221,8 +221,8 @@ nodes {
   ""
   font: "KaushanScriptRegular"
   id: "congrats_text"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
   pivot: PIVOT_W
   outline {
     x: 1.0
@@ -284,8 +284,8 @@ nodes {
   text: "Pack Xname"
   font: "KaushanScriptRegular"
   id: "pack_title"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
   pivot: PIVOT_E
   outline {
     x: 1.0
@@ -346,8 +346,8 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: ""
   id: "pack_icon"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
   pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_FIT
   parent: "root"
@@ -402,8 +402,8 @@ nodes {
   text: "Level 25"
   font: "KaushanScriptRegular"
   id: "level_title"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
   pivot: PIVOT_W
   outline {
     x: 1.0
@@ -463,9 +463,9 @@ nodes {
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
   texture: "backgrounds/btn"
-  id: "button_restart"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  id: "button_next"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
   pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_FIT
   parent: "root"
@@ -519,7 +519,7 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   text: "Next level"
   font: "KaushanScriptRegular"
-  id: "button_restart_text"
+  id: "button_next_text"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
@@ -537,7 +537,7 @@ nodes {
   }
   adjust_mode: ADJUST_MODE_FIT
   line_break: false
-  parent: "button_restart"
+  parent: "button_next"
   layer: "main"
   inherit_alpha: true
   alpha: 1.0
@@ -582,8 +582,8 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: "backgrounds/btn"
   id: "button_back"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
   pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_FIT
   parent: "root"
@@ -665,9 +665,56 @@ nodes {
   text_leading: 1.0
   text_tracking: 0.0
 }
+nodes {
+  position {
+    x: 320.0
+    y: 950.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 1.0
+    y: 1.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_PARTICLEFX
+  id: "snow_particlefx"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  adjust_mode: ADJUST_MODE_FIT
+  layer: ""
+  inherit_alpha: true
+  alpha: 1.0
+  template_node_child: false
+  size_mode: SIZE_MODE_AUTO
+  particlefx: "snow"
+}
 layers {
   name: "main"
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
 max_nodes: 512
+particlefxs {
+  name: "snow"
+  particlefx: "/src/assets/particlefx/backgrounds/snow.particlefx"
+}

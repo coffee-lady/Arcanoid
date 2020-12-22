@@ -4,6 +4,7 @@ local class = App.libs.middleclass
 
 local GAME_URLS = App.constants.urls.scenes.game_scene
 local PROP = App.constants.go_props
+local BlockConfig = App.config.game.go.blocks
 
 local BlockView = class('BlockView')
 
@@ -28,7 +29,7 @@ function BlockView:set_sprite()
 end
 
 function BlockView:on_lives_decreasing(lives)
-    if lives == 1 then
+    if lives == BlockConfig.leftover_lives_for_cracks then
         Animation:animate_cracks(self.cracks_url)
     end
 

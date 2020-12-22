@@ -29,7 +29,8 @@ function BallView:initialize()
         self:reset()
     end)
 
-    Animation:animate_rotation(self.url)
+    Animation:init(self.url)
+    Animation:animate_rotation()
 end
 
 function BallView:update_speed(speed)
@@ -40,6 +41,7 @@ function BallView:stop_ball()
     self.speed_snapshot = go.get(self.co_url, PROP.linear_velocity)
 
     go.set(self.co_url, PROP.linear_velocity, ZERO_SPEED)
+    Animation:cancel()
 end
 
 function BallView:resume_moving()
@@ -50,6 +52,8 @@ function BallView:resume_moving()
     end
 
     go.set(self.co_url, PROP.linear_velocity, speed)
+
+    Animation:animate_rotation()
 end
 
 function BallView:reset()

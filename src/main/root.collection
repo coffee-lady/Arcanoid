@@ -85,7 +85,7 @@ embedded_instances {
 }
 embedded_instances {
   id: "popups"
-  children: "game_end_popup"
+  children: "game_losing_popup"
   children: "game_pause_popup"
   data: ""
   position {
@@ -198,7 +198,7 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "game_end_popup"
+  id: "game_losing_popup"
   data: "components {\n"
   "  id: \"screen_proxy\"\n"
   "  component: \"/monarch/screen_proxy.script\"\n"
@@ -215,7 +215,7 @@ embedded_instances {
   "  }\n"
   "  properties {\n"
   "    id: \"screen_id\"\n"
-  "    value: \"game_end_popup\"\n"
+  "    value: \"game_losing_popup\"\n"
   "    type: PROPERTY_TYPE_HASH\n"
   "  }\n"
   "  properties {\n"
@@ -227,7 +227,7 @@ embedded_instances {
   "embedded_components {\n"
   "  id: \"collectionproxy\"\n"
   "  type: \"collectionproxy\"\n"
-  "  data: \"collection: \\\"/src/main/popups/game end popup/game_end_popup.collection\\\"\\n"
+  "  data: \"collection: \\\"/src/main/popups/game losing popup/game_losing_popup.collection\\\"\\n"
   "exclude: false\\n"
   "\"\n"
   "  position {\n"

@@ -15,6 +15,8 @@ local WallsController = Controllers.walls
 local PlatformController = Controllers.platform
 local LevelController = Controllers.level
 
+local GameConfig = App.config.game
+
 local SUBSCRIPTION = 'GAME_SCENE'
 
 local GameSceneSystem = {}
@@ -22,7 +24,7 @@ local GameSceneSystem = {}
 function GameSceneSystem:init()
     LevelController:init()
 
-    BlocksController:build(LevelController:get_data())
+    BlocksController:init(LevelController:get_data())
 
     BallController:init()
     WallsController:init()
@@ -30,6 +32,16 @@ function GameSceneSystem:init()
 
     SceneMsgService:on(SUBSCRIPTION, MSG.game.restart, function()
         ScenesService:switch_to_scene(URL.scenes.game_scene.main)
+    end)
+
+    SceneMsgService:on(SUBSCRIPTION, MSG.game.winning, function()
+        timer.delay(GameConfig.delay_before_another_scene, false, function()
+            ScenesService:switch_to_scene(URL.scenes.game_victory_scene.main)
+        end)
+    end)
+
+    SceneMsgService:on(SUBSCRIPTION, MSG.game.losing, function()
+        ScenesService:open_popup(URL.popups.game_losing_popup)
     end)
 end
 

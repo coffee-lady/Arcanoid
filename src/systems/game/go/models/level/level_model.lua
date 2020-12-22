@@ -9,20 +9,26 @@ local LocalStorage = Services.local_storage
 local GameConfig = App.config.game.go
 local GameRes = App.config.game.resources
 
+local LEVELS = 'levels'
+local CURRENT = 'current'
+
 local Level = class('Level')
 
 function Level:initialize(level)
     if level then
         self:set(level)
+        self:_load_data()
         return
     end
 
-    local current = LocalStorage:get('levels', 'current')
+    local current = LocalStorage:get(LEVELS, CURRENT)
+
     if not current then
         current = GameConfig.start_level
     end
 
-    self:set(current)
+    self.current_level = current
+    self:_load_data()
 end
 
 function Level:_load_data()
@@ -32,9 +38,19 @@ end
 
 function Level:set(level)
     self.current_level = level
-    LocalStorage:set('levels', 'current', self.current)
+    LocalStorage:set(LEVELS, CURRENT, self.current_level)
+end
 
+function Level:next()
+    self:set(self.current_level + 1)
     self:_load_data()
+
+    if not self.level_data then
+        self:set(self.current_level - 1)
+        return false
+    end
+
+    return true
 end
 
 function Level:get_data()

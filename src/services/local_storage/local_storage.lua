@@ -2,7 +2,7 @@ local defsave = require('defsave.defsave')
 
 local LocalStorageService = {}
 
-LocalStorageService.update_dt = 1000
+LocalStorageService.update_dt = 100
 
 function LocalStorageService:init(appname)
     defsave.appname = appname
@@ -21,14 +21,11 @@ function LocalStorageService:get(filename, key)
     if not defsave.is_loaded(filename) then
         defsave.load(filename)
     end
-    defsave.get(filename, key)
+    return defsave.get(filename, key)
 end
 
-function LocalStorageService:get_json_resource(filename, key)
-    if not defsave.is_loaded(filename) then
-        defsave.load(filename)
-    end
-    defsave.get(filename, key)
+function LocalStorageService:final()
+    defsave.save_all()
 end
 
 return LocalStorageService

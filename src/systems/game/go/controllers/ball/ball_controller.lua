@@ -48,6 +48,14 @@ function BallController:init()
         self.ball_view:stop_ball()
     end)
 
+    SceneMsgService:on(SceneUrls.main, SceneMSG.winning, function()
+        self.ball_view:stop_ball()
+    end)
+
+    SceneMsgService:on(SceneUrls.main, SceneMSG.losing, function()
+        self.ball_view:stop_ball()
+    end)
+
     SceneMsgService:on(SceneUrls.main, SceneMSG.continue, function()
         self.ball_view:resume_moving()
     end)

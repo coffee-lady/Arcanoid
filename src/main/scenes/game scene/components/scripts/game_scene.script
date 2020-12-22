@@ -9,7 +9,7 @@ function init(self)
     msg.post('.', MSG.acquire_input_focus)
 
     GameSystem:init()
-    ScreenService:add_listener(msg.url())
+    ScreenService:add_listener()
 end
 
 function on_message(self, message_id, message, sender)
@@ -25,4 +25,5 @@ end
 
 function final(self)
     GameSystem:final()
+    ScreenService:remove_listener()
 end

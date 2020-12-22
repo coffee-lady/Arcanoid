@@ -7,6 +7,7 @@ local Observable = App.libs.event_observation.observable
 
 local SceneGuiMsgService = GameServices.gui_msg
 
+local URL = App.constants.urls
 local LivesConfig = Config.game.player.lives
 local GameMSG = App.constants.messages.game
 
@@ -37,7 +38,12 @@ function Lives:decrease()
         return
     end
     self.count = self.count - 1
+
     self.decrease_observer:next(self.count)
+
+    if self.count == 0 then
+        SceneGuiMsgService:post(URL.scenes.game_scene.main, nil, GameMSG.losing)
+    end
 end
 
 return Lives

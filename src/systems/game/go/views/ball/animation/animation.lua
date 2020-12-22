@@ -18,10 +18,18 @@ local rotation_anim_config = {
 
 local BallAnimation = {}
 
-function BallAnimation:animate_rotation(url)
-    local anim_rotation = Animation:new(url, go.animate, go.cancel, rotation_anim_config)
+function BallAnimation:init(url)
+    self.url = url
+    self.anim_rotation = Animation:new(url, go.animate, go.cancel_animations, rotation_anim_config)
+    self.animator = Animator:new()
+end
 
-    return Animator:new():play(anim_rotation)
+function BallAnimation:animate_rotation()
+    return self.animator:play(self.anim_rotation)
+end
+
+function BallAnimation:cancel()
+    self.anim_rotation:cancel()
 end
 
 return BallAnimation

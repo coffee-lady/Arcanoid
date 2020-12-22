@@ -11,7 +11,9 @@ local SceneMsgService = GameServices.msg
 local ScreenService = Services.screen
 
 local Config = App.config
-local MSG = App.constants.messages.common
+local URL = App.constants.urls
+local GameMSG = App.constants.messages.game
+local CommonMSG = App.constants.messages.common
 
 local BlocksConfig = Config.game.go.blocks
 
@@ -26,11 +28,18 @@ local function on_broken_block(self, block_view)
         end
     end
     block_view:delete()
+
+    self.destroyable_count = self.destroyable_count - 1
+
+    if block_view.data.destroyable and self.destroyable_count == 0 then
+        SceneMsgService:send(nil, GameMSG.winning)
+    end
 end
 
-function BlocksController:build(level_data)
+function BlocksController:init(level_data)
     self.blocks = {}
     self.blocks_views = {}
+    self.destroyable_count = 0
 
     BlockModelBuilder:build(self.blocks, level_data, BlocksConfig)
     BlockViewBuilder:build(self.blocks, self.blocks_views, level_data, BlocksConfig)
@@ -39,8 +48,14 @@ function BlocksController:build(level_data)
         local block = self.blocks[i]
         local block_view = self.blocks_views[i]
 
-        SceneMsgService:on(block_view.id, MSG.collision_response, function()
-            block:decrease_lives()
+        if block.destroyable then
+            self.destroyable_count = self.destroyable_count + 1
+        end
+
+        SceneMsgService:on(block_view.id, CommonMSG.collision_response, function(message)
+            if message.other_id == hash(URL.scenes.game_scene.ball) then
+                block:decrease_lives()
+            end
         end)
 
         block.lives_observer:subscribe(function(lives)

@@ -1,4 +1,8 @@
-script: ""
+script: "/src/main/scenes/pack selection scene/gui/scripts/pack_selection_scene.gui_script"
+fonts {
+  name: "DosisMedium"
+  font: "/src/assets/fonts/DosisMedium.font"
+}
 fonts {
   name: "KaushanScriptRegular"
   font: "/src/assets/fonts/KaushanScriptRegular.font"
@@ -15,8 +19,8 @@ background_color {
 }
 nodes {
   position {
-    x: 320.0
-    y: 475.0
+    x: -27.0
+    y: 664.0
     z: 0.0
     w: 1.0
   }
@@ -33,20 +37,20 @@ nodes {
     w: 1.0
   }
   size {
-    x: 640.0
-    y: 950.0
+    x: 1366.0
+    y: 1366.0
     z: 0.0
     w: 1.0
   }
   color {
-    x: 0.0
-    y: 0.0
-    z: 0.0
+    x: 1.0
+    y: 1.0
+    z: 1.0
     w: 1.0
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: ""
+  texture: "backgrounds/choice_bg"
   id: "bg"
   xanchor: XANCHOR_LEFT
   yanchor: YANCHOR_TOP
@@ -63,14 +67,77 @@ nodes {
   clipping_mode: CLIPPING_MODE_NONE
   clipping_visible: true
   clipping_inverted: false
-  alpha: 0.3
+  alpha: 1.0
   template_node_child: false
-  size_mode: SIZE_MODE_MANUAL
+  size_mode: SIZE_MODE_AUTO
 }
 nodes {
   position {
+    x: 20.0
+    y: 103.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
     x: 0.0
-    y: 109.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 0.35
+    y: 0.35
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "Continue from\n"
+  "last passed level"
+  font: "DosisMedium"
+  id: "continue_text"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
+  pivot: PIVOT_W
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_FIT
+  line_break: false
+  layer: "main"
+  inherit_alpha: true
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
+}
+nodes {
+  position {
+    x: 316.0
+    y: 106.0
     z: 0.0
     w: 1.0
   }
@@ -87,8 +154,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 640.0
-    y: 950.0
+    x: 70.0
+    y: 70.0
     z: 0.0
     w: 1.0
   }
@@ -101,13 +168,13 @@ nodes {
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
   texture: ""
-  id: "root"
+  id: "pack_icon"
   xanchor: XANCHOR_LEFT
   yanchor: YANCHOR_TOP
-  pivot: PIVOT_SW
+  pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_FIT
   layer: "main"
-  inherit_alpha: false
+  inherit_alpha: true
   slice9 {
     x: 0.0
     y: 0.0
@@ -117,14 +184,14 @@ nodes {
   clipping_mode: CLIPPING_MODE_NONE
   clipping_visible: true
   clipping_inverted: false
-  alpha: 0.0
+  alpha: 1.0
   template_node_child: false
   size_mode: SIZE_MODE_MANUAL
 }
 nodes {
   position {
-    x: 320.0
-    y: 479.0
+    x: 394.0
+    y: 124.0
     z: 0.0
     w: 1.0
   }
@@ -135,118 +202,8 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 0.9
-    y: 0.9
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 589.0
-    y: 978.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: "backgrounds/lost_popup_bg"
-  id: "popup_bg"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  parent: "root"
-  layer: "main"
-  inherit_alpha: false
-  slice9 {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
-    x: 437.0
-    y: 202.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 0.9
-    y: 0.9
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 196.0
-    y: 56.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 0.2745
-    y: 0.376875
-    z: 0.45
-    w: 1.0
-  }
-  type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: "backgrounds/btn"
-  id: "button_restart"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  parent: "root"
-  layer: "main"
-  inherit_alpha: false
-  slice9 {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 0.3
-    y: 0.3
+    x: 0.35
+    y: 0.35
     z: 1.0
     w: 1.0
   }
@@ -264,12 +221,13 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "Restart"
+  text: "Gold Star Pack\n"
+  ""
   font: "KaushanScriptRegular"
-  id: "button_restart_text"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  id: "pack_title"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
+  pivot: PIVOT_W
   outline {
     x: 1.0
     y: 1.0
@@ -284,7 +242,6 @@ nodes {
   }
   adjust_mode: ADJUST_MODE_FIT
   line_break: false
-  parent: "button_restart"
   layer: "main"
   inherit_alpha: true
   alpha: 1.0
@@ -296,8 +253,8 @@ nodes {
 }
 nodes {
   position {
-    x: 214.0
-    y: 202.0
+    x: 394.0
+    y: 81.0
     z: 0.0
     w: 1.0
   }
@@ -308,63 +265,8 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 0.9
-    y: 0.9
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 196.0
-    y: 56.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 0.2745
-    y: 0.376875
-    z: 0.45
-    w: 1.0
-  }
-  type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: "backgrounds/btn"
-  id: "button_back"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  parent: "root"
-  layer: "main"
-  inherit_alpha: false
-  slice9 {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 0.3
-    y: 0.3
+    x: 0.35
+    y: 0.35
     z: 1.0
     w: 1.0
   }
@@ -382,12 +284,13 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "Back home"
+  text: "Level 5\n"
+  ""
   font: "KaushanScriptRegular"
-  id: "button_back_text"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  id: "level_title"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
+  pivot: PIVOT_W
   outline {
     x: 1.0
     y: 1.0
@@ -402,70 +305,6 @@ nodes {
   }
   adjust_mode: ADJUST_MODE_FIT
   line_break: false
-  parent: "button_back"
-  layer: "main"
-  inherit_alpha: true
-  alpha: 1.0
-  outline_alpha: 1.0
-  shadow_alpha: 1.0
-  template_node_child: false
-  text_leading: 1.0
-  text_tracking: 0.0
-}
-nodes {
-  position {
-    x: 320.0
-    y: 347.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 0.7
-    y: 0.7
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 200.0
-    y: 100.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 0.2745
-    y: 0.376875
-    z: 0.45
-    w: 1.0
-  }
-  type: TYPE_TEXT
-  blend_mode: BLEND_MODE_ALPHA
-  text: "Oops... You lost"
-  font: "KaushanScriptRegular"
-  id: "title"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  shadow {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  adjust_mode: ADJUST_MODE_FIT
-  line_break: false
-  parent: "root"
   layer: "main"
   inherit_alpha: true
   alpha: 1.0

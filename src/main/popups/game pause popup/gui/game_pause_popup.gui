@@ -1,4 +1,4 @@
-script: "/src/main/popups/game pause popup/gui/scripts/game pause popup.gui_script"
+script: "/src/main/popups/game pause popup/gui/scripts/game_pause_popup.gui_script"
 fonts {
   name: "KaushanScriptRegular"
   font: "/src/assets/fonts/KaushanScriptRegular.font"

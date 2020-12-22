@@ -33,3 +33,7 @@ end
 function on_message(self, message_id, message, sender)
     ScenesService:on_message(message_id)
 end
+
+function final(self)
+    LocalStorage:final()
+end
