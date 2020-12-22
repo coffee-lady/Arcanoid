@@ -14,11 +14,10 @@ function Animator:play(anim)
 
     self._timer = delay + anim.duration
 
-    return Animator
+    return self
 end
 
-function Animator:play_in_parallel(...)
-    local anims = ...
+function Animator:play_in_parallel(anims)
     local max_time = 0
 
     for i = 1, #anims do
@@ -34,13 +33,29 @@ function Animator:play_in_parallel(...)
 
     self._timer = self._timer + max_time
 
-    return Animator
+    return self
 end
 
 function Animator:exec(callback)
     timer.delay(self._timer, false, callback)
 
-    return Animator
+    return self
+end
+
+function Animator:suspend(time)
+    timer.delay(self._timer, false, function()
+        self._timer = self._timer + time
+    end)
+
+    return self
+end
+
+function Animator:finish()
+    timer.delay(self._timer, false, function()
+        self._timer = 0
+    end)
+
+    return self
 end
 
 return Animator

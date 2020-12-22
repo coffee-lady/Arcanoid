@@ -8,7 +8,6 @@ local GameMsgService = GameServices.msg
 
 local ResourcesLib = App.libs.resources_storage
 local GameRes = App.config.game.resources
-local MSG = App.constants.messages.common
 
 local blocks_types = ResourcesLib:get(GameRes:get_blocks_data_filepath(), GameRes.blocks_data.type)
 
@@ -24,11 +23,9 @@ end
 
 local Block = class('Block')
 
-function Block:initialize(block_type, grid_pos)
-    self.pos = {}
-
-    self.type = block_type
-    self.grid_pos = grid_pos
+function Block:initialize(block_data)
+    self.type = block_data.type
+    self.grid_pos = block_data.pos
     self.default_width = get_prop(self.type, 'width')
     self.default_height = get_prop(self.type, 'height')
     self.destroyable = get_prop(self.type, 'destroyable')
@@ -39,26 +36,17 @@ function Block:initialize(block_type, grid_pos)
     self.lives_observer = Observable:new()
 end
 
-function Block:update(pos, scale)
-    self.pos = pos
-    self.scale = scale
-
-    self.update_observer:next()
+function Block:set_id(id)
+    self.id = id
 end
 
-function Block:subscribe_to_collision()
+function Block:decrease_lives()
     if not self.destroyable then
         return
     end
 
-    GameMsgService:on(self.id, MSG.collision_response, function()
-        self:on_collision()
-    end)
-end
-
-function Block:on_collision()
     self.lives = self.lives - 1
-    self.lives_observer:next()
+    self.lives_observer:next(self.lives)
 
     if self.lives == 0 then
         self:delete()

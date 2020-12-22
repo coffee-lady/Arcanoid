@@ -83,15 +83,23 @@ images {
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/snowglobe/shard.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
   image: "/src/assets/images/game/snowglobe/snowglobe_bottom.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
   image: "/src/assets/images/game/snowglobe/snowglobe_top.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/snowglobe/shard_1.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/snowglobe/shard_2.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/snowglobe/shard_3.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 margin: 0

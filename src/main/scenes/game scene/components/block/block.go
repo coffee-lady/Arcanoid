@@ -13,6 +13,21 @@ components {
     w: 1.0
   }
 }
+components {
+  id: "snowglobe_breaking"
+  component: "/src/assets/particlefx/game/snowglobe_breaking.particlefx"
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+}
 embedded_components {
   id: "collisionobject"
   type: "collisionobject"

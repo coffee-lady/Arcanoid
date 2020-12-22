@@ -5,34 +5,34 @@
     },
     "grid": [
         [{
-                "block": "snowglobe_house",
+                "type": "snowglobe_house",
                 "pos": {
                     "x": 0,
                     "y": 0
                 }
             },
             {
-                "block": "snowglobe_lollipop",
+                "type": "snowglobe_lollipop",
                 "pos": {
                     "x": 1,
                     "y": 0
                 }
             },
             {
-                "block": "snowglobe_sleigh",
+                "type": "snowglobe_sleigh",
                 "pos": {
                     "x": 2,
                     "y": 0
                 }
             },
             {
-                "block": "snowglobe_snowflake",
+                "type": "snowglobe_snowflake",
                 "pos": {
                     "x": 3,
                     "y": 0
                 }
             }, {
-                "block": "snowglobe_snowman",
+                "type": "snowglobe_snowman",
                 "pos": {
                     "x": 4,
                     "y": 0
@@ -40,34 +40,34 @@
             }
         ],
         [{
-                "block": "snowglobe_gifts",
+                "type": "snowglobe_gifts",
                 "pos": {
                     "x": 0,
                     "y": 1
                 }
             },
             {
-                "block": "snowglobe_misletoe",
+                "type": "snowglobe_misletoe",
                 "pos": {
                     "x": 1,
                     "y": 1
                 }
             },
             {
-                "block": "snowglobe_candle",
+                "type": "snowglobe_candle",
                 "pos": {
                     "x": 2,
                     "y": 1
                 }
             },
             {
-                "block": "snowglobe_lamp",
+                "type": "snowglobe_lamp",
                 "pos": {
                     "x": 3,
                     "y": 1
                 }
             }, {
-                "block": "snowglobe_sleigh",
+                "type": "snowglobe_sleigh",
                 "pos": {
                     "x": 4,
                     "y": 1
@@ -75,34 +75,34 @@
             }
         ],
         [{
-                "block": "snowglobe_tree",
+                "type": "snowglobe_tree",
                 "pos": {
                     "x": 0,
                     "y": 2
                 }
             },
             {
-                "block": "snowglobe_lollipop",
+                "type": "snowglobe_lollipop",
                 "pos": {
                     "x": 1,
                     "y": 2
                 }
             },
             {
-                "block": "snowglobe_gifts_sleigh",
+                "type": "snowglobe_gifts_sleigh",
                 "pos": {
                     "x": 2,
                     "y": 2
                 }
             },
             {
-                "block": "snowglobe_fireplace",
+                "type": "snowglobe_fireplace",
                 "pos": {
                     "x": 3,
                     "y": 2
                 }
             }, {
-                "block": "snowglobe_decorated_tree",
+                "type": "snowglobe_decorated_tree",
                 "pos": {
                     "x": 4,
                     "y": 2

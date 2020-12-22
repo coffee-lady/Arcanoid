@@ -51,7 +51,6 @@ function BallController:init()
     SceneMsgService:on(SceneUrls.main, SceneMSG.continue, function()
         self.ball_view:resume_moving()
     end)
-
 end
 
 return BallController

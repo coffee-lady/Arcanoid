@@ -1,6 +1,6 @@
 {
     "default": {
-        "lives": 2,
+        "lives": 1,
         "destroyable": true,
         "width": 200,
         "height": 200,

@@ -51,7 +51,7 @@ nodes {
   xanchor: XANCHOR_LEFT
   yanchor: YANCHOR_TOP
   pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_ZOOM
+  adjust_mode: ADJUST_MODE_STRETCH
   layer: "main"
   inherit_alpha: true
   slice9 {
@@ -69,8 +69,8 @@ nodes {
 }
 nodes {
   position {
-    x: 0.0
-    y: 109.0
+    x: 320.0
+    y: 475.0
     z: 0.0
     w: 1.0
   }
@@ -104,7 +104,7 @@ nodes {
   id: "root"
   xanchor: XANCHOR_LEFT
   yanchor: YANCHOR_TOP
-  pivot: PIVOT_SW
+  pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_FIT
   layer: "main"
   inherit_alpha: false
@@ -115,7 +115,7 @@ nodes {
     w: 0.0
   }
   clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
+  clipping_visible: false
   clipping_inverted: false
   alpha: 0.0
   template_node_child: false
@@ -123,8 +123,8 @@ nodes {
 }
 nodes {
   position {
-    x: 320.0
-    y: 479.0
+    x: 0.0
+    y: 133.0
     z: 0.0
     w: 1.0
   }
@@ -178,8 +178,8 @@ nodes {
 }
 nodes {
   position {
-    x: 201.0
-    y: 254.0
+    x: -113.0
+    y: -92.0
     z: 0.0
     w: 1.0
   }
@@ -296,8 +296,8 @@ nodes {
 }
 nodes {
   position {
-    x: 437.0
-    y: 254.0
+    x: 113.0
+    y: -92.0
     z: 0.0
     w: 1.0
   }
@@ -414,8 +414,8 @@ nodes {
 }
 nodes {
   position {
-    x: 320.0
-    y: 173.0
+    x: 0.0
+    y: -173.0
     z: 0.0
     w: 1.0
   }
@@ -532,8 +532,8 @@ nodes {
 }
 nodes {
   position {
-    x: 320.0
-    y: 385.0
+    x: 0.0
+    y: 39.0
     z: 0.0
     w: 1.0
   }
