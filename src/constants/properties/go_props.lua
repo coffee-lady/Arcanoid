@@ -4,6 +4,7 @@ local GOProperties = {
     position = 'position',
     position_x = 'position.x',
     position_y = 'position.y',
+    euler_z = 'euler.z',
     size = 'size',
     rotation = 'rotation',
     collisionobject = 'collisionobject',
@@ -15,6 +16,7 @@ local GOProperties = {
         snowglobe_bottom = 'bottom',
         snowglobe_breaking = 'snowglobe_breaking'
     },
+
     disable = 'disable',
     enable = 'enable'
 }

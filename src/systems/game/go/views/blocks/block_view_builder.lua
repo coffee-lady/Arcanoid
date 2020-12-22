@@ -1,5 +1,5 @@
 local BlockView = require('src.systems.game.go.views.blocks.block_view')
-local Utils = require('src.systems.game.go.views.blocks.utils')
+local Utils = require('src.systems.game.go.views.blocks.utils.utils')
 
 local set_length = Utils.set_length
 local set_scale = Utils.set_scale

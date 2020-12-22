@@ -1,5 +1,5 @@
 local App = require('src.app')
-local Animation = require('src.systems.game.go.views.blocks.animation')
+local Animation = require('src.systems.game.go.views.blocks.animation.animation')
 local class = App.libs.middleclass
 
 local GAME_URLS = App.constants.urls.scenes.game_scene

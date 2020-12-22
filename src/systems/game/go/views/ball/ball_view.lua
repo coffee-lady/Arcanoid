@@ -1,4 +1,5 @@
 local App = require('src.app')
+local Animation = require('src.systems.game.go.views.ball.animation.animation')
 local class = App.libs.middleclass
 
 local Services = require('src.services.services')
@@ -27,6 +28,8 @@ function BallView:initialize()
     SceneMsgService:on(hash(self.url), GameMSG.lost_ball, function()
         self:reset()
     end)
+
+    Animation:animate_rotation(self.url)
 end
 
 function BallView:update_speed(speed)

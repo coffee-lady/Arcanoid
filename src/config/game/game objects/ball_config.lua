@@ -3,7 +3,9 @@ local BallConfig = {
     start_speed = vmath.vector3(500, 400, 0),
     min_mod_speed = vmath.vector3(200, 200, 0),
     scale = 0.05,
-    start_rel_pos = vmath.vector3(0.5, 0.2, 0)
+    start_rel_pos = vmath.vector3(0.5, 0.2, 0),
+    rotation_angle = 360,
+    rotation_duration = 2
 }
 
 return BallConfig

@@ -1,4 +1,5 @@
 local App = require('src.app')
+local Animation = require('src.systems.game.go.views.platform.animation.animation')
 local class = App.libs.middleclass
 
 local PlatformView = class('PlatformView')
@@ -17,6 +18,8 @@ function PlatformView:initialize()
 
     self:update_scale()
     self:reset_pos()
+
+    Animation:init(self.url)
 end
 
 function PlatformView:update_scale()
@@ -27,7 +30,7 @@ function PlatformView:update_scale()
     go.set_scale(self._scale, self.url)
 end
 
-function PlatformView:set_pos(pos_x)
+function PlatformView:set_pos_x(pos_x)
     local start_coords, end_coords = ScreenService:get_coords()
     local min_x = start_coords.x + self.size.x * self._scale / 2
     local max_x = end_coords.x - self.size.x * self._scale / 2
@@ -39,8 +42,6 @@ function PlatformView:set_pos(pos_x)
     else
         self.pos.x = pos_x
     end
-
-    go.set_position(self.pos, self.url)
 end
 
 function PlatformView:reset_pos()
@@ -54,7 +55,9 @@ function PlatformView:reset_pos()
 end
 
 function PlatformView:on_moving_platform(action)
-    self:set_pos(action.screen_x)
+    self:set_pos_x(action.screen_x)
+
+    Animation:animate_pos_x(self.pos)
 end
 
 return PlatformView
