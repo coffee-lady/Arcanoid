@@ -5,19 +5,16 @@ local Services = require('src.services.services')
 
 local SceneGuiMsgService = SceneServices.gui_msg
 local LocalizationService = Services.localization
-local ScenesTransitions = App.libs.scenes_transitions
 
-local URL = App.constants.urls
 local MSG = App.constants.messages
-local TransitionSettings = App.config.transitions.game_victory_scene
-local SceneGuiURLs = URL.gui_nodes.game_victory_scene
 
 local OverallController = Controllers.overall
 local LocalizationController = Controllers.localization
+local TransitionsController = Controllers.transitions
 
-local GameSceneGUISystem = {}
+local SceneGUISystem = {}
 
-function GameSceneGUISystem:init()
+function SceneGUISystem:init()
     OverallController:init()
 
     LocalizationController:init()
@@ -26,28 +23,28 @@ function GameSceneGUISystem:init()
         SceneGuiMsgService:send(nil, MSG.common.localization_change)
     end)
 
-    self.transition = ScenesTransitions:new(SceneGuiURLs.root)
-    self.transition:auto_set(TransitionSettings)
+    TransitionsController:init()
 end
 
-function GameSceneGUISystem:on_message(message_id, message, sender)
+function SceneGUISystem:on_message(message_id, message, sender)
     SceneGuiMsgService:send(message.receiver, message_id, message.data)
 
-    self.transition:on_message(message_id, message, sender)
+    TransitionsController:on_message(message_id, message, sender)
 end
 
-function GameSceneGUISystem:on_input(action_id, action)
+function SceneGUISystem:on_input(action_id, action)
     SceneGuiMsgService:send(nil, action_id, action)
 end
 
-function GameSceneGUISystem:final()
+function SceneGUISystem:final()
     OverallController:final()
     LocalizationController:final()
 
     self.local_subs:unsubscribe()
 
     SceneGuiMsgService:reset()
-    self.transition:final()
+
+    TransitionsController:final()
 end
 
-return GameSceneGUISystem
+return SceneGUISystem

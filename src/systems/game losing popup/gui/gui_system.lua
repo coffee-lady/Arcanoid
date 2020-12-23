@@ -5,15 +5,12 @@ local Services = require('src.services.services')
 
 local PopupGuiMsgService = PopupServices.gui_msg
 local LocalizationService = Services.localization
-local ScenesTransitions = App.libs.scenes_transitions
 
-local URL = App.constants.urls
 local MSG = App.constants.messages
-local TransitionSettings = App.config.transitions.game_losing_popup
-local PopupGuiURLs = URL.gui_nodes.game_losing_popup
 
 local OverallController = Controllers.overall
 local LocalizationController = Controllers.localization
+local TransitionsController = Controllers.transitions
 
 local PopupGUISystem = {}
 
@@ -26,14 +23,13 @@ function PopupGUISystem:init()
         PopupGuiMsgService:send(nil, MSG.common.localization_change)
     end)
 
-    self.transition = ScenesTransitions:new(PopupGuiURLs.root)
-    self.transition:auto_set(TransitionSettings)
+    TransitionsController:init()
 end
 
 function PopupGUISystem:on_message(message_id, message, sender)
     PopupGuiMsgService:send(message.receiver, message_id, message.data)
 
-    self.transition:on_message(message_id, message, sender)
+    TransitionsController:on_message(message_id, message, sender)
 end
 
 function PopupGUISystem:on_input(action_id, action)
@@ -47,7 +43,8 @@ function PopupGUISystem:final()
     self.local_subs:unsubscribe()
 
     PopupGuiMsgService:reset()
-    self.transition:final()
+
+    TransitionsController:final()
 end
 
 return PopupGUISystem

@@ -9,6 +9,12 @@ function LocalizationLib:update_gui(...)
     end
 end
 
+function LocalizationLib:update(data, id)
+    local node = gui.get_node(id)
+    local text = data[id]
+    gui.set_text(node, text)
+end
+
 function LocalizationLib:update_go(...)
     local data = ...
     for i = 1, #data do

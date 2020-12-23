@@ -5,7 +5,7 @@ local TransitionsConfig = {
     game_pause_popup = {
         config = {
             easing = gui.EASING_INQUAD,
-            duration = 0.5,
+            duration = 0.7,
             delay = 0
         },
         trans_in = TRANS.slide_in_top,
@@ -22,26 +22,37 @@ local TransitionsConfig = {
     },
     game_scene = {
         config = {
-            easing = gui.EASING_INQUAD,
-            duration = 0.5,
+            easing = gui.EASING_LINEAR,
+            duration = 0.3,
             delay = 0
         },
-        trans_in = TRANS.slide_in_top,
-        trans_out = TRANS.slide_out_top
+        trans_in = TRANS.fade_out,
+        trans_out = TRANS.fade_in
     },
     game_victory_scene = {
-        config = {
-            easing = gui.EASING_INQUAD,
-            duration = 0.5,
-            delay = 0
+        popup = {
+            config = {
+                easing = gui.EASING_INQUAD,
+                duration = 0.5,
+                delay = 0
+            },
+            trans_in = TRANS.slide_in_top,
+            trans_out = TRANS.slide_out_top
         },
-        trans_in = TRANS.slide_in_top,
-        trans_out = TRANS.slide_out_top
+        fade = {
+            config = {
+                easing = gui.EASING_INOUTCIRC,
+                duration = 0.3,
+                delay = 0
+            },
+            trans_in = TRANS.fade_out,
+            trans_out = TRANS.fade_in
+        }
     },
-    pack_select_scene = {
+    pack_selection_scene = {
         config = {
             easing = gui.EASING_INQUAD,
-            duration = 0.5,
+            duration = 0.3,
             delay = 0
         },
         trans_in = TRANS.slide_in_top,
@@ -50,11 +61,11 @@ local TransitionsConfig = {
     start_scene = {
         config = {
             easing = gui.EASING_INQUAD,
-            duration = 0.5,
+            duration = 0.3,
             delay = 0
         },
-        trans_in = TRANS.slide_in_top,
-        trans_out = TRANS.slide_out_top
+        trans_in = TRANS.fade_out,
+        trans_out = TRANS.fade_in
     }
 }
 

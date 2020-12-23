@@ -298,7 +298,7 @@ embedded_instances {
   "  }\n"
   "  properties {\n"
   "    id: \"receiver_url\"\n"
-  "    value: \"game_scene:/game_scene#script\"\n"
+  "    value: \"game_scene:/scene#script\"\n"
   "    type: PROPERTY_TYPE_URL\n"
   "  }\n"
   "}\n"

@@ -23,6 +23,7 @@ local GuiNodesUrls = {
     },
     game_scene = {
         root = 'root',
+        transition = 'transition',
         energy_container = 'energy_container',
         energy_amount = 'energy_amount',
         pause_button = 'pause_button',
@@ -34,6 +35,8 @@ local GuiNodesUrls = {
     },
     game_victory_scene = {
         root = 'root',
+        bg = 'bg',
+        transition = 'transition',
         snow_particlefx = 'snow_particlefx',
         pack_icon = 'pack_icon',
         button_next = 'button_next',
@@ -47,8 +50,9 @@ local GuiNodesUrls = {
             button_back_text = 'button_back_text'
         }
     },
-    pack_select_scene = {
+    pack_selection_scene = {
         root = 'root',
+        transition = 'transition',
         pack_icon = 'pack_icon',
         text = {
             level_title = 'level_title',
@@ -58,6 +62,7 @@ local GuiNodesUrls = {
     },
     start_scene = {
         root = 'root',
+        transition = 'transition',
         snow_particlefx = 'snow_particlefx',
         button_play = 'button_play',
         text = {

@@ -1,8 +1,8 @@
 local App = require('src.app')
-local GameServices = require('src.systems.game.services.services')
+local SceneServices = require('src.systems.game.services.services')
 local Models = require('src.systems.game.go.models.models')
 
-local SceneMsgService = GameServices.msg
+local SceneMsgService = SceneServices.msg
 local MSG = App.constants.messages
 
 local Level = Models.level

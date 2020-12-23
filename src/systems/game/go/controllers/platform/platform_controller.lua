@@ -1,8 +1,8 @@
 local App = require('src.app')
 local Models = require('src.systems.game.go.models.models')
 local Views = require('src.systems.game.go.views.views')
-
 local Services = require('src.services.services')
+
 local ScreenService = Services.screen
 
 local ACTION = App.constants.actions

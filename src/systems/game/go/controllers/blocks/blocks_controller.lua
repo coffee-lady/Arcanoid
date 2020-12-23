@@ -2,12 +2,12 @@ local App = require('src.app')
 local Models = require('src.systems.game.go.models.models')
 local Views = require('src.systems.game.go.views.views')
 local Services = require('src.services.services')
-local GameServices = require('src.systems.game.services.services')
+local SceneServices = require('src.systems.game.services.services')
 
 local BlockModelBuilder = Models.block_builder
 local BlockViewBuilder = Views.block_builder
 
-local SceneMsgService = GameServices.msg
+local SceneMsgService = SceneServices.msg
 local ScreenService = Services.screen
 
 local Config = App.config

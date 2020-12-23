@@ -1,7 +1,7 @@
 local App = require('src.app')
 local Views = require('src.systems.game.go.views.views')
-
 local Services = require('src.services.services')
+
 local ScreenService = Services.screen
 
 local WallView = Views.wall

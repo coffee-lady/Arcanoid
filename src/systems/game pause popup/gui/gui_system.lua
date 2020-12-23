@@ -5,19 +5,16 @@ local Services = require('src.services.services')
 
 local PopupGuiMsgService = PopupServices.gui_msg
 local LocalizationService = Services.localization
-local ScenesTransitions = App.libs.scenes_transitions
 
-local URL = App.constants.urls
 local MSG = App.constants.messages
-local TransitionSettings = App.config.transitions.game_pause_popup
-local PopupGuiURLs = URL.gui_nodes.game_pause_popup
 
 local OverallController = Controllers.overall
 local LocalizationController = Controllers.localization
+local TransitionsController = Controllers.transitions
 
-local PausePopupGUISystem = {}
+local PopupGUISystem = {}
 
-function PausePopupGUISystem:init()
+function PopupGUISystem:init()
     OverallController:init()
 
     LocalizationController:init()
@@ -26,21 +23,20 @@ function PausePopupGUISystem:init()
         PopupGuiMsgService:send(nil, MSG.common.localization_change)
     end)
 
-    self.transition = ScenesTransitions:new(PopupGuiURLs.root)
-    self.transition:auto_set(TransitionSettings)
+    TransitionsController:init()
 end
 
-function PausePopupGUISystem:on_message(message_id, message, sender)
+function PopupGUISystem:on_message(message_id, message, sender)
     PopupGuiMsgService:send(message.receiver, message_id, message.data)
 
-    self.transition:on_message(message_id, message, sender)
+    TransitionsController:on_message(message_id, message, sender)
 end
 
-function PausePopupGUISystem:on_input(action_id, action)
+function PopupGUISystem:on_input(action_id, action)
     PopupGuiMsgService:send(nil, action_id, action)
 end
 
-function PausePopupGUISystem:final()
+function PopupGUISystem:final()
     OverallController:final()
     LocalizationController:final()
 
@@ -48,7 +44,7 @@ function PausePopupGUISystem:final()
 
     PopupGuiMsgService:reset()
 
-    self.transition:final()
+    TransitionsController:final()
 end
 
-return PausePopupGUISystem
+return PopupGUISystem

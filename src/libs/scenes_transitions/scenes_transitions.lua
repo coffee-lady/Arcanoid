@@ -26,29 +26,37 @@ ScenesTransitions.NAVIGATION = {
     back_out = 'back_out'
 }
 
-function ScenesTransitions:initialize(node_url, config)
-    self.transition = transitions.create(gui.get_node(node_url))
-    monarch.add_listener(msg.url())
-
+function ScenesTransitions:initialize(config)
+    self.transition = transitions.create()
     self.config = config
+
+    monarch.add_listener(msg.url())
 end
 
-function ScenesTransitions:auto_set(settings)
+function ScenesTransitions:auto_set(url, settings)
+    local node = gui.get_node(url)
     local NAV = ScenesTransitions.NAVIGATION
+
     self.config = settings.config
 
-    self:set(NAV.show_in, settings.trans_in)
-    self:set(NAV.show_out, settings.trans_out)
-    self:set(NAV.back_in, settings.trans_in)
-    self:set(NAV.back_out, settings.trans_out)
+    self:set(node, NAV.show_in, settings.trans_in)
+    self:set(node, NAV.show_out, settings.trans_out)
+    self:set(node, NAV.back_in, settings.trans_in)
+    self:set(node, NAV.back_out, settings.trans_out)
+
+    self.config = nil
+
+    return self
 end
 
-function ScenesTransitions:set(navigation, transition, easing, duration, delay)
+function ScenesTransitions:set(node, navigation, transition, easing, duration, delay)
     easing = easing and easing or self.config.easing
     duration = duration and duration or self.config.duration
     delay = delay and delay or self.config.delay
 
-    self.transition[navigation](transition, easing, duration, delay)
+    self.transition[navigation](node, transition, easing, duration, delay)
+
+    return self
 end
 
 function ScenesTransitions:final()

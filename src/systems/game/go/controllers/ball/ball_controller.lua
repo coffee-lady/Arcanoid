@@ -1,7 +1,7 @@
 local App = require('src.app')
 local Models = require('src.systems.game.go.models.models')
 local Views = require('src.systems.game.go.views.views')
-local GameServices = require('src.systems.game.services.services')
+local SceneServices = require('src.systems.game.services.services')
 
 local Services = require('src.services.services')
 local ScreenService = Services.screen
@@ -11,8 +11,8 @@ local BallView = Views.ball
 local LosingZone = Models.losing_zone
 local LosingZoneView = Views.losing_zone
 
-local SceneMsgService = GameServices.msg
-local SceneGuiMsgService = GameServices.gui_msg
+local SceneMsgService = SceneServices.msg
+local SceneGuiMsgService = SceneServices.gui_msg
 
 local SceneMSG = App.constants.messages.game
 local SceneUrls = App.constants.urls.scenes.game_scene
