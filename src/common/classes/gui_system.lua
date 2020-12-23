@@ -5,9 +5,9 @@ local class = App.libs.middleclass
 local LocalizationService = Services.localization
 local MSG = App.constants.messages
 
-local System = class('System')
+local GUISystem = class('GUISystem')
 
-function System:initialize(controllers, msg_service, callbacks)
+function GUISystem:initialize(controllers, msg_service, callbacks)
     self.SceneMsgService = msg_service
     self.LocalizationController = controllers.localization
     self.TransitionsController = controllers.transitions
@@ -20,7 +20,7 @@ function System:initialize(controllers, msg_service, callbacks)
     end
 end
 
-function System:init()
+function GUISystem:init()
     msg.post('.', MSG.common.acquire_input_focus)
 
     self.LocalizationController:init()
@@ -36,7 +36,7 @@ function System:init()
     end
 end
 
-function System:on_input(action_id, action)
+function GUISystem:on_input(action_id, action)
     self.SceneMsgService:send(nil, action_id, action)
 
     if self._on_input then
@@ -44,7 +44,7 @@ function System:on_input(action_id, action)
     end
 end
 
-function System:on_message(message_id, message, sender)
+function GUISystem:on_message(message_id, message, sender)
     self.SceneMsgService:send(message.receiver, message_id, message.data)
 
     self.TransitionsController:on_message(message_id, message, sender)
@@ -54,7 +54,7 @@ function System:on_message(message_id, message, sender)
     end
 end
 
-function System:final()
+function GUISystem:final()
     self.local_subs:unsubscribe()
 
     self.SceneMsgService:reset()
@@ -66,4 +66,4 @@ function System:final()
     end
 end
 
-return System
+return GUISystem

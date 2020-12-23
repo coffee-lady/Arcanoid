@@ -1,6 +1,6 @@
 local Controllers = require('src.systems.game.gui.controllers.controllers')
 local SceneServices = require('src.systems.game.services.services')
-local System = require('src.common.classes.system')
+local System = require('src.common.classes.gui_system')
 
 local SceneGuiMsgService = SceneServices.gui_msg
 

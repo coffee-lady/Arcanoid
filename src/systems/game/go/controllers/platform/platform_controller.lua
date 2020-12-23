@@ -21,6 +21,7 @@ function PlatformController:init()
 end
 
 function PlatformController:on_input(action_id, action)
+
     if action_id == ACTION.click then
         self.platform_view:on_moving_platform(action)
     end

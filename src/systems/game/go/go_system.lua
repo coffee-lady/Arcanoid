@@ -2,6 +2,7 @@ local App = require('src.app')
 local GameServices = require('src.systems.game.services.services')
 local Services = require('src.services.services')
 local Controllers = require('src.systems.game.go.controllers.controllers')
+local GOSystem = require('src.common.classes.go_system')
 
 local ScenesService = Services.scenes
 local SceneMsgService = GameServices.msg
@@ -17,44 +18,34 @@ local LevelController = Controllers.level
 
 local GameConfig = App.config.game
 
-local SUBSCRIPTION = 'GAME_SCENE'
+local GameSceneSystem = GOSystem:new(SceneMsgService, {
+    init = function()
+        LevelController:init()
+        BlocksController:init(LevelController:get_data())
+        BallController:init()
+        WallsController:init()
+        PlatformController:init()
+    end,
 
-local GameSceneSystem = {}
+    on_input = function(action_id, action)
+        PlatformController:on_input(action_id, action)
+    end
+})
 
-function GameSceneSystem:init()
-    LevelController:init()
-
-    BlocksController:init(LevelController:get_data())
-
-    BallController:init()
-    WallsController:init()
-    PlatformController:init()
-
-    SceneMsgService:on(SUBSCRIPTION, MSG.game.restart, function()
+GameSceneSystem:on({
+    [MSG.game.restart] = function()
         ScenesService:switch_to_scene(URL.scenes.game_scene.main)
-    end)
+    end,
 
-    SceneMsgService:on(SUBSCRIPTION, MSG.game.winning, function()
+    [MSG.game.winning] = function()
         timer.delay(GameConfig.delay_before_another_scene, false, function()
             ScenesService:switch_to_scene(URL.scenes.game_victory_scene.main)
         end)
-    end)
+    end,
 
-    SceneMsgService:on(SUBSCRIPTION, MSG.game.losing, function()
+    [MSG.game.losing] = function()
         ScenesService:open_popup(URL.scenes.game_losing_popup.main)
-    end)
-end
-
-function GameSceneSystem:on_input(action_id, action)
-    PlatformController:on_input(action_id, action)
-end
-
-function GameSceneSystem:on_message(message_id, message)
-    SceneMsgService:send(message.receiver, message_id, message.data)
-end
-
-function GameSceneSystem:final()
-    SceneMsgService:reset()
-end
+    end
+})
 
 return GameSceneSystem

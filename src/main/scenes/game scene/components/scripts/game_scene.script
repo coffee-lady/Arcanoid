@@ -1,19 +1,11 @@
 local App = require('src.app')
 local GameSystem = require('src.systems.game.go.go_system')
-local Services = require('src.services.services')
-
-local ScreenService = Services.screen
-local MSG = App.constants.messages.common
 
 function init(self)
-    msg.post('.', MSG.acquire_input_focus)
-
     GameSystem:init()
-    ScreenService:add_listener()
 end
 
 function on_message(self, message_id, message, sender)
-    ScreenService:on_message(message_id)
     GameSystem:on_message(message_id, message)
 end
 
@@ -25,5 +17,4 @@ end
 
 function final(self)
     GameSystem:final()
-    ScreenService:remove_listener()
 end
