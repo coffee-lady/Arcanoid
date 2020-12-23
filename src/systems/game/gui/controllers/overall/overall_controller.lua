@@ -20,7 +20,7 @@ function OverallController:init()
 
     self.overall_view.pause_observer:subscribe(function()
         SceneMsgService:post(GAME_SCENE_URL, nil, GameMSG.pause)
-        ScenesService:open_popup(URL.popups.game_pause_popup)
+        ScenesService:open_popup(URL.scenes.game_pause_popup.main)
     end)
 end
 

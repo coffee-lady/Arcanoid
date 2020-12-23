@@ -8,7 +8,6 @@ local MSG = App.constants.messages
 local System = class('System')
 
 function System:initialize(controllers, msg_service, callbacks)
-    print('inita')
     self.SceneMsgService = msg_service
     self.LocalizationController = controllers.localization
     self.TransitionsController = controllers.transitions

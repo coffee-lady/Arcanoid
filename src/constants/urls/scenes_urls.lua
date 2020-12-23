@@ -22,6 +22,12 @@ local ScenesUrls = {
     },
     start_scene = {
         main = 'start_scene'
+    },
+    game_pause_popup = {
+        main = 'game_pause_popup'
+    },
+    game_losing_popup = {
+        main = 'game_losing_popup'
     }
 }
 

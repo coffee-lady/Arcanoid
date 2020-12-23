@@ -41,7 +41,7 @@ function GameSceneSystem:init()
     end)
 
     SceneMsgService:on(SUBSCRIPTION, MSG.game.losing, function()
-        ScenesService:open_popup(URL.popups.game_losing_popup)
+        ScenesService:open_popup(URL.scenes.game_losing_popup.main)
     end)
 end
 

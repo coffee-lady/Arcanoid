@@ -1,19 +1,19 @@
-local GameGUISystem = require('src.systems.game.gui.gui_system')
+local GUISystem = require('src.systems.game.gui.gui_system')
 
 function init(self)
-    GameGUISystem:init()
+    GUISystem:init()
 end
 
 function on_message(self, message_id, message, sender)
-    GameGUISystem:on_message(message_id, message, sender)
+    GUISystem:on_message(message_id, message, sender)
 end
 
 function on_input(self, action_id, action)
     if action_id then
-        GameGUISystem:on_input(action_id, action)
+        GUISystem:on_input(action_id, action)
     end
 end
 
 function final(self)
-    GameGUISystem:final()
+    GUISystem:final()
 end

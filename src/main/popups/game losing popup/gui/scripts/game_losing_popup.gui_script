@@ -1,23 +1,19 @@
-local App = require('src.app')
-local PopupGUISystem = require('src.systems.game losing popup.gui.gui_system')
-
-local MSG = App.constants.messages.common
+local GUISystem = require('src.systems.game losing popup.gui.gui_system')
 
 function init(self)
-    msg.post('.', MSG.acquire_input_focus)
-    PopupGUISystem:init()
+    GUISystem:init()
 end
 
 function on_message(self, message_id, message, sender)
-    PopupGUISystem:on_message(message_id, message, sender)
+    GUISystem:on_message(message_id, message, sender)
 end
 
 function on_input(self, action_id, action)
     if action_id then
-        PopupGUISystem:on_input(action_id, action)
+        GUISystem:on_input(action_id, action)
     end
 end
 
 function final(self)
-    PopupGUISystem:final()
+    GUISystem:final()
 end

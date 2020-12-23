@@ -1,25 +1,19 @@
-local App = require('src.app')
-local StartSceneGUISystem = require('src.systems.start scene.gui.gui_system')
-
-local MSG = App.constants.messages.common
+local GUISystem = require('src.systems.start scene.gui.gui_system')
 
 function init(self)
-    msg.post('.', MSG.acquire_input_focus)
-    StartSceneGUISystem:init()
+    GUISystem:init()
 end
 
 function on_message(self, message_id, message, sender)
-    StartSceneGUISystem:on_message(message_id, message, sender)
+    GUISystem:on_message(message_id, message, sender)
 end
 
 function on_input(self, action_id, action)
-    print('a')
-    
     if action_id then
-        StartSceneGUISystem:on_input(action_id, action)
+        GUISystem:on_input(action_id, action)
     end
 end
 
 function final(self)
-    StartSceneGUISystem:final()
+    GUISystem:final()
 end

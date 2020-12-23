@@ -11,15 +11,16 @@ local CLASS_NAME = 'LocalizationController'
 
 local LocalizationController = class(CLASS_NAME)
 
-function LocalizationController:initialize(scene_url, text_nodes)
+function LocalizationController:initialize(scene_url, text_nodes, msg_service)
     self.URL = scene_url
     self.text_nodes = text_nodes
+    self.msg_service = msg_service
 end
 
-function LocalizationController:init(msg_service)
+function LocalizationController:init()
     self:update()
 
-    msg_service:on(CLASS_NAME, MSG.common.localization_change, function()
+    self.msg_service:on(CLASS_NAME, MSG.common.localization_change, function()
         self:update()
     end)
 end
