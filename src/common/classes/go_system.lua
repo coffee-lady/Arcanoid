@@ -27,7 +27,7 @@ end
 function GOSystem:init()
     msg.post('.', MSG.common.acquire_input_focus)
 
-    ScreenService:add_listener()
+    ScreenService:add_listener(msg.url())
 
     for message, callback in pairs(self.map) do
         self.SceneMsgService:on(CLASS_NAME, message, callback)

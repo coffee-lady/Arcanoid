@@ -1,5 +1,5 @@
 local App = require('src.app')
-local SceneServices = require('src.systems.game.services.services')
+local SceneServices = require('src.systems.pack selection scene.services.services')
 local LocalizationCtrl = require('src.common.classes.localization_controller')
 local MsgService = SceneServices.gui_msg
 

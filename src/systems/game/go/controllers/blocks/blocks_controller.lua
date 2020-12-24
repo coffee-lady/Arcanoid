@@ -66,6 +66,7 @@ function BlocksController:init(level_data)
     end
 
     ScreenService.update_observer:subscribe(function()
+        print('x')
         BlockViewBuilder:rebuild(self.blocks_views)
     end)
 end

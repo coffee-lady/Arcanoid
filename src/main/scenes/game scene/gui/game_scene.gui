@@ -200,8 +200,8 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: "game/energy"
   id: "energy_icon"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
   pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_FIT
   parent: "energy_container"
@@ -257,8 +257,8 @@ nodes {
   ""
   font: "DosisMedium"
   id: "energy_amount"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
   pivot: PIVOT_W
   outline {
     x: 1.0
@@ -375,8 +375,8 @@ nodes {
   text: "Pause"
   font: "DosisMedium"
   id: "pause_text"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
   pivot: PIVOT_W
   outline {
     x: 1.0
@@ -437,8 +437,8 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: "game/pause_button"
   id: "pause_button"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
   pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_FIT
   parent: "pause_container"

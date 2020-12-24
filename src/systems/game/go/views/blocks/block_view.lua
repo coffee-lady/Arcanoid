@@ -19,13 +19,21 @@ function BlockView:create_go()
     self.pfx_url = msg.url(nil, self.id, PROP.block.snowglobe_breaking)
     self:set_sprite()
 
-    msg.post(self.cracks_url, 'disable')
+    msg.post(self.cracks_url, PROP.disable)
 end
 
 function BlockView:set_sprite()
     msg.post(self.sprite_url, PROP.play_animation, {
         id = self.data.sprite
     })
+
+    if not self.data.destroyable then
+        local top_url = msg.url(nil, self.id, PROP.block.snowglobe_top)
+        local bottom_url = msg.url(nil, self.id, PROP.block.snowglobe_bottom)
+
+        msg.post(top_url, PROP.disable)
+        msg.post(bottom_url, PROP.disable)
+    end
 end
 
 function BlockView:on_lives_decreasing(lives)

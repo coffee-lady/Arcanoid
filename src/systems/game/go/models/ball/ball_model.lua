@@ -38,8 +38,12 @@ end
 function Ball:check_speed()
     local speed = go.get(self.co_url, PROP.linear_velocity)
 
-    if speed.x == 0 or speed.y == 0 then
-        speed = BallConfig.start_speed
+    local mod_x = math.abs(speed.x)
+    local mod_y = math.abs(speed.y)
+
+    if mod_x < BallConfig.min_mod_speed.x or mod_y < BallConfig.min_mod_speed.y then
+        speed.x = speed.x / mod_x * BallConfig.start_speed.x
+        speed.y = speed.y / mod_y * BallConfig.start_speed.y
         self.update_speed_observer:next(speed)
     end
 end

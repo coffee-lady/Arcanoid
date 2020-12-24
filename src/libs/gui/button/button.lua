@@ -54,7 +54,7 @@ function Button:animate_click(blackout, scale, duration, easing)
 end
 
 function Button:on_click(action)
-    local is_button_click = gui.pick_node(self._button, action.screen_x, action.screen_y)
+    local is_button_click = gui.pick_node(self._button, action.x, action.y)
 
     if action.pressed and is_button_click then
         Animator():play(self.animation_pressed)

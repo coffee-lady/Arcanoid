@@ -1,0 +1,148 @@
+{
+    "sizes": {
+        "x": 5,
+        "y": 5
+    },
+    "grid": [
+        [{
+                "type": "snowglobe_lamp",
+                "pos": {
+                    "x": 0,
+                    "y": 0
+                }
+            },
+            {
+                "type": "snowglobe_gifts_sleigh",
+                "pos": {
+                    "x": 1,
+                    "y": 0
+                }
+            },
+            {
+                "type": "snowglobe_house",
+                "pos": {
+                    "x": 2,
+                    "y": 0
+                }
+            },
+            {
+                "type": "snowglobe_gifts",
+                "pos": {
+                    "x": 3,
+                    "y": 0
+                }
+            }, {
+                "type": "snowglobe_tree",
+                "pos": {
+                    "x": 4,
+                    "y": 0
+                }
+            }
+        ],
+        [{
+                "type": "snowglobe_decorated_tree",
+                "pos": {
+                    "x": 0,
+                    "y": 1
+                }
+            },
+            {
+                "type": "chimney",
+                "pos": {
+                    "x": 1,
+                    "y": 1
+                }
+            },
+            {
+                "type": "chimney",
+                "pos": {
+                    "x": 2,
+                    "y": 1
+                }
+            },
+            {
+                "type": "snowglobe_lollipop",
+                "pos": {
+                    "x": 3,
+                    "y": 1
+                }
+            }, {
+                "type": "snowglobe_snowflake",
+                "pos": {
+                    "x": 4,
+                    "y": 1
+                }
+            }
+        ],
+        [{
+                "type": "snowglobe_lollipop",
+                "pos": {
+                    "x": 0,
+                    "y": 2
+                }
+            },
+            {
+                "type": "snowglobe_gifts_sleigh",
+                "pos": {
+                    "x": 1,
+                    "y": 2
+                }
+            },
+            {
+                "type": "snowglobe_sleigh",
+                "pos": {
+                    "x": 2,
+                    "y": 2
+                }
+            },
+            {
+                "type": "chimney",
+                "pos": {
+                    "x": 3,
+                    "y": 2
+                }
+            }, {
+                "type": "snowglobe_candle",
+                "pos": {
+                    "x": 4,
+                    "y": 2
+                }
+            }
+        ],
+        [{
+                "type": "snowglobe_lamp",
+                "pos": {
+                    "x": 0,
+                    "y": 3
+                }
+            },
+            {
+                "type": "snowglobe_misletoe",
+                "pos": {
+                    "x": 1,
+                    "y": 3
+                }
+            },
+            {
+                "type": "snowglobe_fireplace",
+                "pos": {
+                    "x": 2,
+                    "y": 3
+                }
+            },
+            {
+                "type": "snowglobe_lamp",
+                "pos": {
+                    "x": 3,
+                    "y": 3
+                }
+            }, {
+                "type": "chimney",
+                "pos": {
+                    "x": 4,
+                    "y": 3
+                }
+            }
+        ]
+    ]
+}

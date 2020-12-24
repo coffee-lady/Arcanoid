@@ -1,4 +1,4 @@
-local GUISystem = require('src.systems.start scene.gui.gui_system')
+local GUISystem = require('src.systems.pack selection scene.gui.gui_system')
 
 function init(self)
     GUISystem:init()
