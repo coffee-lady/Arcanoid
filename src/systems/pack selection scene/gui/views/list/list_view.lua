@@ -21,46 +21,53 @@ local ListItemView = Subviews.list_item
 
 local ListView = class('ListView')
 
+local ANIM_CONFIG = {
+    property = PROP.position_y,
+    duration = ScrollConfig.duration,
+    easing = gui.EASING_LINEAR,
+    delay = 0,
+    playback = gui.PLAYBACK_ONCE_FORWARD
+}
+
+local A = Animator:new()
+
+local function scroll(action, node, start_pos, height)
+    local pos = gui.get_position(node)
+    pos.y = pos.y + action.dy
+
+    ANIM_CONFIG.to = pos.y
+    local anim = Animation:new(node, gui.animate, gui.cancel_animation, ANIM_CONFIG)
+
+    if action.dy > 0 then
+        if pos.y <= start_pos.y then
+            A:play(anim)
+        end
+    end
+
+    if action.dy < 0 then
+        if pos.y + height >= 0 then
+            A:play(anim)
+        end
+    end
+end
+
 function ListView:initialize()
     local list_node = gui.get_node(SceneGuiURLs.list)
     local start_list_pos = gui.get_position(list_node)
-
     local template = gui.get_node(SceneGuiURLs.list_item)
-    self.items = {}
 
-    local A = Animator:new()
-    local anim_config = {
-        property = PROP.position_y,
-        duration = ScrollConfig.duration,
-        easing = gui.EASING_LINEAR,
-        delay = 0,
-        playback = gui.PLAYBACK_ONCE_FORWARD
-    }
+    self.items = {}
 
     for i = 1, #PacksConfig.list do
         self.items[#self.items + 1] = ListItemView:new(template, i)
     end
 
+    local list_height = #self.items * PacksConfig.gui_item_height
+
+    gui.set_enabled(template, false)
+
     SceneMsgService:on(SUBSCRIPTION, ACTIONS.click, function(action)
-        local pos = gui.get_position(list_node)
-        pos.y = pos.y + action.dy
-
-        anim_config.to = pos.y
-        local anim = Animation:new(list_node, gui.animate, gui.cancel_animation, anim_config)
-
-        if action.dy > 0 then
-            if pos.y <= start_list_pos.y then
-                A:play(anim)
-            end
-        end
-
-        if action.dy < 0 then
-            local list_length = #self.items * PacksConfig.gui_item_height
-
-            if pos.y + list_length >= 0 then
-                A:play(anim)
-            end
-        end
+        scroll(action, list_node, start_list_pos, list_height)
     end)
 end
 

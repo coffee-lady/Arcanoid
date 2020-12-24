@@ -18,13 +18,19 @@ function ButtonsController:init()
     local progress_level = LevelService:get_progress_level()
     local current_pack = LevelService:get_current_pack()
 
-    self.is_passed_pack = progress_level < current_pack.first_level or progress_level > current_pack.last_level
+    self.is_passed_pack = progress_level > current_pack.last_level
 
     self.buttons_view = ButtonsView:new()
 
     self.buttons_view.next_observer:subscribe(function()
-        local url = self.is_passed_pack and PACK_SELECTION_SCENE_URL or GAME_SCENE_URL
-        ScenesService:switch_to_scene(url)
+        local current_level = LevelService:get_current_level()
+        local played_last_level = LevelService:was_last_level_played()
+
+        if self.is_passed_pack and (current_level == current_pack.last_level + 1 or played_last_level) then
+            ScenesService:switch_to_scene(PACK_SELECTION_SCENE_URL)
+        else
+            ScenesService:switch_to_scene(GAME_SCENE_URL)
+        end
     end)
 
     self.buttons_view.back_observer:subscribe(function()

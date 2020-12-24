@@ -57,7 +57,7 @@ function GOSystem:on_message(message_id, message)
 end
 
 function GOSystem:final()
-    ScreenService:remove_listener()
+    ScreenService:remove_listener(msg.url())
 
     self.SceneMsgService:reset()
 

@@ -465,8 +465,8 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: ""
   id: "list_mask"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_BOTTOM
   pivot: PIVOT_N
   adjust_mode: ADJUST_MODE_STRETCH
   layer: "list"
@@ -519,8 +519,8 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: ""
   id: "list"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_BOTTOM
   pivot: PIVOT_N
   adjust_mode: ADJUST_MODE_FIT
   parent: "list_mask"
@@ -541,8 +541,8 @@ nodes {
 }
 nodes {
   position {
-    x: 1034.0
-    y: 369.0
+    x: 0.0
+    y: 145.0
     z: 0.0
     w: 1.0
   }
@@ -574,10 +574,10 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: ""
   id: "list_item"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
   pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
+  adjust_mode: ADJUST_MODE_ZOOM
   parent: "list"
   layer: "list"
   inherit_alpha: false
@@ -629,8 +629,8 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: "game/pack_icon_red_star"
   id: "list_item_icon"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
   pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_FIT
   parent: "list_item"
@@ -685,8 +685,8 @@ nodes {
   text: "Pack Title"
   font: "KaushanScriptRegular"
   id: "list_item_pack_title"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
   pivot: PIVOT_W
   outline {
     x: 1.0
@@ -745,11 +745,11 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "Levels: 1-100"
+  text: "Levels: "
   font: "KaushanScriptRegular"
   id: "list_item_level_title"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
   pivot: PIVOT_W
   outline {
     x: 1.0

@@ -10,6 +10,7 @@ local GameRes = App.config.game.resources
 local LEVELS = 'levels'
 local CURRENT = 'current'
 local PROGRESS = 'last_passed'
+local PLAYED_LAST_LEVEL = 'played_last_level'
 
 local LevelService = {}
 
@@ -61,6 +62,8 @@ local function _set_level(self, level)
 
     if not self.level_data then
         _set_current_level(self, level - 1)
+        self.played_last_level = true
+        LocalStorage:set(LEVELS, PLAYED_LAST_LEVEL, true)
 
         return false
     end
@@ -83,6 +86,7 @@ function LevelService:init()
         current = GameConfig.start_level
     end
 
+    self.played_last_level = LocalStorage:get(LEVELS, PLAYED_LAST_LEVEL)
     self.current_level = current
     _load_level_data(self)
     _load_current_pack(self)
@@ -128,6 +132,13 @@ function LevelService:get_previous_pack()
             return PacksConfig.list[i]
         end
     end
+end
+
+function LevelService:was_last_level_played()
+    return self.played_last_level
+end
+function LevelService:get_last_level()
+    return PacksConfig.list[#PacksConfig.list].last_level
 end
 
 return LevelService

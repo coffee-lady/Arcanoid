@@ -19,46 +19,6 @@ local PacksConfig = {
         icon = 'pack_icon_gold_snowflake',
         first_level = 8,
         last_level = 10
-    }, {
-        title = 'Pack Y',
-        icon = 'pack_icon_yellow_candle',
-        first_level = 4,
-        last_level = 7
-    }, {
-        title = 'Pack Z',
-        icon = 'pack_icon_gold_snowflake',
-        first_level = 8,
-        last_level = 10
-    }, {
-        title = 'Pack Y',
-        icon = 'pack_icon_yellow_candle',
-        first_level = 4,
-        last_level = 7
-    }, {
-        title = 'Pack Z',
-        icon = 'pack_icon_gold_snowflake',
-        first_level = 8,
-        last_level = 10
-    }, {
-        title = 'Pack Y',
-        icon = 'pack_icon_yellow_candle',
-        first_level = 4,
-        last_level = 7
-    }, {
-        title = 'Pack Z',
-        icon = 'pack_icon_gold_snowflake',
-        first_level = 8,
-        last_level = 10
-    }, {
-        title = 'Pack Y',
-        icon = 'pack_icon_yellow_candle',
-        first_level = 4,
-        last_level = 7
-    }, {
-        title = 'Pack Z',
-        icon = 'pack_icon_gold_snowflake',
-        first_level = 8,
-        last_level = 10
     }}
 }
 
