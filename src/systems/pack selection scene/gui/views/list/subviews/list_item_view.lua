@@ -21,8 +21,16 @@ local function set_pos(nodes, index)
     gui.set_position(nodes[SceneGuiURLs.list_item], vmath.vector3(0, pos_y, 0))
 end
 
-local function set_icon(nodes, data)
-    gui.play_flipbook(nodes[SceneGuiURLs.list_item_icon], data.icon)
+local function is_closed(pack)
+    local progress_level = LevelService:get_progress_level()
+
+    return progress_level < pack.first_level
+end
+
+local function set_icon(nodes, data, is_closed)
+    local icon = is_closed and PacksConfig.icon_closed or data.icon
+
+    gui.play_flipbook(nodes[SceneGuiURLs.list_item_icon], icon)
     gui.set_text(nodes[SceneGuiURLs.list_item_pack_title], data.title)
 end
 
@@ -43,15 +51,17 @@ function ListItemView:initialize(template, index)
     local pack_data = PacksConfig.list[index]
     local nodes = gui.clone_tree(template)
 
+    self.is_closed = is_closed(pack_data)
+
     set_pos(nodes, index)
 
     set_level_title(nodes, pack_data)
-    set_icon(nodes, pack_data)
+    set_icon(nodes, pack_data, self.is_closed)
 
     set_color(nodes, index)
 
     SceneMsgService:on(SUBSCRIPTION, ACTIONS.click, function(action)
-        if action.dx ~= 0 or action.dy ~= 0 then
+        if action.dx ~= 0 or action.dy ~= 0 or self.is_closed then
             return
         end
 

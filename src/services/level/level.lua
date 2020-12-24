@@ -19,7 +19,7 @@ local function _load_level_data(self)
     self.level_data = ResourcesService:get(filepath, GameRes.level_data.type)
 end
 
-local function _init_progress_level(self)
+local function _load_progress_level(self)
     local progress_level = LocalStorage:get(LEVELS, PROGRESS)
 
     LocalStorage:set(LEVELS, CURRENT, progress_level)
@@ -88,6 +88,11 @@ function LevelService:init()
 
     self.played_last_level = LocalStorage:get(LEVELS, PLAYED_LAST_LEVEL)
     self.current_level = current
+
+    if not LocalStorage:get(LEVELS, PROGRESS) then
+        LocalStorage:set(LEVELS, PROGRESS, 1)
+    end
+
     _load_level_data(self)
     _load_current_pack(self)
 end
@@ -98,7 +103,7 @@ function LevelService:switch_to_pack(pack)
 end
 
 function LevelService:go_to_new_level()
-    _init_progress_level(self)
+    _load_progress_level(self)
 end
 
 function LevelService:go_to_next_level()
