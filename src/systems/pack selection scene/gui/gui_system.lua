@@ -4,6 +4,14 @@ local System = require('src.common.classes.gui_system')
 
 local MsgService = GameServices.gui_msg
 
-local SceneGUISystem = System:new(Controllers, MsgService, {})
+local BottomPanelController = Controllers.bottom_panel
+local ListController = Controllers.list
+
+local SceneGUISystem = System:new(Controllers, MsgService, {
+    init = function()
+        BottomPanelController:init()
+        ListController:init()
+    end
+})
 
 return SceneGUISystem

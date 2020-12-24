@@ -55,13 +55,13 @@ local TransitionsConfig = {
             duration = 0.3,
             delay = 0
         },
-        trans_in = TRANS.slide_in_top,
-        trans_out = TRANS.slide_out_top
+        trans_in = TRANS.fade_out,
+        trans_out = TRANS.fade_in
     },
     start_scene = {
         config = {
             easing = gui.EASING_INQUAD,
-            duration = 0.3,
+            duration = 0.2,
             delay = 0
         },
         trans_in = TRANS.fade_out,

@@ -12,12 +12,13 @@
     },
     "pack_selection_scene": {
         "level_title": "Level ",
-        "pack_title": "Pack ",
-        "continue_text": "Continue from\nlast passed level"
+        "pack_title": "",
+        "continue_text": "Continue game",
+        "list_item_level_title": "Levels: "
     },
     "start_scene": {
         "title": "Christmas\nArcanoid",
-        "button_play_text": "Play!"
+        "button_play_text": "Play"
     },
     "game_pause_popup": {
         "title": "Pause",

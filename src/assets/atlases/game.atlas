@@ -150,6 +150,10 @@ images {
   image: "/src/assets/images/common/pack icons/pack_icon_yellow_gift.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
+images {
+  image: "/src/assets/images/common/pack icons/pack_icon_closed.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
 margin: 0
 extrude_borders: 2
 inner_padding: 0
