@@ -4,14 +4,18 @@ local System = require('src.common.classes.gui_system')
 
 local MsgService = SceneServices.gui_msg
 
-local OverallController = Controllers.overall
+local ButtonsController = Controllers.buttons
+local PackController = Controllers.pack
+local LevelController = Controllers.level
 
 local SceneGUISystem = System:new(Controllers, MsgService, {
     init = function()
-        OverallController:init()
+        ButtonsController:init()
+        PackController:init()
+        LevelController:init()
     end,
     final = function()
-        OverallController:final()
+        ButtonsController:final()
     end
 })
 

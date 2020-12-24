@@ -3,89 +3,61 @@
         "x": 5,
         "y": 3
     },
-    "grid": [
-        [{
-                "type": "snowglobe_gifts",
-                "pos": {
-                    "x": 0,
-                    "y": 0
+    "grid": [{
+            "y": 0,
+            "list": [{
+                    "type": "snowglobe_gifts",
+                    "x": 0
+                },
+                {
+                    "type": "snowglobe_misletoe",
+                    "x": 1
+                },
+                {
+                    "type": "snowglobe_candle",
+                    "x": 2
+                },
+                {
+                    "type": "snowglobe_lamp",
+                    "x": 3
+                }, {
+                    "type": "snowglobe_sleigh",
+                    "x": 4
                 }
-            },
-            {
-                "type": "snowglobe_misletoe",
-                "pos": {
-                    "x": 1,
-                    "y": 0
-                }
-            },
-            {
-                "type": "snowglobe_candle",
-                "pos": {
-                    "x": 2,
-                    "y": 0
-                }
-            },
-            {
-                "type": "snowglobe_lamp",
-                "pos": {
-                    "x": 3,
-                    "y": 0
-                }
+            ]
+        },
+        {
+            "y": 1,
+            "list": [{
+                "type": "chimney",
+                "x": 0
             }, {
-                "type": "snowglobe_sleigh",
-                "pos": {
-                    "x": 4,
-                    "y": 0
+                "type": "chimney",
+                "x": 4
+            }]
+        },
+        {
+            "y": 2,
+            "list": [{
+                    "type": "snowglobe_tree",
+                    "x": 0
+                },
+                {
+                    "type": "snowglobe_lollipop",
+                    "x": 1
+                },
+                {
+                    "type": "snowglobe_snowflake",
+                    "x": 2
+                },
+                {
+                    "type": "snowglobe_fireplace",
+                    "x": 3
+                }, {
+                    "type": "snowglobe_decorated_tree",
+                    "x": 4
                 }
-            }
-        ],
-        [{
-            "type": "chimney",
-            "pos": {
-                "x": 0,
-                "y": 1
-            }
-        }, {
-            "type": "chimney",
-            "pos": {
-                "x": 4,
-                "y": 1
-            }
-        }],
-        [{
-                "type": "snowglobe_tree",
-                "pos": {
-                    "x": 0,
-                    "y": 2
-                }
-            },
-            {
-                "type": "snowglobe_lollipop",
-                "pos": {
-                    "x": 1,
-                    "y": 2
-                }
-            },
-            {
-                "type": "snowglobe_snowflake",
-                "pos": {
-                    "x": 2,
-                    "y": 2
-                }
-            },
-            {
-                "type": "snowglobe_fireplace",
-                "pos": {
-                    "x": 3,
-                    "y": 2
-                }
-            }, {
-                "type": "snowglobe_decorated_tree",
-                "pos": {
-                    "x": 4,
-                    "y": 2
-                }
-            }
-        ]
+            ]
+        }
     ]
 }

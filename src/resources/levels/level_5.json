@@ -3,63 +3,49 @@
         "x": 4,
         "y": 4
     },
-    "grid": [
-
-        [{
-            "type": "snowglobe_gifts",
-            "pos": {
-                "x": 0,
-                "y": 0
-            }
-        }, {
-            "type": "snowglobe_sleigh",
-            "pos": {
-                "x": 3,
-                "y": 0
-            }
-        }],
-        [{
-                "type": "snowglobe_misletoe",
-                "pos": {
-                    "x": 1,
-                    "y": 1
+    "grid": [{
+            "y": 0,
+            "list": [{
+                "type": "snowglobe_gifts",
+                "x": 0
+            }, {
+                "type": "snowglobe_sleigh",
+                "x": 3
+            }]
+        },
+        {
+            "y": 1,
+            "list": [{
+                    "type": "snowglobe_misletoe",
+                    "x": 1
+                },
+                {
+                    "type": "snowglobe_candle",
+                    "x": 2
                 }
-            },
-            {
-                "type": "snowglobe_candle",
-                "pos": {
-                    "x": 2,
-                    "y": 1
+            ]
+        },
+        {
+            "y": 2,
+            "list": [{
+                    "type": "snowglobe_misletoe",
+                    "x": 1
+                },
+                {
+                    "type": "snowglobe_candle",
+                    "x": 2
                 }
-            }
-        ],
-        [{
-                "type": "snowglobe_misletoe",
-                "pos": {
-                    "x": 1,
-                    "y": 2
-                }
-            },
-            {
-                "type": "snowglobe_candle",
-                "pos": {
-                    "x": 2,
-                    "y": 2
-                }
-            }
-        ],
-        [{
-            "type": "snowglobe_gifts",
-            "pos": {
-                "x": 0,
-                "y": 3
-            }
-        }, {
-            "type": "snowglobe_sleigh",
-            "pos": {
-                "x": 3,
-                "y": 3
-            }
-        }]
+            ]
+        },
+        {
+            "y": 3,
+            "list": [{
+                "type": "snowglobe_gifts",
+                "x": 0
+            }, {
+                "type": "snowglobe_sleigh",
+                "x": 3
+            }]
+        }
     ]
 }

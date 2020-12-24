@@ -9,6 +9,7 @@ local BlockViewBuilder = Views.block_builder
 
 local SceneMsgService = SceneServices.msg
 local ScreenService = Services.screen
+local LevelService = Services.level
 
 local Config = App.config
 local URL = App.constants.urls
@@ -32,11 +33,14 @@ local function on_broken_block(self, block_view)
     self.destroyable_count = self.destroyable_count - 1
 
     if block_view.data.destroyable and self.destroyable_count == 0 then
+        LevelService:go_to_next_level()
         SceneMsgService:send(nil, GameMSG.winning)
     end
 end
 
-function BlocksController:init(level_data)
+function BlocksController:init()
+    local level_data = LevelService:get_data()
+
     self.blocks = {}
     self.blocks_views = {}
     self.destroyable_count = 0
@@ -66,7 +70,6 @@ function BlocksController:init(level_data)
     end
 
     ScreenService.update_observer:subscribe(function()
-        print('x')
         BlockViewBuilder:rebuild(self.blocks_views)
     end)
 end

@@ -13,6 +13,7 @@ local LocalStorage = Services.local_storage
 local ScreenService = Services.screen
 local LocalizationService = Services.localization
 local ScenesService = Services.scenes
+local LevelService = Services.level
 
 function init(self)
     ScreenService:init()
@@ -28,6 +29,8 @@ function init(self)
     LocalizationService:init(Config.localization.default_lang)
 
     LocalStorage:init('Christmas Arcanoid')
+
+    LevelService:init()
 end
 
 function on_message(self, message_id, message, sender)

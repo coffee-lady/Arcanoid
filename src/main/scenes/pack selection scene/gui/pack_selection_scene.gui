@@ -56,7 +56,7 @@ nodes {
   yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_FIT
-  layer: "main"
+  layer: "list"
   inherit_alpha: false
   slice9 {
     x: 0.0
@@ -320,8 +320,8 @@ nodes {
 }
 nodes {
   position {
-    x: 94.0
-    y: 564.0
+    x: 320.0
+    y: 475.0
     z: 0.0
     w: 1.0
   }
@@ -338,8 +338,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 1366.0
-    y: 1366.0
+    x: 950.0
+    y: 950.0
     z: 0.0
     w: 1.0
   }
@@ -356,7 +356,7 @@ nodes {
   xanchor: XANCHOR_LEFT
   yanchor: YANCHOR_TOP
   pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
+  adjust_mode: ADJUST_MODE_ZOOM
   layer: "bg"
   inherit_alpha: false
   slice9 {
@@ -365,12 +365,12 @@ nodes {
     z: 0.0
     w: 0.0
   }
-  clipping_mode: CLIPPING_MODE_NONE
+  clipping_mode: CLIPPING_MODE_STENCIL
   clipping_visible: true
   clipping_inverted: false
   alpha: 1.0
   template_node_child: false
-  size_mode: SIZE_MODE_AUTO
+  size_mode: SIZE_MODE_MANUAL
 }
 nodes {
   position {
@@ -411,7 +411,7 @@ nodes {
   yanchor: YANCHOR_TOP
   pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_STRETCH
-  layer: "main"
+  layer: "list"
   inherit_alpha: false
   slice9 {
     x: 0.0
@@ -465,7 +465,7 @@ nodes {
   yanchor: YANCHOR_NONE
   pivot: PIVOT_S
   adjust_mode: ADJUST_MODE_STRETCH
-  layer: "main"
+  layer: "list"
   inherit_alpha: false
   slice9 {
     x: 0.0
@@ -474,7 +474,62 @@ nodes {
     w: 0.0
   }
   clipping_mode: CLIPPING_MODE_STENCIL
-  clipping_visible: true
+  clipping_visible: false
+  clipping_inverted: false
+  alpha: 1.0
+  template_node_child: false
+  size_mode: SIZE_MODE_MANUAL
+}
+nodes {
+  position {
+    x: -130.154
+    y: 678.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 4.986
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_BOX
+  blend_mode: BLEND_MODE_ALPHA
+  texture: ""
+  id: "box"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
+  adjust_mode: ADJUST_MODE_FIT
+  parent: "list_mask"
+  layer: "list"
+  inherit_alpha: false
+  slice9 {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 0.0
+  }
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: false
   clipping_inverted: false
   alpha: 1.0
   template_node_child: false
@@ -485,6 +540,9 @@ layers {
 }
 layers {
   name: "main"
+}
+layers {
+  name: "list"
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT

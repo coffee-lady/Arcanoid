@@ -14,14 +14,12 @@ local BlocksController = Controllers.blocks
 local BallController = Controllers.ball
 local WallsController = Controllers.walls
 local PlatformController = Controllers.platform
-local LevelController = Controllers.level
 
 local GameConfig = App.config.game
 
 local GameSceneSystem = GOSystem:new(SceneMsgService, {
     init = function()
-        LevelController:init()
-        BlocksController:init(LevelController:get_data())
+        BlocksController:init()
         BallController:init()
         WallsController:init()
         PlatformController:init()

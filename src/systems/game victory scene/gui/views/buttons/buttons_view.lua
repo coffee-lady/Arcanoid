@@ -14,7 +14,7 @@ local SceneGuiURL = URL.gui_nodes.game_victory_scene
 
 local SUBSCRIPTION = 'SceneView'
 
-local SceneView = class('SceneView')
+local ButtonsView = class('SceneView')
 
 local function create_buttons(self)
     self.button_next = Button:new(SceneGuiURL.button_next, GUIButtonConfig, function()
@@ -31,16 +31,16 @@ local function create_buttons(self)
     end)
 end
 
-function SceneView:initialize()
+function ButtonsView:initialize()
     self.next_observer = Observable:new()
     self.back_observer = Observable:new()
 
     create_buttons(self)
 end
 
-function SceneView:final()
+function ButtonsView:final()
     self.next_observer:complete()
     self.back_observer:complete()
 end
 
-return SceneView
+return ButtonsView

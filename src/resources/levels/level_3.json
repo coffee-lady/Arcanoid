@@ -3,69 +3,50 @@
         "x": 5,
         "y": 5
     },
-    "grid": [
-        [{
-                "type": "snowglobe_snowman",
-                "pos": {
-                    "x": 0,
-                    "y": 1
+    "grid": [{
+            "y": 0,
+            "list": [{
+                    "type": "snowglobe_snowman",
+                    "x": 0
+                },
+                {
+                    "type": "snowglobe_gifts_sleigh",
+                    "x": 1
                 }
-            },
-            {
-                "type": "snowglobe_gifts_sleigh",
-                "pos": {
-                    "x": 1,
-                    "y": 1
+            ]
+        },
+        {
+            "y": 1,
+            "list": [{
+                    "type": "snowglobe_fireplace",
+                    "x": 0
+                }, {
+                    "type": "snowglobe_candle",
+                    "x": 1
+                }, {
+                    "type": "snowglobe_tree",
+                    "x": 2
+                },
+                {
+                    "type": "snowglobe_lollipop",
+                    "x": 3
+                }, {
+                    "type": "snowglobe_decorated_tree",
+                    "x": 4
                 }
-            }
-        ],
-        [{
-                "type": "snowglobe_fireplace",
-                "pos": {
-                    "x": 0,
-                    "y": 1
+            ]
+        },
+        {
+            "y": 2,
+            "list": [{
+                    "type": "snowglobe_lamp",
+                    "x": 3
+                },
+                {
+                    "type": "snowglobe_gifts",
+                    "x": 4
                 }
-            }, {
-                "type": "snowglobe_candle",
-                "pos": {
-                    "x": 1,
-                    "y": 1
-                }
-            }, {
-                "type": "snowglobe_tree",
-                "pos": {
-                    "x": 2,
-                    "y": 1
-                }
-            },
-            {
-                "type": "snowglobe_lollipop",
-                "pos": {
-                    "x": 3,
-                    "y": 1
-                }
-            }, {
-                "type": "snowglobe_decorated_tree",
-                "pos": {
-                    "x": 4,
-                    "y": 1
-                }
-            }
-        ],
-        [{
-                "type": "snowglobe_lamp",
-                "pos": {
-                    "x": 3,
-                    "y": 2
-                }
-            },
-            {
-                "type": "snowglobe_gifts",
-                "pos": {
-                    "x": 4,
-                    "y": 2
-                }
-            }
-        ]
+            ]
+        }
     ]
 }

@@ -3,41 +3,74 @@
         "x": 5,
         "y": 3
     },
-    "grid": [
-        [{
-                "type": "snowglobe_gifts",
-                "pos": {
-                    "x": 0,
-                    "y": 1
+    "grid": [{
+            "y": 0,
+            "list": [{
+                    "type": "chimney",
+                    "x": 0
+                },
+                {
+                    "type": "snowglobe_decorated_tree",
+                    "x": 1
+                },
+                {
+                    "type": "snowglobe_decorated_tree",
+                    "x": 2
+                },
+                {
+                    "type": "snowglobe_decorated_tree",
+                    "x": 3
+                }, {
+                    "type": "chimney",
+                    "x": 4
                 }
-            },
-            {
-                "type": "snowglobe_misletoe",
-                "pos": {
-                    "x": 1,
-                    "y": 1
+            ]
+        },
+        {
+            "y": 1,
+            "list": [{
+                    "type": "chimney",
+                    "x": 0
+                },
+                {
+                    "type": "snowglobe_tree",
+                    "x": 1
+                },
+                {
+                    "type": "snowglobe_tree",
+                    "x": 2
+                },
+                {
+                    "type": "snowglobe_tree",
+                    "x": 3
+                }, {
+                    "type": "chimney",
+                    "x": 4
                 }
-            },
-            {
-                "type": "snowglobe_candle",
-                "pos": {
-                    "x": 2,
-                    "y": 1
+            ]
+        },
+        {
+            "y": 2,
+            "list": [{
+                    "type": "chimney",
+                    "x": 0
+                },
+                {
+                    "type": "snowglobe_tree",
+                    "x": 1
+                },
+                {
+                    "type": "snowglobe_tree",
+                    "x": 2
+                },
+                {
+                    "type": "snowglobe_tree",
+                    "x": 3
+                }, {
+                    "type": "chimney",
+                    "x": 4
                 }
-            },
-            {
-                "type": "snowglobe_lamp",
-                "pos": {
-                    "x": 3,
-                    "y": 1
-                }
-            }, {
-                "type": "snowglobe_sleigh",
-                "pos": {
-                    "x": 4,
-                    "y": 1
-                }
-            }
-        ]
+            ]
+        }
     ]
 }

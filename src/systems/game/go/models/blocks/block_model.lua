@@ -1,10 +1,7 @@
 local App = require('src.app')
-local GameServices = require('src.systems.game.services.services')
 
 local class = App.libs.middleclass
 local Observable = App.libs.event_observation.observable
-
-local GameMsgService = GameServices.msg
 
 local ResourcesLib = App.libs.resources_storage
 local GameRes = App.config.game.resources
@@ -23,9 +20,12 @@ end
 
 local Block = class('Block')
 
-function Block:initialize(block_data)
+function Block:initialize(block_data, grid_y)
     self.type = block_data.type
-    self.grid_pos = block_data.pos
+    self.grid_pos = {
+        x = block_data.x,
+        y = grid_y
+    }
     self.default_width = get_prop(self.type, 'width')
     self.default_height = get_prop(self.type, 'height')
     self.destroyable = get_prop(self.type, 'destroyable')

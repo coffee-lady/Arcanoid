@@ -54,6 +54,7 @@ local GuiNodesUrls = {
         root = 'root',
         transition = 'transition',
         pack_icon = 'pack_icon',
+        list_mask = 'list_mask',
         text = {
             level_title = 'level_title',
             pack_title = 'pack_title',
