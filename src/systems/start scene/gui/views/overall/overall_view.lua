@@ -19,7 +19,8 @@ local OverallView = class('OverallView')
 function OverallView:initialize()
     self.play_game_observer = Observable:new()
 
-    self.play_button = Button:new(SceneGuiURL.button_play, GUIButtonConfig, function()
+    local btn_play_node = gui.get_node(SceneGuiURL.button_play)
+    self.play_button = Button:new(btn_play_node, GUIButtonConfig, function()
         self.play_game_observer:next()
     end)
 

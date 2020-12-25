@@ -6,6 +6,8 @@ local SceneServices = require('src.systems.pack selection scene.services.service
 local LevelService = Services.level
 local ScenesService = Services.scenes
 local SceneMsgService = SceneServices.gui_msg
+local Button = App.libs.gui.button
+local GUIButtonConfig = App.config.common.gui.button
 
 local PacksConfig = App.config.game.packs
 local SceneGuiURLs = App.constants.urls.gui_nodes.pack_selection_scene
@@ -60,15 +62,18 @@ function ListItemView:initialize(template, index)
 
     set_color(nodes, index)
 
+    local btn_node = nodes[SceneGuiURLs.list_item_icon]
+    self.icon_btn = Button:new(btn_node, GUIButtonConfig, function()
+        LevelService:switch_to_pack(pack_data)
+        ScenesService:switch_to_scene(URL.scenes.game_scene.main)
+    end)
+
     SceneMsgService:on(SUBSCRIPTION, ACTIONS.click, function(action)
         if action.dx ~= 0 or action.dy ~= 0 or self.is_closed then
             return
         end
 
-        if gui.pick_node(nodes[SceneGuiURLs.list_item_icon], action.x, action.y) then
-            LevelService:switch_to_pack(pack_data)
-            ScenesService:switch_to_scene(URL.scenes.game_scene.main)
-        end
+        self.icon_btn:on_click(action)
     end)
 end
 

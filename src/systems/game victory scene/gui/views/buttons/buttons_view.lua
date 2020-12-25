@@ -17,11 +17,14 @@ local SUBSCRIPTION = 'SceneView'
 local ButtonsView = class('SceneView')
 
 local function create_buttons(self)
-    self.button_next = Button:new(SceneGuiURL.button_next, GUIButtonConfig, function()
+    local btn_back_node = gui.get_node(SceneGuiURL.button_restart)
+    local btn_next_node = gui.get_node(SceneGuiURL.button_next)
+
+    self.button_next = Button:new(btn_next_node, GUIButtonConfig, function()
         self.next_observer:next()
     end)
 
-    self.button_back = Button:new(SceneGuiURL.button_back, GUIButtonConfig, function()
+    self.button_back = Button:new(btn_back_node, GUIButtonConfig, function()
         self.back_observer:next()
     end)
 

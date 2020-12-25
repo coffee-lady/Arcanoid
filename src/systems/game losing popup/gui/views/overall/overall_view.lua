@@ -17,11 +17,14 @@ local SUBSCRIPTION = 'PopupView'
 local PopupView = class('PopupView')
 
 local function create_buttons(self)
-    self.button_restart = Button:new(PopupGuiURL.button_restart, GUIButtonConfig, function()
+    local btn_restart_node = gui.get_node(PopupGuiURL.button_restart)
+    local btn_back_node = gui.get_node(PopupGuiURL.button_back)
+
+    self.button_restart = Button:new(btn_restart_node, GUIButtonConfig, function()
         self.restart_observer:next()
     end)
 
-    self.button_back = Button:new(PopupGuiURL.button_back, GUIButtonConfig, function()
+    self.button_back = Button:new(btn_back_node, GUIButtonConfig, function()
         self.back_observer:next()
     end)
 

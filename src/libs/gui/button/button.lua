@@ -6,8 +6,8 @@ local ComplexAnimation = AnimationsLib.complex_animation
 
 local Button = class('Button')
 
-function Button:initialize(url, animation_config, on_click)
-    self._button = gui.get_node(url)
+function Button:initialize(node, animation_config, on_click)
+    self._button = node
     self._color = gui.get_color(self._button)
     self._scale = gui.get_scale(self._button)
     self._is_pressed = false

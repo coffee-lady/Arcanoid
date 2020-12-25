@@ -19,7 +19,8 @@ local OverallView = class('OverallView')
 function OverallView:initialize()
     self.pause_observer = Observable:new()
 
-    self.pause_button = Button:new(GameGuiURL.pause_button, GUIButtonConfig, function()
+    local btn_node = gui.get_node(GameGuiURL.pause_button)
+    self.pause_button = Button:new(btn_node, GUIButtonConfig, function()
         self.pause_observer:next()
     end)
 
