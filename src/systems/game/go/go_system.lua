@@ -5,6 +5,7 @@ local Controllers = require('src.systems.game.go.controllers.controllers')
 local GOSystem = require('src.common.classes.go_system')
 
 local ScenesService = Services.scenes
+local LevelService = Services.level
 local SceneMsgService = GameServices.msg
 
 local URL = App.constants.urls
@@ -14,15 +15,20 @@ local BlocksController = Controllers.blocks
 local BallController = Controllers.ball
 local WallsController = Controllers.walls
 local PlatformController = Controllers.platform
-
-local GameConfig = App.config.game
+local BoostsController = Controllers.boosts
 
 local GameSceneSystem = GOSystem:new(SceneMsgService, {
     init = function()
+        local scene_data = ScenesService:get_scene_data(URL.scenes.game_scene.main)
+        if scene_data and scene_data.continue then
+            LevelService:go_to_new_level()
+        end
+
         BlocksController:init()
         BallController:init()
         WallsController:init()
         PlatformController:init()
+        BoostsController:init()
     end,
 
     on_input = function(action_id, action)
@@ -36,9 +42,7 @@ GameSceneSystem:on({
     end,
 
     [MSG.game.winning] = function()
-        timer.delay(GameConfig.delay_before_another_scene, false, function()
-            ScenesService:switch_to_scene(URL.scenes.game_victory_scene.main)
-        end)
+        ScenesService:switch_to_scene(URL.scenes.game_victory_scene.main)
     end,
 
     [MSG.game.losing] = function()

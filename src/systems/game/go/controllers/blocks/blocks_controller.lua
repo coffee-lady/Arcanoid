@@ -28,11 +28,16 @@ local function on_broken_block(self, block_view)
             break
         end
     end
+
     block_view:delete()
+
+    SceneMsgService:post(URL.scenes.game_scene.scene, nil, GameMSG.block_destructed, {
+        pos = block_view.pos
+    })
 
     self.destroyable_count = self.destroyable_count - 1
 
-    if block_view.data.destroyable and self.destroyable_count == 0 then
+    if self.destroyable_count == 0 then
         LevelService:go_to_next_level()
         SceneMsgService:send(nil, GameMSG.winning)
     end

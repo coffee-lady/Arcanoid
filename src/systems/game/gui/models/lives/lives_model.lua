@@ -23,12 +23,21 @@ function Lives:initialize()
     SceneGuiMsgService:on(SUBSCRIPTION_URL, GameMSG.lost_ball, function()
         self:decrease()
     end)
+
+    SceneGuiMsgService:on(SUBSCRIPTION_URL, GameMSG.increase_lives, function()
+        self:increase()
+    end)
+
+    SceneGuiMsgService:on(SUBSCRIPTION_URL, GameMSG.decrease_lives, function()
+        self:decrease()
+    end)
 end
 
 function Lives:increase()
     if self.count == LivesConfig.count then
         return
     end
+
     self.count = self.count + 1
     self.increase_observer:next(self.count)
 end

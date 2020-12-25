@@ -5,6 +5,7 @@ local Animation = App.libs.animations.animation
 local Animator = App.libs.animations.animator
 
 local PlatformConfig = Config.game.go.platform
+local animator = Animator:new()
 
 local PROP = App.constants.go_props
 
@@ -19,14 +20,13 @@ local PlatformAnimation = {}
 
 function PlatformAnimation:init(url)
     self.url = url
-    self.animator = Animator:new()
 end
 
 function PlatformAnimation:animate_pos_x(new_pos)
     rotation_anim_config.to = new_pos.x
-    local anim_pos_x = Animation:new(self.url, go.animate, go.cancel, rotation_anim_config)
+    local anim_pos_x = Animation:new(self.url, go.animate, go.cancel_animations, rotation_anim_config)
 
-    return self.animator:play(anim_pos_x):finish()
+    return animator:play(anim_pos_x):finish()
 end
 
 return PlatformAnimation

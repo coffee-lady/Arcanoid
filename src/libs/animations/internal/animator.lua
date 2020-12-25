@@ -36,12 +36,6 @@ function Animator:play_in_parallel(anims)
     return self
 end
 
-function Animator:exec(callback)
-    timer.delay(self._timer, false, callback)
-
-    return self
-end
-
 function Animator:suspend(time)
     timer.delay(self._timer, false, function()
         self._timer = self._timer + time

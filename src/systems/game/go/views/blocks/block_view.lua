@@ -60,9 +60,7 @@ function BlockView:update_scale()
 end
 
 function BlockView:delete()
-    Animation:animate_sprite(self.id, self.cracks_url):exec(function()
-        go.delete(self.id)
-    end)
+    go.delete(self.id)
 end
 
 return BlockView

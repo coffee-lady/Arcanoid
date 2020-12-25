@@ -14,7 +14,7 @@ local PLAYED_LAST_LEVEL = 'played_last_level'
 
 local LevelService = {}
 
-local function _load_level_data(self)
+local function _load_current_level_data(self)
     local filepath = GameRes:get_level_filepath(self.current_level)
     self.level_data = ResourcesService:get(filepath, GameRes.level_data.type)
 end
@@ -26,7 +26,7 @@ local function _load_progress_level(self)
 
     self.current_level = progress_level
 
-    _load_level_data(self)
+    _load_current_level_data(self)
 end
 
 local function _set_current_level(self, level)
@@ -43,7 +43,7 @@ local function _set_current_level(self, level)
         LocalStorage:set(LEVELS, PROGRESS, self.current_level)
     end
 
-    _load_level_data(self)
+    _load_current_level_data(self)
 end
 
 local function _load_current_pack(self)
@@ -80,20 +80,19 @@ local function _set_level(self, level)
 end
 
 function LevelService:init()
-    local current = LocalStorage:get(LEVELS, CURRENT)
+    self.current_level = LocalStorage:get(LEVELS, PROGRESS)
 
-    if not current then
-        current = GameConfig.start_level
+    if not self.current_level then
+        self.current_level = GameConfig.start_level
     end
 
     self.played_last_level = LocalStorage:get(LEVELS, PLAYED_LAST_LEVEL)
-    self.current_level = current
 
     if not LocalStorage:get(LEVELS, PROGRESS) then
         LocalStorage:set(LEVELS, PROGRESS, 1)
     end
 
-    _load_level_data(self)
+    _load_current_level_data(self)
     _load_current_pack(self)
 end
 

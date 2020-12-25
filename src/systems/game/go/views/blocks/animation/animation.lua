@@ -34,13 +34,13 @@ function BlockAnimation:animate_sprite(url, cracks_url)
     msg.post(bottom_s, PROP.disable)
     msg.post(cracks_url, PROP.disable)
 
-    local anim_y = Animation:new(url, go.animate, go.cancel, sprite_pos_y_anim)
+    local anim_y = Animation:new(url, go.animate, go.cancel_animations, sprite_pos_y_anim)
 
     return Animator():play(anim_y)
 end
 
-function BlockAnimation:animate_breaking(pfx_url)
-    particlefx.play(pfx_url)
+function BlockAnimation:animate_breaking(pfx_url, cb)
+    particlefx.play(pfx_url, cb)
 end
 
 return BlockAnimation

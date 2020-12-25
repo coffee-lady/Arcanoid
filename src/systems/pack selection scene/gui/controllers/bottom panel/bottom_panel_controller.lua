@@ -14,10 +14,12 @@ local BottomPanelController = {}
 
 function BottomPanelController:init()
     self.bottom_panel = BottomPanel:new()
-    self.bottom_panel_view = BottomPanelView:new(self.bottom_panel.current_level, self.bottom_panel.current_pack)
+    self.bottom_panel_view = BottomPanelView:new(self.bottom_panel.progress_level, self.bottom_panel.current_pack)
 
     self.bottom_panel_view.continue_game_observer:subscribe(function()
-        ScenesService:switch_to_scene(URL.scenes.game_scene.main)
+        ScenesService:switch_to_scene(URL.scenes.game_scene.main, {
+            continue = true
+        })
     end)
 end
 

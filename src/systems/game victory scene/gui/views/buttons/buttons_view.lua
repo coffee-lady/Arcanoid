@@ -17,7 +17,7 @@ local SUBSCRIPTION = 'SceneView'
 local ButtonsView = class('SceneView')
 
 local function create_buttons(self)
-    local btn_back_node = gui.get_node(SceneGuiURL.button_restart)
+    local btn_back_node = gui.get_node(SceneGuiURL.button_back)
     local btn_next_node = gui.get_node(SceneGuiURL.button_next)
 
     self.button_next = Button:new(btn_next_node, GUIButtonConfig, function()

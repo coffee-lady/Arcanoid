@@ -3,6 +3,7 @@ local ScenesUrls = {
         main = 'game_scene',
         scene = 'game_scene:/scene',
         factory = '/scene#factory',
+        boost_factory = '/scene#boost_factory',
         ball = '/ball',
         platform = '/platform',
         losing_zone = '/losing_zone',

@@ -1,0 +1,43 @@
+local App = require('src.app')
+local Services = require('src.services.services')
+local GameServices = require('src.systems.game.services.services')
+
+local ScreenService = Services.screen
+local PROP = App.constants.go_props
+local Animation = App.libs.animations.animation
+local Animator = App.libs.animations.animator
+
+local SceneMsgService = GameServices.msg
+
+local MSG = App.constants.messages
+
+local function animate(id)
+    local start_coords = ScreenService:get_coords()
+
+    local anim_config = {
+        property = PROP.position_y,
+        to = start_coords.y,
+        duration = App.config.game.boosts.animation.duration,
+        easing = go.EASING_INCUBIC,
+        playback = go.PLAYBACK_ONCE_FORWARD,
+        callback = function()
+            go.delete(id)
+        end
+    }
+
+    local anim_y = Animation:new(id, go.animate, go.cancel_animations, anim_config)
+
+    Animator():play(anim_y):finish()
+end
+
+function init(self)
+    self.id = go.get_id()
+
+    animate(self.id)
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id == hash(MSG.common.collision_response) then
+        SceneMsgService:send(self.id, MSG.game.boost_collision, message)
+    end
+end

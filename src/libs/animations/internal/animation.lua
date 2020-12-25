@@ -11,14 +11,14 @@ function Animation:initialize(node, animate_func, cancel_func, config)
     self.delay = config.delay and config.delay or 0
     self.callback = config.callback
     self.playback = config.playback
-
     self.animate = animate_func
     self.cancel_animation = cancel_func
 end
 
 function Animation:play()
     if self.animate == go.animate then
-        self.animate(self.node, self.property, self.playback, self.to, self.easing, self.duration, self.delay)
+        self.animate(self.node, self.property, self.playback, self.to, self.easing, self.duration, self.delay,
+            self.callback)
     elseif self.animate == gui.animate then
         self.animate(self.node, self.property, self.to, self.easing, self.duration, self.delay, self.callback,
             self.playback)

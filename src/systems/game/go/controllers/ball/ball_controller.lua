@@ -44,6 +44,10 @@ function BallController:init()
         end
     end)
 
+    SceneMsgService:on(SceneUrls.main, SceneMSG.block_destructed, function()
+        self.ball:speed_up()
+    end)
+
     SceneMsgService:on(SceneUrls.main, SceneMSG.pause, function()
         self.ball_view:stop_ball()
     end)
