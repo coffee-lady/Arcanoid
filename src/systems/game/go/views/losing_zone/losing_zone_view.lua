@@ -14,7 +14,7 @@ function LosingZoneView:initialize()
     self.url = GameSceneUrls.losing_zone
     self.sizes = ScreenService:get_sizes()
     self.pos = vmath.vector3()
-    self._scale = vmath.vector3()
+    self.scale = vmath.vector3()
 
     self:reset_pos()
     self:reset_scale()
@@ -39,11 +39,11 @@ function LosingZoneView:reset_scale()
     local sizes = ScreenService:get_sizes()
     local scale_factor = sizes.x / self.sizes.x
 
-    self._scale.x = scale_factor
-    self._scale.y = scale_factor
-    self._scale.z = scale_factor
+    self.scale.x = scale_factor
+    self.scale.y = scale_factor
+    self.scale.z = scale_factor
 
-    go.set_scale(self._scale, self.url)
+    go.set_scale(self.scale, self.url)
 end
 
 return LosingZoneView

@@ -1,0 +1,2 @@
+prototype: "/src/main/scenes/game scene/components/ball/ball.go"
+load_dynamically: false

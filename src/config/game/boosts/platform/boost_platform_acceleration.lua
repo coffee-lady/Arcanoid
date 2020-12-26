@@ -1,7 +1,7 @@
 local PlatformAccelerationBoostConfig = {
     falling = true,
     icon = 'boost_platform_acceleration',
-    delta_speed = vmath.vector3(20, 20, 0),
+    delta_moving_time = 0.02,
     time = 30
 }
 

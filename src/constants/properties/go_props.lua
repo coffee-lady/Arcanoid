@@ -1,5 +1,6 @@
 local GOProperties = {
     sprite = 'sprite',
+    scale = 'scale',
     tint = 'tint',
     position = 'position',
     position_x = 'position.x',

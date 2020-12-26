@@ -13,6 +13,7 @@ local LevelService = Services.level
 
 local Config = App.config
 local URL = App.constants.urls
+local CO_GROUPS = App.constants.co_groups
 local GameMSG = App.constants.messages.game
 local CommonMSG = App.constants.messages.common
 
@@ -62,7 +63,7 @@ function BlocksController:init()
         end
 
         SceneMsgService:on(block_view.id, CommonMSG.collision_response, function(message)
-            if message.other_id == hash(URL.scenes.game_scene.ball) then
+            if message.other_group == hash(CO_GROUPS.balls) then
                 block:decrease_lives()
             end
         end)

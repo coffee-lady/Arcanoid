@@ -11,15 +11,15 @@ local WallsConst = App.constants.urls.scenes.game_scene.walls
 local WallsController = {}
 
 function WallsController:init()
-    self.walls = {}
+    local walls = {}
 
     for key, val in pairs(WallsConfig) do
-        self.walls[#self.walls + 1] = WallView:new(WallsConst[key], val.pos)
+        walls[#walls + 1] = WallView:new(WallsConst[key], val.pos)
     end
 
     ScreenService.update_observer:subscribe(function()
-        for i = 1, #self.walls do
-            self.walls[i]:reset()
+        for i = 1, #walls do
+            walls[i]:reset()
         end
     end)
 end

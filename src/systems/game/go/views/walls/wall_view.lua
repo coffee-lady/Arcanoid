@@ -10,7 +10,7 @@ function WallView:initialize(url, rel_coords_start)
     self.url = url
     self.rel_start = rel_coords_start
     self.sizes = ScreenService:get_sizes()
-    self._scale = vmath.vector3()
+    self.scale = vmath.vector3()
     self.pos = vmath.vector3()
 
     self:reset()
@@ -35,11 +35,11 @@ function WallView:reset_scale()
     local sizes = ScreenService:get_sizes()
     local scale_factor = sizes.x > sizes.y and sizes.x / self.sizes.x or sizes.y / self.sizes.y
 
-    self._scale.x = scale_factor
-    self._scale.y = scale_factor
-    self._scale.z = scale_factor
+    self.scale.x = scale_factor
+    self.scale.y = scale_factor
+    self.scale.z = scale_factor
 
-    go.set_scale(self._scale, self.url)
+    go.set_scale(self.scale, self.url)
 end
 
 return WallView

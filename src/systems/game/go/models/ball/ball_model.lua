@@ -6,18 +6,17 @@ local class = App.libs.middleclass
 local BallConfig = App.config.game.go.ball
 local Observable = App.libs.event_observation.observable
 
-local GameSceneUrls = App.constants.urls.scenes.game_scene
 local PROP = App.constants.go_props
 local MSG = App.constants.messages.common
 local GameMSG = App.constants.messages.game
 
 local Ball = class('Ball')
 
-function Ball:initialize()
-    self.url = GameSceneUrls.ball
+function Ball:initialize(url)
+    self.url = url
     self.update_speed_observer = Observable:new()
     self.co_url = msg.url(nil, self.url, PROP.collisionobject)
-    self.base_speed = vmath.vector3(BallConfig.start_speed.x, BallConfig.start_speed.y, 0)
+    self.base_speed = vmath.vector3(BallConfig.speed.start.x, BallConfig.speed.start.y, 0)
 
     GameMsgService:on(hash(self.url), MSG.collision_response, function()
         self:check_speed()
@@ -28,12 +27,22 @@ function Ball:initialize()
     end)
 end
 
+function Ball:copy(ball)
+    local new_ball = Ball:new()
+
+    new_ball.update_speed_observer:next(ball.speed)
+end
+
 function Ball:reset()
     self:reset_speed()
 end
 
 function Ball:reset_speed()
-    self.update_speed_observer:next(BallConfig.start_speed)
+    self.update_speed_observer:next(BallConfig.speed.start)
+end
+
+local function get_vector_length(v)
+    return math.sqrt(v.x * v.x + v.y * v.y)
 end
 
 function Ball:check_speed()
@@ -42,7 +51,7 @@ function Ball:check_speed()
     local mod_x = math.abs(speed.x)
     local mod_y = math.abs(speed.y)
 
-    if mod_x < BallConfig.min_speed.x or mod_y < BallConfig.min_speed.y then
+    if mod_x < BallConfig.speed.min.x or mod_y < BallConfig.speed.min.y then
         speed.x = speed.x / mod_x * self.base_speed.x
         speed.y = speed.y / mod_y * self.base_speed.y
 
@@ -59,11 +68,25 @@ function Ball:speed_up()
     speed.x = speed.x + BallConfig.delta_speed.x * direction_x
     speed.y = speed.y + BallConfig.delta_speed.y * direction_y
 
-    local max_speed_vector = math.sqrt(math.pow(BallConfig.max_speed.x, 2) + math.pow(BallConfig.max_speed.y, 2))
-    local speed_vector = math.sqrt(speed.x * speed.x + speed.y * speed.y)
+    local max_speed_vector = get_vector_length(BallConfig.speed.max)
+    local speed_vector = get_vector_length(speed)
 
     if speed_vector < max_speed_vector then
         self.base_speed = speed
+        self.update_speed_observer:next(speed)
+    end
+end
+
+function Ball:accelerate(delta_speed)
+    local speed = go.get(self.co_url, PROP.linear_velocity)
+    speed.x = speed.x + delta_speed.x
+    speed.y = speed.y + delta_speed.y
+
+    local max_speed_vector = get_vector_length(BallConfig.speed.max)
+    local min_speed_vector = get_vector_length(BallConfig.speed.min)
+    local speed_vector = get_vector_length(speed)
+
+    if speed_vector > min_speed_vector and speed_vector < max_speed_vector then
         self.update_speed_observer:next(speed)
     end
 end

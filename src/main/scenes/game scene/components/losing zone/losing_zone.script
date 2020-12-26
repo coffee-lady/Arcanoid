@@ -11,6 +11,7 @@ function init(self)
 end
 
 function on_message(self, message_id, message, sender)
+    print(message_id, message.other_id, message.other_group)
     if message_id == MSG.collision_response then
         SceneMsgService:send(self.id, message_id, message)
     end

@@ -9,7 +9,7 @@ local Button = class('Button')
 function Button:initialize(node, animation_config, on_click)
     self._button = node
     self._color = gui.get_color(self._button)
-    self._scale = gui.get_scale(self._button)
+    self.scale = gui.get_scale(self._button)
     self._is_pressed = false
     self._easing = gui.EASING_INCUBIC
     self._on_click = on_click
@@ -42,7 +42,7 @@ local function create_complex_anim(node, scale, color, duration, easing)
 end
 
 function Button:animate_click(blackout, scale, duration, easing)
-    self.animation_released = create_complex_anim(self._button, self._scale, self._color, duration, easing)
+    self.animation_released = create_complex_anim(self._button, self.scale, self._color, duration, easing)
 
     local color_to = vmath.vector4()
     color_to.x = set_non_negative(self._color.x, blackout)

@@ -15,6 +15,7 @@ function PlatformView:initialize()
     self.url = URLS.platform
     self.size = go.get(msg.url(nil, self.url, PROP.sprite), PROP.size)
     self.pos = vmath.vector3()
+    self.moving_duration = PlatformConfig.moving_duration.start
 
     self:update_scale()
     self:reset_pos()
@@ -25,15 +26,37 @@ end
 function PlatformView:update_scale()
     local sizes = ScreenService:get_sizes()
 
-    self._scale = PlatformConfig.scale * sizes.x / self.size.x
+    self.scale = PlatformConfig.scale.start * sizes.x / self.size.x
 
-    go.set_scale(self._scale, self.url)
+    go.set_scale(self.scale, self.url)
+end
+
+function PlatformView:extend(p)
+    local sizes = ScreenService:get_sizes()
+
+    local scale = self.scale + p * sizes.x / self.size.x
+
+    if scale < PlatformConfig.scale.min or scale > PlatformConfig.scale.max then
+        return
+    end
+
+    self.scale = scale
+    Animation:animate_scale(self.scale)
+end
+
+function PlatformView:accelerate(delta_time)
+    self.moving_duration = self.moving_duration + delta_time
+
+    if self.moving_duration < PlatformConfig.moving_duration.min or self.moving_duration >
+        PlatformConfig.moving_duration.max then
+        self.moving_duration = self.moving_duration - delta_time
+    end
 end
 
 function PlatformView:set_pos_x(pos_x)
     local start_coords, end_coords = ScreenService:get_coords()
-    local min_x = start_coords.x + self.size.x * self._scale / 2
-    local max_x = end_coords.x - self.size.x * self._scale / 2
+    local min_x = start_coords.x + self.size.x * self.scale / 2
+    local max_x = end_coords.x - self.size.x * self.scale / 2
 
     if pos_x < min_x then
         self.pos.x = min_x
@@ -57,7 +80,7 @@ end
 function PlatformView:on_moving_platform(action)
     self:set_pos_x(action.screen_x)
 
-    Animation:animate_pos_x(self.pos)
+    Animation:animate_pos_x(self.pos, self.moving_duration)
 end
 
 return PlatformView

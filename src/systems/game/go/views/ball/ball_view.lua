@@ -5,32 +5,30 @@ local class = App.libs.middleclass
 local Services = require('src.services.services')
 local ScreenService = Services.screen
 
-local GameServices = require('src.systems.game.services.services')
-local SceneMsgService = GameServices.msg
-
-local GameSceneUrls = App.constants.urls.scenes.game_scene
 local PROP = App.constants.go_props
-local GameMSG = App.constants.messages.game
 local BallConfig = App.config.game.go.ball
 
 local ZERO_SPEED = vmath.vector3()
 
 local BallView = class('BallView')
 
-function BallView:initialize()
-    self.url = GameSceneUrls.ball
+function BallView:initialize(url)
+    self.url = url
     self.co_url = msg.url(nil, self.url, PROP.collisionobject)
     self.pos = vmath.vector3()
     self.size = go.get(msg.url(nil, self.url, PROP.sprite), PROP.size)
 
     self:reset()
 
-    SceneMsgService:on(hash(self.url), GameMSG.lost_ball, function()
-        self:reset()
-    end)
-
     Animation:init(self.url)
     Animation:animate_rotation()
+end
+
+function BallView:copy(ball)
+    local new_ball = BallView:new()
+
+    local pos = go.get_position(ball.url)
+    go.set_position(pos, new_ball)
 end
 
 function BallView:update_speed(speed)
@@ -48,7 +46,7 @@ function BallView:resume_moving()
     local speed = self.speed_snapshot
 
     if speed.x == 0 and speed.y == 0 then
-        speed = BallConfig.start_speed
+        speed = BallConfig.speed.start
     end
 
     go.set(self.co_url, PROP.linear_velocity, speed)

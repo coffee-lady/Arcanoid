@@ -13,7 +13,7 @@ function BlockView:initialize(block)
 end
 
 function BlockView:create_go()
-    self.id = factory.create(GAME_URLS.factory, self.pos, nil, nil, self.scale)
+    self.id = factory.create(GAME_URLS.block_factory, self.pos, nil, nil, self.scale)
     self.sprite_url = msg.url(nil, self.id, PROP.sprite)
     self.cracks_url = msg.url(nil, self.id, PROP.block.cracks)
     self.pfx_url = msg.url(nil, self.id, PROP.block.snowglobe_breaking)
