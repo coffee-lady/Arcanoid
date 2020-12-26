@@ -12,15 +12,15 @@ local URLS = App.constants.urls.scenes.game_scene
 local PROP = App.constants.go_props
 
 function PlatformView:initialize()
-    self.url = URLS.platform
-    self.size = go.get(msg.url(nil, self.url, PROP.sprite), PROP.size)
+    self.id = URLS.platform
+    self.size = go.get(msg.url(nil, self.id, PROP.sprite), PROP.size)
     self.pos = vmath.vector3()
     self.moving_duration = PlatformConfig.moving_duration.start
 
     self:update_scale()
     self:reset_pos()
 
-    Animation:init(self.url)
+    Animation:init(self.id)
 end
 
 function PlatformView:update_scale()
@@ -28,7 +28,7 @@ function PlatformView:update_scale()
 
     self.scale = PlatformConfig.scale.start * sizes.x / self.size.x
 
-    go.set_scale(self.scale, self.url)
+    go.set_scale(self.scale, self.id)
 end
 
 function PlatformView:extend(p)
@@ -74,7 +74,7 @@ function PlatformView:reset_pos()
     self.pos.x = start_coords.x + sizes.x / 2
     self.pos.y = start_coords.y + sizes.y * PlatformConfig.bottom_padding
 
-    go.set_position(self.pos, self.url)
+    go.set_position(self.pos, self.id)
 end
 
 function PlatformView:on_moving_platform(action)

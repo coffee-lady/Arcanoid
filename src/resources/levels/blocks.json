@@ -1,9 +1,9 @@
 {
     "default": {
-        "lives": 1,
+        "lives": 2,
         "destroyable": true,
-        "width": 200,
-        "height": 200,
+        "default_width": 200,
+        "default_height": 200,
         "sprite": "snowglobe_snowflake"
     },
     "snowglobe_house": {
