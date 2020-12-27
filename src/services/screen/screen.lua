@@ -1,5 +1,5 @@
-local App = require("src.app")
-local rendercam = require("rendercam.rendercam")
+local App = require('src.app')
+local rendercam = require('rendercam.rendercam')
 
 local Observable = App.libs.event_observation.observable
 

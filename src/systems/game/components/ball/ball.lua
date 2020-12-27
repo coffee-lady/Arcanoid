@@ -62,6 +62,11 @@ function BallComponent:initialize(id)
         view:delete()
     end)
 
+    SceneMsgService:on(SceneUrls.main, SceneMSG.losing, function()
+        physics:stop_ball()
+        animations.rotation.cancel()
+    end)
+
     SceneMsgService:on(SceneUrls.main, SceneMSG.continue, function()
         physics:resume_moving()
     end)

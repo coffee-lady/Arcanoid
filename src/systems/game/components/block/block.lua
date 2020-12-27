@@ -28,11 +28,16 @@ function BlockComponent:initialize(id, data)
 
     transform:reset()
 
-    SceneMsgService:on(id, MSG.common.collision_response, function(message)
+    local collision_subs = SceneMsgService:on(id, MSG.common.collision_response, function(message)
         if message.other_group == hash(CO_GROUPS.balls) then
             logic:decrease_lives()
         end
     end)
+
+    local upd_subs = ScreenService.update_observer:subscribe(
+                         function()
+            transform:reset()
+        end)
 
     logic.lives_observer:subscribe(function(lives)
         if lives == BlockConfig.leftover_lives_for_cracks then
@@ -46,10 +51,9 @@ function BlockComponent:initialize(id, data)
             id = id,
             pos = view.pos
         })
-    end)
 
-    ScreenService.update_observer:subscribe(function()
-        transform:reset()
+        collision_subs:unsubscribe()
+        upd_subs:unsubscribe()
     end)
 end
 

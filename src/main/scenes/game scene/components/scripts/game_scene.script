@@ -1,5 +1,5 @@
 local App = require('src.app')
-local GameSystem = require('src.systems.game.go.go_system')
+local GameSystem = require('src.systems.game.go_system')
 
 function init(self)
     GameSystem:init()

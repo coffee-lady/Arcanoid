@@ -24,6 +24,7 @@ local GuiNodesUrls = {
     game_scene = {
         root = 'root',
         transition = 'transition',
+        life = 'life',
         energy_container = 'energy_container',
         energy_amount = 'energy_amount',
         pause_button = 'pause_button',

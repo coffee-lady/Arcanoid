@@ -20,14 +20,17 @@ function Factory:init()
         for i = 1, #row.list do
             local raw_data = row.list[i]
 
-            local data = TYPES[raw_data.type]
-            data.grid_pos = vmath.vector3()
-            data.grid_pos.x = raw_data.x
-            data.grid_pos.y = row.y
+            for key, value in pairs(TYPES[raw_data.type]) do
+                raw_data[key] = value
+            end
+
+            raw_data.grid_pos = vmath.vector3()
+            raw_data.grid_pos.x = raw_data.x
+            raw_data.grid_pos.y = row.y
 
             local id = factory.create(SceneUrls.block_factory)
 
-            Block:new(id, data)
+            Block:new(id, raw_data)
         end
     end
 end

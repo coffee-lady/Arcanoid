@@ -11,7 +11,6 @@ local Transform = class('Transform')
 function Transform:initialize(id, data)
     self.id = id
     self.pos = vmath.vector3()
-    self.scale = 1
     self.data = data
 end
 

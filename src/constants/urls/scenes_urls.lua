@@ -11,8 +11,7 @@ local ScenesUrls = {
         walls = {
             wall_left = '/wall_left',
             wall_top = '/wall_top',
-            wall_right = '/wall_right',
-            wall_bottom = '/wall_bottom'
+            wall_right = '/wall_right'
         },
         gui = '/scene#gui'
     },

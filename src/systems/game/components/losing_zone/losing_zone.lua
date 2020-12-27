@@ -7,7 +7,6 @@ local MSG = App.constants.messages
 local CO_GROUPS = App.constants.co_groups
 
 local SceneMsgService = SceneServices.msg
-local SceneGuiMsgService = SceneServices.gui_msg
 local ScreenService = Services.screen
 
 local SceneMSG = App.constants.messages.game
@@ -31,7 +30,7 @@ function LosingZoneComponent:initialize(id)
     SceneMsgService:on(id, MSG.common.collision_response, function(message)
         if message.other_group == hash(CO_GROUPS.balls) then
             SceneMsgService:send(nil, SceneMSG.lost_ball)
-            SceneGuiMsgService:post(SceneUrls.gui, nil, SceneMSG.lost_ball)
+            SceneMsgService:post(SceneUrls.gui, nil, SceneMSG.lost_ball)
         end
     end)
 end
