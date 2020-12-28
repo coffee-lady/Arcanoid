@@ -18,7 +18,7 @@ function FactoryView:initialize(nodes)
 
     local gui_width = gui.get_width()
 
-    for i = 1, LifeConfig.count do
+    for _ = 1, LifeConfig.count do
         pos.x = pos.x - size.x - gui_width * LifeConfig.indent_between
         self.nodes[#self.nodes + 1] = Life:new(pos)
     end

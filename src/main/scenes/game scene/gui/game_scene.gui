@@ -112,7 +112,7 @@ nodes {
 }
 nodes {
   position {
-    x: 36.0
+    x: 15.0
     y: 408.0
     z: 0.0
     w: 1.0
@@ -179,8 +179,8 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 1.0
-    y: 1.0
+    x: 0.8
+    y: 0.8
     z: 1.0
     w: 1.0
   }
@@ -286,7 +286,7 @@ nodes {
 }
 nodes {
   position {
-    x: -183.0
+    x: -218.0
     y: 409.0
     z: 0.0
     w: 1.0
@@ -416,8 +416,8 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 1.0
-    y: 1.0
+    x: 0.7
+    y: 0.7
     z: 1.0
     w: 1.0
   }
@@ -459,7 +459,7 @@ nodes {
 }
 nodes {
   position {
-    x: 292.0
+    x: 311.0
     y: 409.0
     z: 0.0
     w: 1.0
@@ -473,12 +473,12 @@ nodes {
   scale {
     x: 1.0
     y: 1.0
-    z: 0.7
+    z: 1.0
     w: 1.0
   }
   size {
-    x: 50.0
-    y: 44.0
+    x: 45.0
+    y: 39.0
     z: 0.0
     w: 1.0
   }
@@ -494,7 +494,7 @@ nodes {
   id: "life"
   xanchor: XANCHOR_LEFT
   yanchor: YANCHOR_TOP
-  pivot: PIVOT_CENTER
+  pivot: PIVOT_E
   adjust_mode: ADJUST_MODE_FIT
   parent: "root"
   layer: "main"
@@ -510,7 +510,7 @@ nodes {
   clipping_inverted: false
   alpha: 1.0
   template_node_child: false
-  size_mode: SIZE_MODE_AUTO
+  size_mode: SIZE_MODE_MANUAL
 }
 nodes {
   position {
