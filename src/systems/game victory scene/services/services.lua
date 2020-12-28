@@ -1,5 +1,6 @@
 local Services = {
-    gui_msg = require('src.systems.game victory scene.services.gui_msg_service')
+    localization = require('src.systems.game victory scene.services.localization.localization'),
+    gui_msg = require('src.systems.game victory scene.services.msg.gui_msg')
 }
 
 return Services

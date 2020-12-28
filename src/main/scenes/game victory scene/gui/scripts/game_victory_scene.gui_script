@@ -1,4 +1,4 @@
-local GUISystem = require('src.systems.game victory scene.gui.gui_system')
+local GUISystem = require('src.systems.game victory scene.gui_system')
 
 function init(self)
     GUISystem:init()

@@ -60,8 +60,10 @@ local GuiNodesUrls = {
         list_mask = 'list_mask',
         list_item = 'list_item',
         list_item_icon = 'list_item_icon',
-        list_item_pack_title = 'list_item_pack_title',
-        list_item_level_title = 'list_item_level_title',
+        list_item_texts = {
+            list_item_pack_title = 'list_item_pack_title',
+            list_item_level_title = 'list_item_level_title'
+        },
         text = {
             level_title = 'level_title',
             pack_title = 'pack_title',

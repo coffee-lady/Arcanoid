@@ -5,16 +5,17 @@
     "game_victory_scene": {
         "title": "You won",
         "congrats_text": "Congratulations!",
-        "pack_title": "Pack ",
-        "level_title": "Level ",
+        "pack_title": "Pack {next_pack}",
+        "level_title": "Level {next_level}",
         "button_next_text": "Next level",
         "button_back_text": "Back home"
     },
     "pack_selection_scene": {
-        "level_title": "Level ",
-        "pack_title": "",
+        "level_title": "Level {current_level}",
+        "pack_title": "{current_pack}",
         "continue_text": "Continue game",
-        "list_item_level_title": "Levels: "
+        "list_item_level_title": "Levels: {item_first_level}-{item_last_level}",
+        "list_item_pack_title": "{item_pack_title}"
     },
     "start_scene": {
         "title": "Christmas\nArcanoid",

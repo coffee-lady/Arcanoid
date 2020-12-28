@@ -3,7 +3,8 @@ local Services = {
     screen = require('src.services.screen.screen'),
     localization = require('src.services.localization.localization'),
     local_storage = require('src.services.local_storage.local_storage'),
-    level = require('src.services.level.level')
+    level = require('src.services.level.level'),
+    gui = require('src.services.gui.gui')
 }
 
 return Services

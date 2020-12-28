@@ -1,4 +1,4 @@
-local GUISystem = require('src.systems.game losing popup.gui.gui_system')
+local GUISystem = require('src.systems.game losing popup.gui_system')
 
 function init(self)
     GUISystem:init()

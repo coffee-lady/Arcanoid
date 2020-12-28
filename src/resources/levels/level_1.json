@@ -50,29 +50,6 @@
                     "x": 4
                 }
             ]
-        },
-        {
-            "y": 2,
-            "list": [{
-                    "type": "snowglobe_tree",
-                    "x": 0
-                },
-                {
-                    "type": "snowglobe_lollipop",
-                    "x": 1
-                },
-                {
-                    "type": "snowglobe_gifts_sleigh",
-                    "x": 2
-                },
-                {
-                    "type": "snowglobe_fireplace",
-                    "x": 3
-                }, {
-                    "type": "snowglobe_decorated_tree",
-                    "x": 4
-                }
-            ]
         }
     ]
 }

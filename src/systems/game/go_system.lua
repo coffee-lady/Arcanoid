@@ -45,6 +45,7 @@ GameSceneSystem:on({
     end,
 
     [MSG.game.winning] = function()
+        LevelService:go_to_next_level()
         ScenesService:switch_to_scene(URL.scenes.game_victory_scene.main)
     end,
 

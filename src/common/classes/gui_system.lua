@@ -7,9 +7,9 @@ local MSG = App.constants.messages
 
 local GUISystem = class('GUISystem')
 
-function GUISystem:initialize(controllers, msg_service, callbacks)
-    self.SceneMsgService = msg_service
-    self.LocalizationController = controllers.localization
+function GUISystem:initialize(controllers, services, callbacks)
+    self.SceneMsgService = services.gui_msg
+    self.LocalizationService = services.localization
     self.TransitionsController = controllers.transitions
 
     if callbacks then
@@ -23,7 +23,7 @@ end
 function GUISystem:init()
     msg.post('.', MSG.common.acquire_input_focus)
 
-    self.LocalizationController:init()
+    self.LocalizationService:init()
 
     self.local_subs = LocalizationService.changes:subscribe(function()
         self.SceneMsgService:send(nil, MSG.common.localization_change)
