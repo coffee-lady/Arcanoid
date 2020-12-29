@@ -10,6 +10,7 @@ function View:initialize(id, data)
     self.data = data
     self.sprite_url = msg.url(nil, self.id, PROP.sprite)
     self.cracks_url = msg.url(nil, self.id, PROP.block.cracks)
+    self.sprite = data.sprite
 
     msg.post(self.cracks_url, PROP.disable)
 

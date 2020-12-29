@@ -15,6 +15,7 @@ local Block = Components.block
 local Factory = {}
 
 function Factory:init()
+    self.blocks = {}
     local level_data = LevelService:get_data()
     local TYPES = BlocksDataService:get_data()
 
@@ -34,7 +35,8 @@ function Factory:init()
 
             local id = factory.create(SceneUrls.block_factory)
 
-            Block:new(id, raw_data)
+            local block = Block:new(id, raw_data)
+            self.blocks[#self.blocks + 1] = block
 
             if raw_data.destroyable then
                 destroyable_count = destroyable_count + 1
@@ -42,8 +44,22 @@ function Factory:init()
         end
     end
 
-    SceneMsgService:on(SceneUrls.main, SceneMSG.block_destructed, function()
+    SceneMsgService:on(SceneUrls.main, SceneMSG.block_destructed, function(message)
+        if not message.destroyable then
+            return
+        end
+
+        for i = 1, #self.blocks do
+            local block = self.blocks[i]
+
+            if block and block.id == message.id then
+                table.remove(self.blocks, i)
+            end
+        end
+
         destroyable_count = destroyable_count - 1
+
+        SceneMsgService:send(nil, SceneMSG.blocks_deleted, message)
 
         if destroyable_count == 0 then
             SceneMsgService:send(nil, SceneMSG.winning)

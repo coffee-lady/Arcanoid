@@ -31,10 +31,6 @@ function Factory:init()
     View:new(self.nodes)
     self.logic = Logic:new(self.nodes)
 
-    SceneMsgService:on(SceneURLs.gui, SceneMSG.lost_ball, function()
-        decrease_lives(self)
-    end)
-
     SceneMsgService:on(SceneURLs.gui, SceneMSG.increase_lives, function()
         increase_lives(self)
     end)

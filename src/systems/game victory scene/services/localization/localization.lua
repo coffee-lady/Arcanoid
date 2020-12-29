@@ -7,12 +7,13 @@ local LevelService = Services.level
 
 local SCENE_URL = App.constants.urls.scenes.game_victory_scene.main
 
-local next_level = LevelService:get_current_level()
-local next_pack = LevelService:get_current_pack()
+local LocalizationService = LocalizationCtrl:new(SCENE_URL, MsgService)
 
-local LocalizationController = LocalizationCtrl:new(SCENE_URL, MsgService, {
-    next_level = next_level,
-    next_pack = next_pack.title
-})
+function LocalizationService:get_vars()
+    return {
+        next_level = LevelService:get_current_level(),
+        next_pack = LevelService:get_current_pack().title
+    }
+end
 
-return LocalizationController
+return LocalizationService

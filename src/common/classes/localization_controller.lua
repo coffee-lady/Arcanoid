@@ -23,15 +23,18 @@ local function set_text(id, text)
     gui.set_text(node, text)
 end
 
-function LocalizationController:initialize(scene_url, msg_service, vars)
+function LocalizationController:initialize(scene_url, msg_service)
     self.url = scene_url
     self.text_nodes = URL.gui_nodes[self.url].text
     self.msg_service = msg_service
-    self.vars = vars
     self.list = {}
 end
 
 function LocalizationController:init()
+    if self.get_vars then
+        self.vars = self:get_vars()
+    end
+
     self:update()
 
     self.msg_service:on(self.url, MSG.common.localization_change, function()

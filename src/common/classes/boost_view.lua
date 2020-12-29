@@ -10,9 +10,9 @@ local GameSceneURLs = URL.scenes.game_scene
 local BOOST_FACTORY = GameSceneURLs.boost_factory
 local PROP = App.constants.go_props
 
-local BoostView = class('BoostView')
+local Boost = class('Boost')
 
-function BoostView:initialize(pos, config, boost)
+function Boost:initialize(pos, config, boost)
     if not config.falling then
         boost()
         return
@@ -32,4 +32,4 @@ function BoostView:initialize(pos, config, boost)
     end)
 end
 
-return BoostView
+return Boost

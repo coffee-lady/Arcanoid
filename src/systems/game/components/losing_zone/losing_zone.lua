@@ -29,7 +29,9 @@ function LosingZoneComponent:initialize(id)
 
     SceneMsgService:on(id, MSG.common.collision_response, function(message)
         if message.other_group == hash(CO_GROUPS.balls) then
-            SceneMsgService:send(nil, SceneMSG.lost_ball)
+            SceneMsgService:send(nil, SceneMSG.lost_ball, {
+                ball_id = message.other_id
+            })
             SceneMsgService:post(SceneUrls.gui, nil, SceneMSG.lost_ball)
         end
     end)

@@ -15,7 +15,10 @@ local GOProperties = {
         cracks = 'cracks',
         snowglobe_top = 'top',
         snowglobe_bottom = 'bottom',
-        snowglobe_breaking = 'snowglobe_breaking'
+        snowglobe_breaking = 'snowglobe_breaking',
+        chimney_breaking = 'chimney_breaking',
+        co_kinematic = 'co_kinematic',
+        co_trigger = 'co_trigger'
     },
 
     disable = 'disable',

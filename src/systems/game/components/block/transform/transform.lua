@@ -54,6 +54,8 @@ function Transform:reset_scale()
     local scale_factor = self.length / self.data.default_width
     self.scale = scale_factor
 
+    self.height = self.data.default_height * self.scale
+
     self:set_scale(scale_factor)
 end
 

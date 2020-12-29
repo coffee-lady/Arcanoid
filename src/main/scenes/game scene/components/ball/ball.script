@@ -1,7 +1,6 @@
-local App = require('src.app')
-local GameServices = require('src.systems.game.services.services')
+local SceneServices = require('src.systems.game.services.services')
 
-local SceneMsgService = GameServices.msg
+local SceneMsgService = SceneServices.msg
 
 function init(self)
     self.id = go.get_id()

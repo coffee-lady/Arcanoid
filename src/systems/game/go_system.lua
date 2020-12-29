@@ -17,6 +17,7 @@ local BlocksFactory = Factories.block
 local LosingZoneFactory = Factories.losing_zone
 local PlatformFactory = Factories.platform
 local WallsFactory = Factories.wall
+local BoostsFactory = Factories.boost
 
 local GameSceneSystem = GOSystem:new(SceneMsgService, {
     init = function()
@@ -32,6 +33,8 @@ local GameSceneSystem = GOSystem:new(SceneMsgService, {
         LosingZoneFactory:init()
         PlatformFactory:init()
         WallsFactory:init()
+
+        BoostsFactory:init(BlocksFactory.blocks)
     end,
 
     on_input = function(action_id, action)

@@ -1,5 +1,5 @@
 local CaptiveBallBoostConfig = {
-    falling = false,
+    falling = true,
     icon = 'boost_captive_ball',
     count = 1
 }

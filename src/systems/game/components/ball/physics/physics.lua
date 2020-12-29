@@ -1,5 +1,6 @@
 local App = require('src.app')
 
+local CoordsLib = App.libs.coords
 local class = App.libs.middleclass
 local PROP = App.constants.go_props
 local BallConfig = App.config.game.go.ball
@@ -56,16 +57,23 @@ end
 
 function Physics:accelerate(delta_speed)
     local speed = go.get(self.co_url, PROP.linear_velocity)
-    speed.x = speed.x + delta_speed.x
-    speed.y = speed.y + delta_speed.y
+
+    local mod_x = math.abs(speed.x)
+    local mod_y = math.abs(speed.y)
+
+    local new_x = self.base_speed.x + delta_speed.x
+    local new_y = self.base_speed.y + delta_speed.y
 
     local max_speed_vector = get_vector_length(BallConfig.speed.max)
     local min_speed_vector = get_vector_length(BallConfig.speed.min)
-    local speed_vector = get_vector_length(speed)
+    local speed_vector = CoordsLib.hypotenuse(new_x, new_y)
 
     if speed_vector > min_speed_vector and speed_vector < max_speed_vector then
-        self.base_speed.x = math.abs(speed.x)
-        self.base_speed.y = math.abs(speed.y)
+        self.base_speed.x = new_x
+        self.base_speed.y = new_y
+
+        speed.x = speed.x / mod_x * new_x
+        speed.y = speed.y / mod_y * new_y
 
         self:set_speed(speed)
     end
