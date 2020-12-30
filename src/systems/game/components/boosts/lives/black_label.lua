@@ -8,7 +8,9 @@ local BoostConfig = App.config.game.boosts.black_label
 local URL = App.constants.urls
 local MSG = App.constants.messages
 
-local BlackLabelBoost = {}
+local BlackLabelBoost = {
+    weight = BoostConfig.weight
+}
 
 function BlackLabelBoost:init(message)
     Boost:new(message.pos, BoostConfig, function()

@@ -15,7 +15,9 @@ local Boosts = {
     simple_bomb = require('src.systems.game.components.boosts.bombs.simple_bomb'),
     color_bomb = require('src.systems.game.components.boosts.bombs.color_bomb'),
     horizontal_bomb = require('src.systems.game.components.boosts.bombs.horizontal_bomb'),
-    vertical_bomb = require('src.systems.game.components.boosts.bombs.vertical_bomb')
+    vertical_bomb = require('src.systems.game.components.boosts.bombs.vertical_bomb'),
+
+    empty = require('src.systems.game.components.boosts.empty.empty')
 }
 
 return Boosts

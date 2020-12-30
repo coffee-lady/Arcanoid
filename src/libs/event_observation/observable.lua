@@ -43,7 +43,7 @@ function Observable:complete()
         self.completed = true
     end
 
-    self.subscribers = nil
+    self.subscribers = {}
 end
 
 return Observable

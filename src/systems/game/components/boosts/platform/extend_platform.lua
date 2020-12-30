@@ -7,10 +7,12 @@ local SceneMsgService = SceneServices.msg
 local BoostConfig = App.config.game.boosts.extend_platform
 local MSG = App.constants.messages
 
-local ExtendPlatformBoost = {}
+local ExtendPlatformBoost = {
+    weight = BoostConfig.weight
+}
 
 local function boost()
-    SceneMsgService:post(nil, MSG.game.extend_platform, {
+    SceneMsgService:send(nil, MSG.game.extend_platform, {
         percentage = BoostConfig.percentage
     })
 

@@ -11,7 +11,9 @@ local BoostConfig = App.config.game.boosts.color_bomb
 local MSG = App.constants.messages
 local BlockConfig = App.config.game.go.blocks
 
-local ColorBombBoost = {}
+local ColorBombBoost = {
+    weight = BoostConfig.weight
+}
 
 local function boost(self)
     local height = self.block_height
@@ -67,13 +69,13 @@ local function boost(self)
     for i = 1, #typed_blocks[max] do
         local block = typed_blocks[max][i]
 
-        SceneMsgService:send(block.id, MSG.game.destroy_block)
-
         for j = 1, #self.blocks do
             if self.blocks[j] and self.blocks[j].id == block.id then
                 table.remove(self.blocks, j)
             end
         end
+
+        SceneMsgService:send(block.id, MSG.game.destroy_block)
     end
 end
 

@@ -13,6 +13,7 @@ local BoostsConfig = {
     platform_acceleration = require('src.config.game.boosts.platform.boost_platform_acceleration'),
     platform_deceleration = require('src.config.game.boosts.platform.boost_platform_deceleration'),
     shorten_platform = require('src.config.game.boosts.platform.boost_shorten_platform'),
+    empty = require('src.config.game.boosts.empty.boost_empty'),
 
     animation = {
         duration = 2

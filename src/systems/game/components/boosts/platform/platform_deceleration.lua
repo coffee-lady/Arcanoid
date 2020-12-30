@@ -7,15 +7,17 @@ local SceneMsgService = SceneServices.msg
 local BoostConfig = App.config.game.boosts.platform_deceleration
 local MSG = App.constants.messages
 
-local PlatformDecelerationBoost = {}
+local PlatformDecelerationBoost = {
+    weight = BoostConfig.weight
+}
 
 local function boost()
-    SceneMsgService:send(nil, MSG.game.accelerate_platform, {
+    SceneMsgService:send(nil, MSG.game.decelerate_platform, {
         delta_time = BoostConfig.delta_moving_time
     })
 
     timer.delay(BoostConfig.time, false, function()
-        SceneMsgService:send(nil, MSG.game.decelerate_platform, {
+        SceneMsgService:send(nil, MSG.game.accelerate_platform, {
             delta_time = BoostConfig.delta_moving_time
         })
     end)

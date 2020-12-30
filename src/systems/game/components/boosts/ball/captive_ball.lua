@@ -7,7 +7,9 @@ local SceneMsgService = SceneServices.msg
 local BoostConfig = App.config.game.boosts.captive_ball
 local MSG = App.constants.messages
 
-local CaptiveBallBoost = {}
+local CaptiveBallBoost = {
+    weight = BoostConfig.weight
+}
 
 local function boost(self)
     SceneMsgService:send(nil, MSG.game.add_balls, {

@@ -14,7 +14,9 @@ local Boost = class('Boost')
 
 function Boost:initialize(pos, config, boost)
     if not config.falling then
-        boost()
+        if boost then
+            boost()
+        end
         return
     end
 
@@ -26,7 +28,9 @@ function Boost:initialize(pos, config, boost)
 
     SceneMsgService:on(self.id, MSG.game.boost_collision, function(message)
         if message.other_id == hash(GameSceneURLs.platform) then
-            boost()
+            if boost then
+                boost()
+            end
             go.delete(self.id)
         end
     end)

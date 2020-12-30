@@ -8,7 +8,9 @@ local BoostConfig = App.config.game.boosts.life
 local URL = App.constants.urls
 local MSG = App.constants.messages
 
-local BonusLifeBoost = {}
+local BonusLifeBoost = {
+    weight = BoostConfig.weight
+}
 
 function BonusLifeBoost:init(message)
     Boost:new(message.pos, BoostConfig, function()

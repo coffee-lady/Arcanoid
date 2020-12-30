@@ -12,7 +12,9 @@ local BoostConfig = App.config.game.boosts.bomb
 local MSG = App.constants.messages
 local BlockConfig = App.config.game.go.blocks
 
-local SimpleBombBoost = {}
+local SimpleBombBoost = {
+    weight = BoostConfig.weight
+}
 
 local function boost(self)
     local height = self.block_height

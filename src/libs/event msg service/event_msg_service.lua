@@ -20,6 +20,7 @@ end
 
 local function send_to_all_subscribers(self, message_id, message)
     local subscribers = self._subs[message_id].subscribers
+
     for i = 1, #subscribers do
         subscribers[i]:next(message)
     end
@@ -86,9 +87,9 @@ end
 function EventMSGServiceLib:reset()
     for _, obj in pairs(self._subs) do
         local subscriptions = obj.subscribers
-        for i = 1, #subscriptions do
-            subscriptions[i]:unsubscribe()
-        end
+
+        obj.observer:complete()
+        obj.subscribers = {}
     end
 
     self._subs = {}

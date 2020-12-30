@@ -7,7 +7,9 @@ local SceneMsgService = SceneServices.msg
 local BoostConfig = App.config.game.boosts.shorten_platform
 local MSG = App.constants.messages
 
-local ShortenPlatformBoost = {}
+local ShortenPlatformBoost = {
+    weight = BoostConfig.weight
+}
 
 local function boost()
     SceneMsgService:send(nil, MSG.game.shorten_platform, {
