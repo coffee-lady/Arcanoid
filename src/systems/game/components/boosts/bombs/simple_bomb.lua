@@ -1,6 +1,7 @@
 local App = require('src.app')
 local SceneServices = require('src.systems.game.services.services')
 local Boost = require('src.common.classes.boost_view')
+local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
 
@@ -12,11 +13,19 @@ local BoostConfig = App.config.game.boosts.bomb
 local MSG = App.constants.messages
 local BlockConfig = App.config.game.go.blocks
 
-local SimpleBombBoost = {
-    weight = BoostConfig.weight
-}
+local SimpleBombBoost = class('SimpleBombBoost', Boost)
 
-local function boost(self)
+SimpleBombBoost.weight = BoostConfig.weight
+
+function SimpleBombBoost:initialize(message, blocks)
+    self.block_length = message.length
+    self.block_height = message.height
+    self.blocks = blocks
+    self.pos = message.pos
+    self.config = BoostConfig
+end
+
+function SimpleBombBoost:boost()
     local height = self.block_height
     local length = self.block_length
     local indent = BlockConfig.indent_between
@@ -39,17 +48,6 @@ local function boost(self)
             end
         end
     end
-end
-
-function SimpleBombBoost:init(message, blocks)
-    self.block_length = message.length
-    self.block_height = message.height
-    self.blocks = blocks
-    self.pos = message.pos
-
-    Boost:new(message.pos, BoostConfig, function()
-        boost(self)
-    end)
 end
 
 return SimpleBombBoost

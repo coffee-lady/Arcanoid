@@ -12,11 +12,10 @@ local Boosts = Components.boosts
 local Factory = {}
 
 function Factory:init(blocks)
-    local f = false
     SceneMsgService:on(SceneUrls.main, MSG.game.blocks_deleted, function(message)
-        local boost = RandomLib.random_with_weights(Boosts)
+        local Boost = RandomLib.random_with_weights(Boosts)
 
-        boost:init(message, blocks)
+        Boost:new(message, blocks):init()
     end)
 end
 

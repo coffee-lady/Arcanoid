@@ -12,28 +12,34 @@ local PROP = App.constants.go_props
 
 local Boost = class('Boost')
 
-function Boost:initialize(pos, config, boost)
-    if not config.falling then
-        if boost then
-            boost()
+function Boost:init()
+    if not self.config.falling then
+        if self.boost then
+            self:boost()
         end
+
         return
     end
 
-    self.id = factory.create(BOOST_FACTORY, pos)
+    self.id = factory.create(BOOST_FACTORY, self.pos)
 
     msg.post(msg.url(nil, self.id, PROP.sprite), PROP.play_animation, {
-        id = hash(config.icon)
+        id = hash(self.config.icon)
     })
 
     SceneMsgService:on(self.id, MSG.game.boost_collision, function(message)
         if message.other_id == hash(GameSceneURLs.platform) then
-            if boost then
-                boost()
+            if self.boost then
+                self:boost()
             end
-            go.delete(self.id)
+
+            self:destroy()
         end
     end)
+end
+
+function Boost:destroy()
+    go.delete(self.id)
 end
 
 return Boost

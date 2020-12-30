@@ -1,17 +1,24 @@
 local App = require('src.app')
 local SceneServices = require('src.systems.game.services.services')
 local Boost = require('src.common.classes.boost_view')
+local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
 
 local BoostConfig = App.config.game.boosts.vertical_bomb
 local MSG = App.constants.messages
 
-local VerticalBombBoost = {
-    weight = BoostConfig.weight
-}
+local VerticalBombBoost = class('VerticalBombBoost', Boost)
 
-local function boost(self)
+VerticalBombBoost.weight = BoostConfig.weight
+
+function VerticalBombBoost:initialize(message, blocks)
+    self.blocks = blocks
+    self.pos = message.pos
+    self.config = BoostConfig
+end
+
+function VerticalBombBoost:boost()
     for i = 1, #self.blocks do
         local block = self.blocks[i]
 
@@ -24,15 +31,6 @@ local function boost(self)
             end
         end
     end
-end
-
-function VerticalBombBoost:init(message, blocks)
-    self.blocks = blocks
-    self.pos = message.pos
-
-    Boost:new(message.pos, BoostConfig, function()
-        boost(self)
-    end)
 end
 
 return VerticalBombBoost

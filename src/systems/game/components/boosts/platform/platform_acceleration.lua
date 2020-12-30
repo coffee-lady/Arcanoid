@@ -1,17 +1,23 @@
 local App = require('src.app')
 local SceneServices = require('src.systems.game.services.services')
 local Boost = require('src.common.classes.boost_view')
+local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
 
 local BoostConfig = App.config.game.boosts.platform_acceleration
 local MSG = App.constants.messages
 
-local PlatformAccelerationBoost = {
-    weight = BoostConfig.weight
-}
+local PlatformAccelerationBoost = class('PlatformAccelerationBoost', Boost)
 
-local function boost()
+PlatformAccelerationBoost.weight = BoostConfig.weight
+
+function PlatformAccelerationBoost:initialize(message)
+    self.pos = message.pos
+    self.config = BoostConfig
+end
+
+function PlatformAccelerationBoost:boost()
     SceneMsgService:send(nil, MSG.game.accelerate_platform, {
         delta_time = BoostConfig.delta_moving_time
     })
@@ -21,10 +27,6 @@ local function boost()
             delta_time = BoostConfig.delta_moving_time
         })
     end)
-end
-
-function PlatformAccelerationBoost:init(message)
-    Boost:new(message.pos, BoostConfig, boost)
 end
 
 return PlatformAccelerationBoost
