@@ -3,8 +3,8 @@ local LocalStorage = require('src.services.local_storage.local_storage')
 
 local ResourcesService = App.libs.resources_storage
 
+local PackData = require('src.services.level.internal.pack')
 local GameConfig = App.config.game.go
-local PacksConfig = App.config.game.packs
 local GameRes = App.config.game.resources
 
 local LEVELS = 'levels'
@@ -22,25 +22,7 @@ local function _load_level(self, level)
     local filepath = GameRes:get_level_filepath(level)
     self.level_data = ResourcesService:get(filepath, GameRes.level_data.type)
 
-    for i = 1, #PacksConfig.list do
-        local first_level = PacksConfig.list[i].first_level
-        local last_level = PacksConfig.list[i].last_level
-
-        if first_level <= self.current_level and last_level >= self.current_level then
-            self.current_pack = PacksConfig.list[i]
-        end
-    end
-end
-
-local function _load_pack(self, level)
-    for i = 1, #PacksConfig.list do
-        local first_level = PacksConfig.list[i].first_level
-        local last_level = PacksConfig.list[i].last_level
-
-        if first_level <= level and last_level >= level then
-            self.current_pack = PacksConfig.list[i]
-        end
-    end
+    PackData:load_pack_by_level(self.current_level)
 end
 
 local function _set_level(self, level)
@@ -59,11 +41,12 @@ local function _set_level(self, level)
     end
 
     local current = self.current_level
-    local first_level = self.current_pack.first_level
-    local last_level = self.current_pack.last_level
+    local current_pack = PackData:get_current_pack()
+    local first_level = current_pack.first_level
+    local last_level = current_pack.last_level
 
     if current < first_level or current > last_level then
-        _load_pack(self, level)
+        PackData:load_pack_by_level(self.current_level)
     end
 
     return true
@@ -112,27 +95,18 @@ function LevelService:get_current_level()
 end
 
 function LevelService:get_current_pack()
-    return self.current_pack
+    return PackData:get_current_pack()
 end
 
 function LevelService:get_previous_pack()
-    local previous_level = self.current_level - 1
-
-    for i = 1, #PacksConfig.list do
-        local first_level = PacksConfig.list[i].first_level
-        local last_level = PacksConfig.list[i].last_level
-
-        if first_level <= previous_level and last_level >= previous_level then
-            return PacksConfig.list[i]
-        end
-    end
+    return PackData:get_previous_pack()
 end
 
 function LevelService:was_last_level_played()
     return self.played_last_level
 end
 function LevelService:get_last_level()
-    return PacksConfig.list[#PacksConfig.list].last_level
+    return PackData:get_last_level()
 end
 
 return LevelService
