@@ -33,7 +33,9 @@ function Transform:set_length()
     local sizes = ScreenService:get_sizes()
     local grid_size = level_data.sizes
 
-    local indents_length = 2 * BlocksConfig.sides_padding + (grid_size.x - 1) * BlocksConfig.indent_between
+    self.indent = BlocksConfig.indent_between * sizes.x / grid_size.x
+    self.sides_padding = BlocksConfig.sides_padding * sizes.x / grid_size.x
+    local indents_length = 2 * self.sides_padding + (grid_size.x - 1) * self.indent
 
     self.length = (sizes.x - indents_length) / grid_size.x
 end
@@ -44,7 +46,7 @@ function Transform:get_start_pos()
 
     local start = {}
 
-    start.x = start_coords.x + BlocksConfig.sides_padding + self.length / 2
+    start.x = start_coords.x + self.sides_padding + self.length / 2
     start.y = end_coords.y - BlocksConfig.top_padding * sizes.y
 
     return start
@@ -64,10 +66,10 @@ function Transform:reset_pos()
     local default_height = self.data.default_height
     local start_pos = self:get_start_pos()
 
-    self.pos.x = start_pos.x + grid_pos.x * self.length + grid_pos.x * BlocksConfig.indent_between
+    self.pos.x = start_pos.x + grid_pos.x * self.length + grid_pos.x * self.indent
 
     local indent_top = default_height * self.scale / 2 + grid_pos.y * default_height * self.scale
-    self.pos.y = start_pos.y - indent_top - grid_pos.y * BlocksConfig.indent_between
+    self.pos.y = start_pos.y - indent_top - grid_pos.y * self.indent
 
     self:set_pos(self.pos)
 end

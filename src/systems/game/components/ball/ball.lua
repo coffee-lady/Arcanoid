@@ -1,8 +1,10 @@
 local App = require('src.app')
+local Services = require('src.services.services')
 local SceneServices = require('src.systems.game.services.services')
 
 local class = App.libs.middleclass
 local SceneMsgService = SceneServices.msg
+local ScreenService = Services.screen
 local MSG = App.constants.messages
 local SceneMSG = App.constants.messages.game
 local SceneUrls = App.constants.urls.scenes.game_scene
@@ -36,6 +38,10 @@ function BallComponent:initialize(id, pos)
     self.physics:reset_speed()
 
     animations.rotation.play()
+
+    ScreenService.update_observer:subscribe(function()
+        self.transform:reset_scale()
+    end)
 
     SceneMsgService:on(HASH_ID, MSG.common.collision_response, function()
         self.physics:normalize_speed()

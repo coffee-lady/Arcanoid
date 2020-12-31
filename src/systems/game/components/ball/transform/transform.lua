@@ -3,6 +3,7 @@ local Services = require('src.services.services')
 
 local class = App.libs.middleclass
 local ScreenService = Services.screen
+local LevelService = Services.level
 
 local BallConfig = App.config.game.go.ball
 local PROP = App.constants.go_props
@@ -25,7 +26,9 @@ end
 
 function Transform:reset_scale()
     local sizes = ScreenService:get_sizes()
-    local scale_factor = BallConfig.scale * sizes.y / self.size.y
+    local grid_sizes = LevelService:get_data().sizes
+
+    local scale_factor = (BallConfig.scale * sizes.x / grid_sizes.x) / self.size.x
 
     self:set_scale(scale_factor)
 end

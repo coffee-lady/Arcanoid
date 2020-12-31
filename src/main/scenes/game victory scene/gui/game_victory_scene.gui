@@ -52,10 +52,10 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: "backgrounds/win_bg"
   id: "bg"
-  xanchor: XANCHOR_LEFT
-  yanchor: YANCHOR_TOP
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
+  adjust_mode: ADJUST_MODE_ZOOM
   layer: "main"
   inherit_alpha: true
   slice9 {

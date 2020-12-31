@@ -13,7 +13,6 @@ local GameMessages = {
 
     block_destructed = hash('block_destructed'),
     blocks_deleted = hash('blocks_deleted'),
-    destroyable_blocks_ended = hash('destroyable_blocks_ended'),
     damage_block = hash('damage_block'),
     destroy_block = hash('destroy_block'),
 
@@ -22,9 +21,6 @@ local GameMessages = {
     restart = hash('restart'),
     winning = hash('winning'),
     losing = hash('losing'),
-
-    bomb_activated = hash('bomb_activated'),
-    bomb_deactivated = hash('bomb_deactivated'),
 
     boost_collision = hash('boost_collision'),
 
