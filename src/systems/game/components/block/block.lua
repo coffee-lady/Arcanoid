@@ -28,29 +28,32 @@ function BlockComponent:initialize(id, data)
     self.physics = Physics:new(id)
     self.logic = Logic:new(data)
     self.view = View:new(id, data)
+
+    self.subs = {}
     self.id = id
     self.data = data
     self.type = data.sprite
 
     self.transform:reset()
 
-    self.collision_subs = SceneMsgService:on(id, MSG.common.collision_response, function(message)
+    self.subs[#self.subs + 1] = SceneMsgService:on(id, MSG.common.collision_response, function(message)
         if message.other_group == hash(CO_GROUPS.balls) then
             self.logic:decrease_lives()
             self.last_ball_id = message.other_id
         end
     end)
 
-    self.upd_subs = ScreenService.update_observer:subscribe(function()
-        self.transform:reset()
-    end)
+    self.subs[#self.subs + 1] = ScreenService.update_observer:subscribe(
+                                    function()
+            self.transform:reset()
+        end)
 
-    self.fire_subs = SceneMsgService:on(SceneURLs.main, SceneMSG.fire_balls, function()
+    self.subs[#self.subs + 1] = SceneMsgService:on(SceneURLs.main, SceneMSG.fire_balls, function()
         self.physics:switch_co()
         self.logic:make_fragile()
     end)
 
-    self.put_out_subs = SceneMsgService:on(SceneURLs.main, SceneMSG.put_out_balls, function()
+    self.subs[#self.subs + 1] = SceneMsgService:on(SceneURLs.main, SceneMSG.put_out_balls, function()
         self.physics:switch_co()
         self.logic:recover_from_fragility()
     end)
@@ -90,10 +93,9 @@ function BlockComponent:destroy()
         sprite = self.view.sprite
     })
 
-    self.collision_subs:unsubscribe()
-    self.upd_subs:unsubscribe()
-    self.fire_subs:unsubscribe()
-    self.put_out_subs:unsubscribe()
+    for i = 1, #self.subs do
+        self.subs[i]:unsubscribe()
+    end
 end
 
 return BlockComponent
