@@ -3,6 +3,9 @@ local SceneServices = require('src.systems.game.services.services')
 local Services = require('src.services.services')
 local GOSystem = require('src.common.classes.go_system')
 
+local SharedDara = SceneServices.shared_data
+local BlocksData = SharedDara.blocks
+
 local ScenesService = Services.scenes
 local LevelService = Services.level
 local SceneMsgService = SceneServices.msg
@@ -22,6 +25,7 @@ local BoostsFactory = Factories.boost
 local GameSceneSystem = GOSystem:new(SceneMsgService, {
     init = function()
         BlocksDataService:init()
+        BlocksData:init()
 
         local scene_data = ScenesService:get_scene_data(URL.scenes.game_scene.main)
         if scene_data and scene_data.continue then
@@ -34,7 +38,7 @@ local GameSceneSystem = GOSystem:new(SceneMsgService, {
         PlatformFactory:init()
         WallsFactory:init()
 
-        BoostsFactory:init(BlocksFactory.blocks)
+        BoostsFactory:init()
     end,
 
     on_input = function(action_id, action)

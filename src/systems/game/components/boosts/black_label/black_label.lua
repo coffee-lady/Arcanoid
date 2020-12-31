@@ -1,6 +1,9 @@
 local App = require('src.app')
 local SceneServices = require('src.systems.game.services.services')
-local Boost = require('src.common.classes.boost_view')
+
+local Common = require('src.common.common')
+local Boost = Common.components.boost
+
 local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
@@ -13,9 +16,8 @@ local BlackLabelBoost = class('BlackLabelBoost', Boost)
 
 BlackLabelBoost.weight = BoostConfig.weight
 
-function BlackLabelBoost:initialize(message)
-    self.pos = message.pos
-    self.config = BoostConfig
+function BlackLabelBoost:initialize(id)
+    Boost.initialize(self, id, BoostConfig)
 end
 
 function BlackLabelBoost:boost()

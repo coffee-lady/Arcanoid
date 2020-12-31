@@ -1,6 +1,12 @@
 local App = require('src.app')
 local SceneServices = require('src.systems.game.services.services')
-local Boost = require('src.common.classes.boost_view')
+
+local SharedDara = SceneServices.shared_data
+local BlocksData = SharedDara.blocks
+
+local Common = require('src.common.common')
+local Boost = Common.components.boost
+
 local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
@@ -17,12 +23,13 @@ local SimpleBombBoost = class('SimpleBombBoost', Boost)
 
 SimpleBombBoost.weight = BoostConfig.weight
 
-function SimpleBombBoost:initialize(message, blocks)
+function SimpleBombBoost:initialize(id, message)
+    Boost.initialize(self, id, BoostConfig)
+
     self.block_length = message.length
     self.block_height = message.height
-    self.blocks = blocks
+    self.blocks = BlocksData:get()
     self.pos = message.pos
-    self.config = BoostConfig
 end
 
 function SimpleBombBoost:boost()

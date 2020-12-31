@@ -1,6 +1,12 @@
 local App = require('src.app')
 local SceneServices = require('src.systems.game.services.services')
-local Boost = require('src.common.classes.boost_view')
+
+local SharedDara = SceneServices.shared_data
+local BlocksData = SharedDara.blocks
+
+local Common = require('src.common.common')
+local Boost = Common.components.boost
+
 local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
@@ -12,10 +18,10 @@ local HorizontalBombBoost = class('HorizontalBombBoost', Boost)
 
 HorizontalBombBoost.weight = BoostConfig.weight
 
-function HorizontalBombBoost:initialize(message, blocks)
-    self.blocks = blocks
+function HorizontalBombBoost:initialize(id, message)
+    Boost.initialize(self, id, BoostConfig)
+    self.blocks = BlocksData:get()
     self.pos = message.pos
-    self.config = BoostConfig
 end
 
 function HorizontalBombBoost:boost()
@@ -25,7 +31,6 @@ function HorizontalBombBoost:boost()
             local block_pos = go.get_position(block.id)
 
             if block_pos.y == self.pos.y then
-                table.remove(self.blocks, i)
                 SceneMsgService:send(block.id, MSG.game.destroy_block)
             end
         end

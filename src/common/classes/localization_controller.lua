@@ -7,7 +7,7 @@ local LocalizationService = Services.localization
 local MSG = App.constants.messages
 local URL = App.constants.urls
 
-local LocalizationController = class('LocalizationController')
+local Localization = class('Localization')
 
 local function replace_vars(str, vars)
     if not vars then
@@ -23,14 +23,14 @@ local function set_text(id, text)
     gui.set_text(node, text)
 end
 
-function LocalizationController:initialize(scene_url, msg_service)
+function Localization:initialize(scene_url, msg_service)
     self.url = scene_url
     self.text_nodes = URL.gui_nodes[self.url].text
     self.msg_service = msg_service
     self.list = {}
 end
 
-function LocalizationController:init()
+function Localization:init()
     if self.get_vars then
         self.vars = self:get_vars()
     end
@@ -42,7 +42,7 @@ function LocalizationController:init()
     end)
 end
 
-function LocalizationController:update()
+function Localization:update()
     local data = LocalizationService:get(self.url)
 
     for id, _ in pairs(self.text_nodes) do
@@ -52,7 +52,7 @@ function LocalizationController:update()
     end
 end
 
-function LocalizationController:localize_partially(nodes, text_nodes_ids, items_data)
+function Localization:localize_partially(nodes, text_nodes_ids, items_data)
     local item = {
         nodes = nodes,
         text_nodes_ids = text_nodes_ids,
@@ -64,7 +64,7 @@ function LocalizationController:localize_partially(nodes, text_nodes_ids, items_
     self:update_list(item)
 end
 
-function LocalizationController:update_list(list)
+function Localization:update_list(list)
     local data = LocalizationService:get(self.url)
 
     for id, _ in pairs(list.text_nodes_ids) do
@@ -74,4 +74,4 @@ function LocalizationController:update_list(list)
     end
 end
 
-return LocalizationController
+return Localization

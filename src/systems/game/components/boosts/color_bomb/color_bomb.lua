@@ -1,6 +1,12 @@
 local App = require('src.app')
 local SceneServices = require('src.systems.game.services.services')
-local Boost = require('src.common.classes.boost_view')
+
+local SharedDara = SceneServices.shared_data
+local BlocksData = SharedDara.blocks
+
+local Common = require('src.common.common')
+local Boost = Common.components.boost
+
 local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
@@ -16,12 +22,13 @@ local ColorBombBoost = class('ColorBombBoost', Boost)
 
 ColorBombBoost.weight = BoostConfig.weight
 
-function ColorBombBoost:initialize(message, blocks)
+function ColorBombBoost:initialize(id, message)
+    Boost.initialize(self, id, BoostConfig)
+
     self.block_length = message.length
     self.block_height = message.height
-    self.blocks = blocks
+    self.blocks = BlocksData:get()
     self.pos = message.pos
-    self.config = BoostConfig
 end
 
 function ColorBombBoost:boost()
@@ -77,12 +84,6 @@ function ColorBombBoost:boost()
 
     for i = 1, #typed_blocks[max] do
         local block = typed_blocks[max][i]
-
-        for j = 1, #self.blocks do
-            if self.blocks[j] and self.blocks[j].id == block.id then
-                table.remove(self.blocks, j)
-            end
-        end
 
         SceneMsgService:send(block.id, MSG.game.destroy_block)
     end

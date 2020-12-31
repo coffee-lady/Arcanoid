@@ -13,6 +13,7 @@ local GameMessages = {
 
     block_destructed = hash('block_destructed'),
     blocks_deleted = hash('blocks_deleted'),
+    destroyable_blocks_ended = hash('destroyable_blocks_ended'),
     damage_block = hash('damage_block'),
     destroy_block = hash('destroy_block'),
 

@@ -72,6 +72,10 @@ function BlockComponent:initialize(id, data)
     end)
 end
 
+function BlockComponent:is_destroyable()
+    return self.data.destroyable
+end
+
 function BlockComponent:destroy()
     self.animations:animate_breaking()
     self.view:delete()

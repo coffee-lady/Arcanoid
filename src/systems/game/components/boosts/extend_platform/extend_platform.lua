@@ -1,6 +1,9 @@
 local App = require('src.app')
 local SceneServices = require('src.systems.game.services.services')
-local Boost = require('src.common.classes.boost_view')
+
+local Common = require('src.common.common')
+local Boost = Common.components.boost
+
 local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
@@ -12,9 +15,8 @@ local ExtendPlatformBoost = class('ExtendPlatformBoost', Boost)
 
 ExtendPlatformBoost.weight = BoostConfig.weight
 
-function ExtendPlatformBoost:initialize(message)
-    self.pos = message.pos
-    self.config = BoostConfig
+function ExtendPlatformBoost:initialize(id)
+    Boost.initialize(self, id, BoostConfig)
 end
 
 function ExtendPlatformBoost:boost()

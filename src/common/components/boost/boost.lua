@@ -7,25 +7,33 @@ local SceneMsgService = SceneServices.msg
 local MSG = App.constants.messages
 local URL = App.constants.urls
 local SceneURLs = URL.scenes.game_scene
-local BOOST_FACTORY = SceneURLs.boost_factory
-local PROP = App.constants.go_props
 
-local Boost = class('Boost')
+local Animations = require('src.common.components.boost.animations.animations')
+local View = require('src.common.components.boost.view.view')
 
-function Boost:init()
+local Component = class('Component')
+
+function Component:initialize(id, config)
+    self.animations = Animations:new(id)
+    self.view = View:new(id, config)
+
+    self.id = id
+    self.config = config
+end
+
+function Component:init()
     if not self.config.falling then
         if self.boost then
             self:boost()
         end
 
+        self:destroy()
         return
     end
 
-    self.id = factory.create(BOOST_FACTORY, self.pos)
-
-    msg.post(msg.url(nil, self.id, PROP.sprite), PROP.play_animation, {
-        id = hash(self.config.icon)
-    })
+    self.animations:play():exec(function()
+        self:destroy()
+    end)
 
     SceneMsgService:on(self.id, MSG.game.boost_collision, function(message)
         if message.other_id == hash(SceneURLs.platform) then
@@ -33,13 +41,14 @@ function Boost:init()
                 self:boost()
             end
 
+            self.animations:cancel()
             self:destroy()
         end
     end)
 end
 
-function Boost:destroy()
-    go.delete(self.id)
+function Component:destroy()
+    self.view:destroy()
 end
 
-return Boost
+return Component
