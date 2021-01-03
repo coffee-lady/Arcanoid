@@ -1,9 +1,6 @@
 local App = require('src.app')
-local Components = require('src.systems.game.components.components')
 local SceneServices = require('src.systems.game.services.services')
 
-local LifeConfig = App.config.game.gui.lives
-local SceneGuiURLs = App.constants.urls.gui_nodes.game_scene
 local SceneURLs = App.constants.urls.scenes.game_scene
 local SceneMsgService = SceneServices.gui_msg
 local SceneMSG = App.constants.messages.game

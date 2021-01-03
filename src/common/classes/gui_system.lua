@@ -60,6 +60,7 @@ function GUISystem:final()
     self.SceneMsgService:reset()
 
     self.TransitionsController:final()
+    self.LocalizationService:final()
 
     if self._final then
         self._final()

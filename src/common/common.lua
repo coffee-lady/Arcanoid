@@ -1,5 +1,5 @@
-local components = require "src.common.components.components"
 local Common = {
+    classes = require('src.common.classes.classes'),
     components = require('src.common.components.components')
 }
 

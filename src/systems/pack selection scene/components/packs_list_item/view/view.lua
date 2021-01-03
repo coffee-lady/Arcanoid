@@ -50,7 +50,7 @@ function View:initialize(index)
         end
     })
 
-    SceneServices.localization:localize_partially(nodes, SceneGuiURLs.list_item_texts, {
+    SceneServices.localization:localize_list(nodes, SceneGuiURLs.list_item_texts, {
         item_pack_title = pack_data.title,
         item_first_level = pack_data.first_level,
         item_last_level = pack_data.last_level

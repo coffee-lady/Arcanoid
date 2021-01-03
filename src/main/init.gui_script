@@ -1,0 +1,7 @@
+local Services = require('src.services.services')
+
+local EnergyService = Services.energy
+
+function init(self)
+    EnergyService:init()
+end

@@ -9,7 +9,9 @@ local BlocksData = SharedDara.blocks
 local ScenesService = Services.scenes
 local LevelService = Services.level
 local SceneMsgService = SceneServices.msg
+local SceneGUIMsgService = SceneServices.gui_msg
 local BlocksDataService = SceneServices.blocks_data
+local EnergyService = Services.energy
 
 local URL = App.constants.urls
 local MSG = App.constants.messages
@@ -43,16 +45,24 @@ local GameSceneSystem = GOSystem:new(SceneMsgService, {
 
     on_input = function(action_id, action)
         SceneMsgService:send(nil, action_id, action)
+    end,
+
+    on_message = function(message_id, message)
+        if message_id == MSG.game.increase_lives then
+            SceneMsgService:post(URL.scenes.game_scene.gui, nil, message_id, message)
+        end
     end
 })
 
 GameSceneSystem:on({
     [MSG.game.restart] = function()
+        EnergyService:restart_level()
         ScenesService:switch_to_scene(URL.scenes.game_scene.main)
     end,
 
     [MSG.game.winning] = function()
         LevelService:go_to_next_level()
+        EnergyService:win_level()
         ScenesService:switch_to_scene(URL.scenes.game_victory_scene.main)
     end,
 

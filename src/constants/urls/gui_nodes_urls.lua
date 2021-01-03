@@ -15,10 +15,14 @@ local GuiNodesUrls = {
         root = 'root',
         button_restart = 'button_restart',
         button_back = 'button_back',
+        button_buy = 'button_buy',
         text = {
             title = 'title',
             button_restart_text = 'button_restart_text',
-            button_back_text = 'button_back_text'
+            button_back_text = 'button_back_text',
+            energy_container_count = 'energy_container_count',
+            energy_container_left = 'energy_container_left',
+            button_buy_text = 'button_buy_text'
         }
     },
     game_scene = {
@@ -26,12 +30,12 @@ local GuiNodesUrls = {
         transition = 'transition',
         life = 'life',
         energy_container = 'energy_container',
-        energy_amount = 'energy_amount',
         pause_button = 'pause_button',
         pause_container = 'pause_container',
         snow_particlefx = 'snow_particlefx',
         text = {
-            pause_text = 'pause_text'
+            pause_text = 'pause_text',
+            energy_amount = 'energy_amount'
         }
     },
     game_victory_scene = {
@@ -48,7 +52,9 @@ local GuiNodesUrls = {
             level_title = 'level_title',
             pack_title = 'pack_title',
             button_next_text = 'button_next_text',
-            button_back_text = 'button_back_text'
+            button_back_text = 'button_back_text',
+            energy_container_count = 'energy_container_count',
+            energy_container_left = 'energy_container_left'
         }
     },
     pack_selection_scene = {
@@ -67,7 +73,9 @@ local GuiNodesUrls = {
         text = {
             level_title = 'level_title',
             pack_title = 'pack_title',
-            continue_text = 'continue_text'
+            continue_text = 'continue_text',
+            energy_container_count = 'energy_container_count',
+            energy_container_left = 'energy_container_left'
         }
     },
     start_scene = {
@@ -77,7 +85,9 @@ local GuiNodesUrls = {
         button_play = 'button_play',
         text = {
             title = 'title',
-            button_play_text = 'button_play_text'
+            button_play_text = 'button_play_text',
+            energy_container_count = 'energy_container_count',
+            energy_container_left = 'energy_container_left'
         }
     }
 }

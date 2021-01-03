@@ -3,9 +3,21 @@ fonts {
   name: "KaushanScriptRegular"
   font: "/src/assets/fonts/KaushanScriptRegular.font"
 }
+fonts {
+  name: "DosisMedium"
+  font: "/src/assets/fonts/DosisMedium.font"
+}
+fonts {
+  name: "DosisBold"
+  font: "/src/assets/fonts/DosisBold.font"
+}
 textures {
   name: "backgrounds"
   texture: "/src/assets/atlases/backgrounds.atlas"
+}
+textures {
+  name: "game"
+  texture: "/src/assets/atlases/game.atlas"
 }
 background_color {
   x: 0.0
@@ -15,8 +27,8 @@ background_color {
 }
 nodes {
   position {
-    x: 289.0
-    y: 475.0
+    x: 449.0
+    y: 589.0
     z: 0.0
     w: 1.0
   }
@@ -27,14 +39,14 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 1.0
-    y: 1.0
+    x: 0.7
+    y: 0.7
     z: 1.0
     w: 1.0
   }
   size {
     x: 1366.0
-    y: 950.0
+    y: 1731.0
     z: 0.0
     w: 1.0
   }
@@ -105,7 +117,7 @@ nodes {
   xanchor: XANCHOR_LEFT
   yanchor: YANCHOR_TOP
   pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
+  adjust_mode: ADJUST_MODE_STRETCH
   layer: ""
   inherit_alpha: false
   slice9 {
@@ -124,7 +136,7 @@ nodes {
 nodes {
   position {
     x: 0.0
-    y: 158.0
+    y: 77.0
     z: 0.0
     w: 1.0
   }
@@ -147,9 +159,9 @@ nodes {
     w: 1.0
   }
   color {
-    x: 0.0425
-    y: 0.198125
-    z: 0.25
+    x: 1.0
+    y: 1.0
+    z: 1.0
     w: 1.0
   }
   type: TYPE_TEXT
@@ -188,7 +200,7 @@ nodes {
 nodes {
   position {
     x: 0.0
-    y: -297.0
+    y: -370.0
     z: 0.0
     w: 1.0
   }
@@ -211,9 +223,9 @@ nodes {
     w: 1.0
   }
   color {
-    x: 0.0425
-    y: 0.198125
-    z: 0.25
+    x: 0.13725491
+    y: 0.2901961
+    z: 0.5058824
     w: 1.0
   }
   type: TYPE_BOX
@@ -337,8 +349,8 @@ nodes {
   type: TYPE_PARTICLEFX
   id: "snow_particlefx"
   xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  adjust_mode: ADJUST_MODE_FIT
+  yanchor: YANCHOR_TOP
+  adjust_mode: ADJUST_MODE_ZOOM
   parent: "root"
   layer: "main"
   inherit_alpha: false
@@ -346,6 +358,242 @@ nodes {
   template_node_child: false
   size_mode: SIZE_MODE_AUTO
   particlefx: "snow_particlefx"
+}
+nodes {
+  position {
+    x: 0.0
+    y: 475.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 640.0
+    y: 100.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.16078432
+    y: 0.30980393
+    z: 0.5529412
+    w: 1.0
+  }
+  type: TYPE_BOX
+  blend_mode: BLEND_MODE_ALPHA
+  texture: ""
+  id: "energy_container"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
+  pivot: PIVOT_N
+  adjust_mode: ADJUST_MODE_STRETCH
+  parent: "root"
+  layer: "main"
+  inherit_alpha: false
+  slice9 {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 0.0
+  }
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 0.11
+  template_node_child: false
+  size_mode: SIZE_MODE_MANUAL
+}
+nodes {
+  position {
+    x: -274.0
+    y: -48.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 52.0
+    y: 52.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_BOX
+  blend_mode: BLEND_MODE_ALPHA
+  texture: "game/energy"
+  id: "energy_container_icon"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
+  pivot: PIVOT_CENTER
+  adjust_mode: ADJUST_MODE_ZOOM
+  parent: "energy_container"
+  layer: "main"
+  inherit_alpha: false
+  slice9 {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 0.0
+  }
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  template_node_child: false
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -233.0
+    y: -48.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 0.35
+    y: 0.35
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 750.0
+    y: 100.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "Energy: 32/30"
+  font: "DosisBold"
+  id: "energy_container_count"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
+  pivot: PIVOT_W
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_ZOOM
+  line_break: true
+  parent: "energy_container"
+  layer: "main"
+  inherit_alpha: false
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
+}
+nodes {
+  position {
+    x: 309.0
+    y: -48.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 0.35
+    y: 0.35
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 650.0
+    y: 100.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "3 minutes left"
+  font: "DosisBold"
+  id: "energy_container_left"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
+  pivot: PIVOT_E
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_ZOOM
+  line_break: true
+  parent: "energy_container"
+  layer: "main"
+  inherit_alpha: false
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
 }
 nodes {
   position {

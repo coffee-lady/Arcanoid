@@ -1,6 +1,7 @@
 {
     "game_scene": {
-        "pause_text": "Pause"
+        "pause_text": "Pause",
+        "energy_amount": "{current_energy}/{max_energy}"
     },
     "game_victory_scene": {
         "title": "You won",
@@ -8,18 +9,24 @@
         "pack_title": "Pack {next_pack}",
         "level_title": "Level {next_level}",
         "button_next_text": "Next level",
-        "button_back_text": "Back home"
+        "button_back_text": "Back home",
+        "energy_container_count": "Energy: {current_energy}/{max_energy}",
+        "energy_container_left": "{energy_recovery_left_time} minutes left"
     },
     "pack_selection_scene": {
         "level_title": "Level {current_level}",
         "pack_title": "{current_pack}",
         "continue_text": "Continue game",
         "list_item_level_title": "Levels: {item_first_level}-{item_last_level}",
-        "list_item_pack_title": "{item_pack_title}"
+        "list_item_pack_title": "{item_pack_title}",
+        "energy_container_count": "Energy: {current_energy}/{max_energy}",
+        "energy_container_left": "{energy_recovery_left_time} minutes left"
     },
     "start_scene": {
         "title": "Christmas\nArcanoid",
-        "button_play_text": "Play"
+        "button_play_text": "Play",
+        "energy_container_count": "Energy: {current_energy}/{max_energy}",
+        "energy_container_left": "{energy_recovery_left_time} minutes left"
     },
     "game_pause_popup": {
         "title": "Pause",
@@ -30,6 +37,9 @@
     "game_losing_popup": {
         "title": "Oops... You lost",
         "button_restart_text": "Restart",
-        "button_back_text": "Back home"
+        "button_back_text": "Back home",
+        "button_buy_text": "Buy life (-{life_cost})",
+        "energy_container_count": "Energy: {current_energy}/{max_energy}",
+        "energy_container_left": "{energy_recovery_left_time} minutes left"
     }
 }

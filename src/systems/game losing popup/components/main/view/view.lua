@@ -7,6 +7,7 @@ local class = App.libs.middleclass
 local SceneMsgService = SceneServices.gui_msg
 local ScenesService = Services.scenes
 local GUIService = Services.gui
+local EnergyService = Services.energy
 
 local URL = App.constants.urls
 local SceneURLs = URL.gui_nodes.game_losing_popup
@@ -19,6 +20,7 @@ local View = class('View')
 function View:initialize()
     GUIService.buttons:set_multiple(SceneMsgService, {{
         node = gui.get_node(SceneURLs.button_restart),
+        disabled = not EnergyService:is_enough_to_restart(),
         callback = function()
             ScenesService:post(GAME_SCENE, GameMSG.restart)
             ScenesService:back_to_prev_scene()
@@ -27,6 +29,15 @@ function View:initialize()
         node = gui.get_node(SceneURLs.button_back),
         callback = function()
             ScenesService:switch_to_scene(START_SCENE)
+        end
+    }, {
+        node = gui.get_node(SceneURLs.button_buy),
+        disabled = not EnergyService:is_enough_to_buy_life(),
+        callback = function()
+            ScenesService:post(GAME_SCENE, GameMSG.increase_lives)
+            ScenesService:post(GAME_SCENE, GameMSG.continue)
+            EnergyService:buy_life()
+            ScenesService:back_to_prev_scene()
         end
     }})
 end

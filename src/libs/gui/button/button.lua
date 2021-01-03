@@ -4,6 +4,8 @@ local AnimationsLib = require('src.libs.animations.animations')
 local Animator = AnimationsLib.animator
 local ComplexAnimation = AnimationsLib.complex_animation
 
+local DISABLED_OPACITY = 0.5
+
 local Button = class('Button')
 
 function Button:initialize(node, animation_config, on_click)
@@ -13,6 +15,7 @@ function Button:initialize(node, animation_config, on_click)
     self._is_pressed = false
     self._easing = gui.EASING_INCUBIC
     self._on_click = on_click
+    self.disabled = false
 
     local A = animation_config
     self:animate_click(A.blackout, A.scale, A.duration, A.easing)
@@ -41,6 +44,13 @@ local function create_complex_anim(node, scale, color, duration, easing)
     return anim
 end
 
+function Button:disable()
+    self._color.w = DISABLED_OPACITY
+    self.disabled = true
+
+    gui.set_color(self._button, self._color)
+end
+
 function Button:animate_click(blackout, scale, duration, easing)
     self.animation_released = create_complex_anim(self._button, self.scale, self._color, duration, easing)
 
@@ -54,6 +64,10 @@ function Button:animate_click(blackout, scale, duration, easing)
 end
 
 function Button:on_click(action)
+    if self.disabled then
+        return
+    end
+
     local is_button_click = gui.pick_node(self._button, action.x, action.y)
 
     if action.pressed and is_button_click then

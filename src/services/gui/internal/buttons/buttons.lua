@@ -7,11 +7,12 @@ local ButtonsController = {}
 
 function ButtonsController:set(scene_msg_service, data)
     local btn = Button:new(data.node, GUIButtonConfig, data.callback)
+    if data.disabled then
+        btn:disable()
+    end
 
     scene_msg_service:on('ButtonsController', ACTIONS.click, function(action)
-        if not data.disabled then
-            btn:on_click(action)
-        end
+        btn:on_click(action)
     end)
 end
 
@@ -20,10 +21,12 @@ function ButtonsController:set_multiple(scene_msg_service, data)
         local item = data[i]
         local btn = Button:new(item.node, GUIButtonConfig, item.callback)
 
+        if item.disabled then
+            btn:disable()
+        end
+
         scene_msg_service:on('ButtonsController', ACTIONS.click, function(action)
-            if not item.disabled then
-                btn:on_click(action)
-            end
+            btn:on_click(action)
         end)
     end
 end
