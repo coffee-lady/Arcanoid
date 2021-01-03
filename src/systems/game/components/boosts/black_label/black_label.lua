@@ -7,16 +7,18 @@ local Boost = Common.components.boost
 local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
+local BoostsDataService = SceneServices.boosts_data
 
-local BoostConfig = App.config.game.boosts.black_label
+local BoostConfig
+
 local URL = App.constants.urls
 local MSG = App.constants.messages
 
 local BlackLabelBoost = class('BlackLabelBoost', Boost)
 
-BlackLabelBoost.weight = BoostConfig.weight
-
 function BlackLabelBoost:initialize(id)
+    BoostConfig = BoostsDataService:get_data().black_label
+
     Boost.initialize(self, id, BoostConfig)
 end
 

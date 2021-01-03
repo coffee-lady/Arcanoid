@@ -17,11 +17,13 @@
             "y": 1,
             "list": [{
                     "type": "snowglobe_misletoe",
-                    "x": 1
+                    "x": 1,
+                    "boosts": ["simple_bomb"]
                 },
                 {
                     "type": "snowglobe_candle",
-                    "x": 2
+                    "x": 2,
+                    "boosts": ["simple_bomb"]
                 }
             ]
         },
@@ -41,10 +43,12 @@
             "y": 3,
             "list": [{
                 "type": "snowglobe_gifts",
-                "x": 0
+                "x": 0,
+                "boosts": ["color_bomb"]
             }, {
                 "type": "snowglobe_sleigh",
-                "x": 3
+                "x": 3,
+                "boosts": ["color_bomb"]
             }]
         }
     ]

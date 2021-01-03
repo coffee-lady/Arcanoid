@@ -7,15 +7,17 @@ local Boost = Common.components.boost
 local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
+local BoostsDataService = SceneServices.boosts_data
 
-local BoostConfig = App.config.game.boosts.shorten_platform
+local BoostConfig
+
 local MSG = App.constants.messages
 
 local ShortenPlatformBoost = class('ShortenPlatformBoost', Boost)
 
-ShortenPlatformBoost.weight = BoostConfig.weight
-
 function ShortenPlatformBoost:initialize(id)
+    BoostConfig = BoostsDataService:get_data().shorten_platform
+
     Boost.initialize(self, id, BoostConfig)
 end
 

@@ -90,7 +90,8 @@ function BlockComponent:destroy()
         height = self.transform.height,
         ball = self.last_ball_id,
         destroyable = self.data.destroyable,
-        sprite = self.view.sprite
+        sprite = self.view.sprite,
+        boosts = self.data.boosts
     })
 
     for i = 1, #self.subs do

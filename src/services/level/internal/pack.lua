@@ -5,26 +5,19 @@ local PacksConfig = App.config.game.packs
 local PackData = {}
 
 function PackData:load_pack_by_level(level)
-    for i = 1, #PacksConfig.list do
-        local first_level = PacksConfig.list[i].first_level
-        local last_level = PacksConfig.list[i].last_level
-
-        if first_level <= level and last_level >= level then
-            self.current_pack = PacksConfig.list[i]
-        end
-    end
+    self.current_pack = self:get_pack(level)
 end
 
 function PackData:get_current_pack()
     return self.current_pack
 end
 
-function PackData:get_previous_pack(previous_level)
+function PackData:get_pack(level)
     for i = 1, #PacksConfig.list do
         local first_level = PacksConfig.list[i].first_level
         local last_level = PacksConfig.list[i].last_level
 
-        if first_level <= previous_level and last_level >= previous_level then
+        if first_level <= level and last_level >= level then
             return PacksConfig.list[i]
         end
     end

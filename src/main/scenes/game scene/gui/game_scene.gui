@@ -16,49 +16,6 @@ background_color {
 nodes {
   position {
     x: 320.0
-    y: 950.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 1.0
-    y: 1.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_PARTICLEFX
-  id: "snow_particlefx"
-  xanchor: XANCHOR_LEFT
-  yanchor: YANCHOR_TOP
-  adjust_mode: ADJUST_MODE_ZOOM
-  layer: "snow"
-  inherit_alpha: true
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_AUTO
-  particlefx: "game_background"
-}
-nodes {
-  position {
-    x: 320.0
     y: 475.0
     z: 0.0
     w: 1.0
@@ -167,7 +124,7 @@ nodes {
 }
 nodes {
   position {
-    x: -31.0
+    x: -78.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -222,7 +179,7 @@ nodes {
 }
 nodes {
   position {
-    x: 8.0
+    x: -39.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -240,7 +197,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 200.0
+    x: 250.0
     y: 100.0
     z: 0.0
     w: 1.0
@@ -341,7 +298,7 @@ nodes {
 }
 nodes {
   position {
-    x: 3.0
+    x: -9.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -624,13 +581,6 @@ nodes {
 layers {
   name: "main"
 }
-layers {
-  name: "snow"
-}
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
 max_nodes: 512
-particlefxs {
-  name: "game_background"
-  particlefx: "/src/assets/particlefx/backgrounds/snow.particlefx"
-}

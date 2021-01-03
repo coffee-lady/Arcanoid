@@ -9,8 +9,9 @@ local BlocksData = SharedDara.blocks
 local ScenesService = Services.scenes
 local LevelService = Services.level
 local SceneMsgService = SceneServices.msg
-local SceneGUIMsgService = SceneServices.gui_msg
+
 local BlocksDataService = SceneServices.blocks_data
+local BoostsDataService = SceneServices.boosts_data
 local EnergyService = Services.energy
 
 local URL = App.constants.urls
@@ -26,7 +27,9 @@ local BoostsFactory = Factories.boost
 
 local GameSceneSystem = GOSystem:new(SceneMsgService, {
     init = function()
+        BoostsDataService:init()
         BlocksDataService:init()
+
         BlocksData:init()
 
         local scene_data = ScenesService:get_scene_data(URL.scenes.game_scene.main)

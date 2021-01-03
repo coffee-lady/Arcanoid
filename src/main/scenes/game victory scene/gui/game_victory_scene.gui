@@ -764,7 +764,7 @@ nodes {
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   adjust_mode: ADJUST_MODE_FIT
-  layer: ""
+  layer: "main"
   inherit_alpha: false
   alpha: 1.0
   template_node_child: false
@@ -1060,6 +1060,135 @@ nodes {
   text_leading: 1.0
   text_tracking: 0.0
 }
+nodes {
+  position {
+    x: 518.0
+    y: 762.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 1.0
+    y: 1.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.9739777
+    y: 0.9624021
+    z: 0.35121128
+    w: 1.0
+  }
+  type: TYPE_PARTICLEFX
+  id: "win_particlefx3"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  adjust_mode: ADJUST_MODE_FIT
+  layer: "main"
+  inherit_alpha: false
+  alpha: 1.0
+  template_node_child: false
+  size_mode: SIZE_MODE_AUTO
+  particlefx: "win"
+}
+nodes {
+  position {
+    x: 65.0
+    y: 525.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 1.0
+    y: 1.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.55428725
+    y: 0.35121128
+    z: 0.9739777
+    w: 1.0
+  }
+  type: TYPE_PARTICLEFX
+  id: "win_particlefx1"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  adjust_mode: ADJUST_MODE_FIT
+  layer: "main"
+  inherit_alpha: false
+  alpha: 1.0
+  template_node_child: false
+  size_mode: SIZE_MODE_AUTO
+  particlefx: "win"
+}
+nodes {
+  position {
+    x: 460.0
+    y: 264.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.3
+    y: 1.3
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 1.0
+    y: 1.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.35121128
+    y: 0.8250553
+    z: 0.9739777
+    w: 1.0
+  }
+  type: TYPE_PARTICLEFX
+  id: "win_particlefx2"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  adjust_mode: ADJUST_MODE_FIT
+  layer: "main"
+  inherit_alpha: false
+  alpha: 1.0
+  template_node_child: false
+  size_mode: SIZE_MODE_AUTO
+  particlefx: "win"
+}
 layers {
   name: "main"
 }
@@ -1069,4 +1198,8 @@ max_nodes: 512
 particlefxs {
   name: "snow"
   particlefx: "/src/assets/particlefx/backgrounds/snow.particlefx"
+}
+particlefxs {
+  name: "win"
+  particlefx: "/src/assets/particlefx/game end/win.particlefx"
 }

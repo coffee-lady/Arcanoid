@@ -7,15 +7,17 @@ local Boost = Common.components.boost
 local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
+local BoostsDataService = SceneServices.boosts_data
 
-local BoostConfig = App.config.game.boosts.platform_acceleration
+local BoostConfig
+
 local MSG = App.constants.messages
 
 local PlatformAccelerationBoost = class('PlatformAccelerationBoost', Boost)
 
-PlatformAccelerationBoost.weight = BoostConfig.weight
-
 function PlatformAccelerationBoost:initialize(id)
+    BoostConfig = BoostsDataService:get_data().platform_acceleration
+
     Boost.initialize(self, id, BoostConfig)
 end
 

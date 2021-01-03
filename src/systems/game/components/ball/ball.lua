@@ -23,10 +23,10 @@ function BallComponent:initialize(id, pos)
     self.transform = Transform:new(id)
     self.physics = Physics:new(id)
 
-    local animations = Animations:new(id)
-    local view = View:new(id)
+    self.animations = Animations:new(id)
+    self.view = View:new(id)
 
-    local subs = {}
+    self.subs = {}
 
     if not pos then
         self.transform:reset_pos()
@@ -37,7 +37,7 @@ function BallComponent:initialize(id, pos)
     self.transform:reset_scale()
     self.physics:reset_speed()
 
-    animations.rotation.play()
+    self.animations.rotation.play()
 
     ScreenService.update_observer:subscribe(function()
         self.transform:reset_scale()
@@ -53,45 +53,59 @@ function BallComponent:initialize(id, pos)
         self.physics:reset_speed()
     end)
 
-    subs[#subs + 1] = SceneMsgService:on(SceneUrls.main, SceneMSG.accelerate_ball, function(message)
+    self.subs[#self.subs + 1] = SceneMsgService:on(SceneUrls.main, SceneMSG.accelerate_ball, function(message)
         self.physics:accelerate(message.delta_speed)
     end)
 
-    subs[#subs + 1] = SceneMsgService:on(SceneUrls.main, SceneMSG.decelerate_ball, function(message)
-        self.physics:accelerate(-message.delta_speed)
+    self.subs[#self.subs + 1] = SceneMsgService:on(SceneUrls.main, SceneMSG.decelerate_ball, function(message)
+        local delta_speed = -vmath.vector3(message.delta_speed.x, message.delta_speed.y, message.delta_speed.z)
+        self.physics:accelerate(delta_speed)
     end)
 
-    subs[#subs + 1] = SceneMsgService:on(SceneUrls.main, SceneMSG.block_destructed, function()
+    self.subs[#self.subs + 1] = SceneMsgService:on(SceneUrls.main, SceneMSG.block_destructed, function()
         self.physics:accelerate(BallConfig.delta_speed)
     end)
 
-    subs[#subs + 1] = SceneMsgService:on(SceneUrls.main, SceneMSG.pause, function()
+    self.subs[#self.subs + 1] = SceneMsgService:on(SceneUrls.main, SceneMSG.pause, function()
         self.physics:stop_ball()
-        animations.rotation.cancel()
+        self.animations.rotation.cancel()
     end)
 
-    subs[#subs + 1] = SceneMsgService:on(SceneUrls.main, SceneMSG.winning, function()
-        self.physics:stop_ball()
-        animations.rotation.cancel()
-        view:delete()
+    self.subs[#self.subs + 1] = SceneMsgService:on(SceneUrls.main, SceneMSG.fire_balls, function()
+        self.view:fire_ball()
     end)
 
-    subs[#subs + 1] = SceneMsgService:on(SceneUrls.main, SceneMSG.losing, function()
-        self.physics:stop_ball()
-        animations.rotation.cancel()
+    self.subs[#self.subs + 1] = SceneMsgService:on(SceneUrls.main, SceneMSG.put_out_balls, function()
+        self.view:put_out_ball()
     end)
 
-    subs[#subs + 1] = SceneMsgService:on(SceneUrls.main, SceneMSG.continue, function()
+    self.subs[#self.subs + 1] = SceneMsgService:on(SceneUrls.main, SceneMSG.winning, function()
+        self:delete()
+    end)
+
+    self.subs[#self.subs + 1] = SceneMsgService:on(SceneUrls.main, SceneMSG.losing, function()
+        self.physics:stop_ball()
+        self.animations.rotation.cancel()
+    end)
+
+    self.subs[#self.subs + 1] = SceneMsgService:on(SceneUrls.main, SceneMSG.continue, function()
         self.physics:resume_moving()
     end)
 
     SceneMsgService:on(HASH_ID, SceneMSG.delete_ball, function()
-        view:delete()
-
-        for i = 1, #subs do
-            subs[i]:unsubscribe()
-        end
+        self:delete()
     end)
+end
+
+function BallComponent:delete()
+    self.physics:stop_ball()
+    self.animations.rotation.cancel()
+
+    self.view:delete()
+
+    for i = 1, #self.subs do
+        self.subs[i]:unsubscribe()
+    end
 end
 
 return BallComponent

@@ -7,15 +7,17 @@ local Boost = Common.components.boost
 local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
+local BoostsDataService = SceneServices.boosts_data
 
-local BoostConfig = App.config.game.boosts.captive_ball
+local BoostConfig
+
 local MSG = App.constants.messages
 
 local CaptiveBallBoost = class('CaptiveBallBoost', Boost)
 
-CaptiveBallBoost.weight = BoostConfig.weight
-
 function CaptiveBallBoost:initialize(id, message)
+    BoostConfig = BoostsDataService:get_data().captive_ball
+
     Boost.initialize(self, id, BoostConfig)
     self.pos = message.pos
 end

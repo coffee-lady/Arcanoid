@@ -7,7 +7,8 @@
             "y": 0,
             "list": [{
                     "type": "chimney",
-                    "x": 0
+                    "x": 0,
+                    "boosts": ["simple_bomb"]
                 },
                 {
                     "type": "snowglobe_decorated_tree",
@@ -22,7 +23,8 @@
                     "x": 3
                 }, {
                     "type": "chimney",
-                    "x": 4
+                    "x": 4,
+                    "boosts": ["simple_bomb"]
                 }
             ]
         },

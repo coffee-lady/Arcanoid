@@ -8,8 +8,10 @@ local View = require('src.systems.game victory scene.components.main.view.view')
 local MainComponent = class('Component')
 
 function MainComponent:initialize()
-    local animations = Animations:new()
     local view = View:new()
+    local animations = Animations:new()
+
+    animations:play()
 end
 
 return MainComponent

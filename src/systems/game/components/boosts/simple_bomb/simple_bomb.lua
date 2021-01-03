@@ -14,16 +14,18 @@ local SceneMsgService = SceneServices.msg
 local Coords = App.libs.coords
 local hypotenuse = Coords.hypotenuse
 local vlength = Coords.vlength
+local BoostsDataService = SceneServices.boosts_data
 
-local BoostConfig = App.config.game.boosts.bomb
+local BoostConfig
+
 local MSG = App.constants.messages
 local BlockConfig = App.config.game.go.blocks
 
 local SimpleBombBoost = class('SimpleBombBoost', Boost)
 
-SimpleBombBoost.weight = BoostConfig.weight
-
 function SimpleBombBoost:initialize(id, message)
+    BoostConfig = BoostsDataService:get_data().simple_bomb
+
     Boost.initialize(self, id, BoostConfig)
 
     self.block_length = message.length
@@ -37,16 +39,16 @@ function SimpleBombBoost:boost()
     local length = self.block_length
     local indent = BlockConfig.indent_between
 
-    local vertical_dist = height + indent
-    local horizontal_dist = length + indent
-    local diagonal_dist = hypotenuse(height / 2, length / 2) * 2 + hypotenuse(indent, indent)
+    local vertical_dist = math.floor(height + indent)
+    local horizontal_dist = math.floor(length + indent)
+    local diagonal_dist = math.floor(hypotenuse(height / 2, length / 2) * 2 + hypotenuse(indent, indent))
 
     for i = 1, #self.blocks do
         local block = self.blocks[i]
 
         if block then
             local block_pos = go.get_position(block.id)
-            local dist = vlength(block_pos, self.pos)
+            local dist = math.floor(vlength(block_pos, self.pos))
 
             if dist == vertical_dist or dist == horizontal_dist or dist == diagonal_dist then
                 SceneMsgService:send(block.id, MSG.game.damage_block, {

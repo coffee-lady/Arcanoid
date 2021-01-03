@@ -19,11 +19,12 @@ local SceneURLs = URL.gui_nodes.game_victory_scene
 local View = class('View')
 
 function View:initialize()
+    local prev_pack = LevelService:get_previous_pack()
     local current_pack = LevelService:get_current_pack()
 
     GUIService.images:set({
         node = gui.get_node(SceneURLs.pack_icon),
-        animation = current_pack.icon
+        animation = prev_pack.icon
     })
 
     GUIService.buttons:set_multiple(SceneMsgService, {{

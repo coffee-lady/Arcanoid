@@ -32,7 +32,6 @@ local GuiNodesUrls = {
         energy_container = 'energy_container',
         pause_button = 'pause_button',
         pause_container = 'pause_container',
-        snow_particlefx = 'snow_particlefx',
         text = {
             pause_text = 'pause_text',
             energy_amount = 'energy_amount'
@@ -42,7 +41,14 @@ local GuiNodesUrls = {
         root = 'root',
         bg = 'bg',
         transition = 'transition',
-        snow_particlefx = 'snow_particlefx',
+
+        particlefx = {
+            snow_particlefx = 'snow_particlefx',
+            win_particlefx1 = 'win_particlefx1',
+            win_particlefx2 = 'win_particlefx2',
+            win_particlefx3 = 'win_particlefx3'
+        },
+
         pack_icon = 'pack_icon',
         button_next = 'button_next',
         button_back = 'button_back',

@@ -99,7 +99,7 @@ function LevelService:get_current_pack()
 end
 
 function LevelService:get_previous_pack()
-    return PackData:get_previous_pack()
+    return PackData:get_pack(self.current_level - 1)
 end
 
 function LevelService:was_last_level_played()

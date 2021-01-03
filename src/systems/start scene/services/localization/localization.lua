@@ -5,17 +5,15 @@ local MsgService = require('src.systems.start scene.services.msg.gui_msg_service
 local Services = require('src.services.services')
 local EnergyService = Services.energy
 local MSG = App.constants.messages
-local URL = App.constants.urls
-
-local MINUTE = 60
 
 local SCENE_URL = App.constants.urls.scenes.start_scene.main
 
+local MINUTE = 60
 local thandler, subs
 
 local LocalizationService = Localization:new(SCENE_URL, MsgService, {
     init = function(self)
-        subs = MsgService:on(URL.scenes.start_scene.main, MSG.common.energy_updated, function()
+        subs = MsgService:on(SCENE_URL, MSG.common.energy_updated, function()
             self:update()
         end)
 

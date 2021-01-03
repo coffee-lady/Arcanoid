@@ -7,16 +7,18 @@ local Boost = Common.components.boost
 local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
+local BoostsDataService = SceneServices.boosts_data
 
-local BoostConfig = App.config.game.boosts.life
+local BoostConfig
+
 local URL = App.constants.urls
 local MSG = App.constants.messages
 
 local BonusLifeBoost = class('BonusLifeBoost', Boost)
 
-BonusLifeBoost.weight = BoostConfig.weight
-
 function BonusLifeBoost:initialize(id)
+    BoostConfig = BoostsDataService:get_data().bonus_life
+
     Boost.initialize(self, id, BoostConfig)
 end
 

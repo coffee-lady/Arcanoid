@@ -165,6 +165,10 @@ function EnergyService:get_life_cost()
     return EnergyConfig.life_cost
 end
 
+function EnergyService:get_level_reward()
+    return EnergyConfig.level_reward
+end
+
 function EnergyService:get_minutes_left()
     local planned_timer = LocalStorage:get(ENERGY, TIMER)
 

@@ -7,6 +7,7 @@ local GOProperties = {
     position_y = 'position.y',
     euler_z = 'euler.z',
     size = 'size',
+    color_w = 'color.w',
     rotation = 'rotation',
     collisionobject = 'collisionobject',
     linear_velocity = 'linear_velocity',
@@ -19,6 +20,10 @@ local GOProperties = {
         chimney_breaking = 'chimney_breaking',
         co_kinematic = 'co_kinematic',
         co_trigger = 'co_trigger'
+    },
+
+    ball = {
+        fireball = 'fireball'
     },
 
     disable = 'disable',

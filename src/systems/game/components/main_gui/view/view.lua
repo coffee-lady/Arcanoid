@@ -23,10 +23,6 @@ function View:initialize()
             ScenesService:open_popup(URL.scenes.game_pause_popup.main)
         end
     })
-
-    local snow_pfx_node = gui.get_node(SceneURLs.snow_particlefx)
-
-    gui.play_particlefx(snow_pfx_node)
 end
 
 return View

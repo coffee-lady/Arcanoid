@@ -10,15 +10,17 @@ local Boost = Common.components.boost
 local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
+local BoostsDataService = SceneServices.boosts_data
 
-local BoostConfig = App.config.game.boosts.horizontal_bomb
+local BoostConfig
+
 local MSG = App.constants.messages
 
 local HorizontalBombBoost = class('HorizontalBombBoost', Boost)
 
-HorizontalBombBoost.weight = BoostConfig.weight
-
 function HorizontalBombBoost:initialize(id, message)
+    BoostConfig = BoostsDataService:get_data().horizontal_bomb
+
     Boost.initialize(self, id, BoostConfig)
     self.blocks = BlocksData:get()
     self.pos = message.pos
