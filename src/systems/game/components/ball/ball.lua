@@ -39,9 +39,10 @@ function BallComponent:initialize(id, pos)
 
     self.animations.rotation.play()
 
-    ScreenService.update_observer:subscribe(function()
-        self.transform:reset_scale()
-    end)
+    self.subs[#self.subs + 1] = ScreenService.update_observer:subscribe(
+                                    function()
+            self.transform:reset_scale()
+        end)
 
     SceneMsgService:on(HASH_ID, MSG.common.collision_response, function()
         self.physics:normalize_speed()

@@ -45,8 +45,8 @@ function ColorBombBoost:boost()
     local grid_size = level_data.sizes
     local indent = BlockConfig.indent_between * sizes.x / grid_size.x
 
-    local vertical_dist = math.floor(height + indent)
-    local horizontal_dist = math.floor(length + indent)
+    local vertical_dist = math.ceil(height + indent)
+    local horizontal_dist = math.ceil(length + indent)
 
     local types_count = {}
     local typed_blocks = {}
@@ -57,7 +57,7 @@ function ColorBombBoost:boost()
         if block then
             local block_pos = go.get_position(block.id)
 
-            local dist = math.floor(vlength(block_pos, self.pos))
+            local dist = math.ceil(vlength(block_pos, self.pos))
 
             if dist == vertical_dist or dist == horizontal_dist then
                 local type_count = types_count[block.type]

@@ -39,3 +39,11 @@ allow_dynamic_transforms = 1
 [sprite]
 max_count = 1000
 
+[gui]
+max_particlefx_count = 1000
+max_particle_count = 5000
+
+[particle_fx]
+max_count = 1000
+max_particle_count = 5000
+

@@ -9,6 +9,7 @@ local URL = App.constants.urls
 local SceneURLs = URL.scenes.game_scene
 
 local Animations = require('src.common.components.boost.animations.animations')
+local Transform = require('src.common.components.boost.transform.transform')
 local View = require('src.common.components.boost.view.view')
 
 local Component = class('Component')
@@ -16,9 +17,12 @@ local Component = class('Component')
 function Component:initialize(id, config)
     self.animations = Animations:new(id)
     self.view = View:new(id, config)
+    self.transform = Transform:new(id, config)
 
     self.id = id
     self.config = config
+
+    self.transform:reset_scale()
 end
 
 function Component:init()

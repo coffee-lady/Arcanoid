@@ -1,54 +1,165 @@
 {
     "sizes": {
-        "x": 5,
-        "y": 5
+        "x": 7,
+        "y": 6
     },
     "grid": [{
-            "y": 0,
-            "list": [{
-                    "type": "snowglobe_snowman",
-                    "x": 0
-                },
-                {
-                    "type": "snowglobe_decorated_tree",
-                    "x": 4
-                }
-            ]
-        },
-        {
-            "y": 1,
-            "list": [{
-                    "type": "snowglobe_gifts",
-                    "x": 0
-                },
-                {
-                    "type": "snowglobe_candle",
-                    "x": 2
-                },
-                {
-                    "type": "snowglobe_sleigh",
-                    "x": 4
-                }
-            ]
-        },
-        {
-            "y": 2,
-            "list": [{
-                    "type": "snowglobe_gifts_sleigh",
-                    "x": 0
-                },
-                {
-                    "type": "snowglobe_tree",
-                    "x": 1
-                },
-                {
-                    "type": "snowglobe_fireplace",
-                    "x": 3
-                }, {
-                    "type": "snowglobe_decorated_tree",
-                    "x": 4
-                }
-            ]
-        }
-    ]
+        "y": 0,
+        "list": [{
+                "type": "snowglobe_house",
+                "x": 0,
+                "boosts": ["vertical_bomb"]
+            },
+            {
+                "type": "chimney",
+                "x": 1
+            },
+            {
+                "type": "chimney",
+                "x": 2
+            },
+            {
+                "type": "snowglobe_lamp",
+                "x": 3,
+                "boosts": ["simple_bomb"]
+            },
+            {
+                "type": "snowglobe_candle",
+                "x": 4,
+                "boosts": ["platform_acceleration"]
+            }, {
+
+                "type": "snowglobe_tree",
+                "x": 5,
+                "boosts": ["black_label"]
+            },
+            {
+                "type": "snowglobe_lamp",
+                "x": 6
+            }
+        ]
+    }, {
+        "y": 1,
+        "list": [{
+                "type": "snowglobe_lollipop",
+                "x": 0,
+                "boosts": ["shorten_platform"]
+            },
+            {
+                "type": "snowglobe_lamp",
+                "x": 1
+            },
+            {
+                "type": "snowglobe_decorated_tree",
+                "x": 2
+            },
+            {
+                "type": "snowglobe_snowflake",
+                "x": 3,
+                "boosts": ["shorten_platform"]
+            },
+            {
+                "type": "snowglobe_decorated_tree",
+                "x": 4
+            }
+        ]
+    }, {
+        "y": 2,
+        "list": [{
+                "type": "snowglobe_lamp",
+                "x": 0,
+                "boosts": ["color_bomb"]
+            },
+            {
+                "type": "snowglobe_snowman",
+                "x": 1
+            },
+            {
+                "type": "snowglobe_snowman",
+                "x": 2,
+                "boosts": ["ball_acceleration"]
+            },
+            {
+                "type": "chimney",
+                "x": 3
+            }, {
+                "type": "snowglobe_misletoe",
+                "x": 4
+            }, {
+                "type": "chimney",
+                "x": 5,
+                "boosts": ["shorten_platform"]
+            }, {
+                "type": "snowglobe_lamp",
+                "x": 6
+            }
+        ]
+    }, {
+        "y": 3,
+        "list": [{
+                "type": "snowglobe_candle",
+                "x": 2,
+                "boosts": ["simple_bomb"]
+            },
+            {
+                "type": "snowglobe_gifts",
+                "x": 3
+            }, {
+                "type": "snowglobe_fireplace",
+                "x": 4,
+                "boosts": ["black_label"]
+            }, {
+                "type": "snowglobe_tree",
+                "x": 5
+            }, {
+                "type": "snowglobe_tree",
+                "x": 6,
+                "boosts": ["color_bomb"]
+            }
+        ]
+    }, {
+        "y": 4,
+        "list": [{
+                "type": "snowglobe_house",
+                "x": 0,
+                "boosts": ["ball_acceleration"]
+            },
+            {
+                "type": "snowglobe_sleigh",
+                "x": 3
+            }, {
+                "type": "chimney",
+                "x": 4
+            }, {
+                "type": "snowglobe_fireplace",
+                "x": 5
+            }, {
+                "type": "snowglobe_tree",
+                "x": 6,
+                "boosts": ["ball_acceleration"]
+            }
+        ]
+    }, {
+        "y": 5,
+        "list": [{
+                "type": "snowglobe_lollipop",
+                "x": 2,
+                "boosts": ["shorten_platform"]
+            },
+            {
+                "type": "snowglobe_sleigh",
+                "x": 3
+            }, {
+                "type": "chimney",
+                "x": 4,
+                "boosts": ["black_label"]
+            }, {
+                "type": "snowglobe_fireplace",
+                "x": 5
+            }, {
+                "type": "snowglobe_tree",
+                "x": 6
+            }
+        ]
+    }]
 }

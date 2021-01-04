@@ -120,8 +120,7 @@
                 "boosts": ["vertical_bomb"]
             }, {
                 "type": "snowglobe_tree",
-                "x": 4,
-                "boosts": ["horizontal_bomb"]
+                "x": 4
             }, {
                 "type": "snowglobe_tree",
                 "x": 5

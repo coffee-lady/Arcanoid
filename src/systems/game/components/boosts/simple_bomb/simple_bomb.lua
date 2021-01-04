@@ -1,4 +1,5 @@
 local App = require('src.app')
+local Services = require('src.services.services')
 local SceneServices = require('src.systems.game.services.services')
 
 local SharedDara = SceneServices.shared_data
@@ -10,6 +11,8 @@ local Boost = Common.components.boost
 local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
+local LevelService = Services.level
+local ScreenService = Services.screen
 
 local Coords = App.libs.coords
 local hypotenuse = Coords.hypotenuse
@@ -37,18 +40,22 @@ end
 function SimpleBombBoost:boost()
     local height = self.block_height
     local length = self.block_length
-    local indent = BlockConfig.indent_between
 
-    local vertical_dist = math.floor(height + indent)
-    local horizontal_dist = math.floor(length + indent)
-    local diagonal_dist = math.floor(hypotenuse(height / 2, length / 2) * 2 + hypotenuse(indent, indent))
+    local level_data = LevelService:get_data()
+    local sizes = ScreenService:get_sizes()
+    local grid_size = level_data.sizes
+    local indent = BlockConfig.indent_between * sizes.x / grid_size.x
+
+    local vertical_dist = math.ceil(height + indent)
+    local horizontal_dist = math.ceil(length + indent)
+    local diagonal_dist = math.ceil(hypotenuse(height / 2, length / 2) * 2 + hypotenuse(indent, indent))
 
     for i = 1, #self.blocks do
         local block = self.blocks[i]
 
         if block then
             local block_pos = go.get_position(block.id)
-            local dist = math.floor(vlength(block_pos, self.pos))
+            local dist = math.ceil(vlength(block_pos, self.pos))
 
             if dist == vertical_dist or dist == horizontal_dist or dist == diagonal_dist then
                 SceneMsgService:send(block.id, MSG.game.damage_block, {

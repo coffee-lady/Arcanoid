@@ -1,5 +1,5 @@
 local LosingZoneConfig = {
-    bottom_padding = -0.1
+    bottom_padding = 0
 }
 
 return LosingZoneConfig

@@ -8,16 +8,16 @@ local PacksConfig = {
         title = 'Pack X',
         icon = 'pack_icon_blue_deer',
         first_level = 1,
-        last_level = 1
+        last_level = 4
     }, {
         title = 'Pack Y',
         icon = 'pack_icon_yellow_candle',
-        first_level = 2,
-        last_level = 4
+        first_level = 5,
+        last_level = 6
     }, {
         title = 'Pack Z',
         icon = 'pack_icon_gold_snowflake',
-        first_level = 5,
+        first_level = 7,
         last_level = 10
     }}
 }
