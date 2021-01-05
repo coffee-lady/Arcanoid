@@ -35,6 +35,7 @@ shared_state = 1
 gravity_y = 0.0
 scale = 0.01
 allow_dynamic_transforms = 1
+debug = 0
 
 [sprite]
 max_count = 1000

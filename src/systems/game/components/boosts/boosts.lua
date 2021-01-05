@@ -1,21 +1,21 @@
 local Boosts = {
-    ball_acceleration = require('src.systems.game.components.boosts.ball_acceleration.ball_acceleration'),
-    captive_ball = require('src.systems.game.components.boosts.captive_ball.captive_ball'),
-    ball_deceleration = require('src.systems.game.components.boosts.ball_deceleration.ball_deceleration'),
-    fireball = require('src.systems.game.components.boosts.fireball.fireball'),
+    ['1'] = require('src.systems.game.components.boosts.ball_acceleration.ball_acceleration'),
+    ['2'] = require('src.systems.game.components.boosts.ball_deceleration.ball_deceleration'),
+    ['3'] = require('src.systems.game.components.boosts.captive_ball.captive_ball'),
+    ['4'] = require('src.systems.game.components.boosts.fireball.fireball'),
 
-    extend_platform = require('src.systems.game.components.boosts.extend_platform.extend_platform'),
-    platform_acceleration = require('src.systems.game.components.boosts.platform_acceleration.platform_acceleration'),
-    platform_deceleration = require('src.systems.game.components.boosts.platform_deceleration.platform_deceleration'),
-    shorten_platform = require('src.systems.game.components.boosts.shorten_platform.shorten_platform'),
+    ['5'] = require('src.systems.game.components.boosts.simple_bomb.simple_bomb'),
+    ['6'] = require('src.systems.game.components.boosts.color_bomb.color_bomb'),
+    ['7'] = require('src.systems.game.components.boosts.horizontal_bomb.horizontal_bomb'),
+    ['8'] = require('src.systems.game.components.boosts.vertical_bomb.vertical_bomb'),
 
-    bonus_life = require('src.systems.game.components.boosts.bonus_life.bonus_life'),
-    black_label = require('src.systems.game.components.boosts.black_label.black_label'),
+    ['9'] = require('src.systems.game.components.boosts.black_label.black_label'),
+    ['10'] = require('src.systems.game.components.boosts.bonus_life.bonus_life'),
 
-    simple_bomb = require('src.systems.game.components.boosts.simple_bomb.simple_bomb'),
-    color_bomb = require('src.systems.game.components.boosts.color_bomb.color_bomb'),
-    horizontal_bomb = require('src.systems.game.components.boosts.horizontal_bomb.horizontal_bomb'),
-    vertical_bomb = require('src.systems.game.components.boosts.vertical_bomb.vertical_bomb')
+    ['11'] = require('src.systems.game.components.boosts.extend_platform.extend_platform'),
+    ['12'] = require('src.systems.game.components.boosts.platform_acceleration.platform_acceleration'),
+    ['13'] = require('src.systems.game.components.boosts.platform_deceleration.platform_deceleration'),
+    ['14'] = require('src.systems.game.components.boosts.shorten_platform.shorten_platform')
 }
 
 return Boosts

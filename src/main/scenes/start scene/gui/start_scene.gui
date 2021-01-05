@@ -452,7 +452,7 @@ nodes {
   xanchor: XANCHOR_LEFT
   yanchor: YANCHOR_TOP
   pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_ZOOM
+  adjust_mode: ADJUST_MODE_FIT
   parent: "energy_container"
   layer: "main"
   inherit_alpha: false
@@ -520,7 +520,7 @@ nodes {
     z: 1.0
     w: 1.0
   }
-  adjust_mode: ADJUST_MODE_ZOOM
+  adjust_mode: ADJUST_MODE_FIT
   line_break: true
   parent: "energy_container"
   layer: "main"
@@ -583,7 +583,7 @@ nodes {
     z: 1.0
     w: 1.0
   }
-  adjust_mode: ADJUST_MODE_ZOOM
+  adjust_mode: ADJUST_MODE_FIT
   line_break: true
   parent: "energy_container"
   layer: "main"

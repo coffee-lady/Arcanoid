@@ -7,7 +7,6 @@ local Boost = Common.components.boost
 local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
-local BoostsDataService = SceneServices.boosts_data
 
 local BoostConfig
 
@@ -15,8 +14,8 @@ local MSG = App.constants.messages
 
 local PlatformAccelerationBoost = class('PlatformAccelerationBoost', Boost)
 
-function PlatformAccelerationBoost:initialize(id)
-    BoostConfig = BoostsDataService:get_data().platform_acceleration
+function PlatformAccelerationBoost:initialize(id, _, config)
+    BoostConfig = config
 
     Boost.initialize(self, id, BoostConfig)
 end

@@ -42,6 +42,7 @@ function BallComponent:initialize(id, pos)
     self.subs[#self.subs + 1] = ScreenService.update_observer:subscribe(
                                     function()
             self.transform:reset_scale()
+            self.transform:reset_pos()
         end)
 
     SceneMsgService:on(HASH_ID, MSG.common.collision_response, function()

@@ -1,131 +1,260 @@
 {
     "sizes": {
         "x": 7,
-        "y": 4
+        "y": 5
     },
     "grid": [{
-        "y": 0,
-        "list": [{
-                "type": "snowglobe_decorated_tree",
+            "type": "14",
+            "pos": {
                 "x": 0,
-                "boosts": ["extend_platform"]
-            },
-            {
-                "type": "snowglobe_tree",
-                "x": 1
-            },
-            {
-                "type": "snowglobe_decorated_tree",
-                "x": 2
-            },
-            {
-                "type": "snowglobe_tree",
-                "x": 3,
-                "boosts": ["black_label"]
-            }, {
-                "type": "snowglobe_decorated_tree",
-                "x": 4
-            }, {
-                "type": "snowglobe_tree",
-                "x": 5
-            }, {
-                "type": "snowglobe_decorated_tree",
-                "x": 6,
-                "boosts": ["shorten_platform"]
+                "y": 0
             }
-        ]
-    }, {
-        "y": 1,
-        "list": [{
-                "type": "chimney",
-                "x": 0,
-                "boosts": ["platform_deceleration"]
-            },
-            {
-                "type": "snowglobe_decorated_tree",
+        },
+        {
+            "type": "7",
+            "pos": {
                 "x": 1,
-                "boosts": ["platform_acceleration"]
-            },
-            {
-                "type": "chimney",
-                "x": 2
-            },
-            {
-                "type": "snowglobe_decorated_tree",
-                "x": 3,
-                "boosts": ["extend_platform"]
-            }, {
-                "type": "chimney",
-                "x": 4
-            }, {
-                "type": "snowglobe_decorated_tree",
-                "x": 5
-            }, {
-                "type": "chimney",
-                "x": 6
+                "y": 0
             }
-        ]
-    }, {
-        "y": 2,
-        "list": [{
-                "type": "snowglobe_decorated_tree",
-                "x": 0
-            },
-            {
-                "type": "snowglobe_tree",
-                "x": 1
-            },
-            {
-                "type": "snowglobe_decorated_tree",
+        },
+        {
+            "type": "14",
+            "pos": {
                 "x": 2,
-                "boosts": ["captive_ball"]
-            },
-            {
-                "type": "snowglobe_tree",
-                "x": 3
-            }, {
-                "type": "snowglobe_decorated_tree",
-                "x": 4,
-                "boosts": ["fireball"]
-            }, {
-                "type": "snowglobe_tree",
-                "x": 5
-            }, {
-                "type": "snowglobe_decorated_tree",
-                "x": 6,
-                "boosts": ["vertical_bomb"]
+                "y": 0
             }
-        ]
-    }, {
-        "y": 3,
-        "list": [{
-                "type": "snowglobe_tree",
-                "x": 0,
-                "boosts": ["simple_bomb"]
-            },
-            {
-                "type": "chimney",
-                "x": 1
-            },
-            {
-                "type": "snowglobe_tree",
-                "x": 2
-            },
-            {
-                "type": "chimney",
+        },
+        {
+            "type": "25",
+            "pos": {
                 "x": 3,
-                "boosts": ["extend_platform"]
-            }, {
-                "type": "snowglobe_tree",
-                "x": 4
-            }, {
-                "type": "chimney",
-                "x": 5
-            }, {
-                "type": "snowglobe_tree",
-                "x": 6,
-                "boosts": ["simple_bomb"]
+                "y": 0
             }
-        ]
-    }]
+        },
+        {
+            "type": "14",
+            "pos": {
+                "x": 4,
+                "y": 0
+            }
+        },
+        {
+            "type": "4",
+            "pos": {
+                "x": 5,
+                "y": 0
+            }
+        },
+        {
+            "type": "14",
+            "pos": {
+                "x": 6,
+                "y": 0
+            }
+        },
+
+
+        {
+            "type": "7",
+            "pos": {
+                "x": 0,
+                "y": 1
+            }
+        },
+        {
+            "type": "16",
+            "pos": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "type": "7",
+            "pos": {
+                "x": 2,
+                "y": 1
+            }
+        },
+        {
+            "type": "27",
+            "pos": {
+                "x": 3,
+                "y": 1
+            }
+        },
+        {
+            "type": "4",
+            "pos": {
+                "x": 4,
+                "y": 1
+            }
+        },
+        {
+            "type": "2",
+            "pos": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "type": "4",
+            "pos": {
+                "x": 6,
+                "y": 1
+            }
+        },
+
+
+        {
+            "type": "14",
+            "pos": {
+                "x": 0,
+                "y": 2
+            }
+        },
+        {
+            "type": "18",
+            "pos": {
+                "x": 1,
+                "y": 2
+            }
+        },
+        {
+            "type": "14",
+            "pos": {
+                "x": 2,
+                "y": 2
+            }
+        },
+        {
+            "type": "20",
+            "pos": {
+                "x": 3,
+                "y": 2
+            }
+        },
+        {
+            "type": "14",
+            "pos": {
+                "x": 4,
+                "y": 2
+            }
+        },
+        {
+            "type": "22",
+            "pos": {
+                "x": 5,
+                "y": 2
+            }
+        },
+        {
+            "type": "14",
+            "pos": {
+                "x": 6,
+                "y": 2
+            }
+        },
+
+
+        {
+            "type": "6",
+            "pos": {
+                "x": 0,
+                "y": 3
+            }
+        },
+        {
+            "type": "12",
+            "pos": {
+                "x": 1,
+                "y": 3
+            }
+        },
+        {
+            "type": "6",
+            "pos": {
+                "x": 2,
+                "y": 3
+            }
+        },
+        {
+            "type": "14",
+            "pos": {
+                "x": 3,
+                "y": 3
+            }
+        },
+        {
+            "type": "8",
+            "pos": {
+                "x": 4,
+                "y": 3
+            }
+        },
+        {
+            "type": "9",
+            "pos": {
+                "x": 5,
+                "y": 3
+            }
+        },
+        {
+            "type": "8",
+            "pos": {
+                "x": 6,
+                "y": 3
+            }
+        },
+
+
+        {
+            "type": "14",
+            "pos": {
+                "x": 0,
+                "y": 4
+            }
+        },
+        {
+            "type": "6",
+            "pos": {
+                "x": 1,
+                "y": 4
+            }
+        },
+        {
+            "type": "14",
+            "pos": {
+                "x": 2,
+                "y": 4
+            }
+        },
+        {
+            "type": "25",
+            "pos": {
+                "x": 3,
+                "y": 4
+            }
+        },
+        {
+            "type": "14",
+            "pos": {
+                "x": 4,
+                "y": 4
+            }
+        },
+        {
+            "type": "8",
+            "pos": {
+                "x": 5,
+                "y": 4
+            }
+        },
+        {
+            "type": "14",
+            "pos": {
+                "x": 6,
+                "y": 4
+            }
+        }
+    ]
 }

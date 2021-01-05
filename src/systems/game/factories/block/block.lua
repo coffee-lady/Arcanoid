@@ -19,24 +19,20 @@ function Factory:init()
     local level_data = LevelService:get_data()
     local TYPES = BlocksDataService:get_data()
 
-    for _, row in pairs(level_data.grid) do
-        for i = 1, #row.list do
-            local raw_data = row.list[i]
+    for i = 1, #level_data.grid do
+        local raw_data = level_data.grid[i]
 
-            for key, value in pairs(TYPES[raw_data.type]) do
-                raw_data[key] = value
-            end
-
-            raw_data.grid_pos = vmath.vector3()
-            raw_data.grid_pos.x = raw_data.x
-            raw_data.grid_pos.y = row.y
-
-            local id = factory.create(SceneUrls.block_factory)
-
-            local block = Block:new(id, raw_data)
-
-            BlocksData:add(block)
+        for key, value in pairs(TYPES[raw_data.type]) do
+            raw_data[key] = value
         end
+
+        raw_data.grid_pos = raw_data.pos
+
+        local id = factory.create(SceneUrls.block_factory)
+
+        local block = Block:new(id, raw_data)
+
+        BlocksData:add(block)
     end
 end
 

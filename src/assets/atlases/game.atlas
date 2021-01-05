@@ -1,57 +1,57 @@
 images {
-  image: "/src/assets/images/game/blocks/chimney.png"
+  image: "/src/assets/images/game/blocks/simple/chimney.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/snowglobe_candle.png"
+  image: "/src/assets/images/game/blocks/simple/snowglobe_candle.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/snowglobe_decorated_tree.png"
+  image: "/src/assets/images/game/blocks/simple/snowglobe_decorated_tree.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/snowglobe_fireplace.png"
+  image: "/src/assets/images/game/blocks/simple/snowglobe_fireplace.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/snowglobe_gifts.png"
+  image: "/src/assets/images/game/blocks/simple/snowglobe_gifts.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/snowglobe_gifts_sleigh.png"
+  image: "/src/assets/images/game/blocks/simple/snowglobe_gifts_sleigh.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/snowglobe_house.png"
+  image: "/src/assets/images/game/blocks/simple/snowglobe_house.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/snowglobe_lamp.png"
+  image: "/src/assets/images/game/blocks/simple/snowglobe_lamp.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/snowglobe_lollipop.png"
+  image: "/src/assets/images/game/blocks/simple/snowglobe_lollipop.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/snowglobe_misletoe.png"
+  image: "/src/assets/images/game/blocks/simple/snowglobe_misletoe.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/snowglobe_sleigh.png"
+  image: "/src/assets/images/game/blocks/simple/snowglobe_sleigh.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/snowglobe_snowflake.png"
+  image: "/src/assets/images/game/blocks/simple/snowglobe_snowflake.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/snowglobe_snowman.png"
+  image: "/src/assets/images/game/blocks/simple/snowglobe_snowman.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/snowglobe_tree.png"
+  image: "/src/assets/images/game/blocks/simple/snowglobe_tree.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
@@ -80,14 +80,6 @@ images {
 }
 images {
   image: "/src/assets/images/game/gui/pause_button.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
-  image: "/src/assets/images/game/snowglobe/snowglobe_bottom.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
-  image: "/src/assets/images/game/snowglobe/snowglobe_top.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
@@ -211,15 +203,71 @@ images {
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/chimney_particle_1.png"
+  image: "/src/assets/images/game/blocks/simple/chimney_particle_1.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/src/assets/images/game/blocks/chimney_particle_2.png"
+  image: "/src/assets/images/game/blocks/simple/chimney_particle_2.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
   image: "/src/assets/images/game/game ball/fireball.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/blocks/boost/block_life.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/blocks/boost/block_fireball.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/blocks/boost/block_black_label.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/blocks/boost/block_captive_ball.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/blocks/boost/block_color_bomb.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/blocks/boost/block_simple_bomb.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/blocks/boost/block_vertical_bomb.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/blocks/boost/block_ball_acceleration.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/blocks/boost/block_ball_deceleration.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/blocks/boost/block_extend_platform.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/blocks/boost/block_horizontal_bomb.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/blocks/boost/block_platform_acceleration.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/blocks/boost/block_platform_deceleration.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/src/assets/images/game/blocks/boost/block_shorten_platform.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 margin: 10

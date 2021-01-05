@@ -16,7 +16,6 @@ local SceneMsgService = SceneServices.msg
 
 local Coords = App.libs.coords
 local vlength = Coords.vlength
-local BoostsDataService = SceneServices.boosts_data
 
 local BoostConfig
 
@@ -25,9 +24,8 @@ local BlockConfig = App.config.game.go.blocks
 
 local ColorBombBoost = class('ColorBombBoost', Boost)
 
-function ColorBombBoost:initialize(id, message)
-    BoostConfig = BoostsDataService:get_data().color_bomb
-
+function ColorBombBoost:initialize(id, message, config)
+    BoostConfig = config
     Boost.initialize(self, id, BoostConfig)
 
     self.block_length = message.length

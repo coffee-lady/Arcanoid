@@ -2,7 +2,7 @@
     "default": {
         "falling": true
     },
-    "ball_acceleration": {
+    "1": {
         "icon": "boost_ball_acceleration",
         "delta_speed": {
             "x": 5,
@@ -11,7 +11,7 @@
         },
         "time": 3
     },
-    "ball_deceleration": {
+    "2": {
         "icon": "boost_ball_deceleration",
         "delta_speed": {
             "x": 15,
@@ -20,53 +20,53 @@
         },
         "time": 3
     },
-    "captive_ball": {
+    "3": {
         "icon": "boost_captive_ball",
         "count": 1
     },
-    "fireball": {
+    "4": {
         "icon": "boost_fireball",
         "time": 10
     },
-    "simple_bomb": {
+    "5": {
         "falling": false,
         "icon": "boost_bomb",
         "damage": 1
     },
-    "color_bomb": {
+    "6": {
         "falling": false,
         "icon": "boost_color_bomb"
     },
-    "horizontal_bomb": {
+    "7": {
         "falling": false,
         "icon": "boost_horizontal_bomb"
     },
-    "vertical_bomb": {
+    "8": {
         "falling": false,
         "icon": "boost_vertical_bomb"
     },
-    "black_label": {
+    "9": {
         "icon": "boost_black_label"
     },
-    "bonus_life": {
+    "10": {
         "icon": "boost_life"
     },
-    "extend_platform": {
+    "11": {
         "icon": "boost_extend_platform",
         "percentage": 0.02,
         "time": 30
     },
-    "platform_acceleration": {
+    "12": {
         "icon": "boost_platform_acceleration",
         "delta_moving_time": 0.02,
         "time": 30
     },
-    "platform_deceleration": {
+    "13": {
         "icon": "boost_platform_deceleration",
         "delta_moving_time": 0.02,
         "time": 30
     },
-    "shorten_platform": {
+    "14": {
         "icon": "boost_shorten_platform",
         "percentage": 0.02,
         "time": 30

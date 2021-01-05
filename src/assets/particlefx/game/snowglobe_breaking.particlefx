@@ -67,7 +67,7 @@ emitters {
     key: EMITTER_KEY_PARTICLE_LIFE_TIME
     points {
       x: 0.0
-      y: 0.7
+      y: 0.5
       t_x: 1.0
       t_y: 0.0
     }
@@ -87,25 +87,25 @@ emitters {
     key: EMITTER_KEY_PARTICLE_SIZE
     points {
       x: 0.0
-      y: 168.76437
+      y: 150.1391
       t_x: 1.0
       t_y: 0.0
     }
     points {
-      x: 0.33597368
-      y: 217.11201
+      x: 0.3347949
+      y: 198.48674
       t_x: 1.0
       t_y: 0.0
     }
     points {
-      x: 0.82192725
-      y: 148.78145
+      x: 0.82074845
+      y: 130.15617
       t_x: 0.06335352
       t_y: -0.99799114
     }
     points {
       x: 1.0
-      y: 178.9184
+      y: 160.29312
       t_x: 1.0
       t_y: 0.0
     }
@@ -390,7 +390,7 @@ emitters {
     key: EMITTER_KEY_PARTICLE_LIFE_TIME
     points {
       x: 0.0
-      y: 0.7
+      y: 0.5
       t_x: 1.0
       t_y: 0.0
     }
@@ -410,25 +410,25 @@ emitters {
     key: EMITTER_KEY_PARTICLE_SIZE
     points {
       x: 0.0
-      y: 168.76437
+      y: 150.1391
       t_x: 1.0
       t_y: 0.0
     }
     points {
-      x: 0.33597368
-      y: 217.11201
+      x: 0.3347949
+      y: 198.48674
       t_x: 1.0
       t_y: 0.0
     }
     points {
-      x: 0.82192725
-      y: 148.78145
+      x: 0.82074845
+      y: 130.15617
       t_x: 0.06335352
       t_y: -0.99799114
     }
     points {
       x: 1.0
-      y: 178.9184
+      y: 160.29312
       t_x: 1.0
       t_y: 0.0
     }
@@ -713,7 +713,7 @@ emitters {
     key: EMITTER_KEY_PARTICLE_LIFE_TIME
     points {
       x: 0.0
-      y: 0.7
+      y: 0.5
       t_x: 1.0
       t_y: 0.0
     }
@@ -733,25 +733,25 @@ emitters {
     key: EMITTER_KEY_PARTICLE_SIZE
     points {
       x: 0.0
-      y: 87.471504
+      y: 68.84623
       t_x: 1.0
       t_y: 0.0
     }
     points {
-      x: 0.34534883
-      y: 279.1123
+      x: 0.34417006
+      y: 260.48703
       t_x: 0.031839386
       t_y: -0.999493
     }
     points {
-      x: 0.7812296
-      y: 99.66469
+      x: 0.7800508
+      y: 81.03941
       t_x: 0.06335352
       t_y: -0.99799114
     }
     points {
       x: 1.0
-      y: 129.80164
+      y: 111.17636
       t_x: 1.0
       t_y: 0.0
     }

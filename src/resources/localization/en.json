@@ -6,7 +6,7 @@
     "game_victory_scene": {
         "title": "You won",
         "congrats_text": "Congratulations!",
-        "pack_title": "Pack {next_pack}",
+        "pack_title": "{next_pack}",
         "level_title": "Level {next_level}",
         "button_next_text": "Next level",
         "button_back_text": "Back home",

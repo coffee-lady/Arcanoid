@@ -6,7 +6,6 @@ local Boost = Common.components.boost
 
 local class = App.libs.middleclass
 local SceneMsgService = SceneServices.msg
-local BoostsDataService = SceneServices.boosts_data
 
 local BoostConfig
 
@@ -14,8 +13,8 @@ local MSG = App.constants.messages
 
 local BallDecelerationBoost = class('BallDecelerationBoost', Boost)
 
-function BallDecelerationBoost:initialize(id)
-    BoostConfig = BoostsDataService:get_data().ball_deceleration
+function BallDecelerationBoost:initialize(id, _, config)
+    BoostConfig = config
 
     Boost.initialize(self, id, BoostConfig)
 end

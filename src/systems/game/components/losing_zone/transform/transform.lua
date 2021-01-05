@@ -25,7 +25,7 @@ function Transform:reset_pos()
     local sizes = ScreenService:get_sizes()
     local start_coords = ScreenService:get_coords()
 
-    self.pos.x = start_coords.x
+    self.pos.x = start_coords.x + sizes.x / 2
     self.pos.y = start_coords.y + sizes.y * LosingZoneConfig.bottom_padding
 
     self:set_pos(self.pos)

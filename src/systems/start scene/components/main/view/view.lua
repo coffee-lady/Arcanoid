@@ -9,6 +9,9 @@ local ScenesService = Services.scenes
 local GUIService = Services.gui
 local URL = App.constants.urls
 local SceneURLs = URL.gui_nodes.start_scene
+local ScenesUrls = App.constants.urls.scenes
+
+local LevelService = Services.level
 
 local View = class('View')
 
@@ -18,7 +21,15 @@ function View:initialize()
     GUIService.buttons:set(SceneMsgService, {
         node = btn,
         callback = function()
-            ScenesService:switch_to_scene(URL.scenes.pack_selection_scene.main)
+            local screen_id
+
+            if LevelService:get_current_level() == 1 then
+                screen_id = ScenesUrls.game_scene.main
+            else
+                screen_id = ScenesUrls.pack_selection_scene.main
+            end
+
+            ScenesService:switch_to_scene(screen_id)
         end
     })
 end

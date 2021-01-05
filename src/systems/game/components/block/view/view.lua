@@ -21,14 +21,6 @@ function View:set_sprite()
     msg.post(self.sprite_url, PROP.play_animation, {
         id = hash(self.data.sprite)
     })
-
-    if not self.data.destroyable then
-        local top_url = msg.url(nil, self.id, PROP.block.snowglobe_top)
-        local bottom_url = msg.url(nil, self.id, PROP.block.snowglobe_bottom)
-
-        msg.post(top_url, PROP.disable)
-        msg.post(bottom_url, PROP.disable)
-    end
 end
 
 function View:delete()

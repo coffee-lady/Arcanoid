@@ -10,7 +10,6 @@ local Boost = Common.components.boost
 local class = App.libs.middleclass
 
 local SceneMsgService = SceneServices.msg
-local BoostsDataService = SceneServices.boosts_data
 
 local BoostConfig
 
@@ -18,8 +17,8 @@ local MSG = App.constants.messages
 
 local VerticalBombBoost = class('VerticalBombBoost', Boost)
 
-function VerticalBombBoost:initialize(id, message)
-    BoostConfig = BoostsDataService:get_data().vertical_bomb
+function VerticalBombBoost:initialize(id, message, config)
+    BoostConfig = config
 
     Boost.initialize(self, id, BoostConfig)
     self.blocks = BlocksData:get()

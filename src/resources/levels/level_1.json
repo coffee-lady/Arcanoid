@@ -4,130 +4,206 @@
         "y": 4
     },
     "grid": [{
-        "y": 0,
-        "list": [{
-                "type": "snowglobe_house",
+            "type": "1",
+            "pos": {
                 "x": 0,
-                "boosts": ["ball_acceleration"]
-            },
-            {
-                "type": "snowglobe_lollipop",
+                "y": 0
+            }
+        },
+        {
+            "type": "14",
+            "pos": {
                 "x": 1,
-                "boosts": ["ball_deceleration"]
-            },
-            {
-                "type": "snowglobe_misletoe",
-                "x": 2
-            },
-            {
-                "type": "snowglobe_snowflake",
-                "x": 3,
-                "boosts": ["captive_ball"]
-            }, {
-                "type": "snowglobe_candle",
-                "x": 4,
-                "boosts": ["fireball"]
-            }, {
-                "type": "snowglobe_tree",
-                "x": 5,
-                "boosts": ["extend_platform"]
-            }, {
-                "type": "snowglobe_gifts_sleigh",
-                "x": 6
+                "y": 0
             }
-        ]
-    }, {
-        "y": 1,
-        "list": [{
-                "type": "snowglobe_candle",
-                "x": 0,
-                "boosts": ["shorten_platform"]
-            },
-            {
-                "type": "chimney",
-                "x": 1,
-                "boosts": ["vertical_bomb"]
-            },
-            {
-                "type": "snowglobe_sleigh",
-                "x": 2
-            },
-            {
-                "type": "snowglobe_decorated_tree",
-                "x": 3,
-                "boosts": ["extend_platform"]
-            }, {
-                "type": "chimney",
-                "x": 4,
-                "boosts": ["fireball"]
-            }, {
-                "type": "snowglobe_snowman",
-                "x": 5,
-                "boosts": ["simple_bomb"]
-            }, {
-                "type": "snowglobe_house",
-                "x": 6
-            }
-        ]
-    }, {
-        "y": 2,
-        "list": [{
-                "type": "snowglobe_misletoe",
-                "x": 0,
-                "boosts": ["extend_platform"]
-            },
-            {
-                "type": "snowglobe_decorated_tree",
-                "x": 1
-            },
-            {
-                "type": "chimney",
-                "x": 2
-            },
-            {
-                "type": "snowglobe_decorated_tree",
-                "x": 3
-            }, {
-                "type": "snowglobe_lamp",
-                "x": 4,
-                "boosts": ["shorten_platform"]
-            }, {
-                "type": "snowglobe_fireplace",
-                "x": 5
-            }, {
-                "type": "snowglobe_candle",
-                "x": 6
-            }
-        ]
-    }, {
-        "y": 3,
-        "list": [{
-                "type": "snowglobe_tree",
-                "x": 0
-            },
-            {
-                "type": "snowglobe_tree",
-                "x": 1
-            },
-            {
-                "type": "snowglobe_tree",
+        },
+        {
+            "type": "15",
+            "pos": {
                 "x": 2,
-                "boosts": ["horizontal_bomb"]
-            },
-            {
-                "type": "snowglobe_tree",
-                "x": 3,
-                "boosts": ["vertical_bomb"]
-            }, {
-                "type": "snowglobe_tree",
-                "x": 4
-            }, {
-                "type": "snowglobe_tree",
-                "x": 5
-            }, {
-                "type": "snowglobe_tree",
-                "x": 6
+                "y": 0
             }
-        ]
-    }]
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 3,
+                "y": 0
+            }
+        },
+        {
+            "type": "25",
+            "pos": {
+                "x": 4,
+                "y": 0
+            }
+        },
+        {
+            "type": "13",
+            "pos": {
+                "x": 5,
+                "y": 0
+            }
+        },
+        {
+            "type": "6",
+            "pos": {
+                "x": 6,
+                "y": 0
+            }
+        },
+
+
+        {
+            "type": "7",
+            "pos": {
+                "x": 0,
+                "y": 1
+            }
+        },
+        {
+            "type": "9",
+            "pos": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "type": "11",
+            "pos": {
+                "x": 2,
+                "y": 1
+            }
+        },
+        {
+            "type": "21",
+            "pos": {
+                "x": 3,
+                "y": 1
+            }
+        },
+        {
+            "type": "13",
+            "pos": {
+                "x": 4,
+                "y": 1
+            }
+        },
+        {
+            "type": "18",
+            "pos": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "type": "9",
+            "pos": {
+                "x": 6,
+                "y": 1
+            }
+        },
+
+
+        {
+            "type": "8",
+            "pos": {
+                "x": 0,
+                "y": 2
+            }
+        },
+        {
+            "type": "6",
+            "pos": {
+                "x": 1,
+                "y": 2
+            }
+        },
+        {
+            "type": "2",
+            "pos": {
+                "x": 2,
+                "y": 2
+            }
+        },
+        {
+            "type": "20",
+            "pos": {
+                "x": 3,
+                "y": 2
+            }
+        },
+        {
+            "type": "19",
+            "pos": {
+                "x": 4,
+                "y": 2
+            }
+        },
+        {
+            "type": "3",
+            "pos": {
+                "x": 5,
+                "y": 2
+            }
+        },
+        {
+            "type": "12",
+            "pos": {
+                "x": 6,
+                "y": 2
+            }
+        },
+
+
+        {
+            "type": "10",
+            "pos": {
+                "x": 0,
+                "y": 3
+            }
+        },
+        {
+            "type": "5",
+            "pos": {
+                "x": 1,
+                "y": 3
+            }
+        },
+        {
+            "type": "13",
+            "pos": {
+                "x": 2,
+                "y": 3
+            }
+        },
+        {
+            "type": "23",
+            "pos": {
+                "x": 3,
+                "y": 3
+            }
+        },
+        {
+            "type": "27",
+            "pos": {
+                "x": 4,
+                "y": 3
+            }
+        },
+        {
+            "type": "10",
+            "pos": {
+                "x": 5,
+                "y": 3
+            }
+        },
+        {
+            "type": "9",
+            "pos": {
+                "x": 6,
+                "y": 3
+            }
+        }
+    ]
 }

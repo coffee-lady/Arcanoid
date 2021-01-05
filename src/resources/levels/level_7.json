@@ -1,166 +1,209 @@
 {
     "sizes": {
         "x": 7,
-        "y": 5
+        "y": 4
     },
     "grid": [{
-        "y": 0,
-        "list": [{
-                "type": "snowglobe_sleigh",
-                "x": 0
-            },
-            {
-                "type": "chimney",
-                "x": 1
-            },
-            {
-                "type": "snowglobe_tree",
-                "x": 2,
-                "boosts": ["platform_deceleration"]
-            },
-            {
-                "type": "snowglobe_fireplace",
-                "x": 3,
-                "boosts": ["bonus_life"]
-            },
-            {
-                "type": "snowglobe_candle",
-                "x": 4
-            }, {
-
-                "type": "chimney",
-                "x": 5
-            },
-            {
-                "type": "chimney",
-                "x": 6
-            }
-        ]
-    }, {
-        "y": 1,
-        "list": [{
-                "type": "snowglobe_lollipop",
+            "type": "1",
+            "pos": {
                 "x": 0,
-                "boosts": ["horizontal_bomb"]
-            },
-            {
-                "type": "chimney",
-                "x": 1
-            },
-            {
-                "type": "snowglobe_misletoe",
-                "x": 2
-            },
-            {
-                "type": "snowglobe_snowflake",
-                "x": 3,
-                "boosts": ["shorten_platform"]
-            },
-            {
-                "type": "snowglobe_house",
-                "x": 4
-            },
-            {
-                "type": "snowglobe_fireplace",
-                "x": 5,
-                "boosts": ["simple_bomb"]
-            },
-            {
-                "type": "chimney",
-                "x": 6
+                "y": 0
             }
-        ]
-    }, {
-        "y": 2,
-        "list": [{
-                "type": "snowglobe_lamp",
-                "x": 0,
-                "boosts": ["vertical_bomb"]
-            },
-            {
-                "type": "snowglobe_snowman",
-                "x": 1
-            },
-            {
-                "type": "snowglobe_misletoe",
-                "x": 2,
-                "boosts": ["color_bomb"]
-            },
-            {
-                "type": "chimney",
-                "x": 3
-            }, {
-                "type": "chimney",
-                "x": 4
-            }, {
-                "type": "chimney",
-                "x": 5
-            }, {
-                "type": "snowglobe_snowflake",
-                "x": 6
-            }
-        ]
-    }, {
-        "y": 3,
-        "list": [{
-                "type": "snowglobe_tree",
-                "x": 0,
-                "boosts": ["vertical_bomb"]
-            },
-            {
-                "type": "chimney",
-                "x": 1
-            },
-            {
-                "type": "snowglobe_snowflake",
-                "x": 2,
-                "boosts": ["simple_bomb"]
-            },
-            {
-                "type": "snowglobe_fireplace",
-                "x": 3
-            }, {
-                "type": "snowglobe_fireplace",
-                "x": 4,
-                "boosts": ["black_label"]
-            }, {
-                "type": "snowglobe_house",
-                "x": 5
-            }, {
-                "type": "chimney",
-                "x": 6
-            }
-        ]
-    }, {
-        "y": 4,
-        "list": [{
-                "type": "snowglobe_tree",
-                "x": 0,
-                "boosts": ["vertical_bomb"]
-            },
-            {
-                "type": "chimney",
+        },
+        {
+            "type": "1",
+            "pos": {
                 "x": 1,
-                "boosts": ["ball_deceleration"]
-            },
-            {
-                "type": "snowglobe_snowflake",
-                "x": 2
-            },
-            {
-                "type": "snowglobe_sleigh",
-                "x": 3
-            }, {
-                "type": "chimney",
-                "x": 4,
-                "boosts": ["ball_acceleration"]
-            }, {
-                "type": "snowglobe_fireplace",
-                "x": 5
-            }, {
-                "type": "snowglobe_tree",
-                "x": 6
+                "y": 0
             }
-        ]
-    }]
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 2,
+                "y": 0
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 3,
+                "y": 0
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 4,
+                "y": 0
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 5,
+                "y": 0
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 6,
+                "y": 0
+            }
+        },
+
+
+        {
+            "type": "1",
+            "pos": {
+                "x": 0,
+                "y": 1
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 2,
+                "y": 1
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 3,
+                "y": 1
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 4,
+                "y": 1
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 6,
+                "y": 1
+            }
+        },
+
+
+        {
+            "type": "1",
+            "pos": {
+                "x": 0,
+                "y": 2
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 1,
+                "y": 2
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 2,
+                "y": 2
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 3,
+                "y": 2
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 4,
+                "y": 2
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 5,
+                "y": 2
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 6,
+                "y": 2
+            }
+        },
+
+
+        {
+            "type": "1",
+            "pos": {
+                "x": 0,
+                "y": 3
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 1,
+                "y": 3
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 2,
+                "y": 3
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 3,
+                "y": 3
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 4,
+                "y": 3
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 5,
+                "y": 3
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 6,
+                "y": 3
+            }
+        }
+    ]
 }

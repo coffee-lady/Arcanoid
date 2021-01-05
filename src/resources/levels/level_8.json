@@ -4,109 +4,206 @@
         "y": 4
     },
     "grid": [{
-            "y": 0,
-            "list": [{
-                    "type": "chimney",
-                    "x": 0
-                },
-                {
-                    "type": "snowglobe_decorated_tree",
-                    "x": 1
-                },
-                {
-                    "type": "snowglobe_decorated_tree",
-                    "x": 2,
-                    "boosts": ["color_bomb"]
-                },
-                {
-                    "type": "snowglobe_decorated_tree",
-                    "x": 3
-                },
-                {
-                    "type": "chimney",
-                    "x": 4
-                },
-                {
-                    "type": "snowglobe_lamp",
-                    "x": 5,
-                    "boosts": ["ball_acceleration"]
-                },
-                {
-                    "type": "snowglobe_house",
-                    "x": 6
-                }
-            ]
+            "type": "1",
+            "pos": {
+                "x": 0,
+                "y": 0
+            }
         },
         {
-            "y": 1,
-            "list": [{
-                    "type": "chimney",
-                    "x": 0
-                },
-                {
-                    "type": "snowglobe_tree",
-                    "x": 1,
-                    "boosts": ["shorten_platform"]
-                },
-                {
-                    "type": "snowglobe_tree",
-                    "x": 2
-                },
-                {
-                    "type": "snowglobe_tree",
-                    "x": 3
-                },
-                {
-                    "type": "chimney",
-                    "x": 4,
-                    "boosts": ["platform_acceleration"]
-                },
-                {
-                    "type": "snowglobe_fireplace",
-                    "x": 5
-                },
-                {
-                    "type": "snowglobe_candle",
-                    "x": 6,
-                    "boosts": ["black_label"]
-                }
-            ]
+            "type": "1",
+            "pos": {
+                "x": 1,
+                "y": 0
+            }
         },
         {
-            "y": 2,
-            "list": [{
-                    "type": "chimney",
-                    "x": 0,
-                    "boosts": ["captive_ball"]
-                },
-                {
-                    "type": "snowglobe_tree",
-                    "x": 1
-                },
-                {
-                    "type": "snowglobe_tree",
-                    "x": 2
-                },
-                {
-                    "type": "snowglobe_tree",
-                    "x": 3,
-                    "boosts": ["fireball"]
-                },
-                {
-                    "type": "chimney",
-                    "x": 4
-                },
-                {
-                    "type": "snowglobe_misletoe",
-                    "x": 5,
-                    "boosts": ["extend_platform"]
-                },
-                {
-                    "type": "snowglobe_gifts",
-                    "x": 6,
-                    "boosts": ["captive_ball"]
-                }
-            ]
+            "type": "1",
+            "pos": {
+                "x": 2,
+                "y": 0
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 3,
+                "y": 0
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 4,
+                "y": 0
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 5,
+                "y": 0
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 6,
+                "y": 0
+            }
+        },
+
+
+        {
+            "type": "1",
+            "pos": {
+                "x": 0,
+                "y": 1
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 2,
+                "y": 1
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 3,
+                "y": 1
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 4,
+                "y": 1
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 6,
+                "y": 1
+            }
+        },
+
+
+        {
+            "type": "1",
+            "pos": {
+                "x": 0,
+                "y": 2
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 1,
+                "y": 2
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 2,
+                "y": 2
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 3,
+                "y": 2
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 4,
+                "y": 2
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 5,
+                "y": 2
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 6,
+                "y": 2
+            }
+        },
+
+
+        {
+            "type": "1",
+            "pos": {
+                "x": 0,
+                "y": 3
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 1,
+                "y": 3
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 2,
+                "y": 3
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 3,
+                "y": 3
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 4,
+                "y": 3
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 5,
+                "y": 3
+            }
+        },
+        {
+            "type": "1",
+            "pos": {
+                "x": 6,
+                "y": 3
+            }
         }
     ]
 }

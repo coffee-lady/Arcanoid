@@ -5,20 +5,20 @@ local PacksConfig = {
     odd_list_item_color = vmath.vector4(0.11, 0.24, 0.32, 0.58),
 
     list = {{
-        title = 'Pack X',
+        title = 'Christmas Deer',
         icon = 'pack_icon_blue_deer',
         first_level = 1,
-        last_level = 4
+        last_level = 5
     }, {
-        title = 'Pack Y',
-        icon = 'pack_icon_yellow_candle',
-        first_level = 5,
+        title = 'Red Star',
+        icon = 'pack_icon_red_star',
+        first_level = 6,
         last_level = 6
     }, {
-        title = 'Pack Z',
-        icon = 'pack_icon_gold_snowflake',
+        title = 'Purple Snowflake',
+        icon = 'pack_icon_purple_snowflake',
         first_level = 7,
-        last_level = 10
+        last_level = 11
     }}
 }
 

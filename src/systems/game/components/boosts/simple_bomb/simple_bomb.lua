@@ -17,7 +17,6 @@ local ScreenService = Services.screen
 local Coords = App.libs.coords
 local hypotenuse = Coords.hypotenuse
 local vlength = Coords.vlength
-local BoostsDataService = SceneServices.boosts_data
 
 local BoostConfig
 
@@ -26,8 +25,8 @@ local BlockConfig = App.config.game.go.blocks
 
 local SimpleBombBoost = class('SimpleBombBoost', Boost)
 
-function SimpleBombBoost:initialize(id, message)
-    BoostConfig = BoostsDataService:get_data().simple_bomb
+function SimpleBombBoost:initialize(id, message, config)
+    BoostConfig = config
 
     Boost.initialize(self, id, BoostConfig)
 
