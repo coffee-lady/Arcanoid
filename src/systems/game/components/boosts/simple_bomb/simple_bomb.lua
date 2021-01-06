@@ -42,8 +42,8 @@ function SimpleBombBoost:boost()
 
     local level_data = LevelService:get_data()
     local sizes = ScreenService:get_sizes()
-    local grid_size = level_data.sizes
-    local indent = BlockConfig.indent_between * sizes.x / grid_size.x
+    local width = level_data.width
+    local indent = BlockConfig.indent_between * sizes.x / width
 
     local vertical_dist = math.ceil(height + indent)
     local horizontal_dist = math.ceil(length + indent)

@@ -19,20 +19,34 @@ function Factory:init()
     local level_data = LevelService:get_data()
     local TYPES = BlocksDataService:get_data()
 
-    for i = 1, #level_data.grid do
-        local raw_data = level_data.grid[i]
+    local height = level_data.height
+    local width = level_data.width
 
-        for key, value in pairs(TYPES[raw_data.type]) do
-            raw_data[key] = value
+    for i = 1, height do
+        for j = 1, width do
+            local block_id = level_data.data[(i - 1) * width + j]
+
+            if block_id ~= 0 then
+                block_id = tostring(block_id)
+
+                local data = {}
+
+                for key, value in pairs(TYPES[block_id]) do
+                    data[key] = value
+                end
+
+                data.grid_pos = {
+                    x = j - 1,
+                    y = i - 1
+                }
+
+                local id = factory.create(SceneUrls.block_factory)
+
+                local block = Block:new(id, data)
+
+                BlocksData:add(block)
+            end
         end
-
-        raw_data.grid_pos = raw_data.pos
-
-        local id = factory.create(SceneUrls.block_factory)
-
-        local block = Block:new(id, raw_data)
-
-        BlocksData:add(block)
     end
 end
 

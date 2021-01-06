@@ -6,104 +6,104 @@
         "default_height": 200,
         "sprite": "snowglobe_snowflake"
     },
-    "1": {
+    "78": {
         "sprite": "snowglobe_house"
     },
-    "2": {
+    "80": {
         "sprite": "snowglobe_lollipop"
     },
-    "3": {
+    "82": {
         "sprite": "snowglobe_sleigh"
     },
-    "4": {
+    "83": {
         "sprite": "snowglobe_snowflake"
     },
-    "5": {
+    "84": {
         "sprite": "snowglobe_snowman"
     },
-    "6": {
+    "77": {
         "sprite": "snowglobe_gifts"
     },
-    "7": {
+    "81": {
         "sprite": "snowglobe_misletoe"
     },
-    "8": {
+    "73": {
         "sprite": "snowglobe_candle"
     },
-    "9": {
+    "79": {
         "sprite": "snowglobe_lamp"
     },
-    "10": {
+    "85": {
         "sprite": "snowglobe_tree"
     },
-    "11": {
+    "76": {
         "sprite": "snowglobe_gifts_sleigh"
     },
-    "12": {
+    "75": {
         "sprite": "snowglobe_fireplace"
     },
-    "13": {
+    "74": {
         "sprite": "snowglobe_decorated_tree"
     },
 
-    "14": {
+    "86": {
         "sprite": "chimney",
         "destroyable": false
     },
 
-    "15": {
+    "61": {
         "sprite": "block_black_label",
         "boost": "9"
     },
-    "16": {
+    "59": {
         "sprite": "block_ball_acceleration",
         "boost": "1"
     },
-    "17": {
+    "64": {
         "sprite": "block_extend_platform",
         "boost": "11"
     },
-    "18": {
+    "72": {
         "sprite": "block_vertical_bomb",
         "boost": "8"
     },
-    "19": {
+    "60": {
         "sprite": "block_ball_deceleration",
         "boost": "2"
     },
-    "20": {
+    "65": {
         "sprite": "block_fireball",
         "boost": "4"
     },
-    "21": {
+    "63": {
         "sprite": "block_color_bomb",
         "boost": "6"
     },
-    "22": {
+    "66": {
         "sprite": "block_horizontal_bomb",
         "boost": "7"
     },
-    "23": {
+    "69": {
         "sprite": "block_platform_deceleration",
         "boost": "13"
     },
-    "24": {
+    "70": {
         "sprite": "block_shorten_platform",
         "boost": "14"
     },
-    "25": {
+    "62": {
         "sprite": "block_captive_ball",
         "boost": "3"
     },
-    "26": {
+    "67": {
         "sprite": "block_life",
         "boost": "10"
     },
-    "27": {
+    "71": {
         "sprite": "block_simple_bomb",
         "boost": "5"
     },
-    "28": {
+    "68": {
         "sprite": "block_platform_acceleration",
         "boost": "12"
     }

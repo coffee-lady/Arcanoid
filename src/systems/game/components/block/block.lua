@@ -66,7 +66,7 @@ function BlockComponent:initialize(id, data)
         self:destroy()
     end)
 
-    SceneMsgService:on(id, SceneMSG.damage_block, function(message)
+    self.subs[#self.subs + 1] = SceneMsgService:on(id, SceneMSG.damage_block, function(message)
         self.logic:decrease_lives(message.damage)
     end)
 

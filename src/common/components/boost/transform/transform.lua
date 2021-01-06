@@ -21,9 +21,9 @@ end
 
 function Transform:reset_scale()
     local sizes = ScreenService:get_sizes()
-    local grid_sizes = LevelService:get_data().sizes
+    local width = LevelService:get_data().width
 
-    local scale_factor = (BoostConfig.scale * sizes.x / grid_sizes.x) / self.size.x
+    local scale_factor = (BoostConfig.scale * sizes.x / width) / self.size.x
 
     self:set_scale(scale_factor)
 end

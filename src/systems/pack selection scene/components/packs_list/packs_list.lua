@@ -7,14 +7,12 @@ local SceneMsgService = SceneServices.gui_msg
 local ACTION = App.constants.actions
 
 local Transform = require('src.systems.pack selection scene.components.packs_list.transform.transform')
-local Animations = require('src.systems.pack selection scene.components.packs_list.animations.animations')
 local View = require('src.systems.pack selection scene.components.packs_list.view.view')
 
 local PacksListComponent = class('Component')
 
 function PacksListComponent:initialize(list_length)
     local view = View:new()
-    local animations = Animations:new(view.node)
     local transform = Transform:new(view.node)
 
     local template = gui.get_node(SceneGuiURLs.list_item)

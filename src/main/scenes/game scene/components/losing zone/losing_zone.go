@@ -21,7 +21,7 @@ embedded_components {
   "mass: 0.0\n"
   "friction: 0.0\n"
   "restitution: 1.0\n"
-  "group: \"default\"\n"
+  "group: \"losing_zone\"\n"
   "mask: \"balls\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"

@@ -15,10 +15,11 @@ function BlocksData:init()
 
         if message.destroyable then
             self.destroyable_blocks = self.destroyable_blocks - 1
-        end
 
-        if self.destroyable_blocks == 0 then
-            SceneMsgService:send(nil, MSG.game.winning)
+            if self.destroyable_blocks == 0 then
+                SceneMsgService:send(nil, MSG.game.winning)
+                return
+            end
         end
 
         SceneMsgService:send(nil, MSG.game.blocks_deleted, message)

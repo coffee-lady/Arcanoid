@@ -31,13 +31,13 @@ end
 function Transform:set_length()
     local level_data = LevelService:get_data()
     local sizes = ScreenService:get_sizes()
-    local grid_size = level_data.sizes
+    local width = level_data.width
 
-    self.indent = BlocksConfig.indent_between * sizes.x / grid_size.x
-    self.sides_padding = BlocksConfig.sides_padding * sizes.x / grid_size.x
-    local indents_length = 2 * self.sides_padding + (grid_size.x - 1) * self.indent
+    self.indent = BlocksConfig.indent_between * sizes.x / width
+    self.sides_padding = BlocksConfig.sides_padding * sizes.x / width
+    local indents_length = 2 * self.sides_padding + (width - 1) * self.indent
 
-    self.length = (sizes.x - indents_length) / grid_size.x
+    self.length = (sizes.x - indents_length) / width
 end
 
 function Transform:get_start_pos()

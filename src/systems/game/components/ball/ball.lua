@@ -2,6 +2,8 @@ local App = require('src.app')
 local Services = require('src.services.services')
 local SceneServices = require('src.systems.game.services.services')
 
+local BallData = SceneServices.shared_data.balls
+
 local class = App.libs.middleclass
 local SceneMsgService = SceneServices.msg
 local ScreenService = Services.screen
@@ -25,6 +27,10 @@ function BallComponent:initialize(id, pos)
 
     self.animations = Animations:new(id)
     self.view = View:new(id)
+
+    if BallData:is_fired() then
+        self.view:fire_ball()
+    end
 
     self.subs = {}
 

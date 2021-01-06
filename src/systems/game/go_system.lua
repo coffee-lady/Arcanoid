@@ -5,6 +5,7 @@ local GOSystem = require('src.common.classes.go_system')
 
 local SharedDara = SceneServices.shared_data
 local BlocksData = SharedDara.blocks
+local BallsData = SharedDara.balls
 
 local ScenesService = Services.scenes
 local LevelService = Services.level
@@ -31,6 +32,7 @@ local GameSceneSystem = GOSystem:new(SceneMsgService, {
         BlocksDataService:init()
 
         BlocksData:init()
+        BallsData:init()
 
         local scene_data = ScenesService:get_scene_data(URL.scenes.game_scene.main)
         if scene_data and scene_data.continue then
