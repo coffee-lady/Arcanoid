@@ -11,12 +11,10 @@ function BallsData:init()
 
     SceneMsgService:on(URL.scenes.game_scene.main, MSG.game.fire_balls, function()
         self.fired = true
-        print('true')
     end)
 
     SceneMsgService:on(URL.scenes.game_scene.main, MSG.game.put_out_balls, function()
         self.fired = false
-        print('false')
     end)
 end
 

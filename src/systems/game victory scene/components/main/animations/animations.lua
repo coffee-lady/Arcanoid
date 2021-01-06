@@ -15,7 +15,7 @@ local Animation = AnimationsLib.animation
 local Animator = AnimationsLib.animator
 local AnimateCounter = AnimationsLib.counter
 
-local AnimationsConfig = App.config.game.gui.animations.game_victory_scene
+local AnimationsConfig = App.config.common.animations
 
 local URL = App.constants.urls
 local SceneURLs = URL.gui_nodes.game_victory_scene

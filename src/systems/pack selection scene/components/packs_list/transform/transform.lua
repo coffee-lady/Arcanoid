@@ -4,7 +4,7 @@ local class = App.libs.middleclass
 local Animation = App.libs.animations.animation
 local Animator = App.libs.animations.animator
 
-local ScrollConfig = App.config.common.scroll
+local ScrollConfig = App.config.common.gui.scroll
 local PROP = App.constants.go_props
 
 local animator = Animator:new()

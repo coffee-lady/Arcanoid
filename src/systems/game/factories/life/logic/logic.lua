@@ -2,7 +2,7 @@ local App = require('src.app')
 local SceneServices = require('src.systems.game.services.services')
 
 local class = App.libs.middleclass
-local LifeConfig = App.config.game.gui.lives
+local LifeConfig = App.config.game.go.lives
 local SceneURLs = App.constants.urls.scenes.game_scene
 local SceneMsgService = SceneServices.msg
 local SceneMSG = App.constants.messages.game

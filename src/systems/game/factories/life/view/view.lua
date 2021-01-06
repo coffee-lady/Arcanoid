@@ -2,7 +2,7 @@ local App = require('src.app')
 local Components = require('src.systems.game.components.components')
 
 local class = App.libs.middleclass
-local LifeConfig = App.config.game.gui.lives
+local LifeConfig = App.config.game.go.lives
 local SceneGuiURLs = App.constants.urls.gui_nodes.game_scene
 
 local Life = Components.life
