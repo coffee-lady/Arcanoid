@@ -15,13 +15,13 @@ local SceneGuiURLs = URL.gui_nodes.pack_selection_scene
 local View = class('View')
 
 function View:initialize()
-    local current_pack = LevelService:get_current_pack()
+    local progress_pack = LevelService:get_progress_pack()
     self.root_node = gui.get_node(SceneGuiURLs.bottom_panel)
     local btn = gui.get_node(SceneGuiURLs.pack_icon)
 
     GUIService.images:set({
         node = btn,
-        animation = current_pack.icon
+        animation = progress_pack.icon
     })
 
     GUIService.buttons:set(SceneMsgService, {

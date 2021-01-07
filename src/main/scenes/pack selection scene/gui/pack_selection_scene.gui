@@ -60,10 +60,10 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: ""
   id: "bottom_panel"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_BOTTOM
   pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
+  adjust_mode: ADJUST_MODE_STRETCH
   layer: "list"
   inherit_alpha: false
   slice9 {

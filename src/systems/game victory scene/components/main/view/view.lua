@@ -11,7 +11,7 @@ local ScenesService = Services.scenes
 local GUIService = Services.gui
 
 local GAME_SCENE = URL.scenes.game_scene.main
-local PACK_SELECTION_SCENE = URL.scenes.game_victory_scene.main
+local PACK_SELECTION_SCENE = URL.scenes.pack_selection_scene.main
 local START_SCENE = URL.scenes.start_scene.main
 
 local SceneURLs = URL.gui_nodes.game_victory_scene
@@ -36,10 +36,14 @@ function View:initialize()
         node = gui.get_node(SceneURLs.button_next),
         callback = function()
             local current_level = LevelService:get_current_level()
+            local last_level = LevelService:get_last_level()
             local played_last_level = LevelService:was_last_level_played()
             local is_passed_pack = LevelService:get_progress_level() > current_pack.last_level
 
-            if is_passed_pack and (current_level == current_pack.last_level + 1 or played_last_level) then
+            local is_last_lvl_in_passed_pack = is_passed_pack and current_level == prev_pack.last_level + 1
+            local is_end_of_game = current_level == last_level and played_last_level
+
+            if is_last_lvl_in_passed_pack or is_end_of_game then
                 ScenesService:switch_to_scene(PACK_SELECTION_SCENE)
             else
                 ScenesService:switch_to_scene(GAME_SCENE)

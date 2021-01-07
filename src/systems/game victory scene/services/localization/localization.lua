@@ -22,6 +22,7 @@ local LocalizationService = Localization:new(SCENE_URL, MsgService, {
 
         thandler = timer.delay(SECOND, true, function()
             self:update()
+            timer.cancel(thandler)
         end)
     end,
     final = function()

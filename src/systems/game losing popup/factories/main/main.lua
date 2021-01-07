@@ -1,4 +1,3 @@
-local App = require('src.app')
 local Components = require('src.systems.game losing popup.components.components')
 
 local MainComponent = Components.main

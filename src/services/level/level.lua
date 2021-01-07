@@ -102,6 +102,10 @@ function LevelService:get_previous_pack()
     return PackData:get_pack(self.current_level - 1)
 end
 
+function LevelService:get_progress_pack()
+    return PackData:get_pack(LocalStorage:get(LEVELS, PROGRESS))
+end
+
 function LevelService:was_last_level_played()
     return self.played_last_level
 end

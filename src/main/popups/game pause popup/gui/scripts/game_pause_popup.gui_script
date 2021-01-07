@@ -2,6 +2,7 @@ local GUISystem = require('src.systems.game pause popup.gui_system')
 
 function init(self)
     GUISystem:init()
+    gui.set_render_order(15)
 end
 
 function on_message(self, message_id, message, sender)

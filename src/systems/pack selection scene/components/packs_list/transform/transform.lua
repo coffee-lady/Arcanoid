@@ -29,19 +29,27 @@ function Transform:scroll(action, height)
     pos.y = pos.y + action.dy
 
     scroll_config.to = pos.y
-    local anim = Animation:new(self.node, gui.animate, gui.cancel_animation, scroll_config)
 
     if action.dy > 0 then
-        if pos.y <= self.start_pos.y then
-            animator:play(anim):finish()
+        if pos.y > self.start_pos.y then
+            scroll_config.to = self.start_pos.y
         end
+
+        local anim = Animation:new(self.node, gui.animate, gui.cancel_animation, scroll_config)
+
+        animator:play(anim):finish()
     end
 
     if action.dy < 0 then
-        if pos.y + height >= 0 then
-            animator:play(anim):finish()
+        if pos.y + height < 0 then
+            scroll_config.to = -height
         end
+
+        local anim = Animation:new(self.node, gui.animate, gui.cancel_animation, scroll_config)
+
+        animator:play(anim):finish()
     end
+
 end
 
 return Transform
