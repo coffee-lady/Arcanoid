@@ -11,7 +11,7 @@
         "button_next_text": "Next level",
         "button_back_text": "Back home",
         "energy_container_count": "Energy: {current_energy}/{max_energy}",
-        "energy_container_left": "{energy_recovery_left_time} minutes left"
+        "energy_container_left": "Get energy in {min_left}:{sec_left}"
     },
     "pack_selection_scene": {
         "level_title": "Level {current_level}",
@@ -20,13 +20,13 @@
         "list_item_level_title": "Levels: {item_first_level}-{item_last_level}",
         "list_item_pack_title": "{item_pack_title}",
         "energy_container_count": "Energy: {current_energy}/{max_energy}",
-        "energy_container_left": "{energy_recovery_left_time} minutes left"
+        "energy_container_left": "Get energy in {min_left}:{sec_left}"
     },
     "start_scene": {
         "title": "Christmas\nArcanoid",
         "button_play_text": "Play",
         "energy_container_count": "Energy: {current_energy}/{max_energy}",
-        "energy_container_left": "{energy_recovery_left_time} minutes left"
+        "energy_container_left": "Get energy in {min_left}:{sec_left}"
     },
     "game_pause_popup": {
         "title": "Pause",
@@ -40,6 +40,6 @@
         "button_back_text": "Back home",
         "button_buy_text": "Buy life (-{life_cost})",
         "energy_container_count": "Energy: {current_energy}/{max_energy}",
-        "energy_container_left": "{energy_recovery_left_time} minutes left"
+        "energy_container_left": "Get energy in {min_left}:{sec_left}"
     }
 }

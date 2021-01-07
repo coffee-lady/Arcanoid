@@ -22,7 +22,7 @@ local LocalizationService = Localization:new(SCENE_URL, MsgService, {
         end)
     end,
     final = function()
-        timer.cancel(thandler)
+
         subs:unsubscribe()
     end
 })

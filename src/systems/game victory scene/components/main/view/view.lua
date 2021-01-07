@@ -37,8 +37,9 @@ function View:initialize()
         callback = function()
             local current_level = LevelService:get_current_level()
             local played_last_level = LevelService:was_last_level_played()
+            local is_passed_pack = LevelService:get_progress_level() > current_pack.last_level
 
-            if self.is_passed_pack and (current_level == current_pack.last_level + 1 or played_last_level) then
+            if is_passed_pack and (current_level == current_pack.last_level + 1 or played_last_level) then
                 ScenesService:switch_to_scene(PACK_SELECTION_SCENE)
             else
                 ScenesService:switch_to_scene(GAME_SCENE)

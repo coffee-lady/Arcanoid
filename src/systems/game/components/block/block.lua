@@ -49,11 +49,19 @@ function BlockComponent:initialize(id, data)
         end)
 
     self.subs[#self.subs + 1] = SceneMsgService:on(SceneURLs.main, SceneMSG.fire_balls, function()
+        if not self.data.destroyable and not BlockConfig.destroy_granite then
+            return
+        end
+
         self.physics:switch_co()
         self.logic:make_fragile()
     end)
 
     self.subs[#self.subs + 1] = SceneMsgService:on(SceneURLs.main, SceneMSG.put_out_balls, function()
+        if not self.data.destroyable and not BlockConfig.destroy_granite then
+            return
+        end
+
         self.physics:switch_co()
         self.logic:recover_from_fragility()
     end)
@@ -80,6 +88,10 @@ function BlockComponent:is_destroyable()
 end
 
 function BlockComponent:destroy()
+    if not self.data.destroyable and not BlockConfig.destroy_granite then
+        return
+    end
+
     self.animations:animate_breaking()
     self.view:delete()
 

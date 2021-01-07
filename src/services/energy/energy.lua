@@ -169,21 +169,24 @@ function EnergyService:get_level_reward()
     return EnergyConfig.level_reward
 end
 
-function EnergyService:get_minutes_left()
+function EnergyService:get_time_left()
     local planned_timer = LocalStorage:get(ENERGY, TIMER)
 
     if not planned_timer then
-        return 0
+        return 0, 0
     end
 
     local seconds_left = os.difftime(planned_timer, os.time())
 
     if seconds_left < 0 then
-        return 0
+        return 0, 0
     end
 
     local SEC_IN_MIN = 60
-    return math.floor(seconds_left / SEC_IN_MIN)
+    local minutes = math.floor(seconds_left / SEC_IN_MIN)
+    local seconds = seconds_left - minutes * SEC_IN_MIN
+
+    return minutes, seconds
 end
 
 return EnergyService

@@ -1,6 +1,6 @@
 local App = require('src.app')
-local class = App.libs.middleclass
 local Services = require('src.services.services')
+local class = App.libs.middleclass
 
 local LocalizationService = Services.localization
 
@@ -102,6 +102,18 @@ function Localization:update_list(list)
         local text = replace_vars(data[id], list.items_data)
 
         gui.set_text(list.nodes[id], text)
+    end
+end
+
+function Localization:remove(node_id)
+    local i = 1
+    for id, _ in pairs(self.text_nodes) do
+        if id == node_id then
+            gui.set_enabled(gui.get_node(node_id), false)
+            table.remove(self.text_nodes, i)
+            break
+        end
+        i = i + 1
     end
 end
 
