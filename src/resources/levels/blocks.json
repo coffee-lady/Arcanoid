@@ -1,6 +1,6 @@
 {
     "default": {
-        "lives": 2,
+        "lives": 1,
         "destroyable": true,
         "default_width": 200,
         "default_height": 200,
@@ -16,21 +16,18 @@
         "sprite": "snowglobe_sleigh"
     },
     "83": {
-        "lives": 1,
         "sprite": "snowglobe_snowflake"
     },
     "84": {
         "sprite": "snowglobe_snowman"
     },
     "77": {
-        "lives": 1,
         "sprite": "snowglobe_gifts"
     },
     "81": {
         "sprite": "snowglobe_misletoe"
     },
     "73": {
-        "lives": 1,
         "sprite": "snowglobe_candle"
     },
     "79": {
@@ -43,7 +40,6 @@
         "sprite": "snowglobe_gifts_sleigh"
     },
     "75": {
-        "lives": 1,
         "sprite": "snowglobe_fireplace"
     },
     "74": {
@@ -64,7 +60,6 @@
         "boost": "1"
     },
     "64": {
-        "lives": 1,
         "sprite": "block_extend_platform",
         "boost": "11"
     },
@@ -77,7 +72,6 @@
         "boost": "2"
     },
     "65": {
-        "lives": 1,
         "sprite": "block_fireball",
         "boost": "4"
     },
@@ -90,7 +84,6 @@
         "boost": "7"
     },
     "69": {
-        "lives": 1,
         "sprite": "block_platform_deceleration",
         "boost": "13"
     },
@@ -99,12 +92,10 @@
         "boost": "14"
     },
     "62": {
-        "lives": 1,
         "sprite": "block_captive_ball",
         "boost": "3"
     },
     "67": {
-        "lives": 1,
         "sprite": "block_life",
         "boost": "10"
     },
@@ -113,7 +104,6 @@
         "boost": "5"
     },
     "68": {
-        "lives": 1,
         "sprite": "block_platform_acceleration",
         "boost": "12"
     }

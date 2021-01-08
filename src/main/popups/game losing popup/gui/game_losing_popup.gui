@@ -132,7 +132,7 @@ nodes {
 nodes {
   position {
     x: 0.0
-    y: 143.0
+    y: -325.0
     z: 0.0
     w: 1.0
   }
@@ -150,7 +150,7 @@ nodes {
   }
   size {
     x: 589.0
-    y: 978.0
+    y: 2669.0
     z: 0.0
     w: 1.0
   }
@@ -165,8 +165,8 @@ nodes {
   texture: "backgrounds/lost_popup_bg"
   id: "popup_bg"
   xanchor: XANCHOR_LEFT
-  yanchor: YANCHOR_TOP
-  pivot: PIVOT_CENTER
+  yanchor: YANCHOR_BOTTOM
+  pivot: PIVOT_S
   adjust_mode: ADJUST_MODE_FIT
   parent: "root"
   layer: "main"
