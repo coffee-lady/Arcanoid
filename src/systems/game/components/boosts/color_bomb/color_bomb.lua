@@ -92,6 +92,7 @@ function ColorBombBoost:boost()
 
     for i = 1, #typed_blocks[max] do
         local block = typed_blocks[max][i]
+
         SceneMsgService:send(block.id, MSG.game.destroy_block)
     end
 end

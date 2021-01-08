@@ -28,6 +28,7 @@ end
 function HorizontalBombBoost:boost()
     for i = 1, #self.blocks do
         local block = self.blocks[i]
+
         if block then
             local block_pos = go.get_position(block.id)
 

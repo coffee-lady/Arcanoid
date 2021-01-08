@@ -18,11 +18,11 @@ local PacksConfig = {
         title = 'Purple Snowflake',
         icon = 'pack_icon_purple_snowflake',
         first_level = 7,
-        last_level = 8
+        last_level = 10
     }, {
         title = 'Golden Star',
         icon = 'pack_icon_gold_star',
-        first_level = 9,
+        first_level = 11,
         last_level = 12
     }, {
         title = 'Teal Envelope',

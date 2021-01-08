@@ -35,7 +35,6 @@ function VerticalBombBoost:boost()
             local block_pos = go.get_position(block.id)
 
             if block_pos.x == self.pos.x then
-                table.remove(self.blocks, i)
                 SceneMsgService:send(block.id, MSG.game.destroy_block)
             end
         end

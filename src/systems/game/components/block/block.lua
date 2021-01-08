@@ -88,6 +88,12 @@ function BlockComponent:is_destroyable()
 end
 
 function BlockComponent:destroy()
+    if self.destroyed then
+        return
+    end
+
+    self.destroyed = true
+
     if not self.data.destroyable and not BlockConfig.destroy_granite then
         return
     end
