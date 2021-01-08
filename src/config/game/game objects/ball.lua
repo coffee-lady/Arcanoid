@@ -5,7 +5,7 @@ local BallConfig = {
         max = vmath.vector3(480, 480, 0)
     },
 
-    delta_speed = vmath.vector3(5, 5, 0),
+    delta_speed = vmath.vector3(8, 8, 0),
     scale = 0.4,
     start_rel_pos = vmath.vector3(0.5, 0.2, 0),
     rotation_angle = 360,
