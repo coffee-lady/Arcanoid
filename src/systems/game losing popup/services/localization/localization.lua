@@ -11,7 +11,7 @@ local EnergyService = Services.energy
 local SCENE_URL = App.constants.urls.scenes.game_losing_popup.main
 local ENERGY_CONTAINER = App.constants.urls.gui_nodes.game_losing_popup.text.energy_container_left
 
-local MINUTE = 1
+local SECOND = 1
 local subs
 
 local LocalizationService = Localization:new(SCENE_URL, MsgService, {
@@ -20,7 +20,7 @@ local LocalizationService = Localization:new(SCENE_URL, MsgService, {
             self:update()
         end)
 
-        timer.delay(MINUTE, true, function()
+        timer.delay(SECOND, true, function()
             self:update()
         end)
     end,
