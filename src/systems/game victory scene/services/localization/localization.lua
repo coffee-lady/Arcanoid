@@ -12,7 +12,7 @@ local SCENE_URL = App.constants.urls.scenes.game_victory_scene.main
 local ENERGY_CONTAINER = App.constants.urls.gui_nodes.game_victory_scene.text.energy_container_left
 
 local SECOND = 1
-local thandler, subs
+local subs
 
 local LocalizationService = Localization:new(SCENE_URL, MsgService, {
     init = function(self)
@@ -20,9 +20,8 @@ local LocalizationService = Localization:new(SCENE_URL, MsgService, {
             self:update()
         end)
 
-        thandler = timer.delay(SECOND, true, function()
+        timer.delay(SECOND, true, function()
             self:update()
-            timer.cancel(thandler)
         end)
     end,
     final = function()
