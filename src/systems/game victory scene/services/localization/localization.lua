@@ -35,7 +35,6 @@ function LocalizationService:get_vars()
 
     if min_left == 0 and sec_left == 0 then
         self:remove(ENERGY_CONTAINER)
-
     end
 
     return {

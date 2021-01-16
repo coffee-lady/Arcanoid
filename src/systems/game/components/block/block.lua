@@ -20,6 +20,12 @@ local Physics = require('src.systems.game.components.block.physics.physics')
 local Logic = require('src.systems.game.components.block.logic.logic')
 local View = require('src.systems.game.components.block.view.view')
 
+local function unsubscribe(self)
+    for i = 1, #self.subs do
+        self.subs[i]:unsubscribe()
+    end
+end
+
 local BlockComponent = class('Component')
 
 function BlockComponent:initialize(id, data)
@@ -33,6 +39,7 @@ function BlockComponent:initialize(id, data)
     self.id = id
     self.data = data
     self.type = data.sprite
+    self.fragile = false
 
     self.transform:reset()
 
@@ -53,8 +60,13 @@ function BlockComponent:initialize(id, data)
             return
         end
 
+        if self.fragile then
+            return
+        end
+
         self.physics:switch_co()
         self.logic:make_fragile()
+        self.fragile = true
     end)
 
     self.subs[#self.subs + 1] = SceneMsgService:on(SceneURLs.main, SceneMSG.put_out_balls, function()
@@ -62,8 +74,13 @@ function BlockComponent:initialize(id, data)
             return
         end
 
+        if not self.fragile then
+            return
+        end
+
         self.physics:switch_co()
         self.logic:recover_from_fragility()
+        self.fragile = false
     end)
 
     self.logic.lives_observer:subscribe(function(lives)
@@ -74,12 +91,25 @@ function BlockComponent:initialize(id, data)
         self:destroy()
     end)
 
-    self.subs[#self.subs + 1] = SceneMsgService:on(id, SceneMSG.damage_block, function(message)
+    SceneMsgService:on(id, SceneMSG.damage_block, function(message)
         self.logic:decrease_lives(message.damage)
     end)
 
     SceneMsgService:on(id, SceneMSG.destroy_block, function()
         self:destroy()
+    end)
+
+    SceneMsgService:on(URL.scenes.game_scene.main, MSG.game.losing, function()
+        unsubscribe(self)
+
+    end)
+
+    SceneMsgService:on(URL.scenes.game_scene.main, MSG.game.winning, function()
+        unsubscribe(self)
+    end)
+
+    SceneMsgService:on(URL.scenes.game_scene.main, MSG.game.restart, function()
+        unsubscribe(self)
     end)
 end
 
@@ -111,9 +141,7 @@ function BlockComponent:destroy()
         boost = self.data.boost
     })
 
-    for i = 1, #self.subs do
-        self.subs[i]:unsubscribe()
-    end
+    unsubscribe(self)
 end
 
 return BlockComponent

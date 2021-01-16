@@ -28,6 +28,7 @@ local BoostsFactory = Factories.boost
 
 local GameSceneSystem = GOSystem:new(SceneMsgService, {
     init = function()
+        EnergyService:start_level()
         BoostsDataService:init()
         BlocksDataService:init()
 

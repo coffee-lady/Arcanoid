@@ -11,21 +11,29 @@ local SceneMsgService = SceneServices.msg
 local BoostConfig
 
 local MSG = App.constants.messages
+local URL = App.constants.urls
 
-local BallDecelerationBoost = class('BallDecelerationBoost', Boost)
+local handle
 
-function BallDecelerationBoost:initialize(id, _, config)
+local FireballBoost = class('FireballBoost', Boost)
+
+function FireballBoost:initialize(id, _, config)
     BoostConfig = config
 
     Boost.initialize(self, id, BoostConfig)
 end
 
-function BallDecelerationBoost:boost()
+function FireballBoost:boost()
     SceneMsgService:send(nil, MSG.game.fire_balls)
 
-    timer.delay(BoostConfig.time, false, function()
+    local subs = SceneMsgService:on(URL.scenes.game_scene.main, MSG.game.fire_balls, function()
+        timer.cancel(handle)
+    end)
+
+    handle = timer.delay(BoostConfig.time, false, function()
         SceneMsgService:send(nil, MSG.game.put_out_balls)
+        subs:unsubscribe()
     end)
 end
 
-return BallDecelerationBoost
+return FireballBoost

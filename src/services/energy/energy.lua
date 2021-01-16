@@ -145,6 +145,10 @@ function EnergyService:buy_life()
     return self:decrease(EnergyConfig.life_cost)
 end
 
+function EnergyService:start_level()
+    return self:decrease(EnergyConfig.level_cost)
+end
+
 function EnergyService:restart_level()
     return self:decrease(EnergyConfig.restart_cost)
 end

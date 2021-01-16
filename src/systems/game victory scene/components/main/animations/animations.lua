@@ -22,6 +22,14 @@ local SceneURLs = URL.gui_nodes.game_victory_scene
 
 local Animations = class('Animations')
 
+function Animations:initialize()
+    local level_node_id = SceneURLs.text.level_title
+
+    LocalizationService:update_node(level_node_id, {
+        next_level = LevelService:get_current_level() - 1
+    })
+end
+
 function Animations:play()
     for _, pfx in pairs(SceneURLs.particlefx) do
         gui.play_particlefx(gui.get_node(pfx))
@@ -29,6 +37,7 @@ function Animations:play()
 
     self:animate_pack_icon()
     self:animate_energy()
+    self:animate_level()
 end
 
 function Animations:animate_pack_icon()
@@ -72,14 +81,11 @@ function Animations:animate_pack_icon()
 end
 
 function Animations:animate_level()
-    local next_level = LevelService:get_current_level()
-    local prev_level = next_level - 1
-
     local level_node_id = SceneURLs.text.level_title
 
-    AnimateCounter(AnimationsConfig.level.duration, prev_level, next_level, function(level)
+    timer.delay(AnimationsConfig.level.delay, false, function()
         LocalizationService:update_node(level_node_id, {
-            next_level = level
+            next_level = LevelService:get_current_level()
         })
     end)
 end
@@ -90,11 +96,13 @@ function Animations:animate_energy()
 
     local energy_node_id = SceneURLs.text.energy_container_count
 
-    AnimateCounter(AnimationsConfig.energy.duration, prev_energy, current_energy, function(energy)
-        LocalizationService:update_node(energy_node_id, {
-            current_energy = energy,
-            max_energy = EnergyService:get_max_energy()
-        })
+    timer.delay(AnimationsConfig.energy.delay, false, function()
+        AnimateCounter(AnimationsConfig.energy.duration, prev_energy, current_energy, function(energy)
+            LocalizationService:update_node(energy_node_id, {
+                current_energy = energy,
+                max_energy = EnergyService:get_max_energy()
+            })
+        end)
     end)
 end
 

@@ -5,9 +5,11 @@ local SceneServices = require('src.systems.game.services.services')
 
 local SharedDara = SceneServices.shared_data
 local BlocksData = SharedDara.blocks
+local SceneMsgService = SceneServices.msg
 
 local BlocksDataService = SceneServices.blocks_data
 local SceneUrls = App.constants.urls.scenes.game_scene
+local MSG = App.constants.messages
 
 local LevelService = Services.level
 

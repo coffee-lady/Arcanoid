@@ -23,11 +23,11 @@ local PacksConfig = {
         title = 'Golden Star',
         icon = 'pack_icon_gold_star',
         first_level = 11,
-        last_level = 12
+        last_level = 13
     }, {
         title = 'Teal Envelope',
         icon = 'pack_icon_teal_envelope',
-        first_level = 13,
+        first_level = 14,
         last_level = 17
     }}
 }
