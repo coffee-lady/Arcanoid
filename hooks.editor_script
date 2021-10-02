@@ -1,0 +1,33 @@
+local CommandRaiseVersion = require('src.editor.commands.command_raise_version')
+local EditorScripts = require('src.editor.editor_scripts')
+local Array = require('src.libs.tools.types.array.array')
+
+local EditorHooks = {}
+
+EditorScripts.platform_changer:init()
+
+function EditorHooks.on_bundle_started()
+    local status, error = pcall(EditorHooks.raise_project_version)
+
+    if not status then
+        print('ERROR: run editor script on_bundle_started')
+    end
+end
+
+function EditorHooks.raise_project_version()
+    print('raise project version from editor hooks')
+    CommandRaiseVersion:execute()
+end
+
+function EditorHooks.get_commands()
+    return EditorHooks._build_commands()
+end
+
+function EditorHooks._build_commands()
+    local bundler_commands = EditorScripts.bundler.get_commands(EditorHooks.raise_project_version)
+    local platform_changer_commands = EditorScripts.platform_changer.get_commands()
+
+    return Array.concat(bundler_commands, platform_changer_commands)
+end
+
+return EditorHooks

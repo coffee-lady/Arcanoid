@@ -1,12 +1,13 @@
-local ResourcesStorageService = {}
+local ResourcesStorage = {
+    cache = {}
+}
 
-ResourcesStorageService.types = {
+ResourcesStorage.types = {
     json = 'json',
     lua = 'lua'
 }
-ResourcesStorageService.cache = {}
 
-function ResourcesStorageService:get(filename, type)
+function ResourcesStorage:get(filename, type)
     if self.cache[filename] then
         return self.cache[filename]
     end
@@ -20,8 +21,13 @@ function ResourcesStorageService:get(filename, type)
     end
 end
 
-function ResourcesStorageService:get_json_data(filename)
+function ResourcesStorage:get_json_data(filename)
+    if self.cache[filename] then
+        return self.cache[filename]
+    end
+
     local data = sys.load_resource(filename)
+
     if not data then
         return nil
     end
@@ -32,11 +38,15 @@ function ResourcesStorageService:get_json_data(filename)
     return decoded
 end
 
-function ResourcesStorageService:get_lua_data(filename)
-    local data = require(filename)
+function ResourcesStorage:get_lua_data(filename)
+    if self.cache[filename] then
+        return self.cache[filename]
+    end
+
+    local data = loadfile(filename)
     self.cache[filename] = data
 
     return data
 end
 
-return ResourcesStorageService
+return ResourcesStorage

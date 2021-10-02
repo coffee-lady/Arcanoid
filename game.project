@@ -1,50 +1,98 @@
-[project]
-title = Christmas Arcanoid
-dependencies = https://github.com/britzl/monarch/archive/master.zip,https://github.com/rgrams/rendercam/archive/v1.0.1.zip,https://github.com/subsoap/defsave/archive/master.zip
-custom_resources = /src/resources
-
 [bootstrap]
-main_collection = /src/main/root.collectionc
+main_collection = /src/ui/scenes/bootstrap/yandex/yandex_bootstrap.collectionc
 render = /rendercam/rendercam.renderc
-
-[input]
-game_binding = /src/main/input/game.input_bindingc
-use_accelerometer = 0
-
-[display]
-width = 640
-height = 950
-
-[ios]
-app_icon_57x57 = /assets/app_icons/icon_57.png
-app_icon_114x114 = /assets/app_icons/icon_114.png
-app_icon_72x72 = /assets/app_icons/icon_72.png
-app_icon_144x144 = /assets/app_icons/icon_144.png
-bundle_identifier = com.example.todo
-
-[osx]
-bundle_identifier = com.example.todo
-
-[android]
-input_method = HiddenInputField
 
 [script]
 shared_state = 1
 
-[physics]
-gravity_y = 0.0
-scale = 0.01
-allow_dynamic_transforms = 1
-debug = 0
+[display]
+width = 640
+height = 1136
+update_frequency = 60
+samples = 2
 
-[sprite]
-max_count = 1000
+[android]
+input_method = HiddenInputField
+
+[project]
+title = Christmas Arcanoid
+bundle_resources = src/bootstrap/yandex
+custom_resources = /resources
+version = 1.5.89
+dependencies#0 = https://github.com/AGulev/jstodef/archive/master.zip
+dependencies#1 = https://github.com/d954mas/defold-utf8/archive/master.zip
+dependencies#2 = https://github.com/britzl/defold-richtext/archive/master.zip
+dependencies#3 = https://github.com/rgrams/rendercam/archive/v1.0.1.zip
+
+[input]
+game_binding = /settings/input/game.input_bindingc
+gamepads = /builtins/input/default.gamepadsc
 
 [gui]
-max_particlefx_count = 1000
-max_particle_count = 5000
+max_count = 150
+
+[label]
+max_count = 0
+
+[sprite]
+max_count = 1
+
+[html5]
+htmlfile = /src/bootstrap/yandex/template_yandex.html
+show_made_with_defold = 0
+
+[collection_proxy]
+max_count = 30
+
+[yagames]
+sdk_init_options = { orientation: { value: "portrait", lock: true } }
+service_worker_url = sw.js
+manifest_url = yandex-manifest.json
+
+[gameanalytics]
+game_key_ios = 107ccf8707a445bfd2c2aa8fa12136a2
+secret_key_ios = 73feff45d102ecef17b8c6306678136b23ead15a
+game_key_android = 107ccf8707a445bfd2c2aa8fa12136a2
+secret_key_android = 73feff45d102ecef17b8c6306678136b23ead15a
+game_key_html5 = 107ccf8707a445bfd2c2aa8fa12136a2
+secret_key_html5 = 73feff45d102ecef17b8c6306678136b23ead15a
+game_key_osx = 107ccf8707a445bfd2c2aa8fa12136a2
+secret_key_osx = 73feff45d102ecef17b8c6306678136b23ead15a
+game_key_windows = 107ccf8707a445bfd2c2aa8fa12136a2
+secret_key_windows = 73feff45d102ecef17b8c6306678136b23ead15a
+game_key_linux = 107ccf8707a445bfd2c2aa8fa12136a2
+secret_key_linux = 73feff45d102ecef17b8c6306678136b23ead15a
+build_html5 = 1
+custom_dimensions_01 = white,black,green,yellow,blue,red
+
+[native_extension]
+app_manifest = /settings/manifests/native_manifest_strip.appmanifest
 
 [particle_fx]
-max_count = 1000
-max_particle_count = 5000
+max_count = 128
+
+[spine]
+max_count = 1
+
+[model]
+max_count = 1
+
+[mesh]
+max_count = 1
+
+[collectionfactory]
+max_count = 1
+
+[factory]
+max_count = 1
+
+[physics]
+world_count = 1
+trigger_overlap_capacity = 0
+ray_cast_limit_3d = 0
+ray_cast_limit_2d = 0
+max_contacts = 0
+max_collisions = 0
+debug_alpha = 0.0
+debug_scale = 0.0
 

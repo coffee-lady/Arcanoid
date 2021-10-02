@@ -1,14 +1,38 @@
+local Tools = require('src.libs.tools.tools')
+
 local Libs = {
-    random = require('src.libs.random.lib_random'),
-    coords = require('src.libs.coords.lib_coords'),
-    easings = require('src.libs.easings.easings'),
-    gui = require('src.libs.gui.gui'),
-    event_observation = require('src.libs.event_observation.event_observation'),
-    middleclass = require('src.libs.middleclass.middleclass'),
+    math = Tools.math,
+    easings = Tools.easings,
+    color = Tools.color,
+    date = Tools.date,
+    event_observation = Tools.event_observation,
+    middleclass = Tools.middleclass,
+    linked_list = Tools.linked_list,
+    array = Tools.array,
+    async = Tools.async,
+    notifier = Tools.notifier,
+    IntervalTimer = Tools.IntervalTimer,
+    TimeoutTimer = Tools.TimeoutTimer,
+    AutosaveIntervalTimer = Tools.AutosaveIntervalTimer,
+    AutosaveTimeoutTimer = Tools.AutosaveTimeoutTimer,
+    string = Tools.string,
+    inspect = Tools.inspect,
+    json = Tools.json,
+    base64 = Tools.base64,
+    obfuscate = Tools.obfuscate,
+    text_formatter = Tools.text_formatter,
+    matrix = Tools.matrix,
+    utf8 = Tools.utf8,
+    currency = Tools.currency,
+    geometry = Tools.geometry,
+    rx = Tools.rx,
+
+    debug = require('src.libs.debug.debug'),
+    event_bus = require('src.libs.event_bus.event_bus'),
+    SubscriptionsMap = require('src.libs.event_bus.subscriptions_map'),
     resources_storage = require('src.libs.resources_storage.resources_storage'),
-    event_msg_service = require('src.libs.event msg service.event_msg_service'),
-    animations = require('src.libs.animations.animations'),
-    scenes_transitions = require('src.libs.scenes_transitions.scenes_transitions')
+    script_wrapper = require('src.libs.script_wrapper.script_wrapper'),
+    transition = require('src.libs.transition.transition'),
 }
 
 return Libs

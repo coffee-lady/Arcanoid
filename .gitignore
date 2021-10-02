@@ -5,8 +5,9 @@
 Thumbs.db
 .lock-wscript
 *.pyc
+log
 .project
 .cproject
-.vscode
 builtins
-.lua-format
+.vscode
+bob.jar
