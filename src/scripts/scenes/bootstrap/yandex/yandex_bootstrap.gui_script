@@ -1,8 +1,10 @@
 local App = require('src.app')
 local AppInstaller = require('src.scripts.app_installer.yandex_installer')
-local BootstrapGUI = require('src.scripts.scenes.bootstrap.bootstrap_gui')
+local Bootstrap = require('src.scripts.scenes.bootstrap.bootstrap_gui')
 
-local ScriptWrapper = App.libs.script_wrapper
+local ScriptWrapper = App.libs.ScriptWrapper
+local Luject = App.libs.luject
+local Async = App.libs.async
 
 local Scene = class('Scene', ScriptWrapper)
 
@@ -11,19 +13,29 @@ function Scene:initialize()
 end
 
 function Scene:init()
-    BootstrapGUI:init(AppInstaller)
+    AppInstaller:install()
+
+    Async.bootstrap(function()
+        self.bootstrap = Luject:resolve_class(Bootstrap)
+    end)
 end
 
 function Scene:update(dt)
-    BootstrapGUI:update(dt)
+    if self.bootstrap then
+        self.bootstrap:update(dt)
+    end
 end
 
 function Scene:on_message(message_id, message)
-    BootstrapGUI:on_message(message_id, message)
+    if self.bootstrap then
+        self.bootstrap:on_message(message_id, message)
+    end
 end
 
 function Scene:final()
-    BootstrapGUI:final()
+    if self.bootstrap then
+        self.bootstrap:final()
+    end
 end
 
 Scene()

@@ -2,8 +2,8 @@ local App = require('src.app')
 
 local LeaderboardsConfig = App.config.leaderboards
 
---- @type GetLeaderboardOptionsUseCase
-local GetLeaderboardOptionsUseCase = {}
+--- @class GetLeaderboardOptionsUseCase
+local GetLeaderboardOptionsUseCase = class('GetLeaderboardOptionsUseCase')
 
 --- @param current_player LeaderboardPlayerEntityPlain
 function GetLeaderboardOptionsUseCase:get_leaderboard_options(current_player)

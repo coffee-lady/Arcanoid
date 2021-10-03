@@ -1,10 +1,8 @@
-local Libs = require('src.libs.libs')
 local Core = require('gui.core.core')
 local Widget = require('gui.widget.widget')
 local Controls = require('gui.controls.controls')
 local AbstractButton = require('gui.controls.abstract_button.abstract_button')
 
-local class = Libs.middleclass
 local BoxNode = Core.BoxNode
 
 --- @class SliderArrowsView : Widget

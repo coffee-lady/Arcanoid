@@ -1,8 +1,5 @@
 local App = require('src.app')
-local UseCases = require('src.scripts.use_cases.use_cases')
 local YandexAdapter = require('src.scripts.include.yandex.yandex')
-
-local AdsUseCases = UseCases.Ads
 
 local BannerAdsAdapter = YandexAdapter.Ads.BannerAds
 local Debug = App.libs.debug
@@ -10,11 +7,15 @@ local Debug = App.libs.debug
 local BannerConfig = App.config.ads.banner
 local DEBUG = App.config.debug_mode.BannerAdsService
 
-local YandexBannerAdsService = {}
+--- @class YandexBannerAdsService
+local YandexBannerAdsService = class('YandexBannerAdsService')
 
-function YandexBannerAdsService:init(player_data_storage)
+YandexBannerAdsService.__cparams = {'player_data_storage', 'use_case_banner_ad'}
+
+function YandexBannerAdsService:initialize(player_data_storage, use_case_banner_ad)
     self.debug = Debug('[Yandex] BannerAdsService', DEBUG)
     self.player_data_storage = player_data_storage
+    self.use_case_banner_ad = use_case_banner_ad
 end
 
 function YandexBannerAdsService:_load()
@@ -33,7 +34,7 @@ function YandexBannerAdsService:_init_timer()
 end
 
 function YandexBannerAdsService:show()
-    if not AdsUseCases.BannerAdsUseCases:is_available() then
+    if not self.use_case_banner_ad:is_available() then
         self.debug:log('trying show banner: passed_levels < BannerConfig.start_level - 1')
         return
     end

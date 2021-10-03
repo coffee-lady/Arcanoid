@@ -5,7 +5,7 @@ local Notifier = Libs.notifier
 local Async = Libs.async
 
 --- @class ScenesService
-local ScenesService = {}
+local ScenesService = class('ScenesService')
 
 local INIT_MONARCH = 'init_monarch'
 local SCENE_CHANGE = hash('scene_change')
@@ -27,12 +27,11 @@ local function get_full_go_url(scene_id)
     return scene_id ~= '.' and scene_id .. ':/scene#go' or scene_id
 end
 
-function ScenesService:init()
+function ScenesService:initialize()
     msg.post('#', INIT_MONARCH)
-    self.init_observer = Observable()
-
     self.scene_change_notifier = Notifier(SCENE_CHANGE)
     self.before_scene_change_notifier = Notifier(BEFORE_SCENE_CHANGE)
+    self.init_observer = Observable()
 end
 
 function ScenesService:on_message(message_id)

@@ -1,7 +1,5 @@
-local Libs = require('src.libs.libs')
 local Core = require('gui.core.core')
 
-local class = Libs.middleclass
 local Node = Core.Node
 
 --- @class ViewItemVerticalScroll

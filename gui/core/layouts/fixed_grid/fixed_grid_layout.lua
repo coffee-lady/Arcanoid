@@ -1,7 +1,4 @@
 local BaseLayout = require('gui.core.layouts.base.base_layout')
-local Libs = require('src.libs.libs')
-
-local class = Libs.middleclass
 
 --- @class FixedGridLayout : BaseLayout
 local FixedGridLayout = class('FixedGridLayout', BaseLayout)

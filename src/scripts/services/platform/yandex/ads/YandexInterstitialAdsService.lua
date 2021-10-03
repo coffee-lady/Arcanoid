@@ -1,10 +1,7 @@
 local App = require('src.app')
-local UseCases = require('src.scripts.use_cases.use_cases')
 local YandexAdapter = require('src.scripts.include.yandex.yandex')
 
 local InterstitialAdsAdapter = YandexAdapter.Ads.InterstitialAds
-
-local AdsUseCases = UseCases.Ads
 
 local Debug = App.libs.debug
 
@@ -21,12 +18,16 @@ local function exec(func, ...)
     end
 end
 
-local YandexInterstitialAdsService = {}
+--- @class InterstitialAdsService
+local YandexInterstitialAdsService = class('YandexInterstitialAdsService')
 
-function YandexInterstitialAdsService:init(player_data_storage, global_gui_caller_service)
+YandexInterstitialAdsService.__cparams = {'player_data_storage', 'global_gui_caller_service', 'use_case_interstitial_ad'}
+
+function YandexInterstitialAdsService:initialize(player_data_storage, global_gui_caller_service, use_case_interstitial_ad)
     self.debug = Debug('[Yandex] InterstitialAdsService', DEBUG)
     self.player_data_storage = player_data_storage
     self.global_gui_caller_service = global_gui_caller_service
+    self.use_case_interstitial_ad = use_case_interstitial_ad
 
     InterstitialAdsAdapter:init_timer(IntConfig.delay, FILE, KEY_TIMER, self.player_data_storage)
 
@@ -50,7 +51,7 @@ function YandexInterstitialAdsService:show_on_game_end(callbacks)
 end
 
 function YandexInterstitialAdsService:show_with_probability(probability, callbacks)
-    if not AdsUseCases.InterstitialAdsUseCases:is_available() then
+    if not self.use_case_interstitial_ad:is_available() then
         self.debug:log('passed_levels < start_level - 1')
         return
     end
@@ -77,7 +78,7 @@ end
 
 function YandexInterstitialAdsService:_on_was_shown()
     self.global_gui_caller_service:call(MSG.ads._resume_interstitial_timer)
-    AdsUseCases.InterstitialAdsUseCases:on_interstitial_view()
+    self.use_case_interstitial_ad:on_interstitial_view()
 end
 
 return YandexInterstitialAdsService

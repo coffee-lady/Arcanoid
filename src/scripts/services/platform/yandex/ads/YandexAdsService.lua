@@ -6,13 +6,17 @@ local RewardedAds = require('src.scripts.services.platform.yandex.ads.YandexRewa
 local MSG = App.constants.msg
 
 local Notifier = App.libs.notifier
+local Luject = App.libs.luject
 
-local YandexAdsService = {}
+--- @class AdsService
+local YandexAdsService = class('YandexAdsService')
 
-function YandexAdsService:init(player_data_storage, global_gui_caller_service)
-    InterstitialAds:init(player_data_storage, global_gui_caller_service)
-    RewardedAds:init(player_data_storage)
-    BannerAds:init(player_data_storage)
+YandexAdsService.__cparams = {'player_data_storage', 'global_gui_caller_service'}
+
+function YandexAdsService:initialize(player_data_storage, global_gui_caller_service)
+    self.interstitial = Luject:resolve_class(InterstitialAds)
+    self.rewarded = Luject:resolve_class(RewardedAds)
+    self.banner = Luject:resolve_class(BannerAds)
 
     self.enabled = true
     self.is_online = false
@@ -29,7 +33,7 @@ function YandexAdsService:disable_ads()
 end
 
 function YandexAdsService:subscribe()
-    RewardedAds:subscribe()
+    self.rewarded:subscribe()
     self.error_notifier:subscribe()
 end
 
@@ -42,7 +46,7 @@ function YandexAdsService:show_banner()
         return false
     end
 
-    return BannerAds:show()
+    return self.banner:show()
 end
 
 function YandexAdsService:hide_banner()
@@ -50,7 +54,7 @@ function YandexAdsService:hide_banner()
         return false
     end
 
-    return BannerAds:hide()
+    return self.banner:hide()
 end
 
 function YandexAdsService:show_interstitial_on_game_start(callbacks)
@@ -62,7 +66,7 @@ function YandexAdsService:show_interstitial_on_game_start(callbacks)
         return false
     end
 
-    return InterstitialAds:show_on_game_start(callbacks)
+    return self.interstitial:show_on_game_start(callbacks)
 end
 
 function YandexAdsService:show_interstitial_on_game_end(callbacks)
@@ -74,11 +78,11 @@ function YandexAdsService:show_interstitial_on_game_end(callbacks)
         return false
     end
 
-    return InterstitialAds:show_on_game_end(callbacks)
+    return self.interstitial:show_on_game_end(callbacks)
 end
 
 function YandexAdsService:get_interstitial_views_count()
-    return InterstitialAds:get_views_count()
+    return self.interstitial:get_views_count()
 end
 
 function YandexAdsService:show_rewarded()
@@ -87,7 +91,7 @@ function YandexAdsService:show_rewarded()
         return false, false
     end
 
-    return RewardedAds:show_on_reward()
+    return self.rewarded:show_on_reward()
 end
 
 function YandexAdsService:on_online()

@@ -1,7 +1,4 @@
 local Transition = require('gui.transitions.Transition.Transition')
-local Libs = require('src.libs.libs')
-
-local class = Libs.middleclass
 
 local WidgetTransition = class('WidgetTransition')
 

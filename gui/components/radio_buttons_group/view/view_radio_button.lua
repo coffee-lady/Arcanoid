@@ -1,11 +1,8 @@
-local Libs = require('src.libs.libs')
 local Core = require('gui.core.core')
 local Widget = require('gui.widget.widget')
 
 local BoxNode = Core.BoxNode
 local TextNode = Core.TextNode
-
-local class = Libs.middleclass
 
 --- @class RadioButtonView : Widget
 local RadioButtonView = class('RadioButtonView', Widget)
@@ -13,7 +10,7 @@ local RadioButtonView = class('RadioButtonView', Widget)
 function RadioButtonView:initialize(context_services, id, gui_nodes, params)
     Widget.initialize(self, context_services)
 
-    self.localization = context_services.localization
+    self.localization_service = context_services.localization
     self.ui_service = context_services.ui_service
 
     local ids = params.ID
@@ -43,7 +40,7 @@ function RadioButtonView:initialize(context_services, id, gui_nodes, params)
 end
 
 function RadioButtonView:init()
-    local title_node_text = self.localization:get_localized_text(self.params.localization_key)[self.id]
+    local title_node_text = self.localization_service:get_localized_text(self.params.localization_key)[self.id]
     self.nodes.title:set_text(title_node_text)
 
     if self.params.enabled ~= self.id then

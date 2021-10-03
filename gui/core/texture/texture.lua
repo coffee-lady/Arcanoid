@@ -1,7 +1,3 @@
-local Libs = require('src.libs.libs')
-
-local class = Libs.middleclass
-
 --- @class Texture
 local Texture = class('Texture')
 

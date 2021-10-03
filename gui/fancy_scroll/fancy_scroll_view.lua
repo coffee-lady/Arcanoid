@@ -1,16 +1,12 @@
-local Libs = require('src.libs.libs')
 local Scroller = require('gui.fancy_scroll.core.scroller')
 local CoreScrollView = require('gui.fancy_scroll.core.core_scroll_view')
 local Scrollbar = require('gui.fancy_scroll.scrollbar.scrollbar')
 local Event = require('gui.fancy_scroll.helper.event.event')
 local Easing = require('gui.fancy_scroll.helper.easing_func')
 
-local class = Libs.middleclass
-
 --- @class FancyScrollView : CoreScrollView
 local FancyScrollView = class('FancyScrollView', CoreScrollView)
 
-FancyScrollView.__cparams = {}
 FancyScrollView.Easing = Easing
 
 function FancyScrollView:initialize(viewport_node, view_creator, options)

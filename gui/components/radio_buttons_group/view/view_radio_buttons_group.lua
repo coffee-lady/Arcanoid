@@ -1,12 +1,9 @@
-local Libs = require('src.libs.libs')
 local Core = require('gui.core.core')
 local Widget = require('gui.widget.widget')
 local Constants = require('gui.constants.gui_constants')
 local ButtonView = require('gui.components.radio_buttons_group.view.view_radio_button')
 
 local NodeFactory = Core.NodeFactory
-
-local class = Libs.middleclass
 
 --- @class RadioButtonsGroupView : Widget
 local RadioButtonsGroupView = class('RadioButtonsGroupView', Widget)

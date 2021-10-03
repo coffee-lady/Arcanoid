@@ -1,8 +1,5 @@
 local App = require('src.app')
 local Items = require('src.scripts.services.platform.ok.store.items.items')
-local UseCases = require('src.scripts.use_cases.use_cases')
-
-local PaymentsUseCases = UseCases.Payments
 
 local Debug = App.libs.debug
 local Async = App.libs.async
@@ -21,19 +18,18 @@ local KEY_TO_ITEM = {
     no_ads = Items.ItemDisableAds,
 }
 
-local OKStoreService = {}
+--- @class OKStoreService
+local OKStoreService = class('OKStoreService')
 
-function OKStoreService:init(services)
+OKStoreService.__cparams = {'payments_service', 'event_bus', 'use_case_get_shown_products', 'use_case_finish_special_offer', 'use_case_find_product'}
+
+function OKStoreService:initialize(payments_service, event_bus, use_case_get_shown_products, use_case_finish_special_offer, use_case_find_product)
     --- @type PaymentsService
-    self.payments_service = services.payments_service
-    self.event_bus = services.event_bus
-    self.services = services
-
-    PaymentsUseCases.StoreApplyProductUseCase:update_services(services)
-    PaymentsUseCases.StoreGetShownProductsUseCase:update_services(services)
-    PaymentsUseCases.StorePurchaseUseCase:update_services(services)
-    PaymentsUseCases.StorePurchaseUseCase:set_global_callbacks()
-    PaymentsUseCases.CreateStorePackUseCase:update_services(services)
+    self.payments_service = payments_service
+    self.event_bus = event_bus
+    self.use_case_get_shown_products = use_case_get_shown_products
+    self.use_case_finish_special_offer = use_case_finish_special_offer
+    self.use_case_find_product = use_case_find_product
 
     self.debug = Debug('[OK] StoreService', DEBUG)
 
@@ -47,7 +43,7 @@ function OKStoreService:init(services)
 end
 
 function OKStoreService:subscribe()
-    PaymentsUseCases.StorePurchaseUseCase.starter_pack_notifier:subscribe()
+
 end
 
 function OKStoreService:apply_purchased_not_consumable_items()
@@ -63,41 +59,44 @@ end
 function OKStoreService:_process_payments_catalog()
     for i = 1, #self.payments_catalog do
         local purchase_product = self.payments_catalog[i]
-        self.shop_catalog[i] = PaymentsUseCases.CreateStorePackUseCase:create_pack(purchase_product, KEY_TO_ITEM)
     end
 end
 
 function OKStoreService:get_products_to_show()
-    return PaymentsUseCases.StoreGetShownProductsUseCase:get_products_to_show(self.shop_catalog)
-end
-
-function OKStoreService:get_starter_pack()
-    return self:_find_product(STARTER_PACK_ID)
-end
-
-function OKStoreService:get_starter_pack_replacer()
-    return self:_find_product(STARTER_PACK_REPLACER_ID)
+    return self.use_case_get_shown_products:get_products_to_show(self.shop_catalog)
 end
 
 function OKStoreService:get_catalog()
     return self.shop_catalog
 end
 
-function OKStoreService:has_starter_pack_in_purchase_list()
-    return self.payments_service:has_in_wallet('all_themes') and self.payments_service:has_in_wallet('no_ads')
-end
-
 --- @param product PurchasePackProductModel
 function OKStoreService:purchase_async(product)
-    return PaymentsUseCases.StorePurchaseUseCase:purchase_async(product, self.shop_catalog)
-end
+    if not self.auth_service:is_authorized() then
+        return nil, 'Error: not authorized'
+    end
 
-function OKStoreService:on_auth_attempt(data)
-    PaymentsUseCases.StorePurchaseUseCase:retry_last_purchase_attempt(self.shop_catalog)
+    local is_on_special_offer = product:is_on_special_offer()
+    local id = is_on_special_offer and product:get_offer_id() or product:get_id()
+    local token, err = self.payments_service:purchase_async(id)
+
+    if not token then
+        return token, err
+    end
+
+    if is_on_special_offer then
+        self.use_case_finish_special_offer:finish_special_offer(product)
+    end
+
+    if product:is_consumable() then
+        self.payments_service:consume_purchase_async(token)
+    end
+
+    return token, err
 end
 
 function OKStoreService:_find_product(product_id)
-    return PaymentsUseCases.StoreFindProductUseCase:find_product(product_id, self.shop_catalog)
+    return self.use_case_find_product:find_product(product_id, self.shop_catalog)
 end
 
 return OKStoreService

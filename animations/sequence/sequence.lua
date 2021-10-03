@@ -1,6 +1,3 @@
-local Libs = require('src.libs.libs')
-local class = Libs.middleclass
-
 local SequencePart = require('animations.sequence.sequence_part')
 local SequenceExecutorCallback = require('animations.sequence.sequence_executor_callback')
 

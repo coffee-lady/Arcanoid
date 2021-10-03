@@ -1,8 +1,6 @@
-local Libs = require('src.libs.libs')
 local Core = require('gui.core.core')
 local FancyScroll = require('gui.fancy_scroll.fancy_scroll')
 
-local class = Libs.middleclass
 local GUINode = Core.Node
 
 local ScrollController = class('ScrollController')

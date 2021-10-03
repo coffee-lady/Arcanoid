@@ -24,9 +24,12 @@ local FILE_KEY_TO_OBJECT_KEY = {
     lang = KEY_LANG,
 }
 
-local YandexPlayerDataStorage = {}
+--- @class PlayerDataStorage
+local YandexPlayerDataStorage = class('YandexPlayerDataStorage')
 
-function YandexPlayerDataStorage:init(auth_service)
+YandexPlayerDataStorage.__cparams = {'auth_service'}
+
+function YandexPlayerDataStorage:initialize(auth_service)
     self.debug = Debug('[Yandex] PlayerDataStorage', DEBUG)
 
     self.data = {}

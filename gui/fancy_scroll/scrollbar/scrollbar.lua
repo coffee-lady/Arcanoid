@@ -1,9 +1,7 @@
-local Libs = require('src.libs.libs')
+local Math = require('src.libs.tools.math.math')
 local Core = require('gui.core.core')
 local Event = require('gui.fancy_scroll.helper.event.event')
 
-local class = Libs.middleclass
-local Math = Libs.math
 local Node = Core.Node
 
 local BaseScrollbar = class('BaseScrollbar', Node)

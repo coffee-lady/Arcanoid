@@ -1,8 +1,11 @@
 local YandexAdapter = require('src.scripts.include.yandex.yandex')
 
-local YandexPlatformService = {}
+--- @class PlatformService
+local YandexPlatformService = class('YandexPlatformService')
 
-function YandexPlatformService:init(event_bus)
+YandexPlatformService.__cparams = {'event_bus'}
+
+function YandexPlatformService:initialize(event_bus)
     YandexAdapter.init(event_bus)
 end
 

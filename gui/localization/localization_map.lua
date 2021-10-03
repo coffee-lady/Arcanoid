@@ -1,7 +1,3 @@
-local Libs = require('src.libs.libs')
-
-local class = Libs.middleclass
-
 local LocalizationMap = class('LocalizationMap')
 
 -- {
@@ -12,8 +8,8 @@ local LocalizationMap = class('LocalizationMap')
 --         vars = {...}
 --     },
 -- }
-function LocalizationMap:initialize(context_services, texts_key, map)
-    self.localization = context_services.localization
+function LocalizationMap:initialize(localization_service, texts_key, map)
+    self.localization_service = localization_service
     self.texts_key = texts_key
 
     self.map = {}
@@ -29,7 +25,7 @@ function LocalizationMap:add(data)
 end
 
 function LocalizationMap:localize(data)
-    local text_data = self.localization:get_localized_text(self.texts_key, data.vars)
+    local text_data = self.localization_service:get_localized_text(self.texts_key, data.vars)
     data.object:set_text(text_data[data.key])
 end
 

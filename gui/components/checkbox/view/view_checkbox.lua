@@ -1,11 +1,8 @@
-local Libs = require('src.libs.libs')
 local Core = require('gui.core.core')
 local Widget = require('gui.widget.widget')
 
 local BoxNode = Core.BoxNode
 local TextNode = Core.TextNode
-
-local class = Libs.middleclass
 
 --- @class CheckboxView : Widget
 local CheckboxView = class('CheckboxView', Widget)
@@ -13,7 +10,7 @@ local CheckboxView = class('CheckboxView', Widget)
 function CheckboxView:initialize(context_services, ids, gap)
     Widget.initialize(self, context_services, true)
 
-    self.localization = context_services.localization
+    self.localization_service = context_services.localization
     self.ui_service = context_services.ui_service
 
     self.nodes = {
@@ -51,7 +48,7 @@ function CheckboxView:uncheck()
 end
 
 function CheckboxView:localize(key, vars)
-    local text = self.localization:get_localized_text(key, vars)
+    local text = self.localization_service:get_localized_text(key, vars)
     self:set_text(text)
 end
 

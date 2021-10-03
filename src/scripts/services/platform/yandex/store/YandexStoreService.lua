@@ -1,8 +1,5 @@
 local App = require('src.app')
-local UseCases = require('src.scripts.use_cases.use_cases')
 local Items = require('src.scripts.services.platform.yandex.store.items.items')
-
-local PaymentsUseCases = UseCases.Payments
 
 local KEY_TO_ITEM = {
     hints = Items.ItemAddHints,
@@ -16,22 +13,20 @@ local Async = App.libs.async
 
 local MSG = App.constants.msg
 local PaymentsConfig = App.config.payments
-local STARTER_PACK_ID = PaymentsConfig.starter_pack_id
-local STARTER_PACK_REPLACER_ID = PaymentsConfig.starter_pack_replacer_id
 local DEBUG = App.config.debug_mode.StoreService
 
-local YandexStoreService = {}
+--- @class StoreService
+local YandexStoreService = class('YandexStoreService')
 
-function YandexStoreService:init(services)
+YandexStoreService.__cparams = {'payments_service', 'event_bus', 'use_case_get_shown_products', 'use_case_finish_special_offer', 'use_case_find_product'}
+
+function YandexStoreService:initialize(payments_service, event_bus, use_case_get_shown_products, use_case_finish_special_offer, use_case_find_product)
     --- @type PaymentsService
-    self.payments_service = services.payments_service
-    self.event_bus = services.event_bus
-    self.services = services
-
-    PaymentsUseCases.StoreApplyProductUseCase:update_services(services)
-    PaymentsUseCases.StoreGetShownProductsUseCase:update_services(services)
-    PaymentsUseCases.StorePurchaseUseCase:update_services(services)
-    PaymentsUseCases.StorePurchaseUseCase:set_global_callbacks()
+    self.payments_service = payments_service
+    self.event_bus = event_bus
+    self.use_case_get_shown_products = use_case_get_shown_products
+    self.use_case_finish_special_offer = use_case_finish_special_offer
+    self.use_case_find_product = use_case_find_product
 
     self.debug = Debug('[Yandex] StoreService', DEBUG)
 
@@ -40,16 +35,14 @@ function YandexStoreService:init(services)
 
     self:_process_payments_catalog()
     self:apply_purchased_not_consumable_items()
-
-    self.event_bus:on(MSG.auth.auth_attempt, self.on_auth_attempt, self)
 end
 
 function YandexStoreService:subscribe()
-    PaymentsUseCases.StorePurchaseUseCase.starter_pack_notifier:subscribe()
+
 end
 
 function YandexStoreService:unsubscribe()
-    PaymentsUseCases.StorePurchaseUseCase.starter_pack_notifier:unsubscribe()
+
 end
 
 function YandexStoreService:apply_purchased_not_consumable_items()
@@ -58,7 +51,7 @@ function YandexStoreService:apply_purchased_not_consumable_items()
         local product_id = product:get_id()
 
         if self:has_in_purchase_list(product_id) then
-            PaymentsUseCases.ApplyStorePackUseCases:apply_not_consumable(product)
+
         end
     end
 end
@@ -71,24 +64,32 @@ function YandexStoreService:_process_payments_catalog()
 end
 
 function YandexStoreService:get_products_to_show()
-    return PaymentsUseCases.StoreGetShownProductsUseCase:get_products_to_show(self.shop_catalog)
-end
-
-function YandexStoreService:get_starter_pack()
-    return self:find_product(STARTER_PACK_ID)
-end
-
-function YandexStoreService:get_starter_pack_replacer()
-    return self:find_product(STARTER_PACK_REPLACER_ID)
+    return self.use_case_get_shown_products:get_products_to_show(self.shop_catalog)
 end
 
 --- @param product PurchasePackProductModel
 function YandexStoreService:purchase_async(product)
-    return PaymentsUseCases.StorePurchaseUseCase:purchase_async(product, self.shop_catalog)
-end
+    if not self.auth_service:is_authorized() then
+        return nil, 'Error: not authorized'
+    end
 
-function YandexStoreService:on_auth_attempt(data)
-    PaymentsUseCases.StorePurchaseUseCase:retry_last_purchase_attempt(self.shop_catalog)
+    local is_on_special_offer = product:is_on_special_offer()
+    local id = is_on_special_offer and product:get_offer_id() or product:get_id()
+    local token, err = self.payments_service:purchase_async(id)
+
+    if not token then
+        return token, err
+    end
+
+    if is_on_special_offer then
+        self.use_case_finish_special_offer:finish_special_offer(product)
+    end
+
+    if product:is_consumable() then
+        self.payments_service:consume_purchase_async(token)
+    end
+
+    return token, err
 end
 
 function YandexStoreService:get_catalog()
@@ -103,12 +104,8 @@ function YandexStoreService:has_in_purchase_list(product_id)
     return self.payments_service:has_in_purchase_list(product_id)
 end
 
-function YandexStoreService:has_starter_pack_in_purchase_list()
-    return self.payments_service:has_in_purchase_list(STARTER_PACK_ID)
-end
-
 function YandexStoreService:find_product(product_id)
-    return PaymentsUseCases.StoreFindProductUseCase:find_product(product_id, self.shop_catalog)
+    return self.use_case_find_product:find_product(product_id, self.shop_catalog)
 end
 
 return YandexStoreService

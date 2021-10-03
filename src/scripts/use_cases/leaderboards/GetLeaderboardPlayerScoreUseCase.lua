@@ -4,11 +4,14 @@ local DataStorageConfig = App.config.data_storage
 local FILE = DataStorageConfig.file
 local KEY_ADDITIONAL_MASTERY_POINTS = DataStorageConfig.keys.additional_mastery_points
 
---- @type GetLeaderboardPlayerScoreUseCase
-local GetLeaderboardPlayerScoreUseCase = {}
+--- @class GetLeaderboardPlayerScoreUseCase
+local GetLeaderboardPlayerScoreUseCase = class('GetLeaderboardPlayerScoreUseCase')
 
-function GetLeaderboardPlayerScoreUseCase:update_services(services)
-    self.player_data_storage = services.player_data_storage
+GetLeaderboardPlayerScoreUseCase.__cparams = {'player_data_storage'}
+
+function GetLeaderboardPlayerScoreUseCase:initialize(player_data_storage)
+    --- @type PlayerDataStorage
+    self.player_data_storage = player_data_storage
 end
 
 function GetLeaderboardPlayerScoreUseCase:get_user_score()

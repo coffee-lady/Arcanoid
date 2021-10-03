@@ -2,7 +2,7 @@ local App = require('src.app')
 local AppInstaller = require('src.scripts.app_installer.ok_installer')
 local BootstrapGO = require('src.scripts.scenes.bootstrap.bootstrap_go')
 
-local ScriptWrapper = App.libs.script_wrapper
+local ScriptWrapper = App.libs.ScriptWrapper
 
 local Scene = class('Scene', ScriptWrapper)
 

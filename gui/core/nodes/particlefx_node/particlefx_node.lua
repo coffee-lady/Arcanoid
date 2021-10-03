@@ -1,7 +1,4 @@
-local Libs = require('src.libs.libs')
 local AnimatableNode = require('gui.core.nodes.animatable.animatable_node')
-
-local class = Libs.middleclass
 
 --- @class ParticlefxNode : AnimatableNode
 local ParticlefxNode = class('ParticlefxNode', AnimatableNode)

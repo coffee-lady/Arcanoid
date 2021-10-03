@@ -2,9 +2,12 @@ local App = require('src.app')
 
 local URL = App.constants.urls
 
-local GlobalGUICallerService = {}
+--- @class GlobalGUICallerService
+local GlobalGUICallerService = class('GlobalGUICallerService')
 
-function GlobalGUICallerService:init(scenes_service)
+GlobalGUICallerService.__cparams = {'scenes_service'}
+
+function GlobalGUICallerService:initialize(scenes_service)
     self.scenes_service = scenes_service
     self.callbacks = {}
 end

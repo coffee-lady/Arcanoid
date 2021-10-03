@@ -8,6 +8,7 @@ local PaymentsAdapter = YandexAPI.Payments
 local Array = App.libs.array
 local Debug = App.libs.debug
 local Notifier = App.libs.notifier
+local Luject = App.libs.luject
 
 local PaymentsConfig = App.config.payments
 local OFFER_ID = PaymentsConfig.offers_ids
@@ -15,12 +16,12 @@ local DEBUG = App.config.debug_mode.PaymentsService
 local MSG = App.constants.msg
 
 --- @class PaymentsService
-local YandexPaymentsService = {}
+local YandexPaymentsService = class('YandexPaymentsService')
 
-function YandexPaymentsService:init(services)
-    self.player_data_storage = services.player_data_storage
-    self.auth_service = services.auth_service
-    self.services = services
+YandexPaymentsService.__cparams = {'auth_service'}
+
+function YandexPaymentsService:initialize(auth_service)
+    self.auth_service = auth_service
     self.debug = Debug('[Yandex] PaymentsService', DEBUG)
 
     self.catalog = {}
@@ -65,7 +66,7 @@ function YandexPaymentsService:_check_catalog_item(index, new_item_data)
     end
 
     if not self:_find_product(new_item_data.id) then
-        self.catalog[#self.catalog + 1] = PurchaseProductModel(self.services, new_item_data)
+        self.catalog[#self.catalog + 1] = PurchaseProductModel(new_item_data)
     else
         self.catalog[index]:update(new_item_data)
     end

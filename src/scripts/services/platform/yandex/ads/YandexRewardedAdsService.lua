@@ -1,11 +1,8 @@
 local App = require('src.app')
-local UseCases = require('src.scripts.use_cases.use_cases')
 local YandexAPI = require('src.scripts.include.yandex.yandex')
 
 local RewardedAdsAdapter = YandexAPI.Ads.RewardedAds
 local Algorithm = YandexAPI.Ads.RewardedAdsAlgorithm
-
-local AdsUseCases = UseCases.Ads
 
 local Debug = App.libs.debug
 local Notifier = App.libs.notifier
@@ -17,9 +14,13 @@ local KEY_TIMER = DataStorageConfig.keys.rewarded_timer
 local MSG = App.constants.msg
 local DEBUG = App.config.debug_mode.RewardedAdsService
 
-local YandexRewardedAdsService = {}
+--- @class YandexBannerAdsService
+local YandexRewardedAdsService = class('YandexBannerAdsService')
 
-function YandexRewardedAdsService:init(player_data_storage)
+YandexRewardedAdsService.__cparams = {'player_data_storage', 'use_case_rewarded_ad'}
+
+function YandexRewardedAdsService:initialize(player_data_storage, use_case_rewarded_ad)
+    self.use_case_rewarded_ad = use_case_rewarded_ad
     self.debug = Debug('[Yandex] RewardedAdsService', DEBUG)
 
     RewardedAdsAdapter:init(RewardedConfig.delay, FILE, KEY_TIMER, player_data_storage)
@@ -37,7 +38,7 @@ function YandexRewardedAdsService:show(callbacks)
 end
 
 function YandexRewardedAdsService:show_on_reward(callbacks)
-    if not AdsUseCases.RewardedAdsUseCases:is_available() then
+    if not self.use_case_rewarded_ad:is_available() then
         return false, false
     end
 

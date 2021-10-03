@@ -2,7 +2,7 @@ local App = require('src.app')
 local AppInstaller = require('src.scripts.app_installer.ok_installer')
 local BootstrapGUI = require('src.scripts.scenes.bootstrap.bootstrap_gui')
 
-local ScriptWrapper = App.libs.script_wrapper
+local ScriptWrapper = App.libs.ScriptWrapper
 
 local Scene = class('Scene', ScriptWrapper)
 
@@ -11,6 +11,7 @@ function Scene:initialize()
 end
 
 function Scene:init()
+    AppInstaller:install_services()
     BootstrapGUI:init(AppInstaller)
 end
 

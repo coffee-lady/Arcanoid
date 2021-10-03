@@ -6,11 +6,14 @@ local AuthAdapter = OkAdapter.Auth
 
 local IMAGES_URL = App.config.images_url
 
-local OKAuthService = {}
+--- @class OKAuthService
+local OKAuthService = class('OKAuthService')
+
+OKAuthService.__cparams = {'event_bus', 'global_gui_caller_service'}
 
 OKAuthService.IMAGE_SIZE = AuthAdapter.IMAGE_SIZE
 
-function OKAuthService:init(event_bus, global_gui_caller_service)
+function OKAuthService:initialize(event_bus, global_gui_caller_service)
     AuthAdapter:init()
 
     local photo, photo_url = AuthAdapter:get_current_user_photo_async(IMAGES_URL)

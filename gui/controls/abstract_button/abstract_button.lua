@@ -1,8 +1,5 @@
-local Libs = require('src.libs.libs')
 local BoxNode = require('gui.core.nodes.box_node.box_node')
 local TextNode = require('gui.core.nodes.text_node.text_node')
-
-local class = Libs.middleclass
 
 local BOOTSTRAP_URL = 'bootstrap'
 local ACTION_CLICK = hash('click')
@@ -25,9 +22,9 @@ AbstractButton.BUTTON_CLOSE = 'btn_close'
 
 AbstractButton.BUTTON_CLICKED = hash('btn_clicked')
 
-function AbstractButton:initialize(ids, context_services, on_click)
+function AbstractButton:initialize(ids, scenes_service, on_click)
     --- @type ScenesService
-    self.scenes_service = context_services.scenes_service
+    self.scenes_service = scenes_service
 
     local container_id = ids.container
     local inner_id = ids.inner
@@ -109,9 +106,9 @@ end
 
 function AbstractButton:_post_click_msg(action, is_picked)
     if action.pressed and is_picked then
-        self.scenes_service:post_to_go(BOOTSTRAP_URL, AbstractButton.BUTTON_CLICKED, {
-            type_id = self.type_id,
-        })
+        -- self.scenes_service:post_to_go(BOOTSTRAP_URL, AbstractButton.BUTTON_CLICKED, {
+        --     type_id = self.type_id,
+        -- })
     end
 end
 

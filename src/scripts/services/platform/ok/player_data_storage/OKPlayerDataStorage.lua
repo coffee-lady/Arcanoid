@@ -41,7 +41,10 @@ local FILE_KEY_TO_OBJECT_KEY = {
     lang = KEY_LANG,
 }
 
-local OKPlayerDataStorage = {}
+--- @class OKPlayerDataStorage
+local OKPlayerDataStorage = class('OKPlayerDataStorage')
+
+OKPlayerDataStorage.__cparams = {'auth_service', 'scenes_service'}
 
 function OKPlayerDataStorage:init(auth_service, scenes_service)
     self.auth_service = auth_service
@@ -59,9 +62,7 @@ function OKPlayerDataStorage:init(auth_service, scenes_service)
 end
 
 function OKPlayerDataStorage:on_save_error()
-    if not self.scenes_service:is_visible(URL.data_saving_error_popup) then
-        self.scenes_service:switch_to_scene(URL.data_saving_error_popup)
-    end
+
 end
 
 function OKPlayerDataStorage:load_data_from_server()

@@ -3,8 +3,12 @@ local App = require('src.app')
 local Debug = App.libs.debug
 
 local Config = App.config
+local DEBUG = App.config.debug_mode.PlatformService
 
-local PlatformService = {}
+--- @class PlatformService
+local PlatformService = class('PlatformService')
+
+PlatformService.__cparams = {'event_bus'}
 
 PlatformService.SYSTEM = {
     DARWIN = 'Darwin',
@@ -15,9 +19,7 @@ PlatformService.SYSTEM = {
     IOS = 'iPhone OS',
 }
 
-local DEBUG = App.config.debug_mode.PlatformService
-
-function PlatformService:init(event_bus)
+function PlatformService:initialize(event_bus)
     self.debug = Debug('[PlatformService]', DEBUG)
 
     self.data = {

@@ -1,7 +1,4 @@
-local Libs = require('src.libs.libs')
 local Layouts = require('gui.core.layouts.layouts')
-
-local class = Libs.middleclass
 
 local function get_id(id)
     if type(id) == 'table' then
@@ -14,9 +11,11 @@ end
 --- @class AbstractMenu
 local AbstractMenu = class('AbstractMenu')
 
-function AbstractMenu:initialize(context_services, View, map)
-    self.ui_service = context_services.ui_service
-    self.context_services = context_services
+AbstractMenu.__cparams = {'scenes_service', 'ui_service'}
+
+function AbstractMenu:initialize(scenes_service, ui_service, View, map)
+    self.ui_service = ui_service
+    self.scenes_service = scenes_service
 
     self.View = View
     self.buttons = {}
@@ -34,12 +33,12 @@ end
 
 function AbstractMenu:init_with_nodes(map)
     for id, data in pairs(map) do
-        self.buttons[id] = self.View(data, self.context_services, data.callback)
+        self.buttons[id] = self.View(data, self.scenes_service, data.callback)
     end
 end
 
 function AbstractMenu:add(ids, callback)
-    self.buttons[ids.container] = self.View(ids, self.context_services, callback)
+    self.buttons[ids.container] = self.View(ids, self.scenes_service, callback)
 end
 
 function AbstractMenu:enable_by_id(id)

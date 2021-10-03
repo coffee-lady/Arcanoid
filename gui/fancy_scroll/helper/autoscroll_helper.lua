@@ -1,6 +1,3 @@
-local Libs = require('src.libs.libs')
-local class = Libs.middleclass
-
 local AutoscrollHelper = class('AutoscrollHelper')
 
 function AutoscrollHelper:initialize(default_easing)

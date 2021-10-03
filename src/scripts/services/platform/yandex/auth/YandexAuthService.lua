@@ -8,11 +8,14 @@ local Notifier = App.libs.notifier
 local MSG = App.constants.msg
 local IMAGES_URL = App.config.images_url
 
-local YandexAuthService = {}
+--- @class AuthService
+local YandexAuthService = class('YandexAuthService')
+
+YandexAuthService.__cparams = {'global_gui_caller_service'}
 
 YandexAuthService.IMAGE_SIZE = AuthAdapter.IMAGE_SIZE
 
-function YandexAuthService:init(event_bus, global_gui_caller_service)
+function YandexAuthService:initialize(global_gui_caller_service)
     self.global_gui_caller_service = global_gui_caller_service
     self.success_auth_notifier = Notifier(MSG.auth.success_auth)
     self.auth_attempt_notifier = Notifier(MSG.auth.auth_attempt)
@@ -25,10 +28,10 @@ function YandexAuthService:init(event_bus, global_gui_caller_service)
         self.auth_attempt_notifier:emit(data)
     end)
 
-    local is_authorized = AuthAdapter:init()
-    if is_authorized then
-        self:_set_current_user_data()
-    end
+    -- local is_authorized = AuthAdapter:init()
+    -- if is_authorized then
+    --     self:_set_current_user_data()
+    -- end
 end
 
 function YandexAuthService:on_authenticate(cb)
@@ -96,7 +99,8 @@ function YandexAuthService:get_user()
 end
 
 function YandexAuthService:get_env_lang()
-    return AuthAdapter:get_environment().i18n.lang
+    -- return AuthAdapter:get_environment().i18n.lang
+    return 'en'
 end
 
 function YandexAuthService:get_url_payload()

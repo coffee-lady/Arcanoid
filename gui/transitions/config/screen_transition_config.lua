@@ -1,4 +1,3 @@
-local App = require('src.app')
 local Transition = require('gui.transitions.Transition.Transition')
 
 local Settings = {

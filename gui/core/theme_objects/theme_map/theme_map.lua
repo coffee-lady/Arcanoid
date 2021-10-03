@@ -1,9 +1,6 @@
-local Libs = require('src.libs.libs')
 local ThemeObject = require('gui.core.theme_objects.theme_object.theme_object')
 local StaticThemeObject = require('gui.core.theme_objects.static_theme_object.static_theme_object')
 local NodesList = require('gui.core.nodes.nodes_list.nodes_list')
-
-local class = Libs.middleclass
 
 local ThemeMap = class('ThemeMap')
 

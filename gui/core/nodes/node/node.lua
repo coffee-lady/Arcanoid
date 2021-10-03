@@ -1,6 +1,3 @@
-local Libs = require('src.libs.libs')
-local class = Libs.middleclass
-
 --- @class Node
 --- @field target table
 local Node = class('Node')

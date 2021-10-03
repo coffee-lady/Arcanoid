@@ -5,9 +5,11 @@ local FILE = DataStorageConfig.file
 local KEY_PREV_GAME_DATA = DataStorageConfig.keys.previous_game_data
 
 --- @class ProgressService
-local ProgressService = {}
+local ProgressService = class('ProgressService')
 
-function ProgressService:init(player_data_storage, leaderboards_service)
+ProgressService.__cparams = {'player_data_storage', 'leaderboards_service'}
+
+function ProgressService:initialize(player_data_storage, leaderboards_service)
     self.player_data_storage = player_data_storage
     self.leaderboards_service = leaderboards_service
 

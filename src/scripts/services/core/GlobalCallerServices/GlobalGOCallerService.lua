@@ -4,9 +4,12 @@ local URL = App.constants.urls
 
 local unpack = _G.unpack or table.unpack
 
-local GlobalGOCallerService = {}
+--- @class GlobalGOCallerService
+local GlobalGOCallerService = class('GlobalGOCallerService')
 
-function GlobalGOCallerService:init(scenes_service)
+GlobalGOCallerService.__cparams = {'scenes_service'}
+
+function GlobalGOCallerService:initialize(scenes_service)
     self.scenes_service = scenes_service
     self.callbacks = {}
 end

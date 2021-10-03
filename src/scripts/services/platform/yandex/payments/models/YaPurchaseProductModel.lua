@@ -6,7 +6,7 @@ local Products = PaymentsConfig.products
 --- @type PurchaseProductModel
 local YaPurchaseProductModel = class('PurchaseProductModel')
 
-function YaPurchaseProductModel:initialize(services, purchase_data)
+function YaPurchaseProductModel:initialize(purchase_data)
     self.id = purchase_data.id
     self.price = purchase_data.price
 

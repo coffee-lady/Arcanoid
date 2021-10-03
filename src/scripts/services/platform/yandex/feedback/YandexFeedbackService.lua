@@ -1,25 +1,24 @@
 local App = require('src.app')
-local UseCases = require('src.scripts.use_cases.use_cases')
 local YandexAPI = require('src.scripts.include.yandex.yandex')
 
-local FeedbackUseCases = UseCases.Feedback
 local FeedbackAdapter = YandexAPI.Feedback
 
 local Debug = App.libs.debug
 
 local URL = App.constants.urls
+local DataStorageConfig = App.config.data_storage
+local FILE = DataStorageConfig.file
+local KEY_WAS_FEEDBACK_REQUESTED = DataStorageConfig.keys.was_feedback_requested
 local DEBUG = App.config.debug_mode.FeedbackService
 local DEBUG_LOCAL = App.config.debug_mode.FeedbackLocalVersion
 
---- @class FeedbackService
-local YandexFeedbackService = {}
+--- @class YandexFeedbackService
+local YandexFeedbackService = class('YandexFeedbackService')
 
-function YandexFeedbackService:init(services)
-    self.scenes_service = services.scenes_service
+YandexFeedbackService.__cparams = {'player_data_storage'}
 
-    FeedbackUseCases.FeedbackCanReviewUseCase:update_services(services)
-    FeedbackUseCases.RequestFeedbackUseCase:update_services(services)
-    FeedbackUseCases.RewardForFeedbackUseCase:update_services(services)
+function YandexFeedbackService:initialize(player_data_storage)
+    self.player_data_storage = player_data_storage
 
     self.debug = Debug('[Yandex] YandexFeedbackService', DEBUG)
     self.is_online = true
@@ -40,7 +39,7 @@ function YandexFeedbackService:_try_show_review_popup_async()
     end
 
     self.debug:log('requesting feedback')
-    FeedbackUseCases.RequestFeedbackUseCase:request_feedback()
+    self.player_data_storage:set(FILE, KEY_WAS_FEEDBACK_REQUESTED, true)
 end
 
 function YandexFeedbackService:request_review_async()
@@ -59,7 +58,6 @@ function YandexFeedbackService:request_review_async()
 
     if is_feedback_sent then
         self.debug:log('rewarding feedback')
-        FeedbackUseCases.RewardForFeedbackUseCase:reward_for_review()
     end
 
     if not is_feedback_sent then
@@ -74,7 +72,13 @@ function YandexFeedbackService:_is_available()
         return true
     end
 
-    return self.is_online and FeedbackAdapter:is_reviewable() and FeedbackUseCases.FeedbackCanReviewUseCase:can_review()
+    local was_feedback_requested = self.player_data_storage:get(FILE, KEY_WAS_FEEDBACK_REQUESTED)
+
+    if was_feedback_requested then
+        return false
+    end
+
+    return self.is_online and FeedbackAdapter:is_reviewable()
 end
 
 return YandexFeedbackService

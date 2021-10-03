@@ -1,9 +1,7 @@
-local Libs = require('src.libs.libs')
 local Core = require('gui.core.core')
 local Widget = require('gui.widget.widget')
 local SliderIndicatorView = require('gui.components.slider.view.indicators.indicator_view.slider_indicator_view')
 
-local class = Libs.middleclass
 local BoxNode = Core.BoxNode
 
 local ACTION_CLICK = hash('click')

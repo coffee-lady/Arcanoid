@@ -4,10 +4,13 @@ local URL = App.constants.urls
 local LeaderboardsConfig = App.config.leaderboards
 
 --- @class ShowLeaderboardsUseCase
-local ShowLeaderboardsUseCase = {}
+local ShowLeaderboardsUseCase = class('ShowLeaderboardsUseCase')
 
-function ShowLeaderboardsUseCase:update_services(services)
-    self.scenes_service = services.scenes_service
+ShowLeaderboardsUseCase.__cparams = {'scenes_service'}
+
+function ShowLeaderboardsUseCase:initialize(scenes_service)
+    --- @type ScenesService
+    self.scenes_service = scenes_service
 end
 
 function ShowLeaderboardsUseCase:show_leaderboards()

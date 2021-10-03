@@ -11,9 +11,12 @@ local GATE_TIME = 0.3
 local Async = App.libs.async
 local Debug = App.libs.debug
 
-local SoundService = {}
+--- @class SoundService
+local SoundService = class('SoundService')
 
-function SoundService:init(global_go_caller_service, player_data_storage)
+SoundService.__cparams = {'global_go_caller_service', 'player_data_storage'}
+
+function SoundService:initialize(global_go_caller_service, player_data_storage)
     self.global_go_caller_service = global_go_caller_service
     self.player_data_storage = player_data_storage
     self.sounds_disabled = self.player_data_storage:get(FILE, KEY_SOUNDS_DISABLED)

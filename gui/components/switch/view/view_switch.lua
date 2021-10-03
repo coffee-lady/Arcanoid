@@ -1,4 +1,3 @@
-local Libs = require('src.libs.libs')
 local Core = require('gui.core.core')
 local Widget = require('gui.widget.widget')
 
@@ -6,15 +5,13 @@ local BoxNode = Core.BoxNode
 
 local TOGGLE_DURATION = 0.25
 
-local class = Libs.middleclass
-
 --- @class SwitchView : Widget
 local SwitchView = class('SwitchView', Widget)
 
 function SwitchView:initialize(context_services, ids, enabled)
     Widget.initialize(self, context_services)
 
-    self.localization = context_services.localization
+    self.localization_service = context_services.localization
     self.ui_service = context_services.ui_service
 
     self.nodes = {

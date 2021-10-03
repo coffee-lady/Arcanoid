@@ -1,7 +1,4 @@
 local App = require('src.app')
-local UseCases = require('src.scripts.use_cases.use_cases')
-
-local PaymentsUseCases = UseCases.Payments
 
 local PaymentsConfig = App.config.payments
 local STARTER_PACK_ID = PaymentsConfig.starter_pack_id
@@ -9,17 +6,16 @@ local DEBUG = App.config.debug_mode.StoreService
 
 local Debug = App.libs.debug
 
-local StorePromotionsService = {}
+--- @class StorePromotionsService
+local StorePromotionsService = class('StorePromotionsService')
 
-function StorePromotionsService:init(services)
-    self.store_service = services.store_service
+StorePromotionsService.__cparams = {'store_service', 'use_case_start_special_offer', 'use_case_finish_special_offer', 'use_case_find_product'}
 
-    PaymentsUseCases.OfferOnInterstitialViewUseCase:update_services(services)
-    PaymentsUseCases.ShowOfferUseCase:update_services(services)
-    PaymentsUseCases.FinishOfferUseCase:update_services(services)
-    PaymentsUseCases.FinishOfferUseCase:set_global_callbacks()
-    PaymentsUseCases.StartOfferUseCase:update_services(services)
-    PaymentsUseCases.StartOfferUseCase:set_global_callbacks()
+function StorePromotionsService:initialize(store_service, use_case_start_special_offer, use_case_finish_special_offer, use_case_find_product)
+    self.store_service = store_service
+    self.use_case_start_special_offer = use_case_start_special_offer
+    self.use_case_finish_special_offer = use_case_finish_special_offer
+    self.use_case_find_product = use_case_find_product
 
     self.debug = Debug('StorePromotionsService', DEBUG)
 
@@ -27,21 +23,17 @@ function StorePromotionsService:init(services)
 end
 
 function StorePromotionsService:subscribe()
-    PaymentsUseCases.StartOfferUseCase.promotion_notifier:subscribe()
-    PaymentsUseCases.FinishOfferUseCase.offer_finished_notifier:subscribe()
+    self.use_case_start_special_offer.promotion_notifier:subscribe()
+    self.use_case_finish_special_offer.offer_finished_notifier:subscribe()
 end
 
 function StorePromotionsService:unsubscribe()
-    PaymentsUseCases.StartOfferUseCase.promotion_notifier:unsubscribe()
-    PaymentsUseCases.FinishOfferUseCase.offer_finished_notifier:unsubscribe()
-end
-
-function StorePromotionsService:on_interstitial_view(count)
-    PaymentsUseCases.OfferOnInterstitialViewUseCase:on_interstitial_view(count, self.shop_catalog)
+    self.use_case_start_special_offer.promotion_notifier:unsubscribe()
+    self.use_case_finish_special_offer.offer_finished_notifier:unsubscribe()
 end
 
 function StorePromotionsService:show_starter_pack_offer()
-    PaymentsUseCases.ShowOfferUseCase:show_special_offer()
+
 end
 
 function StorePromotionsService:begin_starter_pack_promotion()
@@ -50,7 +42,7 @@ end
 
 function StorePromotionsService:start_special_offer(product_id)
     local product = self:_find_product(product_id)
-    PaymentsUseCases.StartOfferUseCase:start_special_offer(product)
+    self.use_case_start_special_offer:start_special_offer(product)
 end
 
 function StorePromotionsService:is_special_offer_in_store()
@@ -66,7 +58,7 @@ function StorePromotionsService:is_special_offer_in_store()
 end
 
 function StorePromotionsService:_find_product(product_id)
-    return PaymentsUseCases.StoreFindProductUseCase:find_product(product_id, self.shop_catalog)
+    return self.use_case_find_product:find_product(product_id, self.shop_catalog)
 end
 
 return StorePromotionsService

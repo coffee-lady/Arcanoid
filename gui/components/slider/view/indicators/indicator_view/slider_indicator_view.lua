@@ -1,8 +1,5 @@
-local Libs = require('src.libs.libs')
 local Widget = require('gui.widget.widget')
 local AbstractButton = require('gui.controls.abstract_button.abstract_button')
-
-local class = Libs.middleclass
 
 --- @class SliderIndicatorView : Widget
 local SliderIndicatorView = class('SliderIndicatorView', Widget)

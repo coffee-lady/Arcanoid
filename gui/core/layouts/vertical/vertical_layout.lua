@@ -1,8 +1,5 @@
 local BaseLayout = require('gui.core.layouts.base.base_layout')
-local Libs = require('src.libs.libs')
-
-local class = Libs.middleclass
-local Array = Libs.array
+local Array = require('src.libs.tools.types.array.array')
 
 --- @class VerticalLayout : BaseLayout
 local VerticalLayout = class('VerticalLayout', BaseLayout)

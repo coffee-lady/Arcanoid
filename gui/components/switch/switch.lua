@@ -1,7 +1,4 @@
-local Libs = require('src.libs.libs')
 local View = require('gui.components.switch.view.view_switch')
-
-local class = Libs.middleclass
 
 local BOOTSTRAP_URL = 'bootstrap'
 local ACTION_CLICK = hash('click')

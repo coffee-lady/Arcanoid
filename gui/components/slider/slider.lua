@@ -1,10 +1,7 @@
-local Libs = require('src.libs.libs')
 local ScrollController = require('gui.components.slider.controllers.scroll_controller_slider')
 local SliderIndicatorsView = require('gui.components.slider.view.indicators.slider_indicators_view')
 local SliderArrowsView = require('gui.components.slider.view.arrows.slider_arrows_view')
 local StickyElementView = require('gui.components.slider.view.sticky_element.sticky_element_view')
-
-local class = Libs.middleclass
 
 local ACTION_CLICK = hash('click')
 

@@ -1,8 +1,6 @@
-local Libs = require('src.libs.libs')
 local GUINode = require('gui.core.nodes.node.node')
-local class = Libs.middleclass
-local Easings = Libs.easings
-local Math = Libs.math
+local Math = require('src.libs.tools.math.math')
+local Easings = require('src.libs.tools.easings.easings')
 
 local Animations = require('animations.animations')
 local TweenGUI = require('animations.tween.tween_gui')

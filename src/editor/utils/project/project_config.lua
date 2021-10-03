@@ -1,7 +1,5 @@
-local Class = require('src.libs.tools.middleclass.middleclass')
-
 --- @class ConfigProject
-local ConfigProject = Class.class('ConfigProject')
+local ConfigProject = class('ConfigProject')
 
 local PATERN_SECTION = '^%s*%[([%w_]+)%]%s*$'
 local PATTERN_KEYVALUE = '^%s*([%w_#]+)%s*=%s*(.*)%s*$'

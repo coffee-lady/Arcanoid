@@ -1,5 +1,6 @@
 local App = require('src.app')
-local EventBus = require('src.libs.event_bus.event_bus')
+local CommonServicesInstaller = require('src.scripts.app_installer.common_services_installer')
+local UseCasesInstaller = require('src.scripts.app_installer.use_cases_installer')
 local Services = require('src.scripts.services.services')
 local PlayerDataStorage = require('src.scripts.services.platform.yandex.player_data_storage.YandexPlayerDataStorage')
 local AuthService = require('src.scripts.services.platform.yandex.auth.YandexAuthService')
@@ -10,37 +11,27 @@ local LeaderboardsService = require('src.scripts.services.platform.yandex.leader
 local FeedbackService = require('src.scripts.services.platform.yandex.feedback.YandexFeedbackService')
 local YandexPlatformService = require('src.scripts.services.platform.yandex.YandexPlatformService')
 
+local Luject = App.libs.luject
+
 local YandexInstaller = {}
 
-function YandexInstaller:init()
+function YandexInstaller:install()
+    self:_install_services()
+    UseCasesInstaller:install_use_cases()
+end
+
+function YandexInstaller:_install_services()
     Services.PlatformService:set_target_platform_service(YandexPlatformService)
-end
 
-function YandexInstaller:install(context)
-    self:install_services(context)
-end
+    CommonServicesInstaller:install_services()
 
-function YandexInstaller:install_services(context)
-    context.event_bus = EventBus()
-    context.ui_service = Services.UIService
-    context.scenes_service = Services.ScenesService
-    context.screen_service = Services.ScreenService
-    context.progress_service = Services.ProgressService
-    context.localization = Services.LocalizationService
-    context.local_storage = Services.LocalStorage
-    context.platform_service = Services.PlatformService
-    context.store_promotions_service = Services.StorePromotionsService
-    context.global_gui_caller_service = Services.GlobalGUICallerService
-    context.global_go_caller_service = Services.GlobalGOCallerService
-    context.sound_service = Services.SoundService
-
-    context.player_data_storage = PlayerDataStorage
-    context.payments_service = PaymentsService
-    context.auth_service = AuthService
-    context.ads_service = AdsService
-    context.store_service = StoreService
-    context.leaderboards_service = LeaderboardsService
-    context.feedback_service = FeedbackService
+    Luject:bind('auth_service'):to(AuthService):as_single()
+    Luject:bind('player_data_storage'):to(PlayerDataStorage):as_single()
+    Luject:bind('payments_service'):to(PaymentsService):as_single()
+    Luject:bind('ads_service'):to(AdsService):as_single()
+    Luject:bind('store_service'):to(StoreService):as_single()
+    Luject:bind('leaderboards_service'):to(LeaderboardsService):as_single()
+    Luject:bind('feedback_service'):to(FeedbackService):as_single()
 end
 
 return YandexInstaller

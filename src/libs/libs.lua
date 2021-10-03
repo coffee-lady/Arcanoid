@@ -31,7 +31,10 @@ local Libs = {
     event_bus = require('src.libs.event_bus.event_bus'),
     SubscriptionsMap = require('src.libs.event_bus.subscriptions_map'),
     resources_storage = require('src.libs.resources_storage.resources_storage'),
-    script_wrapper = require('src.libs.script_wrapper.script_wrapper'),
+    ScriptWrapper = require('src.libs.script_wrapper.ScriptWrapper'),
+    luject = require('src.libs.luject.luject'),
+
+    scenes = require('src.libs.scenes.scenes'),
 }
 
 return Libs

@@ -5,13 +5,14 @@ local Notifier = App.libs.notifier
 local MSG = App.constants.msg
 
 --- @class FinishOfferUseCase
-local FinishOfferUseCase = {}
+local FinishOfferUseCase = class('FinishOfferUseCase')
 
-function FinishOfferUseCase:update_services(context_services)
-    self.global_gui_caller_service = context_services.global_gui_caller_service
-end
+FinishOfferUseCase.__cparams = {'global_gui_caller_service'}
 
-function FinishOfferUseCase:set_global_callbacks()
+function FinishOfferUseCase:initialize(global_gui_caller_service)
+    --- @type GlobalGUICallerService
+    self.global_gui_caller_service = global_gui_caller_service
+
     self.offer_finished_notifier = Notifier(MSG.store.offer_finished)
 
     self.global_gui_caller_service:set_callback(MSG.store._end_offer_timer, function()

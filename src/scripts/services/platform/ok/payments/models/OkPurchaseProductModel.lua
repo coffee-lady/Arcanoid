@@ -15,7 +15,7 @@ local OK_CURRENCY_CODE = 'OK'
 local OkPurchaseProductModel = class('OkPurchaseProductModel')
 
 function OkPurchaseProductModel:initialize(services, purchase_data)
-    self.localization = services.localization
+    self.localization_service = services.localization
 
     self.id = purchase_data.id
     self.price = purchase_data.price .. ' ' .. OK_CURRENCY_CODE
@@ -45,7 +45,7 @@ function OkPurchaseProductModel:update(purchase_data)
 end
 
 function OkPurchaseProductModel:get_title()
-    local goods_titles = self.localization:get_localized_text(LKEY_STORE_GOODS)
+    local goods_titles = self.localization_service:get_localized_text(LKEY_STORE_GOODS)
     return goods_titles[self.config.ui_id]
 end
 

@@ -1,7 +1,4 @@
-local Libs = require('src.libs.libs')
 local LongPressDetector = require('gui.drag_and_drop.long_press_detector.long_press_detector')
-
-local class = Libs.middleclass
 
 --- @class DropReceiver
 --- @field private node AnimatableNode

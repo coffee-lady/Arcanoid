@@ -6,9 +6,12 @@ local MSG = App.constants.msg
 
 local Notifier = App.libs.notifier
 
-local OKAdsService = {}
+--- @class OKAdsService
+local OKAdsService = class('OKAdsService')
 
-function OKAdsService:init(player_data_storage, global_gui_caller_service)
+OKAdsService.__cparams = {'player_data_storage', 'global_gui_caller_service'}
+
+function OKAdsService:initialize(player_data_storage, global_gui_caller_service)
     InterstitialAds:init(player_data_storage, global_gui_caller_service)
     RewardedAds:init(player_data_storage)
 

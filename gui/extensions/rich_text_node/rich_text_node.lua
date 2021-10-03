@@ -1,8 +1,5 @@
 local richtext = require('richtext.richtext')
-local Libs = require('src.libs.libs')
-
-local class = Libs.middleclass
-local Array = Libs.array
+local Array = require('src.libs.tools.types.array.array')
 
 --- @class RichTextNode
 --- @field text_metrics table

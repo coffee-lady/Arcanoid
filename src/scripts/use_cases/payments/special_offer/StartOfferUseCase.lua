@@ -5,14 +5,16 @@ local Notifier = App.libs.notifier
 local MSG = App.constants.msg
 
 --- @class StartOfferUseCase
-local StartOfferUseCase = {}
+local StartOfferUseCase = class('StartOfferUseCase')
 
-function StartOfferUseCase:update_services(context_services)
-    self.global_gui_caller_service = context_services.global_gui_caller_service
-    self.player_data_storage = context_services.player_data_storage
-end
+StartOfferUseCase.__cparams = {'player_data_storage', 'global_gui_caller_service'}
 
-function StartOfferUseCase:set_global_callbacks()
+function StartOfferUseCase:initialize(player_data_storage, global_gui_caller_service)
+    --- @type PlayerDataStorage
+    self.player_data_storage = player_data_storage
+    --- @type GlobalGUICallerService
+    self.global_gui_caller_service = global_gui_caller_service
+
     self.promotion_notifier = Notifier(MSG.store.promotion_started)
 
     self.global_gui_caller_service:set_callback(MSG.store._start_offer_timer, function()

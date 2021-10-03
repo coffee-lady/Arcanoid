@@ -1,4 +1,4 @@
-script: "/src/scripts/scenes/screens/start_scene/start_scene.gui_script"
+script: "/src/scripts/scenes/start_scene/start_scene.gui_script"
 fonts {
   name: "Dosis30-Bold"
   font: "/assets/fonts/font/Dosis30-Bold.font"

@@ -1,8 +1,5 @@
 local App = require('src.app')
-local UseCases = require('src.scripts.use_cases.use_cases')
 local OkAdapter = require('src.scripts.include.ok.ok')
-
-local AdsUseCases = UseCases.Ads
 
 local InterstitialAdsAdapter = OkAdapter.Ads.InterstitialAds
 local Debug = App.libs.debug
@@ -20,12 +17,16 @@ local function exec(func, ...)
     end
 end
 
-local OKInterstitialAdsService = {}
+--- @class OKInterstitialAdsService
+local OKInterstitialAdsService = class('OKInterstitialAdsService')
 
-function OKInterstitialAdsService:init(player_data_storage, global_gui_caller_service)
+OKInterstitialAdsService.__cparams = {'player_data_storage', 'global_gui_caller_service', 'use_case_interstitial_ad'}
+
+function OKInterstitialAdsService:initialize(player_data_storage, global_gui_caller_service, use_case_interstitial_ad)
     self.debug = Debug('[OK] InterstitialAdsService', DEBUG)
     self.player_data_storage = player_data_storage
     self.global_gui_caller_service = global_gui_caller_service
+    self.use_case_interstitial_ad = use_case_interstitial_ad
 
     InterstitialAdsAdapter:init_timer(IntConfig.delay, self.player_data_storage)
 
@@ -49,7 +50,7 @@ function OKInterstitialAdsService:show_on_game_end(callbacks)
 end
 
 function OKInterstitialAdsService:show_with_probability(probability, callbacks)
-    if not AdsUseCases.InterstitialAdsUseCases:is_available() then
+    if not self.use_case_interstitial_ad:is_available() then
         self.debug:log('passed_levels < start_level - 1')
         return
     end
@@ -76,7 +77,7 @@ end
 
 function OKInterstitialAdsService:_on_was_shown()
     self.global_gui_caller_service:call(MSG.ads._resume_interstitial_timer)
-    AdsUseCases.InterstitialAdsUseCases:on_interstitial_view()
+    self.use_case_interstitial_ad:on_interstitial_view()
 end
 
 return OKInterstitialAdsService

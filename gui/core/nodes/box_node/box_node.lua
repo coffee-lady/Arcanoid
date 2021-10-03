@@ -1,8 +1,5 @@
-local Libs = require('src.libs.libs')
 local AnimatableNode = require('gui.core.nodes.animatable.animatable_node')
 local Texture = require('gui.core.texture.texture')
-
-local class = Libs.middleclass
 
 --- @class BoxNode : AnimatableNode
 local BoxNode = class('BoxNode', AnimatableNode)

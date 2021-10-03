@@ -1,7 +1,7 @@
 local App = require('src.app')
 local OkAdapter = require('src.scripts.include.ok.ok')
 local Models = require('src.scripts.services.platform.ok.payments.models.models')
-local LocalStorage = require('src.scripts.services.core.local_storage.local_storage')
+local LocalStorage = require('src.scripts.services.core.LocalStorage.LocalStorage')
 
 local PurchaseProductModel = Models.PurchaseProductModel
 local PaymentsAdapter = OkAdapter.Payments
@@ -10,6 +10,7 @@ local Array = App.libs.array
 local Debug = App.libs.debug
 local Notifier = App.libs.notifier
 local Async = App.libs.async
+local Luject = App.libs.luject
 
 local DataStorageConfig = App.config.data_storage
 local FILE = DataStorageConfig.file
@@ -27,13 +28,15 @@ local WALLET_KEY_TO_FILE_KEY = {
     hints = KEY_PAID_HINTS,
 }
 
-local OKPaymentsService = {}
+--- @class OKPaymentsService
+local OKPaymentsService = class('OKPaymentsService')
 
-function OKPaymentsService:init(services)
-    self.player_data_storage = services.player_data_storage
-    self.global_gui_caller_service = services.global_gui_caller_service
-    self.services = services
-    self.auth_service = services.auth_service
+OKPaymentsService.__cparams = {'player_data_storage', 'global_gui_caller_service', 'auth_service'}
+
+function OKPaymentsService:initialize(player_data_storage, global_gui_caller_service, auth_service)
+    self.player_data_storage = player_data_storage
+    self.global_gui_caller_service = global_gui_caller_service
+    self.auth_service = auth_service
     self.debug = Debug('[OK] PaymentsService', DEBUG)
 
     self.catalog = {}
@@ -157,7 +160,7 @@ function OKPaymentsService:_check_catalog_item(index, new_item_data)
     end
 
     if not self:_find_product(new_item_data.id) then
-        self.catalog[#self.catalog + 1] = PurchaseProductModel(self.services, new_item_data)
+        self.catalog[#self.catalog + 1] = Luject:resolve_class(PurchaseProductModel, new_item_data)
     else
         self.catalog[index]:update(new_item_data)
     end
@@ -237,7 +240,7 @@ function OKPaymentsService:_find_product_in_server_catalog(product_id)
         local item_id = product.id
 
         if item_id == product_id then
-            return PurchaseProductModel(self.services, product, function()
+            return Luject:resolve_class(PurchaseProductModel, product, function()
                 self.global_gui_caller_service:call(MSG.store._end_offer_timer)
             end)
         end

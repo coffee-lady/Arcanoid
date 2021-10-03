@@ -1,8 +1,5 @@
 local App = require('src.app')
-local UseCases = require('src.scripts.use_cases.use_cases')
 local PlayerHelper = require('src.scripts.services.platform.yandex.leaderboards.helpers.PlayerHelper')
-
-local LeaderboardsUseCases = UseCases.Leaderboards
 
 local Array = App.libs.array
 

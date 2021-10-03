@@ -1,8 +1,5 @@
-local Libs = require('src.libs.libs')
 local Animations = require('animations.animations')
 local AbstractButton = require('gui.controls.abstract_button.abstract_button')
-
-local class = Libs.middleclass
 
 local DEFAULT = {
     blackout = 0.1,
@@ -14,8 +11,8 @@ local DEFAULT = {
 --- @class Button : AbstractButton
 local Button = class('Button', AbstractButton)
 
-function Button:initialize(ids, context_services, on_click)
-    AbstractButton.initialize(self, ids, context_services, on_click)
+function Button:initialize(ids, scenes_service, on_click)
+    AbstractButton.initialize(self, ids, scenes_service, on_click)
 
     self:_set_animation_pressed()
     self:_set_animation_released()

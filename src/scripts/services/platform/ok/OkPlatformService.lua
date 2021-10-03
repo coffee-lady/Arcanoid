@@ -3,9 +3,12 @@ local OKAPI = require('src.scripts.include.ok.ok')
 
 local ServerConfig = App.config.server[App.config.platform]
 
-local OkPlatformService = {}
+--- @class OkPlatformService
+local OkPlatformService = class('OkPlatformService')
 
-function OkPlatformService:init(event_bus)
+OkPlatformService.__cparams = {'event_bus'}
+
+function OkPlatformService:initialize(event_bus)
     OKAPI.init(event_bus, ServerConfig)
 end
 

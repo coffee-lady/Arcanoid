@@ -1,5 +1,5 @@
---- @type ProcessLeaderboardUseCase
-local ProcessLeaderboardUseCase = {}
+--- @class ProcessLeaderboardUseCase
+local ProcessLeaderboardUseCase = class('ProcessLeaderboardUseCase')
 
 --- @param leaderboard LeaderboardEntityPlain
 function ProcessLeaderboardUseCase:process_leaderboard(leaderboard, current_player)

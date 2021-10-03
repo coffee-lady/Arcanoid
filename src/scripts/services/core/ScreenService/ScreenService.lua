@@ -4,15 +4,16 @@ local Observable = Libs.event_observation.observable
 
 local MSG_WINDOW_UPDATE = hash('window_update')
 
-local ScreenService = {
-    start_coords = nil,
-    end_coords = nil,
-    sizes = {},
-    update_delay = 0.05,
-    ON_RESIZE = 'screen_resize',
-}
+--- @class ScreenService
+local ScreenService = class('ScreenService')
 
-function ScreenService:init()
+function ScreenService:initialize()
+    self.start_coords = nil
+    self.end_coords = nil
+    self.sizes = {}
+    self.update_delay = 0.05
+    self.ON_RESIZE = 'screen_resize'
+
     self:add_listener(msg.url())
 
     self.init_observer = Observable()

@@ -1,7 +1,4 @@
-local Libs = require('src.libs.libs')
 local RichTextNode = require('gui.extensions.rich_text_node.rich_text_node')
-
-local class = Libs.middleclass
 
 local RichLocalizationMap = class('RichLocalizationMap')
 
@@ -14,7 +11,7 @@ local RichLocalizationMap = class('RichLocalizationMap')
 --     },
 -- }
 function RichLocalizationMap:initialize(context_services, texts_key, map)
-    self.localization = context_services.localization
+    self.localization_service = context_services.localization
     self.texts_key = texts_key
 
     for i = 1, #map do
@@ -23,7 +20,7 @@ function RichLocalizationMap:initialize(context_services, texts_key, map)
 end
 
 function RichLocalizationMap:add(data)
-    local text_data = self.localization:get_localized_text(self.texts_key, data.vars)
+    local text_data = self.localization_service:get_localized_text(self.texts_key, data.vars)
     local text = text_data[data.key]
     RichTextNode(text, data.settings)
 end

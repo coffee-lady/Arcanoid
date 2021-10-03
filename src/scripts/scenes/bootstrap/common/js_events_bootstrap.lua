@@ -6,10 +6,11 @@ local MSG = App.constants.msg
 
 local SubscriptionsMap = App.libs.SubscriptionsMap
 
-local JSEventsBootstrap = {}
+local JSEventsBootstrap = class('JSEventsBootstrap')
 
-function JSEventsBootstrap:init(event_bus, app_installer)
-    app_installer:install(self)
+JSEventsBootstrap.__cparams = {'event_bus'}
+
+function JSEventsBootstrap:initialize(event_bus)
     self.event_bus = event_bus
 
     SubscriptionsMap(self, self.event_bus, {

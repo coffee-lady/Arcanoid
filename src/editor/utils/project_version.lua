@@ -1,7 +1,5 @@
-local Class = require('src.libs.tools.middleclass.middleclass')
-
 ---@class VersionData
-local VersionData = Class.class('VersionData')
+local VersionData = class('VersionData')
 
 local VERSION_SEPARATOR = '.'
 

@@ -1,6 +1,3 @@
-local Libs = require('src.libs.libs')
-local class = Libs.middleclass
-
 local EventSimple = class('EventSimple')
 
 function EventSimple:initialize()

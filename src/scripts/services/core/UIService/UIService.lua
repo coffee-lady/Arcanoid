@@ -22,9 +22,11 @@ local DEFAULT_UNLOCKED_THEMES = {
 }
 
 --- @class UIService
-local UIService = {}
+local UIService = class('UIService')
 
-function UIService:init(player_data_storage, event_bus, global_gui_caller_service)
+UIService.__cparams = {'player_data_storage', 'event_bus', 'global_gui_caller_service'}
+
+function UIService:initialize(player_data_storage, event_bus, global_gui_caller_service)
     self.player_data_storage = player_data_storage
     self.global_gui_caller_service = global_gui_caller_service
     self.unlocked_all = false

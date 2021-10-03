@@ -1,10 +1,7 @@
-local Libs = require('src.libs.libs')
 local Controls = require('gui.controls.controls')
 local Core = require('gui.core.core')
 local Transitions = require('gui.transitions.transitions')
 local LocalizationMap = require('gui.localization.localization_map')
-
-local class = Libs.middleclass
 
 --- @class Widget
 local Widget = class('Widget')

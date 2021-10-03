@@ -1,7 +1,4 @@
-local Libs = require('src.libs.libs')
 local AnimatedThemeObject = require('gui.core.theme_objects.animated_theme_object.animated_theme_object')
-
-local class = Libs.middleclass
 
 --- @class StaticThemeObject : AnimatedThemeObject
 local StaticThemeObject = class('StaticThemeObject', AnimatedThemeObject)

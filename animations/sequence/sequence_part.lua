@@ -1,6 +1,3 @@
-local Libs = require('src.libs.libs')
-local class = Libs.middleclass
-
 --- @class SequencePart
 local SequencePart = class('SequencePart')
 

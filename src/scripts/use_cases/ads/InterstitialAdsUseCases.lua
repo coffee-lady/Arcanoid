@@ -7,14 +7,17 @@ local FILE = DataStorageConfig.file
 local KEY_INTERSTITIAL_VIEW_COUNT = DataStorageConfig.keys.interstitial_view_count
 
 --- @class InterstitialAdsUseCases
-local InterstitialAdsUseCases = {}
+local InterstitialAdsUseCases = class('InterstitialAdsUseCases')
 
-function InterstitialAdsUseCases:update_services(context_services)
+InterstitialAdsUseCases.__cparams = {'scenes_service', 'store_promotions_service', 'player_data_storage'}
+
+function InterstitialAdsUseCases:initialize(scenes_service, store_promotions_service, player_data_storage)
     --- @type ScenesService
-    self.scenes_service = context_services.scenes_service
-    self.ads_service = context_services.ads_service
-    self.store_promotions_service = context_services.store_promotions_service
-    self.player_data_storage = context_services.player_data_storage
+    self.scenes_service = scenes_service
+    --- @type StorePromotionsService
+    self.store_promotions_service = store_promotions_service
+    --- @type PlayerDataStorage
+    self.player_data_storage = player_data_storage
 end
 
 function InterstitialAdsUseCases:set_interstitials_middleware()
@@ -34,7 +37,6 @@ function InterstitialAdsUseCases:set_interstitials_middleware()
 
         was_inter_shown = false
     end
-
 end
 
 function InterstitialAdsUseCases:on_short_ad_preview(data)

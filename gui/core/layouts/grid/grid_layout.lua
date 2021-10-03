@@ -1,8 +1,5 @@
 local BaseLayout = require('gui.core.layouts.base.base_layout')
-local Libs = require('src.libs.libs')
-
-local class = Libs.middleclass
-local Math = Libs.math
+local Math = require('src.libs.tools.math.math')
 
 --- @class GridLayout : BaseLayout
 local GridLayout = class('GridLayout', BaseLayout)

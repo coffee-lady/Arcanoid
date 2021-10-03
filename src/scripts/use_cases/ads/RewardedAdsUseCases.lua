@@ -2,9 +2,9 @@ local App = require('src.app')
 
 local RewardedConfig = App.config.ads.rewarded
 
-local RewardedAdsUseCases = {}
+local RewardedAdsUseCases = class('')
 
-function RewardedAdsUseCases:update_services()
+function RewardedAdsUseCases:initialize()
 end
 
 function RewardedAdsUseCases:is_available()

@@ -1,5 +1,4 @@
-local Libs = require('src.libs.libs')
-local Easings = Libs.easings
+local Easings = require('src.libs.tools.easings.easings')
 
 local TweenGO = require('animations.tween.tween_go')
 local ExecutorBase = require('animations.executor.executor_base')

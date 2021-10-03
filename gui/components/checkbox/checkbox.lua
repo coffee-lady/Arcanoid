@@ -1,7 +1,4 @@
-local Libs = require('src.libs.libs')
 local View = require('gui.components.checkbox.view.view_checkbox')
-
-local class = Libs.middleclass
 
 local ACTION_CLICK = hash('click')
 

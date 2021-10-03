@@ -1,6 +1,3 @@
-local Libs = require('src.libs.libs')
-local class = Libs.middleclass
-
 local Tween = require('animations.tween.tween')
 
 --- @class PathTween : Tween

@@ -1,6 +1,3 @@
-local Libs = require('src.libs.libs')
-local class = Libs.middleclass
-
 --- @class GUINodeFactory
 local GUINodeFactory = class('GUINodeFactory')
 

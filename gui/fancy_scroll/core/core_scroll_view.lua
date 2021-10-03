@@ -1,7 +1,5 @@
-local Libs = require('src.libs.libs')
+local Math = require('src.libs.tools.math.math')
 local Event = require('gui.fancy_scroll.helper.event.event')
-local class = Libs.middleclass
-local Math = Libs.math
 
 --- @class CoreScrollView
 local CoreScrollView = class('CoreScrollView')

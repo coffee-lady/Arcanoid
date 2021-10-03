@@ -1,7 +1,4 @@
-local Libs = require('src.libs.libs')
 local Animations = require('animations.animations')
-
-local class = Libs.middleclass
 
 --- @class AnimatedThemeObject
 local AnimatedThemeObject = class('AnimatedThemeObject')

@@ -1,9 +1,10 @@
 local defsave = require('defsave.defsave')
 
-local LocalStorage = {}
+--- @class LocalStorage
+local LocalStorage = class('LocalStorage')
 
-function LocalStorage:init(appname)
-    defsave.appname = appname
+function LocalStorage:initialize()
+    defsave.appname = sys.get_config('project.title')
     defsave.autosave = true
     defsave.autosave_timer = 1
     defsave.verbose = false

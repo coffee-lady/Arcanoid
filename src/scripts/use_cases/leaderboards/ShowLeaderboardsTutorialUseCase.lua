@@ -9,15 +9,18 @@ local DELAY = App.config.ui.rating_help_popup_delay
 local KEY_WAS_TUTORIAL_SHOWN = DataStorageConfig.keys.was_leaderboards_tutorial_shown
 
 --- @class ShowLeaderboardsTutorialUseCase
-local ShowLeaderboardsTutorialUseCase = {}
+local ShowLeaderboardsTutorialUseCase = class('ShowLeaderboardsTutorialUseCase')
 
-function ShowLeaderboardsTutorialUseCase:update_services(services)
-    self.player_data_storage = services.player_data_storage
-    self.scenes_service = services.scenes_service
-    self.global_gui_caller_service = services.global_gui_caller_service
-end
+ShowLeaderboardsTutorialUseCase.__cparams = {'scenes_service', 'player_data_storage', 'global_gui_caller_service'}
 
-function ShowLeaderboardsTutorialUseCase:set_global_callbacks()
+function ShowLeaderboardsTutorialUseCase:initialize(scenes_service, player_data_storage, global_gui_caller_service)
+    --- @type ScenesService
+    self.scenes_service = scenes_service
+    --- @type PlayerDataStorage
+    self.player_data_storage = player_data_storage
+    --- @type GlobalGUICallerService
+    self.global_gui_caller_service = global_gui_caller_service
+
     self.global_gui_caller_service:set_callback(MSG.leaderboards._show_leaderboards_tutorial, function()
     end)
 end

@@ -4,11 +4,14 @@ local DataStorageConfig = App.config.data_storage
 local FILE = DataStorageConfig.file
 local KEY_ADDITIONAL_MASTERY_POINTS = DataStorageConfig.keys.additional_mastery_points
 
---- @type AddPlayerLeaderboardPointsUseCase
-local AddPlayerLeaderboardPointsUseCase = {}
+--- @class AddPlayerLeaderboardPointsUseCase
+local AddPlayerLeaderboardPointsUseCase = class('AddPlayerLeaderboardPointsUseCase')
 
-function AddPlayerLeaderboardPointsUseCase:update_services(services)
-    self.player_data_storage = services.player_data_storage
+AddPlayerLeaderboardPointsUseCase.__cparams = {'player_data_storage'}
+
+function AddPlayerLeaderboardPointsUseCase:initialize(player_data_storage)
+    --- @type PlayerDataStorage
+    self.player_data_storage = player_data_storage
 end
 
 function AddPlayerLeaderboardPointsUseCase:add_player_points(delta_points)

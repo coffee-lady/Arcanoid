@@ -1,7 +1,3 @@
-local Libs = require('src.libs.libs')
-
-local class = Libs.middleclass
-
 --- @class DragAndDropController
 --- @field private items_to_drag Draggable[]
 --- @field private drop_receivers DropReceiver[]

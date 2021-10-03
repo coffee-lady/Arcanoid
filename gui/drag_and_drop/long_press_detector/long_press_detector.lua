@@ -1,7 +1,3 @@
-local Libs = require('src.libs.libs')
-
-local class = Libs.middleclass
-
 local MIN_LONG_PRESS_DURATION = 0.2
 
 --- @class LongPressDetector
