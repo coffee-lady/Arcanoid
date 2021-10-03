@@ -1,4 +1,4 @@
-script: "/src/scripts/scenes/screens/start_screen/start_screen.gui_script"
+script: ""
 fonts {
   name: "Dosis30-Bold"
   font: "/assets/fonts/font/Dosis30-Bold.font"
@@ -48,10 +48,10 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: "game/empty"
   id: "container"
-  xanchor: XANCHOR_LEFT
-  yanchor: YANCHOR_TOP
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_STRETCH
+  adjust_mode: ADJUST_MODE_FIT
   layer: "graphics"
   inherit_alpha: false
   slice9 {
@@ -102,10 +102,10 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: "game/appbar-settings_icon"
   id: "icon"
-  xanchor: XANCHOR_LEFT
-  yanchor: YANCHOR_TOP
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_STRETCH
+  adjust_mode: ADJUST_MODE_FIT
   parent: "container"
   layer: "graphics"
   inherit_alpha: false

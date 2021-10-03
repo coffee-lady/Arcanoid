@@ -1,8 +1,8 @@
 local App = require('src.app')
 
-local FilesConfig = App.config.app
-local FILE = FilesConfig.file
-local KEY_PAID_CANCELING_ERRORS = FilesConfig.keys.paid_canceling_errors_count
+local DataStorageConfig = App.config.data_storage
+local FILE = DataStorageConfig.file
+local KEY_PAID_CANCELING_ERRORS = DataStorageConfig.keys.paid_canceling_errors_count
 
 local ItemAddCancelingErrors = class('ItemAddCancelingErrors')
 

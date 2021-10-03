@@ -1,5 +1,4 @@
 local App = require('src.app')
-local Controllers = require('src.scripts.common.controllers.controllers')
 
 local MSG = App.constants.msg
 
@@ -33,8 +32,6 @@ function BootstrapGO:on_game_loaded()
 
     self.global_go_caller_service:init(self.scenes_service)
     self.sound_service:init(self.global_go_caller_service, self.player_data_storage)
-
-    Controllers.SoundsController(self)
 end
 
 return BootstrapGO

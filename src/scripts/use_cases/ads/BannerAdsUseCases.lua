@@ -7,7 +7,7 @@ local BannerConfig = App.config.ads.banner
 local Async = App.libs.async
 local Array = App.libs.array
 
-local BANNER_SCREENS = {hash(URL.game_screen), hash(URL.start_screen)}
+local BANNER_SCREENS = {hash(URL.start_scene)}
 
 --- @class BannerAdsUseCases
 local BannerAdsUseCases = {}
@@ -16,12 +16,10 @@ function BannerAdsUseCases:update_services(context_services)
     --- @type ScenesService
     self.scenes_service = context_services.scenes_service
     self.ads_service = context_services.ads_service
-    self.stats_service = context_services.stats_service
 end
 
 function BannerAdsUseCases:close_banner()
     self.scenes_service:post_to_go(App.constants.urls.bootstrap, GUI.BUTTON_CLICKED)
-    self.scenes_service:switch_to_scene(URL.starter_pack_offer_popup)
 end
 
 function BannerAdsUseCases:try_show_banner(scenes_data)
@@ -49,8 +47,7 @@ function BannerAdsUseCases:_get_current_scene(scenes_data)
 end
 
 function BannerAdsUseCases:is_available()
-    local passed_levels = self.stats_service:get_passed_levels_count()
-    return passed_levels >= BannerConfig.start_level - 1
+    return true
 end
 
 return BannerAdsUseCases

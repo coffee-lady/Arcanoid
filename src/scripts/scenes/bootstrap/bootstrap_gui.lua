@@ -4,7 +4,6 @@ local JSAPI = require('src.scripts.include.js.js')
 local Services = require('src.scripts.common.services.services')
 local AuthBootstrap = require('src.scripts.scenes.bootstrap.common.auth_bootstrap')
 local AdsBootstrap = require('src.scripts.scenes.bootstrap.common.ads_bootstrap')
-local AnalyticsBootstrap = require('src.scripts.scenes.bootstrap.common.analytics_bootstrap')
 local StoreBootstrap = require('src.scripts.scenes.bootstrap.common.store_bootstrap')
 local JSEventsBootstrap = require('src.scripts.scenes.bootstrap.common.js_events_bootstrap')
 local AppInstaller = require('src.scripts.app_installer.app_installer')
@@ -12,15 +11,12 @@ local AppInstaller = require('src.scripts.app_installer.app_installer')
 local URL = App.constants.urls
 local MSG = App.constants.msg
 local Langs = App.config.localization.langs
-local INITIAL_DELAY = App.config.ui.transitions.init_delay
 
 local ForkJoin = App.libs.event_observation.fork_join
 local Async = App.libs.async
 local ColorLib = App.libs.color
 local CurrencyLib = App.libs.currency
 local SubscriptionsMap = App.libs.SubscriptionsMap
-
-local ConfigService = Services.ConfigService
 
 sys.set_error_handler(function(source, message, traceback)
     if html5 then
@@ -40,7 +36,7 @@ function BootstrapGUI:init(app_installer)
     msg.post('.', MSG.acquire_input_focus)
 
     math.randomseed(os.time())
-    ColorLib.convert_v4_theme(App.config.themes)
+    ColorLib.convert_v4_theme(App.config.ui.themes)
 
     self.global_gui_caller_service:init(self.scenes_service)
 
@@ -54,30 +50,13 @@ function BootstrapGUI:init(app_installer)
             player_data_storage = self.player_data_storage,
         })
 
-        if not App.config.connect_static_config and not App.config.connect_static_test_config then
-            ConfigService:handle()
-        else
-            ConfigService:init()
-        end
-
         self.local_storage:init(sys.get_config('project.title'))
         self.platform_service:init(self.event_bus)
         AuthBootstrap:init_async(self.event_bus, app_installer)
         self.player_data_storage:init(self.auth_service, self.scenes_service)
         self.ui_service:init(self.player_data_storage, self.event_bus, self.global_gui_caller_service)
         self.progress_service:init(self.player_data_storage, self.leaderboards_service)
-        self.ranks_service:init(self.player_data_storage)
-        self.stats_service:init(self.player_data_storage)
-        self.hints_service:init({
-            event_bus = self.event_bus,
-            stats_service = self.stats_service,
-            player_data_storage = self.player_data_storage,
-            ads_service = self.ads_service,
-            global_gui_caller_service = self.global_gui_caller_service,
-            scenes_service = self.scenes_service,
-        })
         self.leaderboards_service:init({
-            stats_service = self.stats_service,
             auth_service = self.auth_service,
             player_data_storage = self.player_data_storage,
             global_gui_caller_service = self.global_gui_caller_service,
@@ -86,15 +65,12 @@ function BootstrapGUI:init(app_installer)
         self.feedback_service:init({
             player_data_storage = self.player_data_storage,
             scenes_service = self.scenes_service,
-            stats_service = self.stats_service,
             hints_service = self.hints_service,
         })
 
         self.localization:init(self.player_data_storage, self.global_gui_caller_service, self.auth_service)
-        CurrencyLib.set_localization_path(self.localization:get_localization_path())
 
         AdsBootstrap:init_async(self.event_bus, app_installer)
-        AnalyticsBootstrap:init_async(self.event_bus, app_installer)
         StoreBootstrap:init_async(self.event_bus, app_installer)
 
         self.screen_service:init()

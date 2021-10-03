@@ -1,9 +1,9 @@
 local App = require('src.app')
 
 local SoundsMSG = App.constants.msg.sounds
-local FilesConfig = App.config.app
-local FILE = FilesConfig.file
-local KEY_SOUNDS_DISABLED = FilesConfig.keys.is_sound_disabled
+local DataStorageConfig = App.config.data_storage
+local FILE = DataStorageConfig.file
+local KEY_SOUNDS_DISABLED = DataStorageConfig.keys.is_sound_disabled
 
 local DEBUG = App.config.debug_mode.SoundService
 local GATE_TIME = 0.3

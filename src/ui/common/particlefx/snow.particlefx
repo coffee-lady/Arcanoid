@@ -14,8 +14,8 @@ emitters {
     z: 0.0
     w: 1.0
   }
-  tile_source: "/src/assets/atlases/backgrounds.atlas"
-  animation: "bg_particle"
+  tile_source: "/assets/atlases/winter.atlas"
+  animation: "winter-snow-particle"
   material: "/builtins/materials/particlefx.material"
   blend_mode: BLEND_MODE_ADD
   particle_orientation: PARTICLE_ORIENTATION_ANGULAR_VELOCITY

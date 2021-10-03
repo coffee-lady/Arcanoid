@@ -14,10 +14,6 @@ CommonConfig.connect_static_test_config = ConfigSettings.CONNECT_STATIC_TEST_CON
 CommonConfig.connect_local_test_config = ConfigSettings.CONNECT_LOCAL_TEST_CONFIG
 CommonConfig.is_release_version = ConfigSettings.IS_RELEASE_BUILD
 
-for key, data in pairs(CommonConfig.ui.platform) do
-    CommonConfig.ui.platform[key] = data[CommonConfig.platform]
-end
-
 local ReleaseConfig = ReleaseConfigs[CommonConfig.platform]
 local TestConfig = TestConfigs[CommonConfig.platform]
 

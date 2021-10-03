@@ -1,9 +1,8 @@
 local App = require('src.app')
 
-local Config = App.config
-
-local FilesConfig = Config.app
-local KEY_PREV_GAME_DATA = FilesConfig.keys.prev_game_data
+local DataStorageConfig = App.config.data_storage
+local FILE = DataStorageConfig.file
+local KEY_PREV_GAME_DATA = DataStorageConfig.keys.previous_game_data
 
 --- @class ProgressService
 local ProgressService = {}
@@ -20,7 +19,7 @@ function ProgressService:on_authorized()
 end
 
 function ProgressService:_get_previous_game()
-    return self.player_data_storage:get(FilesConfig.file, KEY_PREV_GAME_DATA)
+    return self.player_data_storage:get(FILE, KEY_PREV_GAME_DATA)
 end
 
 function ProgressService:set_previous_game_data(data)
@@ -42,7 +41,7 @@ function ProgressService:get_previous_game_data()
 end
 
 function ProgressService:save()
-    self.player_data_storage:set(FilesConfig.file, KEY_PREV_GAME_DATA, self.prev_game_data)
+    self.player_data_storage:set(FILE, KEY_PREV_GAME_DATA, self.prev_game_data)
 end
 
 function ProgressService:get_last_game_data()

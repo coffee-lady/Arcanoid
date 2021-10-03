@@ -4,7 +4,10 @@ local YandexAdapter = require('src.scripts.include.yandex.yandex')
 local AuthAdapter = YandexAdapter.Auth
 local TextFormatter = App.libs.text_formatter
 
-local UIConfig = App.config.ui.common.leaderboards
+local UIConfig = {
+    max_user_name_length = 22,
+    max_user_name_lines = 2,
+}
 local IMAGES_URL = App.config.images_url
 
 local PlayerHelper = {}

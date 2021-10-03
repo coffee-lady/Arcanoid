@@ -11,7 +11,6 @@ function CommonAdsUseCases:update_services(context_services)
 end
 
 function CommonAdsUseCases:on_ads_error()
-    self.scenes_service:switch_to_scene(URL.ads_error_popup)
 end
 
 return CommonAdsUseCases

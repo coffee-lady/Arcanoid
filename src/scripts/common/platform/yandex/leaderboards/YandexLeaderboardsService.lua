@@ -18,9 +18,9 @@ local Notifier = App.libs.notifier
 
 local MSG = App.constants.msg
 local LeaderboardsConfig = App.config.leaderboards
-local FilesConfig = App.config.app
-local FILE = FilesConfig.file
-local KEY_LAST_LOADED_PLAYER_INFO = FilesConfig.keys.last_loaded_player_leaderboard_info
+local DataStorageConfig = App.config.data_storage
+local FILE = DataStorageConfig.file
+local KEY_LAST_LOADED_PLAYER_INFO = DataStorageConfig.keys.last_loaded_player_leaderboard_info
 local DEBUG = App.config.debug_mode.LeaderboardsService
 
 --- @type LeaderboardsService
@@ -29,8 +29,6 @@ local YandexLeaderboardsService = {}
 YandexLeaderboardsService.IMAGE_SIZE = LeaderboardsAdapter.IMAGE_SIZE
 
 function YandexLeaderboardsService:init(services)
-    --- @type StatisticsService
-    self.stats_service = services.stats_service
     self.auth_service = services.auth_service
     self.player_data_storage = services.player_data_storage
     self.global_gui_caller_service = services.global_gui_caller_service

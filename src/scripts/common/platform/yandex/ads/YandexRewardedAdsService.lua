@@ -11,9 +11,9 @@ local Debug = App.libs.debug
 local Notifier = App.libs.notifier
 
 local RewardedConfig = App.config.ads.rewarded
-local FilesConfig = App.config.app
-local FILE = FilesConfig.file
-local KEY_TIMER = FilesConfig.keys.rewarded_timer
+local DataStorageConfig = App.config.data_storage
+local FILE = DataStorageConfig.file
+local KEY_TIMER = DataStorageConfig.keys.rewarded_timer
 local MSG = App.constants.msg
 local DEBUG = App.config.debug_mode.RewardedAdsService
 

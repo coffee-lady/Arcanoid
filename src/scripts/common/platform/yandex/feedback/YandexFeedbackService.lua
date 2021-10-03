@@ -21,10 +21,6 @@ function YandexFeedbackService:init(services)
     FeedbackUseCases.RequestFeedbackUseCase:update_services(services)
     FeedbackUseCases.RewardForFeedbackUseCase:update_services(services)
 
-    self.scenes_service:append_middleware(URL.victory_screen, function()
-        self:_try_show_review_popup_async()
-    end)
-
     self.debug = Debug('[Yandex] YandexFeedbackService', DEBUG)
     self.is_online = true
 end

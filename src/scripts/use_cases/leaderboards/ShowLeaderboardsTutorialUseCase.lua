@@ -3,10 +3,10 @@ local ShowLeaderboardsUseCase = require('src.scripts.use_cases.leaderboards.Show
 
 local URL = App.constants.urls
 local MSG = App.constants.msg
-local FilesConfig = App.config.app
-local FILE = FilesConfig.file
+local DataStorageConfig = App.config.data_storage
+local FILE = DataStorageConfig.file
 local DELAY = App.config.ui.rating_help_popup_delay
-local KEY_WAS_TUTORIAL_SHOWN = FilesConfig.keys.was_leaderboards_tutorial_shown
+local KEY_WAS_TUTORIAL_SHOWN = DataStorageConfig.keys.was_leaderboards_tutorial_shown
 
 --- @class ShowLeaderboardsTutorialUseCase
 local ShowLeaderboardsTutorialUseCase = {}
@@ -19,9 +19,6 @@ end
 
 function ShowLeaderboardsTutorialUseCase:set_global_callbacks()
     self.global_gui_caller_service:set_callback(MSG.leaderboards._show_leaderboards_tutorial, function()
-        self.scenes_service:switch_to_scene_delayed(DELAY, URL.rating_help_popup, {
-            hide_rating_button = false,
-        })
     end)
 end
 

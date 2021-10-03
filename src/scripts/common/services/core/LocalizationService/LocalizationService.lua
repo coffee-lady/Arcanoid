@@ -6,9 +6,9 @@ local Notifier = App.libs.notifier
 
 local MSG = App.constants.msg
 local ResourcesConfig = App.config.resources
-local FilesConfig = App.config.app
-local FILE = FilesConfig.file
-local KEY_LANG = FilesConfig.keys.lang
+local DataStorageConfig = App.config.data_storage
+local FILE = DataStorageConfig.file
+local KEY_LANG = DataStorageConfig.keys.lang
 
 local LocalizationService = {}
 
@@ -60,7 +60,7 @@ function LocalizationService:get_language()
 end
 
 function LocalizationService:get_localization_path()
-    return ResourcesConfig.localization .. self.lang .. ResourcesConfig.format
+    return string.format(ResourcesConfig.localization, self.lang)
 end
 
 function LocalizationService:change_lang(lang)

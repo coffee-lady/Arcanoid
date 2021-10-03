@@ -27,7 +27,6 @@ function AuthBootstrap:on_authorized()
 
     self.progress_service:on_authorized()
     self.ranks_service:on_authorized()
-    self.stats_service:on_authorized()
     self.ui_service:on_authorized()
     StoreBootstrap:on_authorized()
     AdsBootstrap:on_authorized()
@@ -36,9 +35,6 @@ function AuthBootstrap:on_authorized()
 end
 
 function AuthBootstrap:on_auth_error()
-    if not self.scenes_service:is_visible(URL.auth_error_popup) then
-        self.scenes_service:switch_to_scene(URL.auth_error_popup)
-    end
 end
 
 return AuthBootstrap

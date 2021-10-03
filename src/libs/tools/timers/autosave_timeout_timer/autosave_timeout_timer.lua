@@ -28,7 +28,7 @@ end
 function AutosaveTimeoutTimer:restore_unfinished()
     local timer_started = self.storage:get(self.file, self.key)
 
-    if not timer_started then
+    if not timer_started or type(timer_started) ~= 'number' then
         return
     end
 

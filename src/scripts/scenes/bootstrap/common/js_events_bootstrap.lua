@@ -45,7 +45,6 @@ function JSEventsBootstrap:on_offline()
 end
 
 function JSEventsBootstrap:on_tabs_warning()
-    self.scenes_service:switch_to_scene(URL.tabs_warning_popup)
 end
 
 return JSEventsBootstrap

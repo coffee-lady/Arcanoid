@@ -1,8 +1,8 @@
 local App = require('src.app')
 
-local FilesConfig = App.config.app
-local FILE = FilesConfig.file
-local KEY_ADDITIONAL_MASTERY_POINTS = FilesConfig.keys.additional_mastery_points
+local DataStorageConfig = App.config.data_storage
+local FILE = DataStorageConfig.file
+local KEY_ADDITIONAL_MASTERY_POINTS = DataStorageConfig.keys.additional_mastery_points
 
 --- @type AddPlayerLeaderboardPointsUseCase
 local AddPlayerLeaderboardPointsUseCase = {}

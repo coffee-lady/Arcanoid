@@ -23,6 +23,7 @@ dependencies#0 = https://github.com/AGulev/jstodef/archive/master.zip
 dependencies#1 = https://github.com/d954mas/defold-utf8/archive/master.zip
 dependencies#2 = https://github.com/britzl/defold-richtext/archive/master.zip
 dependencies#3 = https://github.com/rgrams/rendercam/archive/v1.0.1.zip
+dependencies#4 = https://github.com/indiesoftby/defold-yagames/archive/master.zip
 
 [input]
 game_binding = /settings/input/game.input_bindingc
@@ -48,22 +49,6 @@ max_count = 30
 sdk_init_options = { orientation: { value: "portrait", lock: true } }
 service_worker_url = sw.js
 manifest_url = yandex-manifest.json
-
-[gameanalytics]
-game_key_ios = 107ccf8707a445bfd2c2aa8fa12136a2
-secret_key_ios = 73feff45d102ecef17b8c6306678136b23ead15a
-game_key_android = 107ccf8707a445bfd2c2aa8fa12136a2
-secret_key_android = 73feff45d102ecef17b8c6306678136b23ead15a
-game_key_html5 = 107ccf8707a445bfd2c2aa8fa12136a2
-secret_key_html5 = 73feff45d102ecef17b8c6306678136b23ead15a
-game_key_osx = 107ccf8707a445bfd2c2aa8fa12136a2
-secret_key_osx = 73feff45d102ecef17b8c6306678136b23ead15a
-game_key_windows = 107ccf8707a445bfd2c2aa8fa12136a2
-secret_key_windows = 73feff45d102ecef17b8c6306678136b23ead15a
-game_key_linux = 107ccf8707a445bfd2c2aa8fa12136a2
-secret_key_linux = 73feff45d102ecef17b8c6306678136b23ead15a
-build_html5 = 1
-custom_dimensions_01 = white,black,green,yellow,blue,red
 
 [native_extension]
 app_manifest = /settings/manifests/native_manifest_strip.appmanifest

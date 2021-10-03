@@ -8,9 +8,9 @@ local AdsUseCases = UseCases.Ads
 
 local Debug = App.libs.debug
 
-local FilesConfig = App.config.app
-local FILE = FilesConfig.file
-local KEY_TIMER = FilesConfig.keys.interstitial_timer
+local DataStorageConfig = App.config.data_storage
+local FILE = DataStorageConfig.file
+local KEY_TIMER = DataStorageConfig.keys.interstitial_timer
 local MSG = App.constants.msg
 local IntConfig = App.config.ads.interstitial
 local DEBUG = App.config.debug_mode.InterstitialAdsService

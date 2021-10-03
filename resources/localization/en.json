@@ -1,1 +1,5 @@
-{}
+{
+    "start_scene": {
+        "button_play": "Play"
+    }
+}

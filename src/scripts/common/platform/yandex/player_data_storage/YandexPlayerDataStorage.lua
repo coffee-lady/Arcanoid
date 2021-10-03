@@ -10,41 +10,18 @@ local StorageAdapter = YandexAPI.PlayerDataStorage
 local HintsConfig = App.config.game.hints
 local FreeHintsConfig = HintsConfig.free
 
-local AppConfig = App.config.app
-local FILE = AppConfig.file
-local KEY_RANK = AppConfig.keys.rank_index
-local KEY_THEME = AppConfig.keys.theme
-local KEY_POINTS = AppConfig.keys.rank_points
-local KEY_MASTERY_TIMER = AppConfig.keys.rank_points
-local KEY_PREV_GAME = AppConfig.keys.prev_game_data
-local KEY_STATS = AppConfig.keys.statistics
-local KEY_AUTH_OFFER = AppConfig.keys.show_auth_offer
-local KEY_FISRT_SHORT_AD = AppConfig.keys.is_first_short_ad
-local KEY_PAID_HINTS_COUNT = AppConfig.keys.paid_hints_count
-local KEY_FREE_HINTS_COUNT = AppConfig.keys.free_hints_count
-local KEY_SOUNDS_DISABLED = AppConfig.keys.is_sound_disabled
-local KEY_LANG = AppConfig.keys.lang
-local KEY_WAS_TUTORIAL_SHOWN = AppConfig.keys.was_leaderboards_tutorial_shown
-local KEY_WAS_FEEDBACK_REQUESTED = AppConfig.keys.was_feedback_requested
-local KEY_ADDITIONAL_MASTERY_POINTS = AppConfig.keys.additional_mastery_points
+local DataStorageConfig = App.config.data_storage
+local FILE = DataStorageConfig.file
+local KEY_THEME = DataStorageConfig.keys.theme
+local KEY_PREV_GAME = DataStorageConfig.keys.previous_game_data
+local KEY_LANG = DataStorageConfig.keys.lang
 
 local DEBUG = App.config.debug_mode.PlayerDataStorage
 
 local FILE_KEY_TO_OBJECT_KEY = {
-    rank = KEY_RANK,
-    points = KEY_POINTS,
-    mastery_timer = KEY_MASTERY_TIMER,
     prev_game = KEY_PREV_GAME,
-    stats = KEY_STATS,
-    is_first_short_ad = KEY_FISRT_SHORT_AD,
-    show_auth_offer = KEY_AUTH_OFFER,
     theme = KEY_THEME,
-    paid_hints_count = KEY_PAID_HINTS_COUNT,
-    is_sound_disabled = KEY_SOUNDS_DISABLED,
     lang = KEY_LANG,
-    was_leaderboards_tutorial_shown = KEY_WAS_TUTORIAL_SHOWN,
-    was_feedback_requested = KEY_WAS_FEEDBACK_REQUESTED,
-    additional_mastery_points = KEY_ADDITIONAL_MASTERY_POINTS,
 }
 
 local YandexPlayerDataStorage = {}

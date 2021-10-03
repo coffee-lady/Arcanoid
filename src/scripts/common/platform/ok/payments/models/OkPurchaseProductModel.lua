@@ -2,9 +2,9 @@ local App = require('src.app')
 
 local AutosaveTimeoutTimer = App.libs.AutosaveTimeoutTimer
 
-local FilesConfig = App.config.app
-local FILE = FilesConfig.file
-local KEY_TIMER = FilesConfig.keys.purchase_item_offer_timer
+local DataStorageConfig = App.config.data_storage
+local FILE = DataStorageConfig.file
+local KEY_TIMER = DataStorageConfig.keys.purchase_item_offer_timer
 local LKEY_STORE_GOODS = App.config.localization.keys.store_goods
 local PaymentsConfig = App.config.payments
 local Products = PaymentsConfig.products

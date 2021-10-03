@@ -98,6 +98,10 @@ images {
   image: "/assets/images/themes/winter/backgrounds/winter-start_screen-bg-earth.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
+images {
+  image: "/assets/images/themes/winter/pfx/winter-snow-particle.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
 margin: 4
 extrude_borders: 1
 inner_padding: 0

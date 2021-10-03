@@ -1,4 +1,4 @@
-script: "/src/scripts/scenes/screens/start_screen/start_screen.gui_script"
+script: ""
 fonts {
   name: "Dosis30-Bold"
   font: "/assets/fonts/font/Dosis30-Bold.font"
@@ -143,9 +143,9 @@ nodes {
   texture: "game/empty"
   id: "button_settings/container"
   xanchor: XANCHOR_LEFT
-  yanchor: YANCHOR_TOP
+  yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_STRETCH
+  adjust_mode: ADJUST_MODE_FIT
   parent: "button_settings"
   layer: "graphics"
   inherit_alpha: false
@@ -159,6 +159,7 @@ nodes {
   clipping_visible: true
   clipping_inverted: false
   alpha: 1.0
+  overridden_fields: 12
   template_node_child: true
   size_mode: SIZE_MODE_MANUAL
 }
@@ -197,10 +198,10 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: "game/appbar-settings_icon"
   id: "button_settings/icon"
-  xanchor: XANCHOR_LEFT
-  yanchor: YANCHOR_TOP
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_STRETCH
+  adjust_mode: ADJUST_MODE_FIT
   parent: "button_settings/container"
   layer: "graphics"
   inherit_alpha: false
@@ -355,10 +356,10 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: "game/empty"
   id: "button_store/container"
-  xanchor: XANCHOR_LEFT
-  yanchor: YANCHOR_TOP
+  xanchor: XANCHOR_RIGHT
+  yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_STRETCH
+  adjust_mode: ADJUST_MODE_FIT
   parent: "button_store"
   layer: "graphics"
   inherit_alpha: false
@@ -372,6 +373,7 @@ nodes {
   clipping_visible: true
   clipping_inverted: false
   alpha: 1.0
+  overridden_fields: 12
   template_node_child: true
   size_mode: SIZE_MODE_MANUAL
 }
@@ -410,10 +412,10 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: "game/appbar-store_icon"
   id: "button_store/icon"
-  xanchor: XANCHOR_LEFT
-  yanchor: YANCHOR_TOP
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_STRETCH
+  adjust_mode: ADJUST_MODE_FIT
   parent: "button_store/container"
   layer: "graphics"
   inherit_alpha: false

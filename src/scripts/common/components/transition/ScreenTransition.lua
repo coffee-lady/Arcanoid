@@ -1,6 +1,9 @@
 local App = require('src.app')
 
-local UIConfig = App.config.ui.transitions.screen
+local UIConfig = {
+    duration = 0.5,
+    easing = gui.EASING_OUTCIRC,
+}
 
 local Transition = App.libs.transition
 

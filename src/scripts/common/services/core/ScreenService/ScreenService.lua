@@ -2,8 +2,6 @@ local rendercam = require('rendercam.rendercam')
 local Libs = require('src.libs.libs')
 local Observable = Libs.event_observation.observable
 
-local GUIExtraFunction = require('gui_extra_functions.gui_extra_functions')
-
 local MSG_WINDOW_UPDATE = hash('window_update')
 
 local ScreenService = {
@@ -16,7 +14,6 @@ local ScreenService = {
 
 function ScreenService:init()
     self:add_listener(msg.url())
-    self:init_gui_extensions()
 
     self.init_observer = Observable()
     self.update_observer = Observable()
@@ -62,7 +59,6 @@ end
 
 function ScreenService:update()
     self:_update_screen_size(function()
-        self:on_resize_gui_extension()
         self.update_observer:next()
     end)
 end
@@ -95,15 +91,6 @@ function ScreenService:screen_to_gui(pos, adjust, is_size)
     local x, y = rendercam.screen_to_gui(pos.x, pos.y, adjust, is_size)
 
     return vmath.vector3(x, y, 0)
-end
-
-function ScreenService:init_gui_extensions()
-    self:on_resize_gui_extension()
-    GUIExtraFunction.init()
-end
-
-function ScreenService:on_resize_gui_extension()
-    GUIExtraFunction.update_coef(rendercam.window.x, rendercam.window.y)
 end
 
 return ScreenService

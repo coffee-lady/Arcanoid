@@ -33,10 +33,7 @@ function StoreBootstrap:init_async(event_bus, app_installer)
 end
 
 function StoreBootstrap:_set_subscriptions()
-    SubscriptionsMap(self, self.event_bus, {
-        [MSG.actions.global_paid_hint_applied] = self.on_paid_hint,
-        [MSG.actions.global_paid_canceling_error_applied] = self.on_paid_canceling_error,
-    })
+    SubscriptionsMap(self, self.event_bus, {})
 end
 
 function StoreBootstrap:on_online()
@@ -46,18 +43,6 @@ end
 function StoreBootstrap:on_authorized()
     self.payments_service:fetch_data()
     self.store_service:apply_purchased_not_consumable_items()
-end
-
-function StoreBootstrap:on_paid_hint()
-    if self.payments_service.on_item_spent then
-        self.payments_service:on_item_spent(ITEMS_KEYS.hints)
-    end
-end
-
-function StoreBootstrap:on_paid_canceling_error()
-    if self.payments_service.on_item_spent then
-        self.payments_service:on_item_spent(ITEMS_KEYS.canceling_errors)
-    end
 end
 
 return StoreBootstrap

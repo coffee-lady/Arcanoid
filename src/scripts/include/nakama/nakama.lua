@@ -9,8 +9,8 @@ local Debug = App.libs.debug
 --- @param config NakamaConfigService
 local NakamaAPI = {}
 
-local FilesConfig = App.config.app
-local FILE = FilesConfig.file
+local DataStorageConfig = App.config.data_storage
+local FILE = DataStorageConfig.file
 local NakamaConfig = App.config.nakama
 local DEBUG = App.config.debug_mode.NakamaAdapter
 local CODE_ERROR_NAME_IN_USE = 6

@@ -1,6 +1,6 @@
 local App = require('src.app')
 
-local TextKeys = App.config.localization.keys
+local TextKeys = App.constants.localization.keys
 local PlatformUIConfig = App.config.ui.platform
 
 local LKEY_ANON_USERNAME = TextKeys.username_anonymous

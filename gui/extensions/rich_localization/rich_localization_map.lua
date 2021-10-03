@@ -7,7 +7,7 @@ local RichLocalizationMap = class('RichLocalizationMap')
 
 -- {
 --     {
---         texts_key = TextKeys.start_screen,
+--         texts_key = TextKeys.start_scene,
 --         object = theme_object,
 --         key = localization_key,
 --         vars = {...}

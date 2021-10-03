@@ -32,7 +32,6 @@ function YandexStoreService:init(services)
     PaymentsUseCases.StoreGetShownProductsUseCase:update_services(services)
     PaymentsUseCases.StorePurchaseUseCase:update_services(services)
     PaymentsUseCases.StorePurchaseUseCase:set_global_callbacks()
-    PaymentsUseCases.CreateStorePackUseCase:update_services(services)
 
     self.debug = Debug('[Yandex] StoreService', DEBUG)
 
@@ -67,7 +66,7 @@ end
 function YandexStoreService:_process_payments_catalog()
     for i = 1, #self.payments_catalog do
         local product_data = self.payments_catalog[i]
-        self.shop_catalog[i] = PaymentsUseCases.CreateStorePackUseCase:create_pack(product_data, KEY_TO_ITEM)
+        self.shop_catalog[i] = product_data
     end
 end
 

@@ -1,13 +1,14 @@
 local App = require('src.app')
 local ScenesService = require('src.scripts.common.services.core.ScenesService.ScenesService')
 
-local ThemesArray = App.config.app.themes
-local Themes = App.config.themes
-local FilesConfig = App.config.app
+local Themes = App.config.ui.themes
+local ThemesArray = App.config.ui.available_themes
+local DataStorageConfig = App.config.data_storage
+local FILE = DataStorageConfig.file
+local KEY_THEME = DataStorageConfig.keys.theme
+
 local BootstrapID = App.constants.gui.screens.bootstrap
-local DEFAULT_THEME = App.config.app.default_theme
-local FILE = FilesConfig.file
-local KEY_THEME = FilesConfig.keys.theme
+local DEFAULT_THEME = App.config.ui.default_theme
 local MSG = App.constants.msg
 
 local GUI = require('gui.gui')
@@ -37,7 +38,7 @@ end
 
 function UIService:_set_global_callers()
     self.global_gui_caller_service:set_callback(MSG.themes._theme_changed_emit, function()
-        BoxNode(BootstrapID.container):set_color(self.theme_colors.common.background)
+        -- BoxNode(BootstrapID.container):set_color(self.theme_colors.common.background)
         self.theme_changed_notifier:emit()
     end)
 
@@ -117,7 +118,7 @@ function UIService:_run_web_change_theme(is_saving)
 end
 
 function UIService:on_theme_changed()
-    BoxNode(BootstrapID.container):set_color(self.theme_colors.common.background)
+    -- BoxNode(BootstrapID.container):set_color(self.theme_colors.common.background)
 end
 
 function UIService:get_theme()
@@ -142,7 +143,6 @@ end
 
 function UIService:get_scene_colors(scene_id)
     local current_scene = scene_id or ScenesService:get_current_scene()
-
     for key, colors in pairs(self.theme_colors) do
         if hash(key) == current_scene then
             return colors

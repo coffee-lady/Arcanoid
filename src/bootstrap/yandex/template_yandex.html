@@ -12,11 +12,6 @@
     <script src="scripts/design.js"></script>
     <script src="scripts/sessionsHelper.js"></script>
     <script src="scripts/localization.js"></script>
-    <script type='text/javascript' src="GameAnalytics.js"></script>
-    <script src="https://browser.sentry-cdn.com/6.11.0/bundle.tracing.min.js"
-            integrity="sha384-XuDodOP4mgLWA8eRlqZJWs+mtmznHF6ES/nOotK0fE7SHjj0Ec3YMVIzjh5ytsKH"
-            crossorigin="anonymous"></script>
-
     <title>{{project.title}}</title>
 </head>
 
@@ -56,12 +51,6 @@
 
     <script id='engine-loader' type='text/javascript' src='dmloader.js'></script>
     <script id='engine-setup' type='text/javascript'>
-        Sentry.init({
-            dsn: "https://94d019b00deb47b8aec016b96b2d5757@o975764.ingest.sentry.io/5944217",
-            integrations: [new Sentry.Integrations.BrowserTracing()],
-            tracesSampleRate: 0.1
-        });
-
         const CLOSE_BANNER = 'close_banner';
         const ONLINE = 'online';
         const OFFLINE = 'offline';
@@ -264,13 +253,6 @@
 
         function changeLang(lang) {
             localizationHelper.changeLang(lang);
-        }
-
-        function logError(message, stack) {
-            console.log('Send Error to Sentry from lua:', message, stack);
-            const err = new Error(message);
-            err.stack = stack ? stack : err.stack;
-            Sentry.captureException(err);
         }
     </script>
 

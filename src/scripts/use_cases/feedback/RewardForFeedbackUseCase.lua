@@ -13,7 +13,6 @@ end
 
 function RewardForFeedbackUseCase:reward_for_review()
     self.hints_service:add_paid_hints(FeedbackConfig.reward_hints)
-    self.scenes_service:switch_to_scene(URL.reward_rate_game_popup)
 end
 
 return RewardForFeedbackUseCase
