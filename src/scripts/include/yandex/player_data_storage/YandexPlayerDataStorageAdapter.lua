@@ -1,6 +1,6 @@
 local App = require('src.app')
 local yagames = require('yagames.yagames')
-local LocalStorage = require('src.scripts.common.services.core.LocalStorage.LocalStorage')
+local LocalStorage = require('src.scripts.services.core.LocalStorage.LocalStorage')
 
 local Debug = App.libs.debug
 local Async = App.libs.async

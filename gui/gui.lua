@@ -3,6 +3,7 @@ local Extensions = require('gui.extensions.extensions')
 local Components = require('gui.components.components')
 local Controls = require('gui.controls.controls')
 local Constants = require('gui.constants.gui_constants')
+local Transitions = require('gui.transitions.transitions')
 
 local GUI = {}
 
@@ -49,5 +50,6 @@ GUI.Switch = Components.Switch
 GUI.RadioButtonsGroup = Components.RadioButtonsGroup
 GUI.SWITCH_TOGGLED = GUI.Switch.SWITCH_TOGGLED
 GUI.RADIO_BUTTON_SELECTED = GUI.RadioButtonsGroup.RADIO_BUTTON_SELECTED
+GUI.Transitions = Transitions
 
 return GUI

@@ -32,7 +32,6 @@ local Libs = {
     SubscriptionsMap = require('src.libs.event_bus.subscriptions_map'),
     resources_storage = require('src.libs.resources_storage.resources_storage'),
     script_wrapper = require('src.libs.script_wrapper.script_wrapper'),
-    transition = require('src.libs.transition.transition'),
 }
 
 return Libs

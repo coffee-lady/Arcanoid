@@ -1,6 +1,6 @@
 local App = require('src.app')
 local ContentEncoder = require('src.scripts.include.nakama.helpers.content_encoder')
-local LocalStorage = require('src.scripts.common.services.core.local_storage.local_storage')
+local LocalStorage = require('src.scripts.services.core.local_storage.local_storage')
 
 local JSON = App.libs.json
 local Debug = App.libs.debug

@@ -1,3 +1,0 @@
-local Templates = {}
-
-return Templates

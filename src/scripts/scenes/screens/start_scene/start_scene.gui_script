@@ -6,7 +6,6 @@ local StrategiesMediator = require('src.scripts.scenes.screens.start_scene.strat
 local RENDER_ORDER = App.config.render_order.start_scene
 local MSG = App.constants.msg
 
-local class = App.libs.middleclass
 local ScriptWrapper = App.libs.script_wrapper
 
 local Scene = class('Scene', ScriptWrapper)

@@ -1,4 +1,4 @@
-local Transition = require('gui.transitions.transition.transition_object')
+local Transition = require('gui.transitions.Transition.Transition')
 local Libs = require('src.libs.libs')
 
 local class = Libs.middleclass

@@ -1,5 +1,5 @@
 local App = require('src.app')
-local LocalStorage = require('src.scripts.common.services.core.local_storage.local_storage')
+local LocalStorage = require('src.scripts.services.core.local_storage.local_storage')
 local NakamaAdapter = require('src.scripts.include.nakama.nakama')
 
 local Debug = App.libs.debug

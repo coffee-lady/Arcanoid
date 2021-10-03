@@ -1,12 +1,12 @@
 local App = require('src.app')
-local Common = require('src.scripts.common.common')
+local GUI = require('gui.gui')
 
 local URL = App.constants.urls
 
 local ComponentsController = class('ComponentsController')
 
 function ComponentsController:initialize(context_services)
-    self.transition = Common.components.ScreenTransition()
+    self.transition = GUI.Transitions.ScreenTransition()
 end
 
 function ComponentsController:update(dt)

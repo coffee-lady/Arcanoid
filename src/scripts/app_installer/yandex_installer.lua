@@ -1,14 +1,14 @@
 local App = require('src.app')
 local EventBus = require('src.libs.event_bus.event_bus')
-local Services = require('src.scripts.common.services.services')
-local PlayerDataStorage = require('src.scripts.common.platform.yandex.player_data_storage.YandexPlayerDataStorage')
-local AuthService = require('src.scripts.common.platform.yandex.auth.YandexAuthService')
-local AdsService = require('src.scripts.common.platform.yandex.ads.YandexAdsService')
-local PaymentsService = require('src.scripts.common.platform.yandex.payments.YandexPaymentsService')
-local StoreService = require('src.scripts.common.platform.yandex.store.YandexStoreService')
-local LeaderboardsService = require('src.scripts.common.platform.yandex.leaderboards.YandexLeaderboardsService')
-local FeedbackService = require('src.scripts.common.platform.yandex.feedback.YandexFeedbackService')
-local YandexPlatformService = require('src.scripts.common.platform.yandex.YandexPlatformService')
+local Services = require('src.scripts.services.services')
+local PlayerDataStorage = require('src.scripts.services.platform.yandex.player_data_storage.YandexPlayerDataStorage')
+local AuthService = require('src.scripts.services.platform.yandex.auth.YandexAuthService')
+local AdsService = require('src.scripts.services.platform.yandex.ads.YandexAdsService')
+local PaymentsService = require('src.scripts.services.platform.yandex.payments.YandexPaymentsService')
+local StoreService = require('src.scripts.services.platform.yandex.store.YandexStoreService')
+local LeaderboardsService = require('src.scripts.services.platform.yandex.leaderboards.YandexLeaderboardsService')
+local FeedbackService = require('src.scripts.services.platform.yandex.feedback.YandexFeedbackService')
+local YandexPlatformService = require('src.scripts.services.platform.yandex.YandexPlatformService')
 
 local YandexInstaller = {}
 

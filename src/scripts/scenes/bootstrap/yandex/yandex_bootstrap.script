@@ -2,7 +2,6 @@ local App = require('src.app')
 local AppInstaller = require('src.scripts.app_installer.yandex_installer')
 local BootstrapGO = require('src.scripts.scenes.bootstrap.bootstrap_go')
 
-local class = App.libs.middleclass
 local ScriptWrapper = App.libs.script_wrapper
 
 local Scene = class('Scene', ScriptWrapper)

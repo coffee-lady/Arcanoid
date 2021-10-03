@@ -1,12 +1,12 @@
 local App = require('src.app')
 local EventBus = require('src.libs.event_bus.event_bus')
-local Services = require('src.scripts.common.services.services')
-local PlayerDataStorage = require('src.scripts.common.platform.ok.player_data_storage.OKPlayerDataStorage')
-local AuthService = require('src.scripts.common.platform.ok.auth.OKAuthService')
-local AdsService = require('src.scripts.common.platform.ok.ads.OKAdsService')
-local PaymentsService = require('src.scripts.common.platform.ok.payments.OKPaymentsService')
-local StoreService = require('src.scripts.common.platform.ok.store.OKStoreService')
-local OkPlatform = require('src.scripts.common.platform.ok.OkPlatformService')
+local Services = require('src.scripts.services.services')
+local PlayerDataStorage = require('src.scripts.services.platform.ok.player_data_storage.OKPlayerDataStorage')
+local AuthService = require('src.scripts.services.platform.ok.auth.OKAuthService')
+local AdsService = require('src.scripts.services.platform.ok.ads.OKAdsService')
+local PaymentsService = require('src.scripts.services.platform.ok.payments.OKPaymentsService')
+local StoreService = require('src.scripts.services.platform.ok.store.OKStoreService')
+local OkPlatform = require('src.scripts.services.platform.ok.OkPlatformService')
 
 local OkInstaller = {}
 
