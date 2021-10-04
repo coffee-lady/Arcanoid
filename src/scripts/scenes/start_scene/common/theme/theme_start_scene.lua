@@ -7,11 +7,11 @@ local SubscriptionsMap = App.libs.SubscriptionsMap
 
 local MSG = App.constants.msg
 
-local ThemeMap = class('ThemeMap')
+local Theme = class('ThemeMap')
 
-ThemeMap.__cparams = {'event_bus', 'ui_service'}
+Theme.__cparams = {'event_bus', 'ui_service'}
 
-function ThemeMap:initialize(event_bus, ui_service, nodes_map)
+function Theme:initialize(event_bus, ui_service, nodes_map)
     --- @type EventBus
     self.event_bus = event_bus
     --- @type UIService
@@ -39,18 +39,18 @@ function ThemeMap:initialize(event_bus, ui_service, nodes_map)
     self:_set_subscriptions()
 end
 
-function ThemeMap:_set_subscriptions()
+function Theme:_set_subscriptions()
     SubscriptionsMap(self, self.event_bus, {
         [MSG.themes.theme_changed] = self.on_theme_changed,
     })
 end
 
-function ThemeMap:on_theme_changed()
+function Theme:on_theme_changed()
     self.theme_map:refresh()
 end
 
-function ThemeMap:get_map()
+function Theme:get_map()
     return self.theme_map:get_map()
 end
 
-return ThemeMap
+return Theme

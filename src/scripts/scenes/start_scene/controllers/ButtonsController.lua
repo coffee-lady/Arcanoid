@@ -8,12 +8,10 @@ local MSG = App.constants.msg
 --- @class ButtonsController : SceneController
 local ButtonsController = class('ButtonsController', SceneController)
 
-ButtonsController.__cparams = {'event_bus'}
-
 function ButtonsController:initialize(event_bus, presenters)
-    SceneController.initialize(event_bus)
+    SceneController.initialize(self, event_bus)
 
-    self:set_subscription_map({
+    self:set_subscriptions_map({
         [MSG.auth.success_auth] = self.on_authorized,
     })
 end

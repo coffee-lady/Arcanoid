@@ -3,8 +3,8 @@ local json = require('src.libs.tools.data.json.json')
 local PlatformChanger = {}
 
 local Settings = {
-    path_script_change_platform = './main/editor/platform_changer/helpers/setup_build_platform.py',
-    path_platform_config = './main/editor/platform_changer/config/config_change_platform.json',
+    path_script_change_platform = './src/editor/platform_changer/helpers/setup_build_platform.py',
+    path_platform_config = './src/editor/platform_changer/config/config_change_platform.json',
 
     format_command_name = 'Setup build %s',
     default_command_key = 'UNKNOWN',

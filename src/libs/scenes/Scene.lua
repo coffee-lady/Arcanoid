@@ -25,17 +25,14 @@ function Scene:update(dt)
 end
 
 function Scene:on_input(action_id, action)
-    self.event_bus:emit(action_id, action)
     self.mediator:on_input(action_id, action)
 end
 
 function Scene:on_message(message_id, message, sender)
-    self.event_bus:emit(message_id, message)
     self.mediator:on_message(message_id, message, sender)
 end
 
 function Scene:final()
-    self.event_bus:clear()
     self.mediator:final()
 end
 

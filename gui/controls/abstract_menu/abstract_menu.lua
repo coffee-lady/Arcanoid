@@ -1,4 +1,5 @@
 local Layouts = require('gui.core.layouts.layouts')
+local Luject = require('src.libs.luject.luject')
 
 local function get_id(id)
     if type(id) == 'table' then
@@ -11,11 +12,10 @@ end
 --- @class AbstractMenu
 local AbstractMenu = class('AbstractMenu')
 
-AbstractMenu.__cparams = {'scenes_service', 'ui_service'}
+AbstractMenu.__cparams = {'ui_service'}
 
-function AbstractMenu:initialize(scenes_service, ui_service, View, map)
+function AbstractMenu:initialize(ui_service, View, map)
     self.ui_service = ui_service
-    self.scenes_service = scenes_service
 
     self.View = View
     self.buttons = {}
@@ -33,12 +33,12 @@ end
 
 function AbstractMenu:init_with_nodes(map)
     for id, data in pairs(map) do
-        self.buttons[id] = self.View(data, self.scenes_service, data.callback)
+        self.buttons[id] = Luject:resolve_class(self.View, data, data.callback)
     end
 end
 
 function AbstractMenu:add(ids, callback)
-    self.buttons[ids.container] = self.View(ids, self.scenes_service, callback)
+    self.buttons[ids.container] = Luject:resolve_class(self.View, ids, callback)
 end
 
 function AbstractMenu:enable_by_id(id)

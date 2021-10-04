@@ -5,8 +5,10 @@ local ACTION_CLICK = hash('click')
 --- @class SubscribedButton : Button
 local SubscribedButton = class('SubscribedButton', Button)
 
-function SubscribedButton:initialize(ids, scenes_service, event_bus, on_click)
-    Button.initialize(self, ids, scenes_service, on_click)
+SubscribedButton.__cparams = {'scenes_service', 'event_bus'}
+
+function SubscribedButton:initialize(scenes_service, event_bus, ids, on_click)
+    Button.initialize(self, scenes_service, ids, on_click)
 
     --- @type EventBus
     self.event_bus = event_bus

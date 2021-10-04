@@ -2,7 +2,6 @@ local App = require('src.app')
 local GUI = require('gui.gui')
 
 local ID = App.constants.gui.screens.start_scene
-local ButtonsID = ID.buttons
 
 local TextNode = GUI.TextNode
 local BoxNode = GUI.BoxNode
@@ -15,8 +14,8 @@ function NodesMap:initialize()
         root = BoxNode(ID.root),
 
         button_play = {
-            inner = BoxNode(ButtonsID.button_play.inner),
-            text = TextNode(ButtonsID.button_play.text),
+            inner = BoxNode(ID.button_play.inner),
+            text = TextNode(ID.button_play.text),
         },
     }
 end

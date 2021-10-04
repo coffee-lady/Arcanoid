@@ -9,11 +9,11 @@ local DateLib = App.libs.date
 local LocalizationMap = GUI.LocalizationMap
 local SubscriptionsMap = App.libs.SubscriptionsMap
 
-local LocalizationMap = class('LocalizationMap')
+local Localization = class('LocalizationMap')
 
-LocalizationMap.__cparams = {'localization_service', 'event_bus'}
+Localization.__cparams = {'localization_service', 'event_bus'}
 
-function LocalizationMap:initialize(localization_service, event_bus)
+function Localization:initialize(localization_service, event_bus)
     self.localization_service = localization_service
     --- @type EventBus
     self.event_bus = event_bus
@@ -25,18 +25,18 @@ function LocalizationMap:initialize(localization_service, event_bus)
     self:_set_subscriptions()
 end
 
-function LocalizationMap:add(data)
+function Localization:add(data)
     self.map:add(data)
 end
 
-function LocalizationMap:_set_subscriptions()
+function Localization:_set_subscriptions()
     SubscriptionsMap(self, self.event_bus, {
         [MSG.localization.language_changed] = self.on_language_changed,
     })
 end
 
-function LocalizationMap:on_language_changed()
+function Localization:on_language_changed()
     self.map:refresh()
 end
 
-return LocalizationMap
+return Localization

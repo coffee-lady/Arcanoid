@@ -7,12 +7,10 @@ local ScreensConstants = {
 ScreensConstants.start_scene = {
     root = 'root',
 
-    buttons = {
-        button_play = {
-            container = 'button_play/container',
-            inner = 'button_play/inner',
-            text = 'button_play/text',
-        },
+    button_play = {
+        container = 'button_play/container',
+        inner = 'button_play/inner',
+        text = 'button_play/text',
     },
 }
 

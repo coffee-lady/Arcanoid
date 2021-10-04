@@ -4,6 +4,8 @@ local SubscriptionsMap = require('src.libs.event_bus.subscriptions_map')
 --- @class SceneStrategiesMediator
 local SceneStrategiesMediator = class('SceneStrategiesMediator')
 
+SceneStrategiesMediator.__cparams = {'event_bus'}
+
 function SceneStrategiesMediator:initialize(event_bus)
     self.event_bus = event_bus
     self.subscribed_services = {}
@@ -21,11 +23,18 @@ end
 
 function SceneStrategiesMediator:on_input(action_id, action)
     assert(self.current_strategy)
+
+    if not action_id then
+        return
+    end
+
+    self.event_bus:emit(action_id, action)
     self.current_strategy:on_input(action_id, action)
 end
 
 function SceneStrategiesMediator:on_message(message_id, message, sender)
     assert(self.current_strategy)
+    self.event_bus:emit(message_id, message)
     self.current_strategy:on_message(message_id, message, sender)
 end
 
@@ -37,14 +46,14 @@ function SceneStrategiesMediator:set_services_subscriptions(...)
     local services = {...}
 
     for i = 1, #services do
-        services:subscribe()
+        services[i]:subscribe()
         self.subscribed_services[i] = services[i]
     end
 end
 
 function SceneStrategiesMediator:remove_services_subscriptions()
     for i = 1, #self.subscribed_services do
-        self.subscribed_services:unsubscribe()
+        self.subscribed_services[i]:unsubscribe()
     end
 
     self.subscribed_services = {}

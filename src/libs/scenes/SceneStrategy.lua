@@ -9,7 +9,7 @@ end
 
 local function call_collection(arr, func, ...)
     for i = 1, #arr do
-        call_safe(arr[i][func], ...)
+        call_safe(arr[i][func], arr[i], ...)
     end
 end
 
@@ -50,13 +50,13 @@ function SceneStrategy:on_input(action_id, action)
 end
 
 function SceneStrategy:on_message(message_id, message, sender)
-    call_safe(self.transition.on_message, message_id, message, sender)
+    call_safe(self.transition.on_message, self.transition, message_id, message, sender)
     call_collection(self.controllers, 'on_message', message_id, message, sender)
 end
 
 function SceneStrategy:final()
     call_collection(self.controllers, 'final')
-    call_safe(self.transition.final)
+    call_safe(self.transition.final, self.transition)
 end
 
 return SceneStrategy

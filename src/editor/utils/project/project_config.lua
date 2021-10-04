@@ -1,3 +1,5 @@
+local class = require('src.libs.tools.middleclass.middleclass')
+
 --- @class ConfigProject
 local ConfigProject = class('ConfigProject')
 

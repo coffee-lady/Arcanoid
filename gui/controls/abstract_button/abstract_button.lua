@@ -22,7 +22,9 @@ AbstractButton.BUTTON_CLOSE = 'btn_close'
 
 AbstractButton.BUTTON_CLICKED = hash('btn_clicked')
 
-function AbstractButton:initialize(ids, scenes_service, on_click)
+AbstractButton.__cparams = {'scenes_service'}
+
+function AbstractButton:initialize(scenes_service, ids, on_click)
     --- @type ScenesService
     self.scenes_service = scenes_service
 

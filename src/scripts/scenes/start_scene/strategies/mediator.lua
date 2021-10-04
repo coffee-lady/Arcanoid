@@ -14,7 +14,7 @@ function StartSceneStrategiesMediator:initialize(event_bus, auth_service)
     self.auth_service = auth_service
 
     self:set_strategy(Strategies.StandardStrategy)
-    self:add_subscriptions(self.auth_service)
+    self:set_services_subscriptions(self.auth_service)
 end
 
 return StartSceneStrategiesMediator
