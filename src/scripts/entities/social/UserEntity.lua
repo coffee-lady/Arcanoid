@@ -1,6 +1,3 @@
-local Libs = require('src.libs.libs')
-local Array = Libs.array
-
 --- @class UserEntity
 local UserEntity = class('UserEntity')
 

@@ -73,7 +73,7 @@ function ScenesService:_notify_before(current_scene, scene_data)
     })
 end
 
-function ScenesService:switch_to_scene(scene_id, scene_data, options, callback)
+function ScenesService:show(scene_id, scene_data, options, callback)
     scene_data = scene_data or {}
     options = options or {}
 
@@ -92,13 +92,13 @@ function ScenesService:switch_to_scene(scene_id, scene_data, options, callback)
     end)
 end
 
-function ScenesService:switch_to_scene_delayed(delay, scene_id, scene_data, options, callback)
+function ScenesService:show_delayed(delay, scene_id, scene_data, options, callback)
     timer.delay(delay, false, function()
-        self:switch_to_scene(scene_id, scene_data, options, callback)
+        self:show(scene_id, scene_data, options, callback)
     end)
 end
 
-function ScenesService:switch_to_scene_with_middleware(scene_id, scene_data, options, callback)
+function ScenesService:show_with_middleware(scene_id, scene_data, options, callback)
     scene_data = scene_data or {}
     options = options or {}
 
@@ -135,9 +135,9 @@ function ScenesService:_exec_middlewares(scene_id, key)
     end
 end
 
-function ScenesService:switch_to_scene_with_middleware_delayed(delay, scene_id, scene_data, options, callback)
+function ScenesService:show_with_middleware_delayed(delay, scene_id, scene_data, options, callback)
     timer.delay(delay, false, function()
-        self:switch_to_scene_with_middleware(scene_id, scene_data, options, callback)
+        self:show_with_middleware(scene_id, scene_data, options, callback)
     end)
 end
 

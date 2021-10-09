@@ -106,6 +106,46 @@ images {
   image: "/assets/images/themes/winter/winter-btn-energy.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
+images {
+  image: "/assets/images/themes/winter/game/winter-life.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/images/themes/winter/game/winter-platform.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/images/themes/winter/game/winter-game_ball.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/images/themes/winter/game/block/winter-block-top.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/images/themes/winter/game/block/winter-block-bottom.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/images/themes/winter/game/block/winter-block-cracks.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/images/themes/winter/game/block/winter-block-shard_1.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/images/themes/winter/game/block/winter-block-shard_2.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/images/themes/winter/game/block/winter-block-shard_3.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/images/themes/winter/game/block/winter-granite_block-particle.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
 margin: 4
 extrude_borders: 1
 inner_padding: 0

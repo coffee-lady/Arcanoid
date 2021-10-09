@@ -18,7 +18,7 @@ local BundleConfig = {
             platform = 'js-web',
             -- bundle_output = 'D:\\Builds\\js-web\\Yandex',
             bundle_output = 'E:\\Projects\\Builds\\js-web',
-            settings = 'main/app/settings/yandex/yandex_game.project_settings',
+            settings = 'main/app/settings/yandex/yandex_game.project',
             folders_to_exclude = {'main/scripts/common/platform/common/adapters/nakama'},
         },
         ok = {
@@ -27,7 +27,7 @@ local BundleConfig = {
             platform = 'js-web',
             -- bundle_output = 'D:\\Builds\\js-web\\OK',
             bundle_output = 'E:\\Projects\\Builds\\js-web',
-            settings = 'main/app/settings/ok/ok_game.project_settings',
+            settings = 'main/app/settings/ok/ok_game.project',
             folders_to_exclude = {},
         },
     },

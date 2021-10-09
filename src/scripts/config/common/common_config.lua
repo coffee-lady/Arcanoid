@@ -2,7 +2,8 @@ local Constants = require('src.scripts.constants.constants')
 
 local CommonConfig = {
     dummy_data = require('src.scripts.config.common.dummy_data.dummy_data'),
-    localization = require('src.scripts.config.common.localization.localization'),
+    localization = require('src.scripts.config.common.localization.localization_config'),
+    game = require('src.scripts.config.common.game.game_config'),
     bundle = require('src.scripts.config.common.bundle.bundle_config'),
     data_storage = require('src.scripts.config.common.data_storage.data_storage_config'),
 
@@ -44,10 +45,12 @@ local CommonConfig = {
 
     resources = {
         localization = '/resources/localization/%s.json',
+        levels = '/resources/levels/%s.json',
     },
 
     render_order = {
-        start_scene = 3,
+        start_scene = 1,
+        game_scene = 2,
     },
 }
 

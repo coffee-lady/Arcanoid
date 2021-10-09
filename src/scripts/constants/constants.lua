@@ -7,6 +7,7 @@ local Constants = {
 Constants.urls = {
     bootstrap = 'bootstrap',
     start_scene = 'start_scene',
+    game_scene = 'game_scene',
 }
 
 Constants.fonts = {

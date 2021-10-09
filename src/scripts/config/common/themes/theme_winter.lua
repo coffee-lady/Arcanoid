@@ -16,4 +16,6 @@ WinterTheme.start_scene = {
     },
 }
 
+WinterTheme.game_scene = {}
+
 return WinterTheme

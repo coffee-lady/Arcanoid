@@ -60,11 +60,11 @@ function ShowFirstSceneUseCase:show_first_scene()
 end
 
 function ShowFirstSceneUseCase:_show_start_scene()
-    self.scenes_service:switch_to_scene(URL.start_scene)
+    self.scenes_service:show(URL.start_scene)
 end
 
 function ShowFirstSceneUseCase:_show_game_screen(level_to_load)
-    -- self.scenes_service:switch_to_scene(URL.game_screen, {
+    -- self.scenes_service:show(URL.game_screen, {
     --     feed_level = true,
     --     level_to_load = level_to_load,
     --     reset = true,

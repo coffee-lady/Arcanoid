@@ -1,0 +1,2 @@
+prototype: "/src/ui/scenes/game scene/game objects/boost.go"
+load_dynamically: false
