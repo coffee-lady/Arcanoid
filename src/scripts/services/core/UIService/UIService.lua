@@ -31,6 +31,7 @@ UIService.MSG_THEME_CHANGED = MSG.themes.theme_changed
 function UIService:initialize(player_data_storage, event_bus, global_gui_caller_service)
     self.player_data_storage = player_data_storage
     self.global_gui_caller_service = global_gui_caller_service
+
     self.unlocked_all = false
     self.theme_changed_notifier = Notifier(MSG.themes.theme_changed)
     self.themes_unlocked_notifier = Notifier(MSG.themes.all_unlocked)
@@ -67,12 +68,6 @@ end
 
 function UIService:set_current_user_theme()
     local theme_key = self.player_data_storage:get(FILE, KEY_THEME)
-
-    -- to remove later
-    if theme_key == 'hackblue' then
-        theme_key = 'blue'
-    end
-
     self:change_theme(theme_key)
 end
 

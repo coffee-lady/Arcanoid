@@ -3,9 +3,10 @@
 -- local SceneMsgService = SceneServices.msg
 -- local MSG = App.constants.messages
 -- local URL = App.constants.urls
--- function init(self)
---     self.id = go.get_id()
--- end
+function init(self)
+    self.id = go.get_id()
+end
+
 -- function on_message(self, message_id, message, sender)
 --     if message_id == hash(MSG.common.collision_response) then
 --         SceneMsgService:post(URL.scenes.game_scene.scene, self.id, MSG.game.boost_collision, message)

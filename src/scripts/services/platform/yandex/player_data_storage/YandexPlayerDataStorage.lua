@@ -7,9 +7,6 @@ local Array = App.libs.array
 
 local StorageAdapter = YandexAPI.PlayerDataStorage
 
-local HintsConfig = App.config.game.hints
-local FreeHintsConfig = HintsConfig.free
-
 local DataStorageConfig = App.config.data_storage
 local FILE = DataStorageConfig.file
 local KEY_THEME = DataStorageConfig.keys.theme
@@ -63,8 +60,6 @@ function YandexPlayerDataStorage:compare_data()
     if not self.auth_service:is_authorized() then
         return
     end
-
-    self:_compare_free_hints()
 
     local local_data = {}
     local server_data = {}
@@ -122,17 +117,6 @@ function YandexPlayerDataStorage:get(filename, key)
     end
 
     return Array.deepcopy(val)
-end
-
-function YandexPlayerDataStorage:_compare_free_hints()
-    local local_free_hints = StorageAdapter:get_from_local_storage(FILE, KEY_FREE_HINTS_COUNT) or FreeHintsConfig.count
-    local server_free_hints = self.data[StorageAdapter:get_key(FILE, KEY_FREE_HINTS_COUNT)] or FreeHintsConfig.count
-
-    if local_free_hints < server_free_hints then
-        self:_set_to_server_storage(FILE, KEY_FREE_HINTS_COUNT, local_free_hints)
-    else
-        StorageAdapter:set_to_local_storage(FILE, KEY_FREE_HINTS_COUNT, server_free_hints)
-    end
 end
 
 function YandexPlayerDataStorage:_update_from_local_data(local_data)

@@ -18,7 +18,7 @@ input_method = HiddenInputField
 title = Arcanoid
 bundle_resources = src/bootstrap/yandex
 custom_resources = /resources
-version = 1.5.89
+version = 0.1.0
 dependencies#0 = https://github.com/AGulev/jstodef/archive/master.zip
 dependencies#1 = https://github.com/d954mas/defold-utf8/archive/master.zip
 dependencies#2 = https://github.com/britzl/defold-richtext/archive/master.zip
@@ -30,13 +30,15 @@ game_binding = /settings/input/game.input_bindingc
 gamepads = /builtins/input/default.gamepadsc
 
 [gui]
-max_count = 150
+max_count = 1
+max_particle_count = 200
+max_particlefx_count = 3
 
 [label]
 max_count = 0
 
 [sprite]
-max_count = 1
+max_count = 10
 
 [html5]
 htmlfile = /src/bootstrap/yandex/template_yandex.html
@@ -51,33 +53,33 @@ service_worker_url = sw.js
 manifest_url = yandex-manifest.json
 
 [native_extension]
-app_manifest = /settings/manifests/native_manifest_strip.appmanifest
+app_manifest = /settings/manifests/manifest.appmanifest
 
 [particle_fx]
-max_count = 128
+max_count = 0
+max_particle_count = 0
 
 [spine]
-max_count = 1
+max_count = 0
 
 [model]
-max_count = 1
+max_count = 0
 
 [mesh]
-max_count = 1
+max_count = 0
 
 [collectionfactory]
-max_count = 1
+max_count = 0
 
 [factory]
-max_count = 1
+max_count = 3
 
 [physics]
-world_count = 1
-trigger_overlap_capacity = 0
 ray_cast_limit_3d = 0
-ray_cast_limit_2d = 0
-max_contacts = 0
-max_collisions = 0
-debug_alpha = 0.0
-debug_scale = 0.0
+
+[collection]
+max_instances = 32
+
+[graphics]
+max_draw_calls = 20
 
