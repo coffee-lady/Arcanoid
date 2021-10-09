@@ -4,7 +4,7 @@ fonts {
   font: "/assets/fonts/font/Dosis30-Bold.font"
 }
 textures {
-  name: "game"
+  name: "main"
   texture: "/assets/atlases/main.atlas"
 }
 textures {
@@ -50,7 +50,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "game/rectangle"
+  texture: "main/rectangle"
   id: "background"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -324,7 +324,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "game/empty"
+  texture: "main/empty"
   id: "root"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
