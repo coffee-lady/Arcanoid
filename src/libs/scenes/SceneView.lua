@@ -10,4 +10,9 @@ function SceneView:initialize(UIMaps)
     self.controls_map = Luject:resolve_class(UIMaps.ControlsMap)
 end
 
+function SceneView:final()
+    self.theme_map:final()
+    self.localization_map:final()
+end
+
 return SceneView

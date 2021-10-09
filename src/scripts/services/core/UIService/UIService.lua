@@ -1,4 +1,5 @@
 local App = require('src.app')
+local GUI = require('gui.gui')
 local ScenesService = require('src.scripts.services.core.ScenesService.ScenesService')
 
 local Themes = App.config.ui.themes
@@ -11,7 +12,6 @@ local BootstrapID = App.constants.gui.screens.bootstrap
 local DEFAULT_THEME = App.config.ui.default_theme
 local MSG = App.constants.msg
 
-local GUI = require('gui.gui')
 local BoxNode = GUI.BoxNode
 local Notifier = App.libs.notifier
 local ColorLib = App.libs.color
@@ -25,6 +25,8 @@ local DEFAULT_UNLOCKED_THEMES = {
 local UIService = class('UIService')
 
 UIService.__cparams = {'player_data_storage', 'event_bus', 'global_gui_caller_service'}
+
+UIService.MSG_THEME_CHANGED = MSG.themes.theme_changed
 
 function UIService:initialize(player_data_storage, event_bus, global_gui_caller_service)
     self.player_data_storage = player_data_storage

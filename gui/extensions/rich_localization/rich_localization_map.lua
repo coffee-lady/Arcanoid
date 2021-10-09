@@ -10,8 +10,8 @@ local RichLocalizationMap = class('RichLocalizationMap')
 --         vars = {...}
 --     },
 -- }
-function RichLocalizationMap:initialize(context_services, texts_key, map)
-    self.localization_service = context_services.localization
+function RichLocalizationMap:initialize(localization_service, texts_key, map)
+    self.localization_service = localization_service
     self.texts_key = texts_key
 
     for i = 1, #map do

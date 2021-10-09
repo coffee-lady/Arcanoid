@@ -9,6 +9,13 @@ Constants.urls = {
     start_scene = 'start_scene',
 }
 
+Constants.fonts = {
+    Dosis = {
+        id = 'Dosis',
+        Bold = 'Dosis30-Bold',
+    },
+}
+
 Constants.msg = {
     acquire_input_focus = hash('acquire_input_focus'),
 

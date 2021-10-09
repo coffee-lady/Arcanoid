@@ -7,23 +7,27 @@ local SubscriptionsMap = App.libs.SubscriptionsMap
 
 local MSG = App.constants.msg
 
-local Theme = class('ThemeMap')
+local Theme = class('ThemeMap', ThemeMap)
 
 Theme.__cparams = {'event_bus', 'ui_service'}
 
 function Theme:initialize(event_bus, ui_service, nodes_map)
-    --- @type EventBus
-    self.event_bus = event_bus
-    --- @type UIService
-    self.ui_service = ui_service
-
     local nodes = nodes_map:get_table()
 
-    self.theme_map = ThemeMap(self.ui_service):init({
+    local settings = {}
+    local scheme = {
         root = {
             is_static = true,
             map = {
-                bg = nodes.root,
+                bg = nodes.background,
+            },
+        },
+
+        appbar = {
+            is_static = true,
+            map = {
+                simple_button = NodesList(nodes.button_settings.icon, nodes.button_store.icon),
+                simple_button_text = NodesList(nodes.button_settings.text, nodes.button_store.text),
             },
         },
 
@@ -34,23 +38,9 @@ function Theme:initialize(event_bus, ui_service, nodes_map)
                 text = nodes.button_play.text,
             },
         },
-    })
+    }
 
-    self:_set_subscriptions()
-end
-
-function Theme:_set_subscriptions()
-    SubscriptionsMap(self, self.event_bus, {
-        [MSG.themes.theme_changed] = self.on_theme_changed,
-    })
-end
-
-function Theme:on_theme_changed()
-    self.theme_map:refresh()
-end
-
-function Theme:get_map()
-    return self.theme_map:get_map()
+    ThemeMap.initialize(self, event_bus, ui_service, settings, scheme)
 end
 
 return Theme

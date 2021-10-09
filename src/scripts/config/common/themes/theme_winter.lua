@@ -2,8 +2,12 @@ local WinterTheme = {}
 
 WinterTheme.start_scene = {
     root = {
-        bg = 'FBFAFF',
-        arrows = '818181',
+        bg = 'AACDE7',
+    },
+
+    appbar = {
+        simple_button = 'FFFFFF',
+        simple_button_text = 'FFFFFF',
     },
 
     button_play = {

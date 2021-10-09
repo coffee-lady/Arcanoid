@@ -1,20 +1,30 @@
 local ThemeObject = require('gui.core.theme_objects.theme_object.theme_object')
 local StaticThemeObject = require('gui.core.theme_objects.static_theme_object.static_theme_object')
 local NodesList = require('gui.core.nodes.nodes_list.nodes_list')
+local SubscriptionsMap = require('src.libs.event_bus.subscriptions_map')
 
 local ThemeMap = class('ThemeMap')
 
-function ThemeMap:initialize(ui_service, is_common, extra_key)
+function ThemeMap:initialize(event_bus, ui_service, settings, scheme)
+    --- @type EventBus
+    self.event_bus = event_bus
+    --- @type UIService
     self.ui_service = ui_service
-    self.is_common = is_common
-    self.scene_id = self.ui_service:get_scene_id()
-    self.theme = is_common and self.ui_service:get_common_colors() or self.ui_service:get_scene_colors()
-    self.extra_key = extra_key
-    if extra_key then
-        self.theme = self.theme[extra_key]
+
+    self.is_common = settings.is_common
+    self.extra_key = settings.extra_key
+    self.scene_id = settings.scene_id or self.ui_service:get_scene_id()
+    self.theme = self.is_common and self.ui_service:get_common_colors() or self.ui_service:get_scene_colors(self.scene_id)
+
+    if self.extra_key then
+        self.theme = self.theme[self.extra_key]
     end
 
+    self.scheme = scheme
     self.map = {}
+
+    self:_fill_scheme()
+    self:_set_subscriptions()
 end
 
 -- example of scheme:
@@ -29,23 +39,16 @@ end
 --         },
 --     },
 -- }
-function ThemeMap:init(scheme, scene_id)
-    if scene_id then
-        self.scene_id = hash(scene_id)
-        self.theme = self.ui_service:get_scene_colors(self.scene_id)
-        self.extra_key = self.extra_key
-        if self.extra_key then
-            self.theme = self.theme[self.extra_key]
-        end
-    end
-
-    self.scheme = scheme
-
-    for theme_object_key, item in pairs(scheme) do
+function ThemeMap:_fill_scheme()
+    for theme_object_key, item in pairs(self.scheme) do
         self:add(theme_object_key, item)
     end
+end
 
-    return self
+function ThemeMap:_set_subscriptions()
+    self.subs = SubscriptionsMap(self, self.event_bus, {
+        [self.ui_service.MSG_THEME_CHANGED] = self.refresh,
+    })
 end
 
 function ThemeMap:add(theme_object_key, item)
@@ -115,6 +118,10 @@ end
 
 function ThemeMap:get_map()
     return self.map
+end
+
+function ThemeMap:final()
+    self.subs:unsubscribe()
 end
 
 return ThemeMap

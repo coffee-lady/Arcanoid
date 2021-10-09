@@ -25,6 +25,8 @@ local LocalizationService = class('LocalizationService')
 
 LocalizationService.__cparams = {'player_data_storage', 'global_gui_caller_service', 'auth_service'}
 
+LocalizationService.MSG_LANG_CHANGED = MSG.localization.language_changed
+
 function LocalizationService:initialize(player_data_storage, global_gui_caller_service, auth_service)
     self.global_gui_caller_service = global_gui_caller_service
     self.player_data_storage = player_data_storage

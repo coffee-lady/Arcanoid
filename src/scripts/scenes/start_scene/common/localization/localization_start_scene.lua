@@ -1,42 +1,40 @@
 local App = require('src.app')
 local GUI = require('gui.gui')
-local Nodes = require('src.scripts.scenes.start_scene.common.nodes.nodes_start_scene')
 
 local TextKeys = App.constants.localization.keys
 local MSG = App.constants.msg
+local Fonts = App.constants.fonts
 
 local DateLib = App.libs.date
 local LocalizationMap = GUI.LocalizationMap
+local RichLocalizationMap = GUI.RichLocalizationMap
 local SubscriptionsMap = App.libs.SubscriptionsMap
+local SceneLocalization = GUI.SceneLocalization
 
-local Localization = class('LocalizationMap')
+local Localization = class('LocalizationMap', SceneLocalization)
 
-Localization.__cparams = {'localization_service', 'event_bus'}
+Localization.__cparams = {'localization_service', 'event_bus', 'ui_service'}
 
-function Localization:initialize(localization_service, event_bus)
-    self.localization_service = localization_service
-    --- @type EventBus
-    self.event_bus = event_bus
+function Localization:initialize(localization_service, event_bus, ui_service, nodes_map)
+    SceneLocalization.initialize(self, localization_service, event_bus, ui_service, TextKeys.start_scene)
 
-    local nodes = Nodes:get_table()
+    local nodes = nodes_map:get_table()
+    local button_play = nodes.button_play
 
-    self.map = LocalizationMap(localization_service, TextKeys.start_scene, {})
+    self:set_rich_map({{
+        key = 'button_play',
+        vars = {
+            count = 5,
+            level = 597,
+        },
+        settings = {
+            initial_font = Fonts.Dosis.Bold,
+            parent = button_play.text,
+            -- color = 'white',
+        },
+    }})
 
     self:_set_subscriptions()
-end
-
-function Localization:add(data)
-    self.map:add(data)
-end
-
-function Localization:_set_subscriptions()
-    SubscriptionsMap(self, self.event_bus, {
-        [MSG.localization.language_changed] = self.on_language_changed,
-    })
-end
-
-function Localization:on_language_changed()
-    self.map:refresh()
 end
 
 return Localization

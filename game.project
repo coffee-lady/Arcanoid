@@ -15,7 +15,7 @@ samples = 2
 input_method = HiddenInputField
 
 [project]
-title = Christmas Arcanoid
+title = Arcanoid
 bundle_resources = src/bootstrap/yandex
 custom_resources = /resources
 version = 1.5.89

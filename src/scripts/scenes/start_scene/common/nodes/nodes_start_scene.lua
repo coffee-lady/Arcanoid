@@ -12,10 +12,23 @@ local NodesMap = class('NodesMap')
 function NodesMap:initialize()
     self.nodes = {
         root = BoxNode(ID.root),
+        background = BoxNode(ID.background),
+
+        button_settings = {
+            container = BoxNode(ID.button_settings.container),
+            icon = BoxNode(ID.button_settings.icon),
+            text = BoxNode(ID.button_settings.text),
+        },
+
+        button_store = {
+            container = BoxNode(ID.button_store.container),
+            icon = BoxNode(ID.button_store.icon),
+            text = BoxNode(ID.button_store.text),
+        },
 
         button_play = {
             inner = BoxNode(ID.button_play.inner),
-            text = TextNode(ID.button_play.text),
+            text = BoxNode(ID.button_play.text),
         },
     }
 end

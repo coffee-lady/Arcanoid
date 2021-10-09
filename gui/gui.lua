@@ -40,6 +40,7 @@ GUI.DragAndDrop = require('gui.drag_and_drop.drag_and_drop')
 
 GUI.LocalizationMap = require('gui.localization.localization_map')
 GUI.Widget = require('gui.widget.widget')
+GUI.SceneLocalization = require('gui.localization.SceneLocalization')
 
 GUI.RichTextNode = Extensions.RichTextNode
 GUI.RichLocalizationMap = Extensions.RichLocalizationMap
