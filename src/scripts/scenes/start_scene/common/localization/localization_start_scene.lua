@@ -30,11 +30,10 @@ function Localization:initialize(localization_service, event_bus, ui_service, no
         settings = {
             initial_font = Fonts.Dosis.Bold,
             parent = button_play.text,
-            -- color = 'white',
+            text = nodes.button_play.text,
+            color = self.ui_service:get_scene_colors().button_play.text,
         },
     }})
-
-    self:_set_subscriptions()
 end
 
 return Localization

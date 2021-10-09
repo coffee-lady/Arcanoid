@@ -1,5 +1,5 @@
 {
     "start_scene": {
-        "button_play": "<size=1.3>Играть за {count}</size><img=winter:winter-btn-energy/>\nУровень {level}"
+        "button_play": "<size=1.3>Играть за {count}</size> <img=winter:winter-btn-energy/>\nУровень {level}"
     }
 }

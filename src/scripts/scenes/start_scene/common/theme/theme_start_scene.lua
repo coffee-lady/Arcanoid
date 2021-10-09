@@ -35,7 +35,6 @@ function Theme:initialize(event_bus, ui_service, nodes_map)
             is_static = true,
             map = {
                 inner = nodes.button_play.inner,
-                text = nodes.button_play.text,
             },
         },
     }
