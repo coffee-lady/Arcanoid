@@ -16,7 +16,7 @@ local Luject = App.libs.luject
 
 local BootstrapGUI = class('BootstrapGUI')
 
-BootstrapGUI.__cparams = {'event_bus', 'scenes_service', 'screen_service', 'auth_service', 'ui_service', 'localization_service', 'global_gui_caller_service', 'local_storage',
+BootstrapGUI.__cparams = {'event_bus_gui', 'scenes_service', 'screen_service', 'auth_service', 'ui_service', 'localization_service', 'global_gui_caller_service', 'local_storage',
                           'progress_service', 'use_case_show_first_scene'}
 
 function BootstrapGUI:initialize(event_bus, scenes_service, screen_service, auth_service, ui_service, localization_service, global_gui_caller_service, local_storage,

@@ -25,4 +25,8 @@ function ControlsMap:initialize(scenes_service)
     })
 end
 
+function ControlsMap:final()
+    self.main_buttons:unsubscribe()
+end
+
 return ControlsMap

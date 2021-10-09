@@ -6,7 +6,7 @@ local SceneStrategiesMediator = App.libs.scenes.SceneStrategiesMediator
 --- @class StartSceneStrategiesMediator : SceneStrategiesMediator
 local StartSceneStrategiesMediator = class('StartSceneStrategiesMediator', SceneStrategiesMediator)
 
-StartSceneStrategiesMediator.__cparams = {'event_bus', 'auth_service', 'ui_service'}
+StartSceneStrategiesMediator.__cparams = {'event_bus_gui', 'auth_service', 'ui_service'}
 
 function StartSceneStrategiesMediator:initialize(event_bus, auth_service, ui_service)
     SceneStrategiesMediator.initialize(self, event_bus)

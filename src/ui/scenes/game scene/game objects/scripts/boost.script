@@ -1,5 +1,5 @@
 -- local App = require('src.app')
--- local SceneServices = require('src.systems.game.services.services')
+-- 
 -- local SceneMsgService = SceneServices.msg
 -- local MSG = App.constants.messages
 -- local URL = App.constants.urls

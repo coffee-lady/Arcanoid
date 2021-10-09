@@ -1,11 +1,9 @@
 local App = require('src.app')
 local Services = require('src.services.services')
-local SceneServices = require('src.systems.game.services.services')
 
 local SharedDara = SceneServices.shared_data
 local BlocksData = SharedDara.blocks
 
-local Common = require('src.common.common')
 local Boost = Common.components.boost
 
 local class = App.libs.middleclass
@@ -58,7 +56,7 @@ function SimpleBombBoost:boost()
 
             if dist == vertical_dist or dist == horizontal_dist or dist == diagonal_dist then
                 SceneMsgService:send(block.id, MSG.game.damage_block, {
-                    damage = BoostConfig.damage
+                    damage = BoostConfig.damage,
                 })
             end
         end

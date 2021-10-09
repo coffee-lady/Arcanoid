@@ -9,7 +9,7 @@ local IMAGES_URL = App.config.images_url
 --- @class OKAuthService
 local OKAuthService = class('OKAuthService')
 
-OKAuthService.__cparams = {'event_bus', 'global_gui_caller_service'}
+OKAuthService.__cparams = {'event_bus_gui', 'global_gui_caller_service'}
 
 OKAuthService.IMAGE_SIZE = AuthAdapter.IMAGE_SIZE
 

@@ -14,7 +14,10 @@ function Scene:initialize(StrategiesMediator, render_order)
 end
 
 function Scene:init()
-    gui.set_render_order(self.render_order)
+    if self.render_order then
+        gui.set_render_order(self.render_order)
+    end
+
     msg.post('.', MSG_AQUIRE_INPUT_FOCUS)
 
     self.mediator = Luject:resolve_class(self.StrategiesMediator)

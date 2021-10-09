@@ -4,7 +4,7 @@ local SubscriptionsMap = require('src.libs.event_bus.subscriptions_map')
 --- @class SceneStrategiesMediator
 local SceneStrategiesMediator = class('SceneStrategiesMediator')
 
-SceneStrategiesMediator.__cparams = {'event_bus'}
+SceneStrategiesMediator.__cparams = {'event_bus_gui'}
 
 function SceneStrategiesMediator:initialize(event_bus)
     self.event_bus = event_bus

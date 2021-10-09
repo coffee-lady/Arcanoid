@@ -21,7 +21,7 @@ local KEY_TO_ITEM = {
 --- @class OKStoreService
 local OKStoreService = class('OKStoreService')
 
-OKStoreService.__cparams = {'payments_service', 'event_bus', 'use_case_get_shown_products', 'use_case_finish_special_offer', 'use_case_find_product'}
+OKStoreService.__cparams = {'payments_service', 'event_bus_gui', 'use_case_get_shown_products', 'use_case_finish_special_offer', 'use_case_find_product'}
 
 function OKStoreService:initialize(payments_service, event_bus, use_case_get_shown_products, use_case_finish_special_offer, use_case_find_product)
     --- @type PaymentsService

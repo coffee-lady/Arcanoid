@@ -27,4 +27,30 @@ ScreensConstants.start_scene = {
     },
 }
 
+ScreensConstants.game_scene = {
+    root = 'root',
+    background = 'background',
+
+    energy = {
+        container = 'appbar/energy/container',
+        icon = 'appbar/energy/icon',
+        text = 'appbar/energy/text',
+    },
+
+    pause = {
+        container = 'appbar/pause/container',
+        icon = 'appbar/pause/icon',
+        text = 'appbar/pause/text',
+    },
+
+    lives = {
+        container = 'appbar/lives/container',
+        template = 'appbar/lives/template',
+    },
+
+    ball_factory = 'ball_factory',
+    block_factory = 'block_factory',
+    boost_factory = 'boost_factory',
+}
+
 return ScreensConstants

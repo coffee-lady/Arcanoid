@@ -4,7 +4,7 @@ local SubscriptionsMap = App.libs.SubscriptionsMap
 
 local StoreBootstrap = class('StoreBootstrap')
 
-StoreBootstrap.__cparams = {'event_bus'}
+StoreBootstrap.__cparams = {'event_bus_gui'}
 
 function StoreBootstrap:initialize(event_bus)
     self.event_bus = event_bus

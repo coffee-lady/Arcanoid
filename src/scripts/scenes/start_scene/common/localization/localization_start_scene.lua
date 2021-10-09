@@ -13,7 +13,7 @@ local SceneLocalization = GUI.SceneLocalization
 
 local Localization = class('LocalizationMap', SceneLocalization)
 
-Localization.__cparams = {'localization_service', 'event_bus', 'ui_service'}
+Localization.__cparams = {'localization_service', 'event_bus_gui', 'ui_service'}
 
 function Localization:initialize(localization_service, event_bus, ui_service, nodes_map)
     SceneLocalization.initialize(self, localization_service, event_bus, ui_service, TextKeys.start_scene)

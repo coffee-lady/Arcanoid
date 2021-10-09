@@ -31,6 +31,8 @@ function SceneStrategy:initialize(Controllers, Presenters, View, UIMaps)
     for i = 1, #Controllers do
         self.controllers[i] = Luject:resolve_class(Controllers[i], self.presenters)
     end
+
+    self.transition = {}
 end
 
 function SceneStrategy:set_screen_transition()
@@ -57,6 +59,7 @@ end
 function SceneStrategy:final()
     call_collection(self.controllers, 'final')
     call_safe(self.transition.final, self.transition)
+    call_safe(self.view.final, self.view)
 end
 
 return SceneStrategy

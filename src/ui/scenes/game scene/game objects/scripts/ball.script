@@ -1,4 +1,4 @@
--- local SceneServices = require('src.systems.game.services.services')
+-- 
 -- local SceneMsgService = SceneServices.msg
 function init(self)
     self.id = go.get_id()

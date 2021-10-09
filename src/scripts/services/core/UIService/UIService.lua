@@ -24,7 +24,7 @@ local DEFAULT_UNLOCKED_THEMES = {
 --- @class UIService
 local UIService = class('UIService')
 
-UIService.__cparams = {'player_data_storage', 'event_bus', 'global_gui_caller_service'}
+UIService.__cparams = {'player_data_storage', 'event_bus_gui', 'global_gui_caller_service'}
 
 UIService.MSG_THEME_CHANGED = MSG.themes.theme_changed
 

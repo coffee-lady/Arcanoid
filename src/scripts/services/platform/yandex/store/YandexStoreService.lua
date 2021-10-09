@@ -18,7 +18,7 @@ local DEBUG = App.config.debug_mode.StoreService
 --- @class StoreService
 local YandexStoreService = class('YandexStoreService')
 
-YandexStoreService.__cparams = {'payments_service', 'event_bus', 'use_case_get_shown_products', 'use_case_finish_special_offer', 'use_case_find_product'}
+YandexStoreService.__cparams = {'payments_service', 'event_bus_gui', 'use_case_get_shown_products', 'use_case_finish_special_offer', 'use_case_find_product'}
 
 function YandexStoreService:initialize(payments_service, event_bus, use_case_get_shown_products, use_case_finish_special_offer, use_case_find_product)
     --- @type PaymentsService

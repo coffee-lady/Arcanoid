@@ -8,7 +8,7 @@ local DEBUG = App.config.debug_mode.PlatformService
 --- @class PlatformService
 local PlatformService = class('PlatformService')
 
-PlatformService.__cparams = {'event_bus'}
+PlatformService.__cparams = {'event_bus_gui'}
 
 PlatformService.SYSTEM = {
     DARWIN = 'Darwin',

@@ -6,7 +6,7 @@ local URL = App.constants.urls
 
 local AuthBootstrap = class('AuthBootstrap')
 
-AuthBootstrap.__cparams = {'event_bus', 'auth_service', 'localization_service', 'leaderboards_service', 'ui_service', 'progress_service'}
+AuthBootstrap.__cparams = {'event_bus_gui', 'auth_service', 'localization_service', 'leaderboards_service', 'ui_service', 'progress_service'}
 
 function AuthBootstrap:initialize(event_bus, auth_service, localization_service, leaderboards_service, ui_service, progress_service)
     self.event_bus = event_bus

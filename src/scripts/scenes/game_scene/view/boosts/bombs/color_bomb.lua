@@ -1,13 +1,11 @@
 local App = require('src.app')
 local Services = require('src.services.services')
-local SceneServices = require('src.systems.game.services.services')
 
 local SharedDara = SceneServices.shared_data
 local BlocksData = SharedDara.blocks
 local LevelService = Services.level
 local ScreenService = Services.screen
 
-local Common = require('src.common.common')
 local Boost = Common.components.boost
 
 local class = App.libs.middleclass

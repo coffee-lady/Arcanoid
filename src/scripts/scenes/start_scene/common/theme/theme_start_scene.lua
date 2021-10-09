@@ -9,7 +9,7 @@ local MSG = App.constants.msg
 
 local Theme = class('ThemeMap', ThemeMap)
 
-Theme.__cparams = {'event_bus', 'ui_service'}
+Theme.__cparams = {'event_bus_gui', 'ui_service'}
 
 function Theme:initialize(event_bus, ui_service, nodes_map)
     local nodes = nodes_map:get_table()

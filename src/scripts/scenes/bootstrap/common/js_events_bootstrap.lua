@@ -8,7 +8,7 @@ local SubscriptionsMap = App.libs.SubscriptionsMap
 
 local JSEventsBootstrap = class('JSEventsBootstrap')
 
-JSEventsBootstrap.__cparams = {'event_bus'}
+JSEventsBootstrap.__cparams = {'event_bus_gui'}
 
 function JSEventsBootstrap:initialize(event_bus)
     self.event_bus = event_bus

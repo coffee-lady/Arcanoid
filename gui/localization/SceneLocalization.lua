@@ -5,7 +5,7 @@ local SubscriptionsMap = require('src.libs.event_bus.subscriptions_map')
 
 local SceneLocalization = class('SceneLocalization')
 
-SceneLocalization.__cparams = {'localization_service', 'event_bus', 'ui_service'}
+SceneLocalization.__cparams = {'localization_service', 'event_bus_gui', 'ui_service'}
 
 function SceneLocalization:initialize(localization_service, event_bus, ui_service, text_key)
     --- @type LocalizationService

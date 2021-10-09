@@ -5,11 +5,11 @@ local SceneView = App.libs.scenes.SceneView
 local LandscapeLayout = GUI.layouts.LandscapeLayout
 local TextNode = GUI.TextNode
 
---- @class ViewStartScene : SceneView
-local ViewStartScene = class('ViewStartScene', SceneView)
+--- @class ViewGameSceneGO : SceneView
+local ViewGameSceneGO = class('ViewGameSceneGO', SceneView)
 
-function ViewStartScene:initialize(UIMaps)
+function ViewGameSceneGO:initialize(UIMaps)
     SceneView.initialize(self, UIMaps)
 end
 
-return ViewStartScene
+return ViewGameSceneGO

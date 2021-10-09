@@ -4,7 +4,7 @@ local SubscriptionsMap = require('src.libs.event_bus.subscriptions_map')
 --- @class SceneController
 local SceneController = class('SceneController')
 
-SceneController.__cparams = {'event_bus'}
+SceneController.__cparams = {'event_bus_gui'}
 
 function SceneController:initialize(event_bus)
     self.event_bus = event_bus

@@ -1,14 +1,14 @@
 local App = require('src.app')
-local StrategiesMediator = require('src.scripts.scenes.game_scene.strategies.mediator')
+local StrategiesMediator = require('src.scripts.scenes.game_scene.strategies.mediator_gui')
 
 local Scene = App.libs.scenes.Scene
 
 local RENDER_ORDER = App.config.render_order.game_scene
 
-local StartScene = class('StartScene', Scene)
+local GameScene = class('GameScene', Scene)
 
-function StartScene:initialize()
+function GameScene:initialize()
     Scene.initialize(self, StrategiesMediator, RENDER_ORDER)
 end
 
-StartScene()
+GameScene()

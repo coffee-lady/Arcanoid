@@ -15,7 +15,8 @@ local Luject = App.libs.luject
 local CommonServicesInstaller = {}
 
 function CommonServicesInstaller:install_services()
-    Luject:bind('event_bus'):to(EventBus):as_single()
+    Luject:bind('event_bus_gui'):to(EventBus):as_single()
+    Luject:bind('event_bus_go'):to(EventBus):as_single()
     Luject:bind('ui_service'):to(Services.UIService):as_single()
     Luject:bind('scenes_service'):to(Services.ScenesService):as_single()
     Luject:bind('screen_service'):to(Services.ScreenService):as_single()

@@ -16,6 +16,10 @@ WinterTheme.start_scene = {
     },
 }
 
-WinterTheme.game_scene = {}
+WinterTheme.game_scene = {
+    root = {
+        bg = 'AACDE7',
+    },
+}
 
 return WinterTheme

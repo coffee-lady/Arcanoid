@@ -5,7 +5,7 @@ local ACTION_CLICK = hash('click')
 --- @class SubscribedLink : Link
 local SubscribedLink = class('SubscribedLink', Link)
 
-SubscribedLink.__cparams = {'scenes_service', 'event_bus'}
+SubscribedLink.__cparams = {'scenes_service', 'event_bus_gui'}
 
 function SubscribedLink:initialize(scenes_service, event_bus, ids, on_click)
     Link.initialize(self, scenes_service, ids, on_click)

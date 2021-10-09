@@ -1,4 +1,4 @@
-script: ""
+script: "/src/scripts/scenes/game_scene/game_scene.gui_script"
 textures {
   name: "main"
   texture: "/assets/atlases/main.atlas"
@@ -265,7 +265,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: ""
+  texture: "main/empty"
   id: "root"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_TOP
@@ -320,7 +320,7 @@ nodes {
   type: TYPE_TEMPLATE
   id: "appbar"
   parent: "root"
-  layer: ""
+  layer: "graphics"
   inherit_alpha: true
   alpha: 1.0
   template: "/src/ui/scenes/game scene/templates/game appbar.gui"

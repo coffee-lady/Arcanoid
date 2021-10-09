@@ -9,7 +9,7 @@ local SubscriptionsMap = App.libs.SubscriptionsMap
 
 local AdsBootstrap = class('AdsBootstrap')
 
-AdsBootstrap.__cparams = {'event_bus', 'scenes_service', 'ads_service', 'use_case_common_ads', 'use_case_interstitial_ad', 'use_case_banner_ad'}
+AdsBootstrap.__cparams = {'event_bus_gui', 'scenes_service', 'ads_service', 'use_case_common_ads', 'use_case_interstitial_ad', 'use_case_banner_ad'}
 
 function AdsBootstrap:initialize(event_bus, scenes_service, ads_service, use_case_common_ads, use_case_interstitial_ad, use_case_banner_ad)
     self.event_bus = event_bus
