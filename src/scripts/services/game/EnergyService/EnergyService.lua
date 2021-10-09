@@ -1,11 +1,11 @@
 local App = require('src.app')
 
 local Observable = App.libs.event_observation.observable
-local EnergyConfig = App.config.game.go.energy
+local AutosaveIntervalTimer = App.libs.AutosaveIntervalTimer
 
+local EnergyConfig = App.config.game.energy
 local MSG = App.constants.messages
 local ENERGY = 'energy'
-
 local CURRENT = 'current'
 local TIMER = 'timer'
 
@@ -17,42 +17,27 @@ function EnergyService:initialize(player_data_storage)
     --- @type PlayerDataStorage
     self.player_data_storage = player_data_storage
 
-    self.current_energy = self.player_data_storage:get(ENERGY, CURRENT)
-    self.update_observer = Observable:new()
-    self.listeners = {}
+    self.current_energy = self.player_data_storage:get(ENERGY, CURRENT) or EnergyConfig.max_count
 
-    if not self.current_energy then
-        self.current_energy = EnergyConfig.max_count
-        self.player_data_storage:set(ENERGY, CURRENT, EnergyConfig.max_count)
-        return
-    end
+    self:_set_timer()
+    self:_update_bonus_for_expired_time()
+end
 
-    local planned_timer = self.player_data_storage:get(ENERGY, TIMER)
+function EnergyService:_set_timer()
+    self.timer = AutosaveIntervalTimer(EnergyConfig.recovery_time, function()
+        self:change_count(EnergyConfig.recovery_count)
 
-    if not planned_timer then
-        if self.current_energy < EnergyConfig.max_count then
-            self:_set_infinite_timer(self)
+        if self.current_energy >= EnergyConfig.max_count then
+            self.timer:cancel()
+            self.timer = nil
         end
+    end)
 
-        return
-    end
+    self.timer:enable_saving(ENERGY, TIMER)
+end
 
-    local time_left = os.difftime(planned_timer, os.time())
-
-    if time_left > 0 then
-        self.current_timer = timer.delay(time_left, false, function()
-            self:increase(EnergyConfig.recovery_count)
-
-            self.player_data_storage:set(ENERGY, TIMER, nil)
-            self.current_timer = nil
-
-            self:_check_timer(self)
-        end)
-
-        return
-    end
-
-    local times_timer_expired = math.floor(-time_left / EnergyConfig.recovery_time)
+function EnergyService:_update_bonus_for_expired_time()
+    local times_timer_expired = self.timer:get_times_expired()
 
     if times_timer_expired > 0 then
         local bonus = math.floor((EnergyConfig.max_count - self.current_energy) / times_timer_expired)
@@ -61,79 +46,30 @@ function EnergyService:initialize(player_data_storage)
             self:increase(bonus)
         end
     end
-
-    self:_set_infinite_timer(self)
-end
-
-function EnergyService:_notify()
-    for i = 1, #self.listeners do
-        msg.post(self.listeners[i], MSG.common.energy_updated)
-    end
-end
-
-function EnergyService:_set_infinite_timer()
-    self.player_data_storage:set(ENERGY, TIMER, os.time() + EnergyConfig.recovery_time)
-
-    self.current_timer = timer.delay(EnergyConfig.recovery_time, true, function(_, handle)
-        self:increase(EnergyConfig.recovery_count)
-
-        if self.current_energy >= EnergyConfig.max_count then
-            self.player_data_storage:set(ENERGY, TIMER, nil)
-            timer.cancel(handle)
-            self.current_timer = nil
-            return
-        end
-
-        self.player_data_storage:set(ENERGY, TIMER, os.time() + EnergyConfig.recovery_time)
-    end)
 end
 
 function EnergyService:_check_timer()
-    if self.current_energy < EnergyConfig.max_count and not self.player_data_storage:get(ENERGY, TIMER) then
-        self:_set_infinite_timer(self)
+    if not self.timer and self.current_energy < EnergyConfig.max_count then
+        self:_set_timer()
     end
 end
 
-function EnergyService:add_listener(url)
-    self.listeners[#self.listeners + 1] = url
-end
+function EnergyService:change_count(delta_count)
+    local energy_count = self.current_energy + delta_count
 
-function EnergyService:remove_listener(url)
-    for i = 1, #self.listeners do
-        if self.listeners[i] == url then
-            table.remove(self.listeners, i)
-            break
-        end
-    end
-end
-
-function EnergyService:increase(count)
-    self.current_energy = self.current_energy + count
+    self.current_energy = energy_count
     self.player_data_storage:set(ENERGY, CURRENT, self.current_energy)
-
-    self:_notify()
 
     if self.current_energy >= EnergyConfig.max_count and self.current_timer then
         self.player_data_storage:set(ENERGY, TIMER, nil)
         self.current_timer = nil
+    else
+        self:_check_timer()
     end
 end
 
-function EnergyService:decrease(count)
-    local new_energy = self.current_energy - count
-
-    if new_energy < 0 then
-        return false
-    end
-
-    self.current_energy = new_energy
-    self.player_data_storage:set(ENERGY, CURRENT, self.current_energy)
-
-    self:_notify()
-
-    self:_check_timer(self)
-
-    return true
+function EnergyService:can_change_count(delta_count)
+    return self.current_energy + delta_count >= 0
 end
 
 function EnergyService:is_enough_to_buy_life()
@@ -173,23 +109,7 @@ function EnergyService:get_level_reward()
 end
 
 function EnergyService:get_time_left()
-    local planned_timer = self.player_data_storage:get(ENERGY, TIMER)
-
-    if not planned_timer then
-        return 0, 0
-    end
-
-    local seconds_left = os.difftime(planned_timer, os.time())
-
-    if seconds_left < 0 then
-        return 0, 0
-    end
-
-    local SEC_IN_MIN = 60
-    local minutes = math.floor(seconds_left / SEC_IN_MIN)
-    local seconds = seconds_left - minutes * SEC_IN_MIN
-
-    return minutes, seconds
+    return self.timer:get_seconds_left()
 end
 
 return EnergyService
