@@ -18,7 +18,7 @@ embedded_components {
   type: "sprite"
   data: "tile_set: \"/assets/atlases/winter.atlas\"\n"
   "default_animation: \"winter-pack-1\"\n"
-  "material: \"/builtins/materials/sprite.material\"\n"
+  "material: \"/assets/materials/go.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   ""
   position {
