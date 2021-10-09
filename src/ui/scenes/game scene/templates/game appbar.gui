@@ -57,7 +57,7 @@ nodes {
   pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_STRETCH
   layer: "graphics"
-  inherit_alpha: false
+  inherit_alpha: true
   slice9 {
     x: 0.0
     y: 0.0
@@ -67,7 +67,7 @@ nodes {
   clipping_mode: CLIPPING_MODE_NONE
   clipping_visible: true
   clipping_inverted: false
-  alpha: 0.0
+  alpha: 1.0
   template_node_child: false
   size_mode: SIZE_MODE_MANUAL
 }
@@ -112,7 +112,7 @@ nodes {
   adjust_mode: ADJUST_MODE_FIT
   parent: "container"
   layer: "graphics"
-  inherit_alpha: false
+  inherit_alpha: true
   slice9 {
     x: 0.0
     y: 0.0
@@ -122,7 +122,7 @@ nodes {
   clipping_mode: CLIPPING_MODE_NONE
   clipping_visible: true
   clipping_inverted: false
-  alpha: 0.0
+  alpha: 1.0
   template_node_child: false
   size_mode: SIZE_MODE_AUTO
 }
@@ -181,7 +181,7 @@ nodes {
   line_break: false
   parent: "pause/container"
   layer: "text"
-  inherit_alpha: false
+  inherit_alpha: true
   alpha: 1.0
   outline_alpha: 1.0
   shadow_alpha: 1.0
@@ -230,7 +230,7 @@ nodes {
   adjust_mode: ADJUST_MODE_FIT
   parent: "pause/container"
   layer: "graphics"
-  inherit_alpha: false
+  inherit_alpha: true
   slice9 {
     x: 0.0
     y: 0.0
@@ -285,7 +285,7 @@ nodes {
   adjust_mode: ADJUST_MODE_FIT
   parent: "container"
   layer: "graphics"
-  inherit_alpha: false
+  inherit_alpha: true
   slice9 {
     x: 0.0
     y: 0.0
@@ -295,7 +295,7 @@ nodes {
   clipping_mode: CLIPPING_MODE_NONE
   clipping_visible: true
   clipping_inverted: false
-  alpha: 0.0
+  alpha: 1.0
   template_node_child: false
   size_mode: SIZE_MODE_AUTO
 }
@@ -340,7 +340,7 @@ nodes {
   adjust_mode: ADJUST_MODE_FIT
   parent: "energy/container"
   layer: "graphics"
-  inherit_alpha: false
+  inherit_alpha: true
   slice9 {
     x: 0.0
     y: 0.0
@@ -410,7 +410,7 @@ nodes {
   line_break: false
   parent: "energy/container"
   layer: "text"
-  inherit_alpha: false
+  inherit_alpha: true
   alpha: 1.0
   outline_alpha: 1.0
   shadow_alpha: 1.0
@@ -459,7 +459,7 @@ nodes {
   adjust_mode: ADJUST_MODE_FIT
   parent: "container"
   layer: "graphics"
-  inherit_alpha: false
+  inherit_alpha: true
   slice9 {
     x: 0.0
     y: 0.0
@@ -469,7 +469,7 @@ nodes {
   clipping_mode: CLIPPING_MODE_NONE
   clipping_visible: true
   clipping_inverted: false
-  alpha: 0.0
+  alpha: 1.0
   template_node_child: false
   size_mode: SIZE_MODE_MANUAL
 }
@@ -514,7 +514,7 @@ nodes {
   adjust_mode: ADJUST_MODE_FIT
   parent: "lives/container"
   layer: "graphics"
-  inherit_alpha: false
+  inherit_alpha: true
   slice9 {
     x: 0.0
     y: 0.0
