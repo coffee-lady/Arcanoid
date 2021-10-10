@@ -1,6 +1,5 @@
 local App = require('src.app')
 local yagames = require('yagames.yagames')
-local LocalStorage = require('src.scripts.services.core.LocalStorage.LocalStorage')
 
 local Debug = App.libs.debug
 local Async = App.libs.async
@@ -10,6 +9,10 @@ local DEBUG = App.config.debug_mode.PlayerDataStorage
 local debug_logger = Debug('[Yandex] PlayerDataStorageAdapter', DEBUG)
 
 local YandexPlayerDataStorageAdapter = {}
+
+function YandexPlayerDataStorageAdapter:init(local_storage)
+    self.local_storage = local_storage
+end
 
 function YandexPlayerDataStorageAdapter:get_data_from_server_async()
     return Async(function(done)
@@ -28,7 +31,7 @@ end
 
 function YandexPlayerDataStorageAdapter:set_to_local_storage(filename, key, value)
     debug_logger:log('set', filename, key, value, 'to local storage')
-    LocalStorage:set(filename, key, value)
+    self.local_storage:set(filename, key, value)
 end
 
 function YandexPlayerDataStorageAdapter:set_to_server_storage(data_object, filename, key, value)
@@ -43,7 +46,7 @@ function YandexPlayerDataStorageAdapter:set_to_server_storage(data_object, filen
 end
 
 function YandexPlayerDataStorageAdapter:get_from_local_storage(filename, key)
-    local value = LocalStorage:get(filename, key)
+    local value = self.local_storage:get(filename, key)
 
     debug_logger:log('get', filename, key, '=', debug_logger:inspect(value), 'from local storage')
 

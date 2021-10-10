@@ -1,7 +1,6 @@
 local App = require('src.app')
 local OkAdapter = require('src.scripts.include.ok.ok')
 local Models = require('src.scripts.services.platform.ok.payments.models.models')
-local LocalStorage = require('src.scripts.services.core.LocalStorage.LocalStorage')
 
 local PurchaseProductModel = Models.PurchaseProductModel
 local PaymentsAdapter = OkAdapter.Payments
@@ -23,20 +22,18 @@ local PaymentsConfig = App.config.payments
 local DEBUG = App.config.debug_mode.PaymentsService
 local MSG = App.constants.msg
 
-local WALLET_KEY_TO_FILE_KEY = {
-    canceling_errors = KEY_CANCELING_ERRORS,
-    hints = KEY_PAID_HINTS,
-}
+local WALLET_KEY_TO_FILE_KEY = {}
 
 --- @class OKPaymentsService
 local OKPaymentsService = class('OKPaymentsService')
 
-OKPaymentsService.__cparams = {'player_data_storage', 'global_gui_caller_service', 'auth_service'}
+OKPaymentsService.__cparams = {'player_data_storage', 'global_gui_caller_service', 'auth_service', 'local_storage'}
 
-function OKPaymentsService:initialize(player_data_storage, global_gui_caller_service, auth_service)
+function OKPaymentsService:initialize(player_data_storage, global_gui_caller_service, auth_service, local_storage)
     self.player_data_storage = player_data_storage
     self.global_gui_caller_service = global_gui_caller_service
     self.auth_service = auth_service
+    self.local_storage = local_storage
     self.debug = Debug('[OK] PaymentsService', DEBUG)
 
     self.catalog = {}
@@ -53,7 +50,7 @@ end
 
 function OKPaymentsService:on_item_spent(item_key)
     Async.bootstrap(function()
-        local wallet_events_to_sync = LocalStorage:get(FILE, KEY_WALLET_TO_SYNC)
+        local wallet_events_to_sync = self.local_storage:get(FILE, KEY_WALLET_TO_SYNC)
 
         if not wallet_events_to_sync then
             wallet_events_to_sync = {}
@@ -67,7 +64,7 @@ function OKPaymentsService:on_item_spent(item_key)
 
         self.debug:log('item spent', item_key, 'wallet events to sync', self.debug:inspect(wallet_events_to_sync))
 
-        LocalStorage:set(FILE, KEY_WALLET_TO_SYNC, wallet_events_to_sync)
+        self.local_storage:set(FILE, KEY_WALLET_TO_SYNC, wallet_events_to_sync)
         self:_check_wallet_events()
     end)
 end
@@ -79,7 +76,7 @@ function OKPaymentsService:_check_wallet_events()
 
     self.is_syncing = true
 
-    local wallet_events_to_sync = LocalStorage:get(FILE, KEY_WALLET_TO_SYNC)
+    local wallet_events_to_sync = self.local_storage:get(FILE, KEY_WALLET_TO_SYNC)
 
     if not wallet_events_to_sync then
         self.debug:log('_check_wallet_events: no events to sync')
@@ -87,7 +84,7 @@ function OKPaymentsService:_check_wallet_events()
         return
     end
 
-    LocalStorage:set(FILE, KEY_WALLET_TO_SYNC, nil)
+    self.local_storage:set(FILE, KEY_WALLET_TO_SYNC, nil)
 
     local result = PaymentsAdapter:sync_wallet_events_async(wallet_events_to_sync)
 
@@ -103,7 +100,7 @@ function OKPaymentsService:_check_wallet_events()
     self.debug:log('_check_wallet_events: synced. got wallet', self.debug:inspect(self.wallet))
     self.is_syncing = false
 
-    wallet_events_to_sync = LocalStorage:get(FILE, KEY_WALLET_TO_SYNC)
+    wallet_events_to_sync = self.local_storage:get(FILE, KEY_WALLET_TO_SYNC)
 
     if wallet_events_to_sync then
         self:_check_wallet_events()
@@ -111,11 +108,11 @@ function OKPaymentsService:_check_wallet_events()
 end
 
 function OKPaymentsService:_merge_wallet_events_to_sync(events)
-    local wallet_events_to_sync = LocalStorage:get(FILE, KEY_WALLET_TO_SYNC)
+    local wallet_events_to_sync = self.local_storage:get(FILE, KEY_WALLET_TO_SYNC)
 
     if not wallet_events_to_sync then
         wallet_events_to_sync = events
-        LocalStorage:set(FILE, KEY_WALLET_TO_SYNC, wallet_events_to_sync)
+        self.local_storage:set(FILE, KEY_WALLET_TO_SYNC, wallet_events_to_sync)
         return
     end
 
@@ -131,7 +128,7 @@ function OKPaymentsService:_merge_wallet_events_to_sync(events)
         end
     end
 
-    LocalStorage:set(FILE, KEY_WALLET_TO_SYNC, wallet_events_to_sync)
+    self.local_storage:set(FILE, KEY_WALLET_TO_SYNC, wallet_events_to_sync)
 end
 
 function OKPaymentsService:fetch_data()

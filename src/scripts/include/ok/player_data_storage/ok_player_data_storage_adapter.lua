@@ -1,5 +1,4 @@
 local App = require('src.app')
-local LocalStorage = require('src.scripts.services.core.local_storage.local_storage')
 local NakamaAdapter = require('src.scripts.include.nakama.nakama')
 
 local Debug = App.libs.debug
@@ -23,7 +22,8 @@ end
 
 local get_key = OKPlayerDataStorageAdapter.get_key
 
-function OKPlayerDataStorageAdapter:init()
+function OKPlayerDataStorageAdapter:init(local_storage)
+    self.local_storage = local_storage
     self.requests_to_write_queue = {}
 
     self.write_data_timer = timer.delay(SAVE_DELAY, true, function()
@@ -69,7 +69,7 @@ function OKPlayerDataStorageAdapter:get_data_from_server_async(filename, keys)
         data[item_key] = content_item.value.value
 
         local key_data_version = get_key(KEY_DATA_VERSION, item_key)
-        LocalStorage:set(FILE_TMP, key_data_version, content_item.version)
+        self.local_storage:set(FILE_TMP, key_data_version, content_item.version)
     end
 
     return data
@@ -107,7 +107,7 @@ function OKPlayerDataStorageAdapter:_post_write_requests_async()
         local item = self.requests_to_write_queue[i]
         local item_key = get_key(item.filename, item.key)
         local key_data_version = get_key(KEY_DATA_VERSION, item_key)
-        local prev_data_version = LocalStorage:get(FILE_TMP, key_data_version) or DEFAULT_DATA_VERSION
+        local prev_data_version = self.local_storage:get(FILE_TMP, key_data_version) or DEFAULT_DATA_VERSION
 
         request_data[#request_data + 1] = {
             collection = item.filename,
@@ -145,18 +145,18 @@ function OKPlayerDataStorageAdapter:_post_write_requests_async()
         local response_item_data = response.content[i]
         local item_key = get_key(response_item_data.collection, response_item_data.key)
         local key_data_version = get_key(KEY_DATA_VERSION, item_key)
-        LocalStorage:set(FILE_TMP, key_data_version, response_item_data.version)
+        self.local_storage:set(FILE_TMP, key_data_version, response_item_data.version)
     end
 end
 
 function OKPlayerDataStorageAdapter:set_to_local_storage(filename, key, value)
     debug_logger:log('set', filename, key, value, 'to local storage')
 
-    LocalStorage:set(filename, key, value)
+    self.local_storage:set(filename, key, value)
 end
 
 function OKPlayerDataStorageAdapter:get_from_local_storage(filename, key)
-    local value = LocalStorage:get(filename, key)
+    local value = self.local_storage:get(filename, key)
 
     debug_logger:log('get', filename, key, '=', value, 'from local storage')
 

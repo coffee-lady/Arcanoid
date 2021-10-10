@@ -1,6 +1,5 @@
 local App = require('src.app')
 local ContentEncoder = require('src.scripts.include.nakama.helpers.content_encoder')
-local LocalStorage = require('src.scripts.services.core.local_storage.local_storage')
 
 local JSON = App.libs.json
 local Debug = App.libs.debug
@@ -18,9 +17,10 @@ local CODE_ERROR_NAME_IN_USE = 6
 NakamaAPI.__cparams = {'config_server', 'key_storage_server'}
 
 --- @param server_config NakamaConfigService
-function NakamaAPI:init(nakama, engine_defold, server_config)
+function NakamaAPI:init(nakama, engine_defold, server_config, local_storage)
     self.config = assert(server_config)
     self.nakama = nakama
+    self.local_storage = local_storage
     self.content_encoder = ContentEncoder(server_config.encode_key)
 
     self.debug = Debug('NakamaAdapter', DEBUG)
@@ -200,13 +200,13 @@ function NakamaAPI:_init_client(config, engine_defold)
 end
 
 function NakamaAPI:_load_state()
-    local state = {} -- LocalStorage:get(FILE, NakamaConfig.KEY_STORAGE_STATE)
+    local state = {}
 
     self.auth_data = state or nil
 end
 
 function NakamaAPI:_save_state(state)
-    LocalStorage:set(FILE, NakamaConfig.KEY_STORAGE_STATE, state)
+    self.local_storage:set(FILE, NakamaConfig.KEY_STORAGE_STATE, state)
 end
 
 function NakamaAPI:_is_valid_auth_data()

@@ -24,15 +24,18 @@ local FILE_KEY_TO_OBJECT_KEY = {
 --- @class PlayerDataStorage
 local YandexPlayerDataStorage = class('YandexPlayerDataStorage')
 
-YandexPlayerDataStorage.__cparams = {'auth_service'}
+YandexPlayerDataStorage.__cparams = {'auth_service', 'local_storage'}
 
-function YandexPlayerDataStorage:initialize(auth_service)
+function YandexPlayerDataStorage:initialize(auth_service, local_storage)
     self.debug = Debug('[Yandex] PlayerDataStorage', DEBUG)
 
     self.data = {}
     self.auth_service = auth_service
+    self.local_storage = local_storage
 
     self.is_online = true
+
+    StorageAdapter:init(self.local_storage)
 
     self:load_data_from_server()
     self:compare_data()

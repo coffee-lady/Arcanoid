@@ -44,9 +44,9 @@ local FILE_KEY_TO_OBJECT_KEY = {
 --- @class OKPlayerDataStorage
 local OKPlayerDataStorage = class('OKPlayerDataStorage')
 
-OKPlayerDataStorage.__cparams = {'auth_service', 'scenes_service'}
+OKPlayerDataStorage.__cparams = {'auth_service', 'scenes_service', 'local_storage'}
 
-function OKPlayerDataStorage:init(auth_service, scenes_service)
+function OKPlayerDataStorage:init(auth_service, scenes_service, local_storage)
     self.auth_service = auth_service
     self.scenes_service = scenes_service
     self.debug = Debug('[OK] PlayerDataStorage', DEBUG)
@@ -54,7 +54,7 @@ function OKPlayerDataStorage:init(auth_service, scenes_service)
     self.data = {}
     self.is_online = true
 
-    StorageAdapter:init()
+    StorageAdapter:init(self.local_storage)
     self:load_data_from_server()
     self:compare_data()
 
