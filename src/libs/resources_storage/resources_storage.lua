@@ -1,10 +1,10 @@
 local ResourcesStorage = {
-    cache = {}
+    cache = {},
 }
 
 ResourcesStorage.types = {
     json = 'json',
-    lua = 'lua'
+    lua = 'lua',
 }
 
 function ResourcesStorage:get(filename, type)

@@ -23,7 +23,7 @@ function JSEventsBootstrap:initialize(event_bus)
 end
 
 function JSEventsBootstrap:on_save_data()
-    self.progress_service:save()
+
 end
 
 function JSEventsBootstrap:on_window_resize()

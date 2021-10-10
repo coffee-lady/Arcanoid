@@ -17,10 +17,10 @@ local Luject = App.libs.luject
 local BootstrapGUI = class('BootstrapGUI')
 
 BootstrapGUI.__cparams = {'event_bus_gui', 'scenes_service', 'screen_service', 'auth_service', 'ui_service', 'localization_service', 'global_gui_caller_service', 'local_storage',
-                          'progress_service', 'use_case_show_first_scene'}
+                          'use_case_show_first_scene'}
 
 function BootstrapGUI:initialize(event_bus, scenes_service, screen_service, auth_service, ui_service, localization_service, global_gui_caller_service, local_storage,
-    progress_service, use_case_show_first_scene)
+    use_case_show_first_scene)
     self.event_bus = event_bus
     self.scenes_service = scenes_service
     self.screen_service = screen_service
@@ -29,7 +29,6 @@ function BootstrapGUI:initialize(event_bus, scenes_service, screen_service, auth
     self.localization_service = localization_service
     self.global_gui_caller_service = global_gui_caller_service
     self.local_storage = local_storage
-    self.progress_service = progress_service
     self.use_case_show_first_scene = use_case_show_first_scene
 
     msg.post('.', MSG.acquire_input_focus)
@@ -80,7 +79,6 @@ function BootstrapGUI:on_message(message_id, message)
 end
 
 function BootstrapGUI:final()
-    self.progress_service:save()
     self.local_storage:final()
 end
 

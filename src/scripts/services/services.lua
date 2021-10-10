@@ -10,8 +10,9 @@ local Services = {
     GlobalGOCallerService = require('src.scripts.services.core.GlobalCallerServices.GlobalGOCallerService'),
     SoundService = require('src.scripts.services.core.SoundService.SoundService'),
     UIService = require('src.scripts.services.core.UIService.UIService'),
-    ProgressService = require('src.scripts.services.game.ProgressService.ProgressService'),
     StorePromotionsService = require('src.scripts.services.business.StorePromotionsService.StorePromotionsService'),
+    EnergyService = require('src.scripts.services.game.EnergyService.EnergyService'),
+    LevelsService = require('src.scripts.services.game.LevelsService.LevelsService'),
 }
 
 return Services

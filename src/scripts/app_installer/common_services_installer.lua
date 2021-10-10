@@ -20,7 +20,6 @@ function CommonServicesInstaller:install_services()
     Luject:bind('ui_service'):to(Services.UIService):as_single()
     Luject:bind('scenes_service'):to(Services.ScenesService):as_single()
     Luject:bind('screen_service'):to(Services.ScreenService):as_single()
-    Luject:bind('progress_service'):to(Services.ProgressService):as_single()
     Luject:bind('localization_service'):to(Services.LocalizationService):as_single()
     Luject:bind('local_storage'):to(Services.LocalStorage):as_single()
     Luject:bind('platform_service'):to(Services.PlatformService):as_single()
@@ -28,6 +27,8 @@ function CommonServicesInstaller:install_services()
     Luject:bind('global_gui_caller_service'):to(Services.GlobalGUICallerService):as_single()
     Luject:bind('global_go_caller_service'):to(Services.GlobalGOCallerService):as_single()
     Luject:bind('sound_service'):to(Services.SoundService):as_single()
+    Luject:bind('energy_service'):to(Services.EnergyService):as_single()
+    Luject:bind('levels_service'):to(Services.LevelsService):as_single()
 end
 
 return CommonServicesInstaller
