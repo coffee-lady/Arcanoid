@@ -44,4 +44,8 @@ function ViewGameSceneGO:delete_ball(id)
     self.balls_views[id]:delete()
 end
 
+function ViewGameSceneGO:set_wall_pos(key, pos)
+    self.nodes.walls[key]:set_pos(pos)
+end
+
 return ViewGameSceneGO

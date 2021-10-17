@@ -51,6 +51,12 @@ ScreensConstants.game_scene = {
     balls_factory = '/go#balls_factory',
     block_factory = '/go#block_factory',
     boost_factory = '/go#boost_factory',
+
+    walls = {
+        wall_top = '/wall_top',
+        wall_right = '/wall_right',
+        wall_left = '/wall_left',
+    },
 }
 
 return ScreensConstants
