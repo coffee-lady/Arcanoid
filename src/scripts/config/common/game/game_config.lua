@@ -67,7 +67,7 @@ GameConfig.walls = {
         rel_pos = vmath.vector3(0, 0.5, 0),
     },
     wall_top = {
-        rel_pos = vmath.vector3(0.5, 0.87, 0),
+        rel_pos = vmath.vector3(0.5, 0.8, 0),
     },
     wall_right = {
         rel_pos = vmath.vector3(1, 0.5, 0),

@@ -77,6 +77,8 @@ max_count = 3
 [physics]
 ray_cast_limit_3d = 0
 gravity_y = 0.0
+scale = 0.01
+allow_dynamic_transforms = 1
 
 [collection]
 max_instances = 32

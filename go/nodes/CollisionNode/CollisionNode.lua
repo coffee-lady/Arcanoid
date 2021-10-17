@@ -82,10 +82,7 @@ function CollisionNode:set_linear_velocity(linear_velocity)
         return
     end
 
-    msg.post(self.id, 'apply_force', {
-        force = linear_velocity,
-        position = self:get_pos(),
-    })
+    go.set(self.id, 'linear_velocity', linear_velocity)
 
     return self
 end
