@@ -3,8 +3,8 @@ instances {
   id: "losing_zone"
   prototype: "/src/ui/scenes/game scene/game objects/losing zone.go"
   position {
-    x: 0.0
-    y: -488.0
+    x: 320.0
+    y: 149.0
     z: 0.0
   }
   rotation {
@@ -23,8 +23,8 @@ instances {
   id: "platform"
   prototype: "/src/ui/scenes/game scene/game objects/platform.go"
   position {
-    x: 0.0
-    y: -370.0
+    x: 320.0
+    y: 267.0
     z: 0.0
   }
   rotation {
@@ -152,8 +152,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 320.0
-    y: 568.0
+    x: 0.0
+    y: 0.0
     z: 0.0
   }
   rotation {
@@ -175,8 +175,8 @@ embedded_instances {
   children: "wall_top"
   data: ""
   position {
-    x: -318.0
-    y: -554.0
+    x: 0.0
+    y: 83.0
     z: 0.0
   }
   rotation {

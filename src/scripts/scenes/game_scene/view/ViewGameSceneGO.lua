@@ -1,6 +1,7 @@
 local App = require('src.app')
 local GO = require('go.go')
 local BallView = require('src.scripts.scenes.game_scene.view.BallView.BallView')
+local PlatformView = require('src.scripts.scenes.game_scene.view.PlatformView.PlatformView')
 
 local SceneView = App.libs.scenes.SceneView
 
@@ -12,6 +13,7 @@ local ViewGameSceneGO = class('ViewGameSceneGO', SceneView)
 function ViewGameSceneGO:initialize(UIMaps)
     SceneView.initialize(self, UIMaps)
 
+    self.platform_view = PlatformView()
     self.balls_views = {}
 end
 
@@ -50,6 +52,22 @@ end
 
 function ViewGameSceneGO:set_losing_zone_pos(pos)
     self.nodes.losing_zone:set_pos(pos)
+end
+
+function ViewGameSceneGO:get_platform_size()
+    return self.platform_view:get_size()
+end
+
+function ViewGameSceneGO:set_platform_scale(scale_factor)
+    self.platform_view:set_scale(scale_factor)
+end
+
+function ViewGameSceneGO:set_platform_pos(pos)
+    self.platform_view:set_pos(pos)
+end
+
+function ViewGameSceneGO:delete_platform()
+    self.platform_view:delete()
 end
 
 return ViewGameSceneGO

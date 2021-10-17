@@ -30,10 +30,10 @@ GameConfig.balls = {
 }
 
 GameConfig.platform = {
-    bottom_padding = 0.1,
+    start_rel_pos = vmath.vector3(0.5, 0.1, 0),
     scale = {
-        min = 0.4,
         start = 0.45,
+        min = 0.4,
         max = 0.6,
     },
     min_dx = 10,
