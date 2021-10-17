@@ -48,4 +48,8 @@ function ViewGameSceneGO:set_wall_pos(key, pos)
     self.nodes.walls[key]:set_pos(pos)
 end
 
+function ViewGameSceneGO:set_losing_zone_pos(pos)
+    self.nodes.losing_zone:set_pos(pos)
+end
+
 return ViewGameSceneGO

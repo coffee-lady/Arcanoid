@@ -15,7 +15,6 @@ function WallsController:initialize(event_bus, presenters)
 
     --- @type WallsPresenter
     self.walls_presenter = presenters.walls_presenter
-    self.balls = {}
 
     self:set_subscriptions_map({})
 end

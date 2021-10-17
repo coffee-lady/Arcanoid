@@ -1,20 +1,26 @@
 local App = require('src.app')
 local GO = require('go.go')
 
+local Factory = GO.Factory
+local AnimatableNode = GO.AnimatableNode
+
 local ID = App.constants.gui.screens.game_scene
 
 local NodesMap = class('NodesMap')
 
 function NodesMap:initialize()
     self.nodes = {
-        balls_factory = GO.Factory(ID.balls_factory),
-        block_factory = GO.Factory(ID.block_factory),
+        balls_factory = Factory(ID.balls_factory),
+        block_factory = Factory(ID.block_factory),
 
         walls = {
-            wall_top = GO.AnimatableNode(ID.walls.wall_top),
-            wall_left = GO.AnimatableNode(ID.walls.wall_left),
-            wall_right = GO.AnimatableNode(ID.walls.wall_right),
+            wall_top = AnimatableNode(ID.walls.wall_top),
+            wall_left = AnimatableNode(ID.walls.wall_left),
+            wall_right = AnimatableNode(ID.walls.wall_right),
         },
+
+        losing_zone = AnimatableNode(ID.losing_zone),
+        platform = AnimatableNode(ID.platform),
     }
 end
 

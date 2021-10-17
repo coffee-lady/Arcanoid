@@ -29,6 +29,34 @@ GameConfig.balls = {
     },
 }
 
+GameConfig.platform = {
+    bottom_padding = 0.1,
+    scale = {
+        min = 0.4,
+        start = 0.45,
+        max = 0.6,
+    },
+    min_dx = 10,
+    moving_duration = {
+        min = 0.03,
+        start = 0.05,
+        max = 1,
+    },
+    scaling_duration = 0.07,
+}
+
+GameConfig.blocks = {
+    top_margin = 0.13,
+    sides_margin = 0.3,
+    gap = 0.2,
+    sprite_falling_duration = 1,
+    destroy_granite = false,
+}
+
+GameConfig.losing_zone = {
+    bottom_margin = 0,
+}
+
 GameConfig.walls = {
     wall_left = {
         rel_pos = vmath.vector3(0, 0.5, 0),

@@ -52,6 +52,9 @@ ScreensConstants.game_scene = {
     block_factory = '/go#block_factory',
     boost_factory = '/go#boost_factory',
 
+    platform = '/platform',
+    losing_zone = '/losing_zone',
+
     walls = {
         wall_top = '/wall_top',
         wall_right = '/wall_right',
