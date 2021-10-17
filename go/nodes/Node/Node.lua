@@ -47,6 +47,7 @@ function Node:set_rotation(rotation)
     end
 
     go.set_rotation(rotation, self.id)
+
     return self
 end
 

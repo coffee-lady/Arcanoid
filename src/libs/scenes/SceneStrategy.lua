@@ -43,6 +43,10 @@ function SceneStrategy:set_popup_transition()
     self.transition = GUI.Transitions.PopupTransition()
 end
 
+function SceneStrategy:init()
+    call_collection(self.controllers, 'init')
+end
+
 function SceneStrategy:update(dt)
     call_collection(self.controllers, 'update', dt)
 end

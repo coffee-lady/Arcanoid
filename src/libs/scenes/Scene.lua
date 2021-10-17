@@ -21,6 +21,7 @@ function Scene:init()
     msg.post('.', MSG_AQUIRE_INPUT_FOCUS)
 
     self.mediator = Luject:resolve_class(self.StrategiesMediator)
+    self.mediator:init()
 end
 
 function Scene:update(dt)

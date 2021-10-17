@@ -3,6 +3,10 @@ local AnimatableNode = require('go.nodes.AnimatableNode.AnimatableNode')
 --- @class ParticlefxNode : AnimatableNode
 local ParticlefxNode = class('ParticlefxNode', AnimatableNode)
 
+function ParticlefxNode:initialize(id, node_component)
+    AnimatableNode.initialize(self, id, node_component or 'particlefx')
+end
+
 function ParticlefxNode:play(emitter_state_function)
     particlefx.play(self.id, emitter_state_function)
     return self

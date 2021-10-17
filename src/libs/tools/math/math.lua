@@ -128,6 +128,10 @@ function Math.vlength_xy(start_x, start_y, end_x, end_y)
     return math.sqrt(dx * dx + dy * dy)
 end
 
+function Math.v3_hypotenuse(vector)
+    return math.sqrt(vector.x * vector.x + vector.y * vector.y)
+end
+
 function Math.hypotenuse(x, y)
     return math.sqrt(x * x + y * y)
 end

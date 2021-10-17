@@ -16,6 +16,11 @@ function SceneStrategiesMediator:set_strategy(Strategy, ...)
     self.current_strategy = Luject:resolve_class(Strategy, ...)
 end
 
+function SceneStrategiesMediator:init()
+    assert(self.current_strategy)
+    self.current_strategy:init()
+end
+
 function SceneStrategiesMediator:update(dt)
     assert(self.current_strategy)
     self.current_strategy:update(dt)

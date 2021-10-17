@@ -6,6 +6,7 @@ GO.NodesList = require('go.nodes.NodesList.NodesList')
 GO.ParticlefxNode = require('go.nodes.ParticlefxNode.ParticlefxNode')
 GO.SpriteNode = require('go.nodes.SpriteNode.SpriteNode')
 GO.TextNode = require('go.nodes.TextNode.TextNode')
+GO.CollisionNode = require('go.nodes.CollisionNode.CollisionNode')
 GO.Factory = require('go.Factory.Factory')
 
 return GO

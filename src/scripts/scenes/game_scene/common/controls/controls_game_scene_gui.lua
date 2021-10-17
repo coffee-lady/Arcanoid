@@ -19,9 +19,9 @@ function ControlsMap:initialize(scenes_service)
     self.scenes_service = scenes_service
 
     self.main_buttons = Luject:resolve_class(ButtonsMenu, {
-        -- [ID.button_play] = function()
-        -- self.scenes_service:show(URL.game_screen)
-        -- end,
+        [ID.button_pause] = function()
+            self.scenes_service:back()
+        end,
     })
 end
 

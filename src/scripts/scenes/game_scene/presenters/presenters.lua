@@ -1,3 +1,0 @@
-local Presenters = {}
-
-return Presenters

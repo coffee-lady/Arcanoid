@@ -38,7 +38,7 @@ embedded_components {
   type: "collisionobject"
   data: "collision_shape: \"\"\n"
   "type: COLLISION_OBJECT_TYPE_DYNAMIC\n"
-  "mass: 1.0E-8\n"
+  "mass: 1.0E-16\n"
   "friction: 0.0\n"
   "restitution: 1.0\n"
   "group: \"balls\"\n"
@@ -67,7 +67,7 @@ embedded_components {
   "}\n"
   "linear_damping: 0.0\n"
   "angular_damping: 0.0\n"
-  "locked_rotation: false\n"
+  "locked_rotation: true\n"
   "bullet: false\n"
   ""
   position {

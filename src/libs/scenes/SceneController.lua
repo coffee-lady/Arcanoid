@@ -11,6 +11,10 @@ function SceneController:initialize(event_bus)
     self.subscribed_services = {}
 end
 
+function SceneController:init()
+
+end
+
 function SceneController:update(dt)
 
 end

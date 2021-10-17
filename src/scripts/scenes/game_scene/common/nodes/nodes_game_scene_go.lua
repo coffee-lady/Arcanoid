@@ -7,7 +7,7 @@ local NodesMap = class('NodesMap')
 
 function NodesMap:initialize()
     self.nodes = {
-        ball_factory = GO.Factory(ID.ball_factory),
+        balls_factory = GO.Factory(ID.balls_factory),
         block_factory = GO.Factory(ID.block_factory),
     }
 end

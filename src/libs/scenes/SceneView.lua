@@ -19,6 +19,7 @@ local SceneView = class('SceneView')
 
 function SceneView:initialize(UIMaps)
     self.nodes_map = safe_resolve(UIMaps.NodesMap)
+    self.nodes = self.nodes_map:get_table()
     self.theme_map = safe_resolve(UIMaps.ThemeMap, self.nodes_map)
     self.localization_map = safe_resolve(UIMaps.LocalizationMap, self.nodes_map)
     self.controls_map = safe_resolve(UIMaps.ControlsMap)

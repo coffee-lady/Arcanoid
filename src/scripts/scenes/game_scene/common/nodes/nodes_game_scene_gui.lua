@@ -15,20 +15,20 @@ function NodesMap:initialize()
         background = BoxNode(ID.background),
 
         energy = {
-            container = BoxNode(ID.energy.container),
-            icon = BoxNode(ID.energy.icon),
-            text = TextNode(ID.energy.text),
+            container = BoxNode(ID.energy_widget.container),
+            icon = BoxNode(ID.energy_widget.icon),
+            text = TextNode(ID.energy_widget.text),
         },
 
         pause = {
-            container = BoxNode(ID.pause.container),
-            icon = BoxNode(ID.pause.icon),
-            text = TextNode(ID.pause.text),
+            container = BoxNode(ID.button_pause.container),
+            icon = BoxNode(ID.button_pause.icon),
+            text = TextNode(ID.button_pause.text),
         },
 
         lives = {
-            container = BoxNode(ID.lives.container),
-            template = BoxNode(ID.lives.template),
+            container = BoxNode(ID.lives_widget.container),
+            template = BoxNode(ID.lives_widget.template),
         },
     }
 end

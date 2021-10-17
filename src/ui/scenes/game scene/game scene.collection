@@ -3,8 +3,8 @@ instances {
   id: "losing_zone"
   prototype: "/src/ui/scenes/game scene/game objects/losing zone.go"
   position {
-    x: 320.0
-    y: 45.0
+    x: 0.0
+    y: -488.0
     z: 0.0
   }
   rotation {
@@ -23,8 +23,8 @@ instances {
   id: "platform"
   prototype: "/src/ui/scenes/game scene/game objects/platform.go"
   position {
-    x: 320.0
-    y: 163.0
+    x: 0.0
+    y: -370.0
     z: 0.0
   }
   rotation {
@@ -34,8 +34,8 @@ instances {
     w: 1.0
   }
   scale3 {
-    x: 0.6
-    y: 0.6
+    x: 1.0
+    y: 1.0
     z: 1.0
   }
 }
@@ -115,7 +115,7 @@ embedded_instances {
   "  }\n"
   "}\n"
   "embedded_components {\n"
-  "  id: \"ball_factory\"\n"
+  "  id: \"balls_factory\"\n"
   "  type: \"factory\"\n"
   "  data: \"prototype: \\\"/src/ui/scenes/game scene/game objects/ball.go\\\"\\n"
   "load_dynamically: false\\n"
@@ -152,8 +152,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 0.0
-    y: 0.0
+    x: 320.0
+    y: 568.0
     z: 0.0
   }
   rotation {
@@ -175,8 +175,8 @@ embedded_instances {
   children: "wall_top"
   data: ""
   position {
-    x: 0.0
-    y: 0.0
+    x: -318.0
+    y: -554.0
     z: 0.0
   }
   rotation {
