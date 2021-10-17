@@ -38,7 +38,7 @@ max_particlefx_count = 3
 max_count = 0
 
 [sprite]
-max_count = 10
+max_count = 200
 
 [html5]
 htmlfile = /src/bootstrap/yandex/template_yandex.html
@@ -56,8 +56,7 @@ manifest_url = yandex-manifest.json
 app_manifest = /settings/manifests/manifest.appmanifest
 
 [particle_fx]
-max_count = 0
-max_particle_count = 0
+max_count = 1024
 
 [spine]
 max_count = 0
@@ -79,9 +78,6 @@ ray_cast_limit_3d = 0
 gravity_y = 0.0
 scale = 0.01
 allow_dynamic_transforms = 1
-
-[collection]
-max_instances = 32
 
 [graphics]
 max_draw_calls = 20

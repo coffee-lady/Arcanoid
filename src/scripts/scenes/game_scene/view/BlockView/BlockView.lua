@@ -1,61 +1,57 @@
 local App = require('src.app')
-local BlockPhysicalView = require('src.scripts.scenes.game_scene.view.BlockView.BlockPhysicalView')
+local GO = require('go.go')
 
-local class = App.libs.middleclass
-local PROP = App.constants.go_props
+local ID = App.constants.gui.screens.game_scene
+local BlockID = ID.block
 
+--- @class BlockView
 local BlockView = class('BlockView')
 
 function BlockView:initialize(id, data)
     self.id = id
-    self.data = data
-    self.sprite_url = msg.url(nil, self.id, PROP.sprite)
-    self.cracks_url = msg.url(nil, self.id, PROP.block.cracks)
-    self.sprite_url = msg.url(nil, id, PROP.sprite)
-    self.cracks_url = msg.url(nil, id, PROP.block.cracks)
-
-    local pfx_prop = data.destroyable and PROP.block.snowglobe_breaking or PROP.block.chimney_breaking
-    self.pfx = msg.url(nil, id, pfx_prop)
-
-    self.swnowglobe_top = msg.url(nil, id, PROP.block.snowglobe_top)
-    self.snowglobe_bottom = msg.url(nil, id, PROP.block.snowglobe_bottom)
-    self.sprite = data.sprite
-
-    self.physical_view = BlockPhysicalView(id)
-
-    msg.post(self.cracks_url, PROP.disable)
-
-    self:set_sprite()
+    self.container_node = GO.AnimatableNode(self.id)
+    self.sprite_node = GO.SpriteNode(self.id)
+    self.cracks_sprite_node = GO.SpriteNode(self.id, BlockID.cracks)
+    self.kinematic_collision_node = GO.CollisionNode(self.id, BlockID.co_kinematic)
+    self.trigger_collision_node = GO.CollisionNode(self.id, BlockID.co_trigger)
 end
 
-function BlockView:animate_cracks()
-    msg.post(self.cracks_url, PROP.enable)
+function BlockView:get_size()
+    return self.sprite_node:get_size()
 end
 
-function BlockView:animate_breaking()
-    particlefx.play(self.pfx)
-
-    msg.post(self.swnowglobe_top, PROP.disable)
-    msg.post(self.snowglobe_bottom, PROP.disable)
-    msg.post(self.cracks_url, PROP.disable)
+function BlockView:show_cracks()
+    self.cracks_sprite_node:set_enabled(true)
 end
 
-function BlockView:set_sprite()
-    msg.post(self.sprite_url, PROP.play_animation, {
-        id = hash(self.data.sprite),
-    })
+function BlockView:hide_cracks()
+    self.cracks_sprite_node:set_enabled(false)
 end
 
 function BlockView:set_scale(scale_factor)
-    go.set_scale(scale_factor, self.id)
+    self.container_node:set_scale(scale_factor)
+end
+
+function BlockView:get_scale()
+    return self.container_node:get_scale()
 end
 
 function BlockView:set_pos(pos)
-    go.set_position(pos, self.id)
+    self.container_node:set_pos(pos)
+end
+
+function BlockView:set_kinematic_collision()
+    self.kinematic_collision_node:set_enabled(true)
+    self.trigger_collision_node:set_enabled(false)
+end
+
+function BlockView:set_trigger_collision()
+    self.kinematic_collision_node:set_enabled(false)
+    self.trigger_collision_node:set_enabled(true)
 end
 
 function BlockView:delete()
-    go.delete(self.id)
+    self.container_node:delete()
 end
 
 return BlockView

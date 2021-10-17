@@ -11,7 +11,7 @@ local NodesMap = class('NodesMap')
 function NodesMap:initialize()
     self.nodes = {
         balls_factory = Factory(ID.balls_factory),
-        block_factory = Factory(ID.block_factory),
+        blocks_factory = Factory(ID.blocks_factory),
 
         walls = {
             wall_top = AnimatableNode(ID.walls.wall_top),

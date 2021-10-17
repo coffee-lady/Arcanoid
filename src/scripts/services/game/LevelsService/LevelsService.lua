@@ -8,6 +8,7 @@ local FILE = DataStorageConfig.file
 local KEY_CURRENT_LEVEL = DataStorageConfig.keys.current_level
 local KEY_PROGRESS_LEVEL = DataStorageConfig.keys.progress_level
 
+--- @class LevelsService
 local LevelsService = class('LevelsService')
 
 LevelsService.__cparams = {'player_data_storage'}
@@ -24,12 +25,17 @@ function LevelsService:get_level(level_index)
     self.current_level = level_index
     self.player_data_storage:set(FILE, KEY_CURRENT_LEVEL, level_index)
 
-    if level_index > self.player_data_storage:get(FILE, KEY_PROGRESS_LEVEL) then
+    if level_index > self.progress_level then
         self.player_data_storage:set(FILE, KEY_PROGRESS_LEVEL, level_index)
+        self.progress_level = level_index
     end
 
     local filepath = string.format(ResourcesConfig.levels, level_index)
     return ResourcesStorage:get_json_data(filepath)
+end
+
+function LevelsService:get_current_level()
+    return self:get_level(self.current_level)
 end
 
 function LevelsService:get_next_level()

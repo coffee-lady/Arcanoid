@@ -105,14 +105,6 @@ function Node:set_enabled(is_enabled)
     return self
 end
 
-function Node:is_enabled()
-    if not self.id then
-        return
-    end
-
-    return go.is_enabled(self.id)
-end
-
 function Node:delete()
     go.delete(self.id)
     self.id = nil

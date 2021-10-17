@@ -1,6 +1,7 @@
 local App = require('src.app')
 local GO = require('go.go')
 local BallView = require('src.scripts.scenes.game_scene.view.BallView.BallView')
+local BlockView = require('src.scripts.scenes.game_scene.view.BlockView.BlockView')
 local PlatformView = require('src.scripts.scenes.game_scene.view.PlatformView.PlatformView')
 
 local SceneView = App.libs.scenes.SceneView
@@ -15,6 +16,7 @@ function ViewGameSceneGO:initialize(UIMaps)
 
     self.platform_view = PlatformView()
     self.balls_views = {}
+    self.blocks_views = {}
 end
 
 function ViewGameSceneGO:create_ball(settings)
@@ -80,6 +82,50 @@ end
 
 function ViewGameSceneGO:delete_platform()
     self.platform_view:delete()
+end
+
+function ViewGameSceneGO:create_block(settings)
+    local id = self.nodes.blocks_factory:create(settings)
+    local view = BlockView(id)
+
+    self.blocks_views[id] = view
+
+    view:hide_cracks()
+    view:set_kinematic_collision()
+
+    return id
+end
+
+function BlockView:show_block_cracks(id)
+    self.blocks_views[id]:show_block_cracks()
+end
+
+function BlockView:hide_block_cracks(id)
+    self.blocks_views[id]:hide_block_cracks()
+end
+
+function BlockView:set_block_kinematic_collision(id)
+    self.blocks_views[id]:set_block_kinematic_collision()
+end
+
+function BlockView:set_block_trigger_collision(id)
+    self.blocks_views[id]:set_block_trigger_collision()
+end
+
+function ViewGameSceneGO:get_block_size(id)
+    return self.blocks_views[id]:get_size()
+end
+
+function ViewGameSceneGO:set_block_scale(id, scale_factor)
+    self.blocks_views[id]:set_scale(scale_factor)
+end
+
+function ViewGameSceneGO:set_block_pos(id, pos)
+    self.blocks_views[id]:set_pos(pos)
+end
+
+function ViewGameSceneGO:delete_block(id)
+    self.blocks_views[id]:delete()
 end
 
 return ViewGameSceneGO

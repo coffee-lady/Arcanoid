@@ -19,6 +19,10 @@ function BallsController:initialize(event_bus, presenters)
 end
 
 function BallsController:init()
+    self:_create_initial_ball()
+end
+
+function BallsController:_create_initial_ball()
     local id = self.balls_presenter:create_ball()
     self.balls[id] = {
         base_speed = BallsConfig.speed.start,

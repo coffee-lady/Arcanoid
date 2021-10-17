@@ -14,7 +14,7 @@ components {
   }
 }
 components {
-  id: "snowglobe_breaking"
+  id: "breaking_pfx"
   component: "/src/ui/scenes/game scene/pfx/winter-block-breaking.particlefx"
   position {
     x: 0.0
@@ -29,7 +29,7 @@ components {
   }
 }
 components {
-  id: "chimney_breaking"
+  id: "breaking_pfx_granite"
   component: "/src/ui/scenes/game scene/pfx/winter-granite_block-breaking.particlefx"
   position {
     x: 0.0
@@ -93,7 +93,7 @@ embedded_components {
   id: "sprite"
   type: "sprite"
   data: "tile_set: \"/assets/atlases/winter.atlas\"\n"
-  "default_animation: \"winter-pack-9\"\n"
+  "default_animation: \"winter-pack-5\"\n"
   "material: \"/assets/materials/go.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   ""

@@ -49,8 +49,8 @@ ScreensConstants.game_scene = {
     },
 
     balls_factory = '/go#balls_factory',
-    block_factory = '/go#block_factory',
-    boost_factory = '/go#boost_factory',
+    blocks_factory = '/go#blocks_factory',
+    boosts_factory = '/go#boosts_factory',
 
     platform = '/platform',
     losing_zone = '/losing_zone',
@@ -59,6 +59,14 @@ ScreensConstants.game_scene = {
         wall_top = '/wall_top',
         wall_right = '/wall_right',
         wall_left = '/wall_left',
+    },
+
+    block = {
+        co_kinematic = 'co_kinematic',
+        co_trigger = 'co_trigger',
+        cracks = 'cracks',
+        breaking_pfx_granite = 'breaking_pfx_granite',
+        breaking_pfx = 'breaking_pfx',
     },
 }
 

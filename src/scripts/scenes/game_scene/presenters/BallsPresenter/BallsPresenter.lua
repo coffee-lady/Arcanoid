@@ -18,8 +18,8 @@ function BallsPresenter:initialize(screen_service, view)
     self.view = view
 end
 
-function BallsPresenter:create_ball(settings)
-    return self.view:create_ball(settings)
+function BallsPresenter:create_ball()
+    return self.view:create_ball()
 end
 
 function BallsPresenter:normalize_ball_speed(id, base_velocity)

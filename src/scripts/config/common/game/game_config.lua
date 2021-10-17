@@ -51,8 +51,8 @@ GameConfig.platform = {
 }
 
 GameConfig.blocks = {
-    top_margin = 0.13,
-    sides_margin = 0.3,
+    top_margin = 0.15,
+    side_margin = 0.1,
     gap = 0.2,
     sprite_falling_duration = 1,
     destroy_granite = false,
