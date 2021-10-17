@@ -3,7 +3,7 @@ local Math = require('src.libs.tools.math.math')
 local Easings = require('src.libs.tools.easings.easings')
 
 local Animations = require('animations.animations')
-local Tweengo = require('animations.tween.tween_go')
+local TweenGO = require('animations.tween.tween_go')
 local PathTween = require('animations.tween.path_tween')
 
 local FULL_ANGLE = 360
@@ -15,7 +15,7 @@ local Easingsgo = Easings.go
 local AnimatableNode = class('AnimatableNode', GONode)
 
 function AnimatableNode:_create_tween(to, duration, anim_property)
-    return Tweengo(self, to, duration, anim_property)
+    return TweenGO(self, to, duration, anim_property)
 end
 
 local function check_duration(duration)
@@ -26,21 +26,7 @@ end
 function AnimatableNode:animate_move_to(to, duration)
     check_duration(duration)
 
-    return self:_create_tween(to, duration, go.PROP_POSITION)
-end
-
-function AnimatableNode:animate_fill_perc_to(perc, duration)
-    check_duration(duration)
-
-    local angle = perc * FULL_ANGLE / PERC
-
-    return self:_create_tween(angle, duration, go.PROP_FILL_ANGLE)
-end
-
-function AnimatableNode:animate_fill_angle_to(to, duration)
-    check_duration(duration)
-
-    return self:_create_tween(to, duration, go.PROP_FILL_ANGLE)
+    return self:_create_tween(to, duration, 'position')
 end
 
 function AnimatableNode:animate_move_path(path, duration)
@@ -61,7 +47,7 @@ function AnimatableNode:animate_scale_to(to, duration)
 
     check_duration(duration)
 
-    return self:_create_tween(to, duration, go.PROP_SCALE)
+    return self:_create_tween(to, duration, 'scale')
 end
 
 function AnimatableNode:animate_scale_in(to, duration)
@@ -75,19 +61,19 @@ function AnimatableNode:animate_scale_in(to, duration)
 
     check_duration(duration)
 
-    return self:_create_tween(to, duration, go.PROP_SCALE)
+    return self:_create_tween(to, duration, 'scale')
 end
 
 function AnimatableNode:animate_size_to(to, duration)
     check_duration(duration)
 
-    return self:_create_tween(to, duration, go.PROP_SIZE)
+    return self:_create_tween(to, duration, 'size')
 end
 
 function AnimatableNode:animate_rotate_to(to, duration)
     check_duration(duration)
 
-    return self:_create_tween(to, duration, go.PROP_ROTATION)
+    return self:_create_tween(to, duration, 'euler')
 end
 
 function AnimatableNode:animate_move_circle(perc_from, perc_to, duration, radius, circle_rotation)
@@ -120,24 +106,6 @@ function AnimatableNode:animate_move_circle_back(perc_from, perc_to, duration, r
     return self:animate_move_path(path, duration):easing(go.EASING_LINEAR)
 end
 
-function AnimatableNode:animate_fill_angle(to, duration)
-    return self:_create_tween(to, duration, go.PROP_FILL_ANGLE)
-end
-
-local function fade_outline(self, duration, from, to)
-    check_duration(duration)
-
-    local start_color = self:get_outline()
-    start_color.w = from
-
-    local to_color = vmath.vector4(start_color)
-    to_color.w = to
-
-    local tween = self:create_tween(to_color, duration, go.PROP_OUTLINE)
-
-    return tween
-end
-
 local function fade_color(self, duration, from, to)
     check_duration(duration)
 
@@ -147,7 +115,7 @@ local function fade_color(self, duration, from, to)
     local to_color = vmath.vector4(start_color)
     to_color.w = to
 
-    local tween = self:_create_tween(to_color, duration, go.PROP_COLOR)
+    local tween = self:_create_tween(to_color, duration, 'color')
 
     return tween
 end
@@ -168,16 +136,8 @@ function AnimatableNode:animate_fade_out(duration)
     return fade_color(self, duration, 1, 0)
 end
 
-function AnimatableNode:animate_fade_in_outline(duration)
-    return fade_outline(self, duration, 0, 1)
-end
-
-function AnimatableNode:animate_fade_out_outline(duration)
-    return fade_outline(self, duration, 1, 0)
-end
-
 function AnimatableNode:animate_color_to(to, duration)
-    return self:_create_tween(to, duration, go.PROP_COLOR)
+    return self:_create_tween(to, duration, 'color')
 end
 
 function AnimatableNode:animate_counter(prev_value, next_value, duration, update)

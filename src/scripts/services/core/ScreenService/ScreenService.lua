@@ -81,11 +81,25 @@ function ScreenService:remove_listener(url)
 end
 
 function ScreenService:get_coords()
-    return self.start_coords, self.end_coords
+    return vmath.vector3(self.start_coords.x, self.start_coords.y, self.start_coords.z), vmath.vector3(self.end_coords.x, self.end_coords.y, self.end_coords.z)
 end
 
 function ScreenService:screen_to_world_2d(pos, delta)
     return rendercam.screen_to_world_2d(pos.x, pos.y, delta)
+end
+
+function ScreenService:screen_to_world_2d_xy(x, y, delta)
+    return rendercam.screen_to_world_2d(x, y, delta)
+end
+
+function ScreenService:get_coords_from_relative(rel_coords)
+    local screen_sizes = self:get_sizes()
+    local start_screen_coords = self:get_coords()
+
+    local x = start_screen_coords.x + rel_coords.x * screen_sizes.x
+    local y = start_screen_coords.y + rel_coords.y * screen_sizes.y
+
+    return vmath.vector3(x, y, 0)
 end
 
 function ScreenService:screen_to_gui(pos, adjust, is_size)

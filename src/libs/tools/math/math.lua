@@ -210,4 +210,21 @@ function Math.generate_circle_positions(radius, count)
     return points
 end
 
+function Math.is_point_in_vector(point, start_coord, end_coord)
+    return point >= start_coord and point <= end_coord
+end
+
+function Math.is_point_in_plane(point, start_coords, end_coords)
+    local is_in_x = Math.is_point_in_vector(point.x, start_coords.x, end_coords.x)
+    local is_in_y = Math.is_point_in_vector(point.y, start_coords.y, end_coords.y)
+    return is_in_x and is_in_y
+end
+
+function Math.point_in_bounds(point, start_coords, end_coords)
+    point = vmath.vector3(point.x, point.y, point.z)
+    point.x = math.min(math.max(point.x, start_coords.x), end_coords.x)
+    point.y = math.min(math.max(point.y, start_coords.y), end_coords.y)
+    return point
+end
+
 return Math

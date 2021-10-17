@@ -43,6 +43,11 @@ GameConfig.platform = {
         max = 1,
     },
     scaling_duration = 0.07,
+
+    click_area = {
+        rel_start = vmath.vector3(0, 0, 0),
+        rel_end = vmath.vector3(1, 0.87, 0),
+    },
 }
 
 GameConfig.blocks = {

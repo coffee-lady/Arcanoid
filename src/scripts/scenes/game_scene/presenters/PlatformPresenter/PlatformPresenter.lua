@@ -41,6 +41,22 @@ function PlatformPresenter:reset_platform_scale()
     self.view:set_platform_scale(scale_factor)
 end
 
+function PlatformPresenter:animate_platform_pos_x(pos)
+    local sizes = self.view:get_platform_size()
+    local scale = self.view:get_platform_scale()
+    local start_coords, end_coords = self.screen_service:get_coords()
+
+    local padding = sizes.x / 2 * scale.x
+    local start_coords, end_coords = self.screen_service:get_coords()
+    start_coords.x = start_coords.x + padding
+    end_coords.x = end_coords.x - padding
+
+    pos = Math.point_in_bounds(pos, start_coords, end_coords)
+    pos.y = self.view:get_platform_pos().y
+
+    self.view:animate_platform_pos(pos)
+end
+
 function PlatformPresenter:delete_platform()
     self.view:delete_platform()
 end

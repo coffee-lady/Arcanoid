@@ -1,6 +1,5 @@
 local App = require('src.app')
 
-local SubscriptionsMap = App.libs.SubscriptionsMap
 local SceneController = App.libs.scenes.SceneController
 
 local MSG = App.constants.msg

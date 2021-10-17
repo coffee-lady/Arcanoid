@@ -62,8 +62,20 @@ function ViewGameSceneGO:set_platform_scale(scale_factor)
     self.platform_view:set_scale(scale_factor)
 end
 
+function ViewGameSceneGO:get_platform_scale()
+    return self.platform_view:get_scale()
+end
+
 function ViewGameSceneGO:set_platform_pos(pos)
     self.platform_view:set_pos(pos)
+end
+
+function ViewGameSceneGO:get_platform_pos()
+    return self.platform_view:get_pos()
+end
+
+function ViewGameSceneGO:animate_platform_pos(pos)
+    self.platform_view:animate_pos(pos)
 end
 
 function ViewGameSceneGO:delete_platform()
