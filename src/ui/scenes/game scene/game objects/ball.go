@@ -1,6 +1,6 @@
 components {
-  id: "ball"
-  component: "/src/ui/scenes/game scene/game objects/scripts/ball.script"
+  id: "go_script"
+  component: "/src/ui/common/game_object_script/game_object_script.script"
   position {
     x: 0.0
     y: 0.0

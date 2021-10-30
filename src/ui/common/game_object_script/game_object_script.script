@@ -1,0 +1,14 @@
+local App = require('src.app')
+
+local Luject = App.libs.luject
+local GameObjectScript = App.libs.scenes.GameObjectScript
+
+local RENDER_ORDER = App.config.render_order.game_scene
+
+local GameScene = class('GameScene', GameObjectScript)
+
+function GameScene:initialize()
+    Luject:resolve_class(GameObjectScript, self)
+end
+
+GameScene()

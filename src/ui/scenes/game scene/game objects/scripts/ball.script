@@ -1,8 +1,0 @@
--- 
--- local SceneMsgService = SceneServices.msg
-function init(self)
-    self.id = go.get_id()
-end
--- function on_message(self, message_id, message, sender)
---     SceneMsgService:send(self.id, message_id, message)
--- end
