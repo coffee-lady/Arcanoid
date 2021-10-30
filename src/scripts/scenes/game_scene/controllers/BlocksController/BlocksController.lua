@@ -22,7 +22,17 @@ function BlocksController:initialize(event_bus, levels_service, screen_service, 
     self.blocks_presenter = presenters.blocks_presenter
     self.blocks = {}
 
-    self:set_subscriptions_map({})
+    self:set_subscriptions_map({
+        [MSG.collision_response] = self.on_collision_response
+    })
+end
+
+function BlocksController:on_collision_response(data)
+    local go_id, other_go_id = data.go_id, data.other_id
+
+    if self.blocks[go_id] then
+        print('block collision!')
+    end
 end
 
 function BlocksController:init()

@@ -9,6 +9,8 @@ local WallsConfig = App.config.game.walls
 --- @class WallsController : SceneController
 local WallsController = class('WallsController', SceneController)
 
+WallsController.__cparams = {'event_bus_go'}
+
 function WallsController:initialize(event_bus, presenters)
     SceneController.initialize(self, event_bus)
 

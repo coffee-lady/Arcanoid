@@ -24,7 +24,16 @@ function PlatformController:initialize(event_bus, screen_service, presenters)
 
     self:set_subscriptions_map({
         [ACTION.click] = self.on_click,
+        [MSG.collision_response] = self.on_collision_response
     })
+end
+
+function PlatformController:on_collision_response(data)
+    local go_id, other_go_id = data.go_id, data.other_id
+
+    if go_id == hash(ID.platform) then
+        print('platform collision!')
+    end
 end
 
 function PlatformController:init()

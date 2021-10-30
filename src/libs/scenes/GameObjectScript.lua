@@ -1,20 +1,20 @@
 local Luject = require('src.libs.luject.luject')
-local ScriptWrapper = require('src.libs.script_wrapper.ScriptWrapper')
+local LujectClassWrapper = require('src.libs.script_wrapper.LujectClassWrapper')
 
 --- @class GameObjectScript
-local GameObjectScript = class('GameObjectScript', ScriptWrapper)
+local GameObjectScript = class('GameObjectScript', LujectClassWrapper)
 
 GameObjectScript.__cparams = {'event_bus_go'}
 
 function GameObjectScript:initialize(event_bus_go)
+    self:register()
+
     --- @type EventBus
     self.event_bus_go = event_bus_go
-
-    self:register()
 end
 
-function GameObjectScript:init(id)
-    self.id = id
+function GameObjectScript:init()
+    self.id = go.get_id()
 end
 
 function GameObjectScript:on_message(message_id, message, sender)
