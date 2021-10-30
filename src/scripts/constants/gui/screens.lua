@@ -1,7 +1,7 @@
 local ScreensConstants = {
     bootstrap = {
-        container = 'container',
-    },
+        container = 'container'
+    }
 }
 
 ScreensConstants.start_scene = {
@@ -11,20 +11,20 @@ ScreensConstants.start_scene = {
     button_settings = {
         container = 'appbar/button_settings/container',
         icon = 'appbar/button_settings/icon',
-        text = 'appbar/button_settings/text',
+        text = 'appbar/button_settings/text'
     },
 
     button_store = {
         container = 'appbar/button_store/container',
         icon = 'appbar/button_store/icon',
-        text = 'appbar/button_store/text',
+        text = 'appbar/button_store/text'
     },
 
     button_play = {
         container = 'button_play/container',
         inner = 'button_play/inner',
-        text = 'button_play/text',
-    },
+        text = 'button_play/text'
+    }
 }
 
 ScreensConstants.game_scene = {
@@ -34,18 +34,18 @@ ScreensConstants.game_scene = {
     energy_widget = {
         container = 'appbar/energy/container',
         icon = 'appbar/energy/icon',
-        text = 'appbar/energy/text',
+        text = 'appbar/energy/text'
     },
 
     button_pause = {
         container = 'appbar/pause/container',
         icon = 'appbar/pause/icon',
-        text = 'appbar/pause/text',
+        text = 'appbar/pause/text'
     },
 
     lives_widget = {
         container = 'appbar/lives/container',
-        template = 'appbar/lives/template',
+        template = 'appbar/lives/template'
     },
 
     balls_factory = '/go#balls_factory',
@@ -58,7 +58,7 @@ ScreensConstants.game_scene = {
     walls = {
         wall_top = '/wall_top',
         wall_right = '/wall_right',
-        wall_left = '/wall_left',
+        wall_left = '/wall_left'
     },
 
     block = {
@@ -67,7 +67,8 @@ ScreensConstants.game_scene = {
         cracks = 'cracks',
         breaking_pfx_granite = 'breaking_pfx_granite',
         breaking_pfx = 'breaking_pfx',
-    },
+        decoration_sprite = 'decoration_sprite'
+    }
 }
 
 return ScreensConstants

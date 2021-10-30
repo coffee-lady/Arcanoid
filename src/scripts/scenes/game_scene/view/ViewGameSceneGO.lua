@@ -96,19 +96,23 @@ function ViewGameSceneGO:create_block(settings)
     return id
 end
 
-function BlockView:show_block_cracks(id)
+function ViewGameSceneGO:set_block_image(id, image)
+    self.blocks_views[id]:set_image(image)
+end
+
+function ViewGameSceneGO:show_block_cracks(id)
     self.blocks_views[id]:show_block_cracks()
 end
 
-function BlockView:hide_block_cracks(id)
+function ViewGameSceneGO:hide_block_cracks(id)
     self.blocks_views[id]:hide_block_cracks()
 end
 
-function BlockView:set_block_kinematic_collision(id)
+function ViewGameSceneGO:set_block_kinematic_collision(id)
     self.blocks_views[id]:set_block_kinematic_collision()
 end
 
-function BlockView:set_block_trigger_collision(id)
+function ViewGameSceneGO:set_block_trigger_collision(id)
     self.blocks_views[id]:set_block_trigger_collision()
 end
 
@@ -122,6 +126,10 @@ end
 
 function ViewGameSceneGO:set_block_pos(id, pos)
     self.blocks_views[id]:set_pos(pos)
+end
+
+function ViewGameSceneGO:animate_block_destruction(id)
+    self.blocks_views[id]:animate_destruction()
 end
 
 function ViewGameSceneGO:delete_block(id)

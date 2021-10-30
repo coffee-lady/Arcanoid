@@ -13,6 +13,7 @@ local Services = {
     StorePromotionsService = require('src.scripts.services.business.StorePromotionsService.StorePromotionsService'),
     EnergyService = require('src.scripts.services.game.EnergyService.EnergyService'),
     LevelsService = require('src.scripts.services.game.LevelsService.LevelsService'),
+    GraphicsService = require('src.scripts.services.game.GraphicsService.GraphicsService')
 }
 
 return Services

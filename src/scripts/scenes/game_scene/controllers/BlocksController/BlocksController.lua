@@ -31,19 +31,20 @@ function BlocksController:on_collision_response(data)
     local go_id, other_go_id = data.go_id, data.other_id
 
     if self.blocks[go_id] then
-        print('block collision!')
+        self.blocks_presenter:destruct_block(go_id)
+        self.blocks[go_id] = nil
     end
 end
 
 function BlocksController:init()
     local current_level = self.levels_service:get_current_level()
-    local level_height, level_width, level_data = current_level.height, current_level.width, current_level.data
+    local level_height, level_width, icons_indexes = current_level.height, current_level.width, current_level.data
 
     self.blocks_presenter:update_blocks_metrics(level_height, level_width)
+    self.blocks_presenter:update_blocks_icons(icons_indexes)
 
     for i = 1, level_height do
         for j = 1, level_width do
-            local block_cell_id = level_data[(i - 1) * level_width + j]
             local id = self.blocks_presenter:create_block(i, j)
             self.blocks[id] = {}
         end
