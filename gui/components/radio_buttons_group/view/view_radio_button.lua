@@ -21,20 +21,23 @@ function RadioButtonView:initialize(context_services, id, gui_nodes, params)
         container = BoxNode(gui_nodes[ids.container]),
         mark_container = BoxNode(gui_nodes[ids.mark_container]),
         mark = BoxNode(gui_nodes[ids.mark]),
-        title = TextNode(gui_nodes[ids.title]),
+        title = TextNode(gui_nodes[ids.title])
     }
 
-    self.theme_object = self:set_theme_map({
-        radio_button = {
-            primary_mode = 'enabled',
-            disable_submode = true,
-            map = {
-                container = self.nodes.mark_container,
-                icon = self.nodes.mark,
-                title = self.nodes.title,
-            },
-        },
-    }):get_map().radio_button
+    self.theme_object =
+        self:set_theme_map(
+        {
+            radio_button = {
+                primary_mode = 'enabled',
+                disable_submode = true,
+                map = {
+                    container = self.nodes.mark_container,
+                    icon = self.nodes.mark,
+                    title = self.nodes.title
+                }
+            }
+        }
+    ):get_table().radio_button
 
     self:init()
 end

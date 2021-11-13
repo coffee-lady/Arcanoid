@@ -11,40 +11,13 @@ local BlocksPresenter = class('BlocksPresenter')
 
 BlocksPresenter.__cparams = {'screen_service', 'levels_service', 'graphics_service'}
 
-function BlocksPresenter:initialize(screen_service, levels_service, graphics_service, view)
+function BlocksPresenter:initialize(screen_service, levels_service, graphics_service)
     --- @type ScreenService
     self.screen_service = screen_service
     --- @type LevelsService
     self.levels_service = levels_service
     --- @type GraphicsService
     self.graphics_service = graphics_service
-
-    --- @type ViewGameSceneGO
-    self.view = view
-end
-
-function BlocksPresenter:create_block(i, j)
-    local id = self.view:create_block()
-
-    self:update_block_pos(id, i, j)
-    self:update_block_scale(id)
-    self:_update_block_icon(id, i, j)
-
-    return id
-end
-
-function BlocksPresenter:get_block_size(id)
-    return self.view:get_block_size(id)
-end
-
-function BlocksPresenter:update_block_pos(id, i, j)
-    local pos = self:_get_block_pos(i, j)
-    self.view:set_block_pos(id, pos)
-end
-
-function BlocksPresenter:update_block_scale(id)
-    local scale_factor = self:_get_block_scale(id)
-    self.view:set_block_scale(id, scale_factor)
 end
 
 function BlocksPresenter:update_blocks_metrics(level_height, level_width)
@@ -63,10 +36,6 @@ function BlocksPresenter:update_blocks_metrics(level_height, level_width)
     self.level_height, self.level_width = level_height, level_width
 end
 
-function BlocksPresenter:destruct_block(id)
-    self.view:animate_block_destruction(id)
-end
-
 function BlocksPresenter:update_blocks_icons(level_icons_indexes)
     --- @type UISetConfig
     local ui_set_config = self.graphics_service:get_ui_config()
@@ -83,22 +52,14 @@ function BlocksPresenter:update_blocks_icons(level_icons_indexes)
     end
 end
 
-function BlocksPresenter:_set_random_icon_index(level_icon_index, icons_count)
-    local icon_index
-    repeat
-        icon_index = math.random(icons_count)
-    until not Array.has(icon_index, self.icons_indexes)
-    self.icons_indexes[level_icon_index] = icon_index
-end
-
-function BlocksPresenter:_update_block_icon(id, i, j)
+function BlocksPresenter:get_block_icon(i, j)
     local block_index = (i - 1) * self.level_width + j
     local icon_index = self.icons_indexes[self.level_icons_indexes[block_index]]
     local icon = self.graphics_service:get_block_icon(icon_index)
-    self.view:set_block_image(id, icon)
+    return icon
 end
 
-function BlocksPresenter:_get_block_pos(i, j)
+function BlocksPresenter:get_block_pos(i, j)
     local pos = vmath.vector3()
 
     pos.x = self.start_pos.x + (j - 1) * self.block_length + (j - 1) * self.gap
@@ -107,9 +68,17 @@ function BlocksPresenter:_get_block_pos(i, j)
     return pos
 end
 
-function BlocksPresenter:_get_block_scale(id)
-    local scale = self.block_length / self:get_block_size(id).x
+function BlocksPresenter:get_block_scale(block_size)
+    local scale = self.block_length / block_size.x
     return scale
+end
+
+function BlocksPresenter:_set_random_icon_index(level_icon_index, icons_count)
+    local icon_index
+    repeat
+        icon_index = math.random(icons_count)
+    until not Array.has(icon_index, self.icons_indexes)
+    self.icons_indexes[level_icon_index] = icon_index
 end
 
 return BlocksPresenter

@@ -61,15 +61,27 @@ end
 
 function BlockView:animate_destruction()
     local delay_deleting = BlockUIConfig.destruction.delay_deleting
+    local duration_falling = BlockUIConfig.destruction.duration_falling
+    local duration_fade = BlockUIConfig.destruction.duration_fade
+    local delta_move_y = BlockUIConfig.destruction.delta_move_y
     local seq = Sequence()
 
-    seq:add_callback(function()
-        self.breaking_pfx_node:play()
-    end)
-    seq:add_delay(delay_deleting)
-    seq:add_callback(function()
-        self:delete()
-    end)
+    local pos = self.container_node:get_pos()
+    pos.y = pos.y - delta_move_y
+
+    seq:add_callback(
+        function()
+            self.decoration_sprite_node:set_enabled(false)
+            self.breaking_pfx_node:play()
+        end
+    )
+    seq:add(self.container_node:animate_move_to(pos, duration_falling))
+    seq:join(self.sprite_node:animate_fade_out(duration_fade))
+    seq:add_callback(
+        function()
+            self:delete()
+        end
+    )
 
     seq:run()
 end

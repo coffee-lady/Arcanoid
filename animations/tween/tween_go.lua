@@ -17,9 +17,18 @@ function TweenGO:initialize(object, to, duration, anim_property)
 end
 
 function TweenGO:on_run(callback)
-    go.animate(self.object.id, self.anim_property, self.anim_playback, self.to, self.anim_easing, self.anim_duration, self.anim_delay, function()
-        callback(self)
-    end)
+    go.animate(
+        self.object.id,
+        self.anim_property,
+        self.anim_playback,
+        self.to,
+        self.anim_easing,
+        self.anim_duration,
+        self.anim_delay,
+        function()
+            callback(self)
+        end
+    )
 end
 
 function TweenGO:on_cancel()

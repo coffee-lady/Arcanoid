@@ -5,15 +5,17 @@ local SubscriptionsMap = require('src.libs.event_bus.subscriptions_map')
 
 local ThemeMap = class('ThemeMap')
 
-function ThemeMap:initialize(event_bus, ui_service, settings, scheme)
+function ThemeMap:initialize(event_bus, ui_service, scenes_service, settings, scheme)
     --- @type EventBus
     self.event_bus = event_bus
     --- @type UIService
     self.ui_service = ui_service
+    --- @type ScenesService
+    self.scenes_service = scenes_service
 
     self.is_common = settings.is_common
     self.extra_key = settings.extra_key
-    self.scene_id = settings.scene_id or self.ui_service:get_scene_id()
+    self.scene_id = settings.scene_id or self.scenes_service:get_current_scene()
     self.theme = self.is_common and self.ui_service:get_common_colors() or self.ui_service:get_scene_colors(self.scene_id)
 
     if self.extra_key then
@@ -46,9 +48,14 @@ function ThemeMap:_fill_scheme()
 end
 
 function ThemeMap:_set_subscriptions()
-    self.subs = SubscriptionsMap(self, self.event_bus, {
-        [self.ui_service.MSG_THEME_CHANGED] = self.refresh,
-    })
+    self.subs =
+        SubscriptionsMap(
+        self,
+        self.event_bus,
+        {
+            [self.ui_service.MSG_THEME_CHANGED] = self.refresh
+        }
+    )
 end
 
 function ThemeMap:add(theme_object_key, item)
@@ -116,7 +123,7 @@ function ThemeMap:refresh()
     end
 end
 
-function ThemeMap:get_map()
+function ThemeMap:get_table()
     return self.map
 end
 

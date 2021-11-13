@@ -11,15 +11,17 @@ local URL = App.constants.urls
 --- @class ShowFirstSceneUseCase
 local ShowFirstSceneUseCase = class('ShowFirstSceneUseCase')
 
-ShowFirstSceneUseCase.__cparams = {'scenes_service', 'auth_service', 'player_data_storage'}
+ShowFirstSceneUseCase.__cparams = {'scenes_service', 'auth_service', 'player_data_storage', 'scenes_strategies_service'}
 
-function ShowFirstSceneUseCase:initialize(scenes_service, auth_service, player_data_storage)
+function ShowFirstSceneUseCase:initialize(scenes_service, auth_service, player_data_storage, scenes_strategies_service)
     --- @type ScenesService
     self.scenes_service = scenes_service
     --- @type AuthService
     self.auth_service = auth_service
     --- @type PlayerDataStorage
     self.player_data_storage = player_data_storage
+    --- @type ScenesStrategiesService
+    self.scenes_strategies_service = scenes_strategies_service
 end
 
 function ShowFirstSceneUseCase:show_first_scene()
@@ -36,6 +38,7 @@ function ShowFirstSceneUseCase:show_first_scene()
     -- end
 
     -- if not payload then
+    self.scenes_strategies_service:select_standard_game()
     self:_show_start_scene()
     --     return
     -- end

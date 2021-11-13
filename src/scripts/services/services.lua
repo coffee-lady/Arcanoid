@@ -1,5 +1,3 @@
-local CoreServices = require('src.scripts.services.core.core')
-
 local Services = {
     LocalizationService = require('src.scripts.services.core.LocalizationService.LocalizationService'),
     ScenesService = require('src.scripts.services.core.ScenesService.ScenesService'),
@@ -13,7 +11,8 @@ local Services = {
     StorePromotionsService = require('src.scripts.services.business.StorePromotionsService.StorePromotionsService'),
     EnergyService = require('src.scripts.services.game.EnergyService.EnergyService'),
     LevelsService = require('src.scripts.services.game.LevelsService.LevelsService'),
-    GraphicsService = require('src.scripts.services.game.GraphicsService.GraphicsService')
+    GraphicsService = require('src.scripts.services.game.GraphicsService.GraphicsService'),
+    ScenesStrategiesService = require('src.scripts.services.core.ScenesStrategiesService.ScenesStrategiesService')
 }
 
 return Services

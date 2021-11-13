@@ -30,6 +30,7 @@ function CommonServicesInstaller:install_services()
     Luject:bind('energy_service'):to(Services.EnergyService):as_single()
     Luject:bind('levels_service'):to(Services.LevelsService):as_single()
     Luject:bind('graphics_service'):to(Services.GraphicsService):as_single()
+    Luject:bind('scenes_strategies_service'):to(Services.ScenesStrategiesService):as_single()
 end
 
 return CommonServicesInstaller

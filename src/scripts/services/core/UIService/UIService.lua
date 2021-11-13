@@ -18,19 +18,20 @@ local ColorLib = App.libs.color
 
 local DEFAULT_UNLOCKED_THEMES = {
     light = true,
-    dark = true,
+    dark = true
 }
 
 --- @class UIService
 local UIService = class('UIService')
 
-UIService.__cparams = {'player_data_storage', 'event_bus_gui', 'global_gui_caller_service'}
+UIService.__cparams = {'player_data_storage', 'event_bus_gui', 'global_gui_caller_service', 'scenes_service'}
 
 UIService.MSG_THEME_CHANGED = MSG.themes.theme_changed
 
-function UIService:initialize(player_data_storage, event_bus, global_gui_caller_service)
+function UIService:initialize(player_data_storage, event_bus, global_gui_caller_service, scenes_service)
     self.player_data_storage = player_data_storage
     self.global_gui_caller_service = global_gui_caller_service
+    self.scenes_service = scenes_service
 
     self.unlocked_all = false
     self.theme_changed_notifier = Notifier(MSG.themes.theme_changed)
@@ -42,14 +43,20 @@ function UIService:initialize(player_data_storage, event_bus, global_gui_caller_
 end
 
 function UIService:_set_global_callers()
-    self.global_gui_caller_service:set_callback(MSG.themes._theme_changed_emit, function()
-        -- BoxNode(BootstrapID.container):set_color(self.theme_colors.common.background)
-        self.theme_changed_notifier:emit()
-    end)
+    self.global_gui_caller_service:set_callback(
+        MSG.themes._theme_changed_emit,
+        function()
+            -- BoxNode(BootstrapID.container):set_color(self.theme_colors.common.background)
+            self.theme_changed_notifier:emit()
+        end
+    )
 
-    self.global_gui_caller_service:set_callback(MSG.themes._unlocked_emit_msg, function()
-        self.themes_unlocked_notifier:emit()
-    end)
+    self.global_gui_caller_service:set_callback(
+        MSG.themes._unlocked_emit_msg,
+        function()
+            self.themes_unlocked_notifier:emit()
+        end
+    )
 end
 
 function UIService:_convert_themes()
@@ -136,12 +143,8 @@ function UIService:get_common_pallettes()
     return self.theme_colors.common_pallettes
 end
 
-function UIService:get_scene_id()
-    return ScenesService:get_current_scene()
-end
-
 function UIService:get_scene_colors(scene_id)
-    local current_scene = scene_id or ScenesService:get_current_scene()
+    local current_scene = scene_id or self.scenes_service:get_current_scene()
     for key, colors in pairs(self.theme_colors) do
         if hash(key) == current_scene then
             return colors

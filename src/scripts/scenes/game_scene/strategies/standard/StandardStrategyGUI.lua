@@ -1,6 +1,6 @@
 local App = require('src.app')
 local Controllers = require('src.scripts.scenes.game_scene.controllers.controllers_gui')
-local UIMaps = require('src.scripts.scenes.game_scene.common.common_gui')
+local UIMaps = require('src.scripts.scenes.game_scene.view.common.common_gui')
 local Presenters = require('src.scripts.scenes.game_scene.presenters.presenters_gui')
 local View = require('src.scripts.scenes.game_scene.view.ViewGameSceneGUI')
 

@@ -11,15 +11,19 @@ local LosingZoneController = class('LosingZoneController', SceneController)
 
 LosingZoneController.__cparams = {'event_bus_go'}
 
-function LosingZoneController:initialize(event_bus, presenters)
+function LosingZoneController:initialize(event_bus, presenters, view)
     SceneController.initialize(self, event_bus)
 
     --- @type LosingZonePresenter
     self.losing_zone_presenter = presenters.losing_zone_presenter
+    --- @type ViewGameSceneGO
+    self.view = view
 
-    self:set_subscriptions_map({
-        [MSG.collision_response] = self.on_collision_response
-    })
+    self:set_subscriptions_map(
+        {
+            [MSG.collision_response] = self.on_collision_response
+        }
+    )
 end
 
 function LosingZoneController:on_collision_response(data)
@@ -31,7 +35,12 @@ function LosingZoneController:on_collision_response(data)
 end
 
 function LosingZoneController:init()
-    self.losing_zone_presenter:reset_pos()
+    self:_reset_pos()
+end
+
+function LosingZoneController:_reset_pos()
+    local pos = self.losing_zone_presenter:get_zone_pos()
+    self.view:set_losing_zone_pos(pos)
 end
 
 return LosingZoneController

@@ -1,14 +1,19 @@
 local App = require('src.app')
-local StrategiesMediator = require('src.scripts.scenes.game_scene.strategies.mediator_gui')
 
-local Scene = App.libs.scenes.Scene
+local StrategizedSceneGUI = App.libs.scenes.StrategizedSceneGUI
+local Luject = App.libs.luject
 
 local RENDER_ORDER = App.config.render_order.game_scene
+local URL = App.constants.urls
 
-local GameScene = class('GameScene', Scene)
+local GameSceneGUI = class('GameSceneGUI', StrategizedSceneGUI)
 
-function GameScene:initialize()
-    Scene.initialize(self, StrategiesMediator, RENDER_ORDER)
+GameSceneGUI.__cparams = {'event_bus_gui', 'scenes_strategies_service', 'auth_service'}
+
+function GameSceneGUI:initialize(event_bus, scenes_strategies_service, auth_service)
+    StrategizedSceneGUI.initialize(self, event_bus, scenes_strategies_service, URL.game_scene, RENDER_ORDER)
+
+    self:set_services_subscriptions(auth_service)
 end
 
-GameScene()
+Luject:resolve_class(GameSceneGUI)

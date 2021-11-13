@@ -27,6 +27,10 @@ function BallView:set_speed(speed)
     self.collision_node:set_linear_velocity(speed)
 end
 
+function BallView:get_speed()
+    return self.collision_node:get_linear_velocity()
+end
+
 function BallView:delete()
     self.container_node:delete()
 end

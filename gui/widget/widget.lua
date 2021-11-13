@@ -62,7 +62,7 @@ function Widget:add_list_to_theme_map(list_key, list_data)
 end
 
 function Widget:get_theme_objects()
-    return self.theme_map:get_map()
+    return self.theme_map:get_table()
 end
 
 function Widget:create_button(ids, callback, type_id)

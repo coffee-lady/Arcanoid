@@ -115,7 +115,7 @@ local function fade_color(self, duration, from, to)
     local to_color = vmath.vector4(start_color)
     to_color.w = to
 
-    local tween = self:_create_tween(to_color, duration, 'color')
+    local tween = self:_create_tween(to_color, duration, 'tint')
 
     return tween
 end
@@ -141,9 +141,14 @@ function AnimatableNode:animate_color_to(to, duration)
 end
 
 function AnimatableNode:animate_counter(prev_value, next_value, duration, update)
-    return Animations.Counter(prev_value, next_value, duration, update or function(value)
-        self:set_text(value)
-    end)
+    return Animations.Counter(
+        prev_value,
+        next_value,
+        duration,
+        update or function(value)
+                self:set_text(value)
+            end
+    )
 end
 
 return AnimatableNode

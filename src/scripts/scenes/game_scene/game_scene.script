@@ -1,12 +1,18 @@
 local App = require('src.app')
-local StrategiesMediator = require('src.scripts.scenes.game_scene.strategies.mediator_go')
 
-local Scene = App.libs.scenes.Scene
+local StrategizedSceneGO = App.libs.scenes.StrategizedSceneGO
+local Luject = App.libs.luject
 
-local GameScene = class('GameScene', Scene)
+local URL = App.constants.urls
 
-function GameScene:initialize()
-    Scene.initialize(self, StrategiesMediator)
+local GameSceneGO = class('GameSceneGO', StrategizedSceneGO)
+
+GameSceneGO.__cparams = {'event_bus_go', 'scenes_strategies_service', 'auth_service'}
+
+function GameSceneGO:initialize(event_bus, scenes_strategies_service, auth_service)
+    StrategizedSceneGO.initialize(self, event_bus, scenes_strategies_service, URL.game_scene)
+
+    self:set_services_subscriptions(auth_service)
 end
 
-GameScene()
+Luject:resolve_class(GameSceneGO)

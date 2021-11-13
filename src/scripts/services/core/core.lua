@@ -7,6 +7,7 @@ local Services = {
     GlobalGUICallerService = require('src.scripts.services.core.GlobalCallerServices.GlobalGUICallerService'),
     GlobalGOCallerService = require('src.scripts.services.core.GlobalCallerServices.GlobalGOCallerService'),
     SoundService = require('src.scripts.services.core.SoundService.SoundService'),
+    ScenesStrategiesService = require('src.scripts.services.core.ScenesStrategiesService.ScenesStrategiesService')
 }
 
 return Services

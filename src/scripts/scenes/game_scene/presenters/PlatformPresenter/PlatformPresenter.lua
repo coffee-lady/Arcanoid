@@ -11,22 +11,14 @@ local PlatformPresenter = class('PlatformPresenter')
 
 PlatformPresenter.__cparams = {'screen_service'}
 
-function PlatformPresenter:initialize(screen_service, view)
+function PlatformPresenter:initialize(screen_service)
     --- @type ScreenService
     self.screen_service = screen_service
-
-    --- @type ViewGameSceneGO
-    self.view = view
 
     self:_update_area_coords()
 end
 
-function PlatformPresenter:reset_platform()
-    self:reset_platform_pos()
-    self:reset_platform_scale()
-end
-
-function PlatformPresenter:reset_platform_pos()
+function PlatformPresenter:get_platform_initial_pos()
     local pos = vmath.vector3()
     local sizes = self.screen_service:get_sizes()
     local start_coords = self.screen_service:get_coords()
@@ -34,39 +26,29 @@ function PlatformPresenter:reset_platform_pos()
     pos.x = start_coords.x + PlatformConfig.start_rel_pos.x * sizes.x
     pos.y = start_coords.y + PlatformConfig.start_rel_pos.y * sizes.y
 
-    self.view:set_platform_pos(pos)
+    return pos
 end
 
-function PlatformPresenter:reset_platform_scale()
-    local platform_size = self.view:get_platform_size()
+function PlatformPresenter:get_platform_scale(platform_size)
     local screen_sizes = self.screen_service:get_sizes()
     local scale_factor = PlatformConfig.scale.start * screen_sizes.x / platform_size.x
-    self.view:set_platform_scale(scale_factor)
+    return scale_factor
 end
 
-function PlatformPresenter:move_platform(action)
-    local pos = self.screen_service:screen_to_world_2d_xy(action.screen_x, action.screen_y)
-
-    if not Math.is_point_in_plane(pos, self.area_start, self.area_end) then
-        return
-    end
-
-    local start_coords, end_coords = self:_get_platform_bounds_coords()
-
-    pos = Math.point_in_bounds(pos, start_coords, end_coords)
-    pos.y = self.view:get_platform_pos().y
-
-    self.view:animate_platform_pos(pos)
+function PlatformPresenter:get_world_pos_from_action(action)
+    return self.screen_service:screen_to_world_2d_xy(action.screen_x, action.screen_y)
 end
 
-function PlatformPresenter:delete_platform()
-    self.view:delete_platform()
+function PlatformPresenter:is_action_to_move_platform(pos)
+    return Math.is_point_in_plane(pos, self.area_start, self.area_end)
 end
 
-function PlatformPresenter:_get_platform_bounds_coords()
-    local sizes = self.view:get_platform_size()
-    local scale = self.view:get_platform_scale()
+function PlatformPresenter:get_pos_to_move_platform(action_pos, start_coords, end_coords)
+    local pos = Math.point_in_bounds(action_pos, start_coords, end_coords)
+    return pos
+end
 
+function PlatformPresenter:get_platform_bounds_coords(sizes, scale)
     local padding = sizes.x / 2 * scale.x
     local start_coords, end_coords = self.screen_service:get_coords()
 

@@ -44,6 +44,10 @@ function ViewGameSceneGO:set_ball_speed(id, speed)
     self.balls_views[id]:set_speed(speed)
 end
 
+function ViewGameSceneGO:get_ball_speed(id)
+    return self.balls_views[id]:get_speed()
+end
+
 function ViewGameSceneGO:delete_ball(id)
     self.balls_views[id]:delete()
 end
