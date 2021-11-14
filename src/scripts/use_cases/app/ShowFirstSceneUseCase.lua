@@ -18,7 +18,7 @@ function ShowFirstSceneUseCase:initialize(scenes_service, auth_service, player_d
     self.scenes_service = scenes_service
     --- @type AuthService
     self.auth_service = auth_service
-    --- @type PlayerDataStorage
+    --- @type ServerDataStorage
     self.player_data_storage = player_data_storage
     --- @type ScenesStrategiesService
     self.scenes_strategies_service = scenes_strategies_service

@@ -16,7 +16,7 @@ local EnergyUseCases = class('EnergyUseCases')
 EnergyUseCases.__cparams = {'player_data_storage'}
 
 function EnergyUseCases:initialize(player_data_storage)
-    --- @type PlayerDataStorage
+    --- @type ServerDataStorage
     self.player_data_storage = player_data_storage
 
     self.current_energy = self.player_data_storage:get(FILE, KEY_ENERGY_COUNT) or EnergyConfig.max_count

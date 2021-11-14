@@ -14,7 +14,7 @@ local LevelsUseCases = class('LevelsUseCases')
 LevelsUseCases.__cparams = {'player_data_storage', 'levels_loader_service'}
 
 function LevelsUseCases:initialize(player_data_storage, levels_loader_service)
-    --- @type PlayerDataStorage
+    --- @type ServerDataStorage
     self.player_data_storage = player_data_storage
     --- @type LevelsLoaderService
     self.levels_loader_service = levels_loader_service

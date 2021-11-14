@@ -14,7 +14,7 @@ local LevelsLoaderService = class('LevelsLoaderService')
 LevelsLoaderService.__cparams = {'player_data_storage'}
 
 function LevelsLoaderService:initialize(player_data_storage)
-    --- @type PlayerDataStorage
+    --- @type ServerDataStorage
     self.player_data_storage = player_data_storage
 end
 

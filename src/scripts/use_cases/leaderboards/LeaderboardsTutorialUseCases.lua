@@ -14,7 +14,7 @@ LeaderboardsTutorialUseCases.__cparams = {'scenes_service', 'player_data_storage
 function LeaderboardsTutorialUseCases:initialize(scenes_service, player_data_storage, global_gui_caller_service)
     --- @type ScenesService
     self.scenes_service = scenes_service
-    --- @type PlayerDataStorage
+    --- @type ServerDataStorage
     self.player_data_storage = player_data_storage
     --- @type GlobalGUICallerService
     self.global_gui_caller_service = global_gui_caller_service
