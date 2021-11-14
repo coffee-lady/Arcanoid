@@ -1,7 +1,7 @@
 local App = require('src.app')
 local YandexAPI = require('src.scripts.include.yandex.yandex')
 
-local FeedbackAdapter = YandexAPI.Feedback
+local YandexFeedback = YandexAPI.YandexFeedback
 
 local Debug = App.libs.debug
 
@@ -19,6 +19,8 @@ YandexFeedbackService.__cparams = {'player_data_storage'}
 
 function YandexFeedbackService:initialize(player_data_storage)
     self.player_data_storage = player_data_storage
+
+    self.yandex_feedback = YandexFeedback()
 
     self.debug = Debug('[Yandex] YandexFeedbackService', DEBUG)
     self.is_online = true
@@ -43,12 +45,12 @@ function YandexFeedbackService:_try_show_review_popup_async()
 end
 
 function YandexFeedbackService:request_review_async()
-    if not DEBUG_LOCAL and (not self.is_online or not FeedbackAdapter:is_reviewable()) then
+    if not DEBUG_LOCAL and (not self.is_online or not self.yandex_feedback:is_reviewable()) then
         self.debug:log('request_review_async unavailable')
         return false
     end
 
-    local is_feedback_sent = FeedbackAdapter:request_review_async()
+    local is_feedback_sent = self.yandex_feedback:request_review_async()
 
     if DEBUG_LOCAL then
         is_feedback_sent = true
@@ -78,7 +80,7 @@ function YandexFeedbackService:_is_available()
         return false
     end
 
-    return self.is_online and FeedbackAdapter:is_reviewable()
+    return self.is_online and self.yandex_feedback:is_reviewable()
 end
 
 return YandexFeedbackService

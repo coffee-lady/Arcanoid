@@ -2,7 +2,7 @@ local App = require('src.app')
 local YandexAdapter = require('src.scripts.include.yandex.yandex')
 
 local UserEntity = App.entities.UserEntity
-local AuthAdapter = YandexAdapter.Auth
+local YandexAuth = YandexAdapter.YandexAuth
 local Notifier = App.libs.notifier
 
 local MSG = App.constants.msg
@@ -13,25 +13,33 @@ local YandexAuthService = class('YandexAuthService')
 
 YandexAuthService.__cparams = {'global_gui_caller_service'}
 
-YandexAuthService.IMAGE_SIZE = AuthAdapter.IMAGE_SIZE
+YandexAuthService.IMAGE_SIZE = YandexAuth.IMAGE_SIZE
 
 function YandexAuthService:initialize(global_gui_caller_service)
     self.global_gui_caller_service = global_gui_caller_service
     self.success_auth_notifier = Notifier(MSG.auth.success_auth)
     self.auth_attempt_notifier = Notifier(MSG.auth.auth_attempt)
 
-    self.global_gui_caller_service:set_callback(MSG.auth._success_emit_msg, function()
-        self.success_auth_notifier:emit()
-    end)
+    self.yandex_auth = YandexAuth()
 
-    self.global_gui_caller_service:set_callback(MSG.auth._attempt_emit_msg, function(data)
-        self.auth_attempt_notifier:emit(data)
-    end)
+    self.global_gui_caller_service:set_callback(
+        MSG.auth._success_emit_msg,
+        function()
+            self.success_auth_notifier:emit()
+        end
+    )
 
-    -- local is_authorized = AuthAdapter:init()
-    -- if is_authorized then
-    --     self:_set_current_user_data()
-    -- end
+    self.global_gui_caller_service:set_callback(
+        MSG.auth._attempt_emit_msg,
+        function(data)
+            self.auth_attempt_notifier:emit(data)
+        end
+    )
+
+    local is_authorized = self.yandex_auth:init_async()
+    if is_authorized then
+        self:_set_current_user_data()
+    end
 end
 
 function YandexAuthService:on_authenticate(cb)
@@ -60,9 +68,12 @@ function YandexAuthService:authenticate()
             self._on_authenticate()
         end
 
-        self.global_gui_caller_service:call(MSG.auth._attempt_emit_msg, {
-            success = true,
-        })
+        self.global_gui_caller_service:call(
+            MSG.auth._attempt_emit_msg,
+            {
+                success = true
+            }
+        )
         self.global_gui_caller_service:call(MSG.auth._success_emit_msg)
     end
 
@@ -70,27 +81,33 @@ function YandexAuthService:authenticate()
         if self._on_auth_error then
             self._on_auth_error()
         end
-        self.global_gui_caller_service:call(MSG.auth._attempt_emit_msg, {
-            success = false,
-        })
+        self.global_gui_caller_service:call(
+            MSG.auth._attempt_emit_msg,
+            {
+                success = false
+            }
+        )
     end
 
-    AuthAdapter:authenticate(_on_success_auth, _on_auth_fail)
+    self.yandex_auth:authenticate(_on_success_auth, _on_auth_fail)
 end
 
 function YandexAuthService:_set_current_user_data()
-    local photo, photo_url = AuthAdapter:get_current_user_photo_async(IMAGES_URL)
-    self.user = UserEntity({
-        id = AuthAdapter:get_user_id(),
-        name = AuthAdapter:get_user_name(),
-        photo = photo,
-        photo_url = photo_url,
-        lang = AuthAdapter:get_environment().i18n.lang,
-    })
+    local photo, photo_url = self.yandex_auth:get_current_user_photo_async(IMAGES_URL)
+    self.user =
+        UserEntity(
+        {
+            id = self.yandex_auth:get_user_id(),
+            name = self.yandex_auth:get_user_name(),
+            photo = photo,
+            photo_url = photo_url,
+            lang = self.yandex_auth:get_environment().i18n.lang
+        }
+    )
 end
 
 function YandexAuthService:is_authorized()
-    return AuthAdapter:is_authorized()
+    return self.yandex_auth:is_authorized()
 end
 
 --- @return UserEntityPlain
@@ -99,12 +116,12 @@ function YandexAuthService:get_user()
 end
 
 function YandexAuthService:get_env_lang()
-    -- return AuthAdapter:get_environment().i18n.lang
+    -- return  self.yandex_auth:get_environment().i18n.lang
     return 'en'
 end
 
 function YandexAuthService:get_url_payload()
-    return AuthAdapter:get_environment().payload
+    return self.yandex_auth:get_environment().payload
 end
 
 return YandexAuthService

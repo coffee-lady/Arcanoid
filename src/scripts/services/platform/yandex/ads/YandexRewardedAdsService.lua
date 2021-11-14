@@ -1,8 +1,8 @@
 local App = require('src.app')
 local YandexAPI = require('src.scripts.include.yandex.yandex')
 
-local RewardedAdsAdapter = YandexAPI.Ads.RewardedAds
-local Algorithm = YandexAPI.Ads.RewardedAdsAlgorithm
+local YandexRewardedAds = YandexAPI.YandexRewardedAds
+local YandexRewardedAdsAlgorithm = YandexAPI.YandexRewardedAdsAlgorithm
 
 local Debug = App.libs.debug
 local Notifier = App.libs.notifier
@@ -23,8 +23,11 @@ function YandexRewardedAdsService:initialize(player_data_storage, use_case_rewar
     self.use_case_rewarded_ad = use_case_rewarded_ad
     self.debug = Debug('[Yandex] RewardedAdsService', DEBUG)
 
-    RewardedAdsAdapter:init(RewardedConfig.delay, FILE, KEY_TIMER, player_data_storage)
-    Algorithm:init(RewardedConfig.min_time, player_data_storage)
+    self.yandex_rewarded_ads = YandexRewardedAds()
+    self.yandex_rewarded_algorithm = YandexRewardedAds()
+
+    self.yandex_rewarded_ads:init(RewardedConfig.delay, FILE, KEY_TIMER, player_data_storage)
+    self.yandex_rewarded_algorithm:init(RewardedConfig.min_time, player_data_storage)
 
     self.short_ad_notifier = Notifier(MSG.ads.short_ad_preview)
 end
@@ -34,7 +37,7 @@ function YandexRewardedAdsService:subscribe()
 end
 
 function YandexRewardedAdsService:show(callbacks)
-    return RewardedAdsAdapter:show(callbacks)
+    return self.yandex_rewarded_ads:show(callbacks)
 end
 
 function YandexRewardedAdsService:show_on_reward(callbacks)
@@ -42,7 +45,7 @@ function YandexRewardedAdsService:show_on_reward(callbacks)
         return false, false
     end
 
-    return RewardedAdsAdapter:show(callbacks)
+    return self.yandex_rewarded_ads:show(callbacks)
 end
 
 return YandexRewardedAdsService

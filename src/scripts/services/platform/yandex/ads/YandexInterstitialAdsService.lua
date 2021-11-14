@@ -1,7 +1,7 @@
 local App = require('src.app')
 local YandexAdapter = require('src.scripts.include.yandex.yandex')
 
-local InterstitialAdsAdapter = YandexAdapter.Ads.InterstitialAds
+local YandexInterstitialAds = YandexAdapter.YandexInterstitialAds
 
 local Debug = App.libs.debug
 
@@ -29,15 +29,20 @@ function YandexInterstitialAdsService:initialize(player_data_storage, global_gui
     self.global_gui_caller_service = global_gui_caller_service
     self.use_case_interstitial_ad = use_case_interstitial_ad
 
-    InterstitialAdsAdapter:init_timer(IntConfig.delay, FILE, KEY_TIMER, self.player_data_storage)
+    self.yandex_interstitial = YandexInterstitialAds()
 
-    self.global_gui_caller_service:set_callback(MSG.ads._resume_interstitial_timer, function()
-        InterstitialAdsAdapter:resume_timer()
-    end)
+    self.yandex_interstitial:init_timer(IntConfig.delay, FILE, KEY_TIMER, self.player_data_storage)
+
+    self.global_gui_caller_service:set_callback(
+        MSG.ads._resume_interstitial_timer,
+        function()
+            self.yandex_interstitial:resume_timer()
+        end
+    )
 end
 
 function YandexInterstitialAdsService:show(callbacks)
-    InterstitialAdsAdapter:show(self:_get_callbacks(callbacks))
+    self.yandex_interstitial:show(self:_get_callbacks(callbacks))
 end
 
 function YandexInterstitialAdsService:show_on_game_start(callbacks)
@@ -56,7 +61,7 @@ function YandexInterstitialAdsService:show_with_probability(probability, callbac
         return
     end
 
-    InterstitialAdsAdapter:show_with_probability(probability, self:_get_callbacks(callbacks))
+    self.yandex_interstitial:show_with_probability(probability, self:_get_callbacks(callbacks))
 end
 
 function YandexInterstitialAdsService:_get_callbacks(callbacks)
@@ -72,7 +77,7 @@ function YandexInterstitialAdsService:_get_callbacks(callbacks)
             end
 
             exec(callbacks.close, was_shown)
-        end,
+        end
     }
 end
 

@@ -20,8 +20,6 @@ function MockLeaderboards.get_dummy_leaderboard()
         PlayerHelper.format_player_name(player)
     end
 
-    LeaderboardsUseCases.ProcessLeaderboardUseCase:process_leaderboard(dummy_leaderboard, current_player)
-
     return dummy_leaderboard
 end
 

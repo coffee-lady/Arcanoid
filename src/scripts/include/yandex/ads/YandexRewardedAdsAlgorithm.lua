@@ -8,7 +8,8 @@ local Debug = App.libs.debug
 local DEBUG = App.config.debug_mode.RewardedAdsAlgorithm
 local debug_logger = Debug('[Yandex] RewardedAdsAlgorithm', DEBUG)
 
-local YandexRewardedAdsAlgorithm = {}
+--- @class YandexRewardedAdsAlgorithm
+local YandexRewardedAdsAlgorithm = class('YandexRewardedAdsAlgorithm')
 
 function YandexRewardedAdsAlgorithm:init(saving_delay, file, key_is_first_short_ad, player_data_storage)
     self.player_data_storage = player_data_storage
@@ -23,36 +24,36 @@ function YandexRewardedAdsAlgorithm:show(on_short_ad)
     local was_rewarded = false
     local is_short_ad_view = false
 
-    InterstitialAdsAdapter.show({
-        open = function()
-            self.timer:resume()
-        end,
-
-        close = function(was_inter_shown)
-            if not was_inter_shown then
-                return
-            end
-
-            local is_first_short_ad = self._check_for_first_short_ad()
-
-            if not self.timer:is_expired() then
-                self._on_short_ad(is_first_short_ad, on_short_ad)
-                is_short_ad_view = true
-
-                if is_first_short_ad then
-                    was_rewarded = true
+    InterstitialAdsAdapter.show(
+        {
+            open = function()
+                self.timer:resume()
+            end,
+            close = function(was_inter_shown)
+                if not was_inter_shown then
+                    return
                 end
 
-                return
+                local is_first_short_ad = self._check_for_first_short_ad()
+
+                if not self.timer:is_expired() then
+                    self._on_short_ad(is_first_short_ad, on_short_ad)
+                    is_short_ad_view = true
+
+                    if is_first_short_ad then
+                        was_rewarded = true
+                    end
+
+                    return
+                end
+
+                was_rewarded = true
+            end,
+            error = function(err)
+                self._on_error(err)
             end
-
-            was_rewarded = true
-        end,
-
-        error = function(err)
-            self._on_error(err)
-        end,
-    })
+        }
+    )
 
     if was_rewarded then
         return true, is_short_ad_view
@@ -62,15 +63,16 @@ function YandexRewardedAdsAlgorithm:show(on_short_ad)
         return false, is_short_ad_view
     end
 
-    RewardedAdsAdapter:show({
-        rewarded = function()
-            was_rewarded = true
-        end,
-
-        error = function(err)
-            self._on_error(err)
-        end,
-    })
+    RewardedAdsAdapter:show(
+        {
+            rewarded = function()
+                was_rewarded = true
+            end,
+            error = function(err)
+                self._on_error(err)
+            end
+        }
+    )
 
     return was_rewarded, false
 end

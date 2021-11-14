@@ -1,7 +1,7 @@
 local App = require('src.app')
 local YandexAdapter = require('src.scripts.include.yandex.yandex')
 
-local BannerAdsAdapter = YandexAdapter.Ads.BannerAds
+local YandexBannerAds = YandexAdapter.YandexBannerAds
 local Debug = App.libs.debug
 
 local BannerConfig = App.config.ads.banner
@@ -16,21 +16,8 @@ function YandexBannerAdsService:initialize(player_data_storage, use_case_banner_
     self.debug = Debug('[Yandex] BannerAdsService', DEBUG)
     self.player_data_storage = player_data_storage
     self.use_case_banner_ad = use_case_banner_ad
-end
 
-function YandexBannerAdsService:_load()
-    BannerAdsAdapter:init_async(BannerConfig.height)
-    BannerAdsAdapter:load_async(BannerConfig)
-
-    if BannerConfig.visible then
-        self:_init_timer()
-    end
-end
-
-function YandexBannerAdsService:_init_timer()
-    self.timer = timer.delay(BannerConfig.reload_time, true, function()
-        BannerAdsAdapter:refresh(BannerConfig.block_id)
-    end)
+    self.yandex_banner_ads = YandexBannerAds
 end
 
 function YandexBannerAdsService:show()
@@ -39,19 +26,39 @@ function YandexBannerAdsService:show()
         return
     end
 
-    if not BannerAdsAdapter.initted then
-        self:_load()
+    if not self.yandex_banner_ads.initted then
+        self:_load_banner()
     end
 
-    BannerAdsAdapter:show(BannerConfig.block_id)
+    self.yandex_banner_ads:show(BannerConfig.block_id)
 end
 
 function YandexBannerAdsService:hide()
-    if not BannerAdsAdapter.initted then
-        self:_load()
+    if not self.yandex_banner_ads.initted then
+        self:_load_banner()
     end
 
-    BannerAdsAdapter:hide(BannerConfig.block_id)
+    self.yandex_banner_ads:hide(BannerConfig.block_id)
+end
+
+function YandexBannerAdsService:_load_banner()
+    self.yandex_banner_ads:init_async(BannerConfig.height)
+    self.yandex_banner_ads:load_async(BannerConfig)
+
+    if BannerConfig.visible then
+        self:_init_timer()
+    end
+end
+
+function YandexBannerAdsService:_init_timer()
+    self.timer =
+        timer.delay(
+        BannerConfig.reload_time,
+        true,
+        function()
+            self.yandex_banner_ads:refresh(BannerConfig.block_id)
+        end
+    )
 end
 
 return YandexBannerAdsService

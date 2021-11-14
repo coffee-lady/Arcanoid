@@ -2,7 +2,7 @@ local JSAPI = {}
 
 local call_web = function(fun)
     if html5 then
-        html5.run(fun)
+        return html5.run(fun)
     end
 end
 
@@ -11,9 +11,11 @@ function JSAPI.init(event_bus)
         return
     end
 
-    jstodef.add_listener(function(_, message_id, message)
-        event_bus:emit(hash(message_id), message)
-    end)
+    jstodef.add_listener(
+        function(_, message_id, message)
+            event_bus:emit(hash(message_id), message)
+        end
+    )
 end
 
 function JSAPI.set_banner()
@@ -25,7 +27,7 @@ function JSAPI.get_canvas_width()
         return 0
     end
 
-    return string.match(html5.run('getCanvasWidth()'), '%d+')
+    return string.match(call_web('getCanvasWidth();'), '%d+')
 end
 
 function JSAPI.get_canvas_height()
@@ -33,7 +35,7 @@ function JSAPI.get_canvas_height()
         return 0
     end
 
-    return string.match(html5.run('getCanvasHeight()'), '%d+')
+    return string.match(call_web('getCanvasHeight();'), '%d+')
 end
 
 function JSAPI.show_banner()
