@@ -5,8 +5,8 @@ local ID = App.constants.gui.screens.game_scene
 
 local Animations = {
     moving = {
-        duration = 0.1,
-    },
+        duration = 0.1
+    }
 }
 
 --- @class PlatformView

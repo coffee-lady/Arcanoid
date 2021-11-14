@@ -60,13 +60,13 @@ GameConfig.losing_zone = {
 
 GameConfig.walls = {
     wall_left = {
-        rel_pos = vmath.vector3(0, 0.5, 0)
+        rel_pos = vmath.vector3(0, 0.4, 0)
     },
     wall_top = {
         rel_pos = vmath.vector3(0.5, 0.8, 0)
     },
     wall_right = {
-        rel_pos = vmath.vector3(1, 0.5, 0)
+        rel_pos = vmath.vector3(1, 0.4, 0)
     }
 }
 

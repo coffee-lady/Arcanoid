@@ -9,13 +9,11 @@ local BlocksConfig = App.config.game.blocks
 --- @class BlocksPresenter
 local BlocksPresenter = class('BlocksPresenter')
 
-BlocksPresenter.__cparams = {'screen_service', 'levels_service', 'graphics_service'}
+BlocksPresenter.__cparams = {'screen_service', 'graphics_service'}
 
-function BlocksPresenter:initialize(screen_service, levels_service, graphics_service)
+function BlocksPresenter:initialize(screen_service, graphics_service)
     --- @type ScreenService
     self.screen_service = screen_service
-    --- @type LevelsService
-    self.levels_service = levels_service
     --- @type GraphicsService
     self.graphics_service = graphics_service
 end

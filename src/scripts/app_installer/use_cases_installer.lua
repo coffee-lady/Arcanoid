@@ -21,6 +21,9 @@ function UseCasesInstaller:install_use_cases()
     Luject:bind('use_case_start_special_offer'):to(UseCases.Payments.StartOfferUseCase):as_single()
     Luject:bind('use_case_find_product'):to(UseCases.Payments.FindProductUseCase):as_single()
     Luject:bind('use_case_get_shown_products'):to(UseCases.Payments.GetShownProductsUseCase):as_single()
+
+    Luject:bind('levels_use_cases'):to(UseCases.Game.LevelsUseCases):as_single()
+    Luject:bind('energy_use_cases'):to(UseCases.Game.EnergyUseCases):as_single()
 end
 
 return UseCasesInstaller

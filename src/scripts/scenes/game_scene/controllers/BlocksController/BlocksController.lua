@@ -8,13 +8,13 @@ local BlocksConfig = App.config.game.blocks
 --- @class BlocksController : SceneController
 local BlocksController = class('BlocksController', SceneController)
 
-BlocksController.__cparams = {'event_bus_go', 'levels_service', 'screen_service'}
+BlocksController.__cparams = {'event_bus_go', 'levels_use_cases', 'screen_service'}
 
-function BlocksController:initialize(event_bus, levels_service, screen_service, presenters, view)
+function BlocksController:initialize(event_bus, levels_use_cases, screen_service, presenters, view)
     SceneController.initialize(self, event_bus)
 
-    --- @type LevelsService
-    self.levels_service = levels_service
+    --- @type LevelsLoaderService
+    self.levels_use_cases = levels_use_cases
     --- @type ScreenService
     self.screen_service = screen_service
 
@@ -41,7 +41,7 @@ function BlocksController:on_collision_response(data)
 end
 
 function BlocksController:init()
-    local current_level = self.levels_service:get_current_level()
+    local current_level = self.levels_use_cases:get_current_level()
     local level_height, level_width, icons_indexes = current_level.height, current_level.width, current_level.data
 
     self.blocks_presenter:update_blocks_metrics(level_height, level_width)

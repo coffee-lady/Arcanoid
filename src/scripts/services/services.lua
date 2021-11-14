@@ -9,8 +9,7 @@ local Services = {
     SoundService = require('src.scripts.services.core.SoundService.SoundService'),
     UIService = require('src.scripts.services.core.UIService.UIService'),
     StorePromotionsService = require('src.scripts.services.business.StorePromotionsService.StorePromotionsService'),
-    EnergyService = require('src.scripts.services.game.EnergyService.EnergyService'),
-    LevelsService = require('src.scripts.services.game.LevelsService.LevelsService'),
+    LevelsLoaderService = require('src.scripts.services.game.LevelsLoaderService.LevelsLoaderService'),
     GraphicsService = require('src.scripts.services.game.GraphicsService.GraphicsService'),
     ScenesStrategiesService = require('src.scripts.services.core.ScenesStrategiesService.ScenesStrategiesService')
 }
