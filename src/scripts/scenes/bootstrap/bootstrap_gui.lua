@@ -18,15 +18,15 @@ BootstrapGUI.__cparams = {
     'scenes_service',
     'screen_service',
     'local_storage',
-    'use_case_show_first_scene'
+    'show_first_scene_use_case'
 }
 
-function BootstrapGUI:initialize(event_bus, scenes_service, screen_service, local_storage, use_case_show_first_scene)
+function BootstrapGUI:initialize(event_bus, scenes_service, screen_service, local_storage, show_first_scene_use_case)
     self.event_bus = event_bus
     self.scenes_service = scenes_service
     self.screen_service = screen_service
     self.local_storage = local_storage
-    self.use_case_show_first_scene = use_case_show_first_scene
+    self.show_first_scene_use_case = show_first_scene_use_case
 
     msg.post('.', MSG.acquire_input_focus)
 
@@ -49,7 +49,7 @@ function BootstrapGUI:initialize_game()
         html5.run('loadGame();')
     end
 
-    self.use_case_show_first_scene:show_first_scene()
+    self.show_first_scene_use_case:show_first_scene()
 end
 
 function BootstrapGUI:update(dt)
