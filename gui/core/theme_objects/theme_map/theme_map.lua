@@ -48,14 +48,7 @@ function ThemeMap:_fill_scheme()
 end
 
 function ThemeMap:_set_subscriptions()
-    self.subs =
-        SubscriptionsMap(
-        self,
-        self.event_bus,
-        {
-            [self.ui_service.MSG_THEME_CHANGED] = self.refresh
-        }
-    )
+    self.ui_service.event_theme_changed:add(self.refresh, self)
 end
 
 function ThemeMap:add(theme_object_key, item)
@@ -128,7 +121,7 @@ function ThemeMap:get_table()
 end
 
 function ThemeMap:final()
-    self.subs:unsubscribe()
+    self.ui_service.event_theme_changed:remove(self.refresh, self)
 end
 
 return ThemeMap

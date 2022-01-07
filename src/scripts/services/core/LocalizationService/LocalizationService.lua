@@ -2,7 +2,7 @@ local App = require('src.app')
 local ResourcesStorage = require('src.libs.resources_storage.resources_storage')
 local Config = require('src.scripts.config.config')
 
-local Notifier = App.libs.notifier
+local Event = App.libs.Event
 
 local MSG = App.constants.msg
 local ResourcesConfig = App.config.resources
@@ -15,28 +15,29 @@ local function replace_vars(str, vars)
         vars = str
     end
 
-    return (string.gsub(str, '({([^}]+)})', function(whole, key)
-        return vars[key] or whole
-    end))
+    return (string.gsub(
+        str,
+        '({([^}]+)})',
+        function(whole, key)
+            return vars[key] or whole
+        end
+    ))
 end
 
 --- @class LocalizationService
 local LocalizationService = class('LocalizationService')
 
-LocalizationService.__cparams = {'player_data_storage', 'global_gui_caller_service', 'auth_service'}
+LocalizationService.__cparams = {'data_storage_use_cases', 'auth_service'}
 
-LocalizationService.MSG_LANG_CHANGED = MSG.localization.language_changed
-
-function LocalizationService:initialize(player_data_storage, global_gui_caller_service, auth_service)
-    self.global_gui_caller_service = global_gui_caller_service
-    self.player_data_storage = player_data_storage
+function LocalizationService:initialize(data_storage_use_cases, auth_service)
+    --- @type DataStorageUseCases
+    self.data_storage_use_cases = data_storage_use_cases
+    --- @type AuthService
     self.auth_service = auth_service
 
-    self.notifier = Notifier(MSG.localization.language_changed)
+    self.event_lang_changed = Event()
 
-    self.global_gui_caller_service:set_callback(MSG.localization._lang_changed, function()
-        self.notifier:emit()
-    end)
+    self.auth_service.event_auth_success:add(self.on_authorized, self)
 
     self:_check_current_lang()
 end
@@ -47,17 +48,9 @@ end
 
 function LocalizationService:_check_current_lang()
     local user_lang = self.auth_service:get_env_lang()
-    self.lang = self.player_data_storage:get(FILE, KEY_LANG) or user_lang
+    self.lang = self.data_storage_use_cases:get(FILE, KEY_LANG) or user_lang
 
     self:change_lang(self.lang)
-end
-
-function LocalizationService:subscribe()
-    self.notifier:subscribe()
-end
-
-function LocalizationService:unsubscribe()
-    self.notifier:unsubscribe()
 end
 
 function LocalizationService:get_language()
@@ -74,9 +67,11 @@ function LocalizationService:change_lang(lang)
     local path = self:get_localization_path()
     self.data = ResourcesStorage:get_json_data(path)
 
-    self.player_data_storage:set(FILE, KEY_LANG, self.lang)
-    self.global_gui_caller_service:call(MSG.localization._lang_changed)
+    self.data_storage_use_cases:set(FILE, KEY_LANG, self.lang)
+
     self:_run_web_change_lang()
+
+    self.event_lang_changed:emit()
 end
 
 function LocalizationService:_run_web_change_lang()

@@ -15,10 +15,10 @@ local DEBUG_LOCAL = App.config.debug_mode.FeedbackLocalVersion
 --- @class YandexFeedbackService
 local YandexFeedbackService = class('YandexFeedbackService')
 
-YandexFeedbackService.__cparams = {'player_data_storage'}
+YandexFeedbackService.__cparams = {'data_storage_use_cases'}
 
-function YandexFeedbackService:initialize(player_data_storage)
-    self.player_data_storage = player_data_storage
+function YandexFeedbackService:initialize(data_storage_use_cases)
+    self.data_storage_use_cases = data_storage_use_cases
 
     self.yandex_feedback = YandexFeedback()
 
@@ -41,7 +41,7 @@ function YandexFeedbackService:_try_show_review_popup_async()
     end
 
     self.debug:log('requesting feedback')
-    self.player_data_storage:set(FILE, KEY_WAS_FEEDBACK_REQUESTED, true)
+    self.data_storage_use_cases:set(FILE, KEY_WAS_FEEDBACK_REQUESTED, true)
 end
 
 function YandexFeedbackService:request_review_async()
@@ -74,7 +74,7 @@ function YandexFeedbackService:_is_available()
         return true
     end
 
-    local was_feedback_requested = self.player_data_storage:get(FILE, KEY_WAS_FEEDBACK_REQUESTED)
+    local was_feedback_requested = self.data_storage_use_cases:get(FILE, KEY_WAS_FEEDBACK_REQUESTED)
 
     if was_feedback_requested then
         return false

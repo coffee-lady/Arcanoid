@@ -40,9 +40,7 @@ function SceneLocalization:set_rich_map(map)
 end
 
 function SceneLocalization:_set_subscriptions()
-    self.subs = SubscriptionsMap(self, self.event_bus, {
-        [self.localization_service.MSG_LANG_CHANGED] = self.on_language_changed,
-    })
+    self.localization_service.event_lang_changed:add(self.on_language_changed, self)
 end
 
 function SceneLocalization:on_language_changed()
@@ -55,7 +53,7 @@ function SceneLocalization:on_language_changed()
 end
 
 function SceneLocalization:final()
-    self.subs:unsubscribe()
+    self.localization_service.event_lang_changed:remove(self.on_language_changed, self)
 end
 
 return SceneLocalization

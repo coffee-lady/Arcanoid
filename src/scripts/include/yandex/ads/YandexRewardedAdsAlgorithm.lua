@@ -1,6 +1,6 @@
 local App = require('src.app')
-local InterstitialAdsAdapter = require('src.scripts.include.yandex.ads.YandexInterstitialAdsAdapter')
-local RewardedAdsAdapter = require('src.scripts.include.yandex.ads.YandexRewardedAdsAdapter')
+local InterstitialAdsAdapter = require('src.scripts.include.yandex.ads.YandexInterstitialAds')
+local RewardedAdsAdapter = require('src.scripts.include.yandex.ads.YandexRewardedAds')
 
 local TimeoutTimer = App.libs.TimeoutTimer
 local Debug = App.libs.debug
@@ -11,8 +11,8 @@ local debug_logger = Debug('[Yandex] RewardedAdsAlgorithm', DEBUG)
 --- @class YandexRewardedAdsAlgorithm
 local YandexRewardedAdsAlgorithm = class('YandexRewardedAdsAlgorithm')
 
-function YandexRewardedAdsAlgorithm:init(saving_delay, file, key_is_first_short_ad, player_data_storage)
-    self.player_data_storage = player_data_storage
+function YandexRewardedAdsAlgorithm:initialize(saving_delay, file, key_is_first_short_ad, storage)
+    self.storage = storage
     self.timer = TimeoutTimer(saving_delay)
 
     self.file = file
@@ -78,14 +78,14 @@ function YandexRewardedAdsAlgorithm:show(on_short_ad)
 end
 
 function YandexRewardedAdsAlgorithm:_check_for_first_short_ad()
-    local is_first = self.player_data_storage:get(self.file, self.key_is_first_short_ad)
+    local is_first = self.storage:get(self.file, self.key_is_first_short_ad)
 
     if is_first == nil then
         is_first = true
     end
 
     if is_first then
-        self.player_data_storage:set(self.file, self.key_is_first_short_ad, false)
+        self.storage:set(self.file, self.key_is_first_short_ad, false)
     end
 
     return is_first

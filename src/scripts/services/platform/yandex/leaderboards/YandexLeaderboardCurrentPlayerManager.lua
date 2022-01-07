@@ -13,11 +13,11 @@ local KEY_LAST_LOADED_PLAYER_INFO = DataStorageConfig.keys.last_loaded_player_le
 local YandexLeaderboardCurrentPlayerManager = class('YandexLeaderboardCurrentPlayerManager')
 
 YandexLeaderboardCurrentPlayerManager.__cparams = {
-    'player_data_storage'
+    'data_storage_use_cases'
 }
 
-function YandexLeaderboardCurrentPlayerManager:initialize(player_data_storage)
-    self.player_data_storage = player_data_storage
+function YandexLeaderboardCurrentPlayerManager:initialize(data_storage_use_cases)
+    self.data_storage_use_cases = data_storage_use_cases
 end
 
 function YandexLeaderboardCurrentPlayerManager:load_current_leaderboard_player(current_player_entry)
@@ -35,11 +35,11 @@ end
 function YandexLeaderboardCurrentPlayerManager:_save_last_loaded_player(player)
     player = Array.copy_1d(player)
     player.photo = nil
-    self.player_data_storage:set(FILE, KEY_LAST_LOADED_PLAYER_INFO, player)
+    self.data_storage_use_cases:set(FILE, KEY_LAST_LOADED_PLAYER_INFO, player)
 end
 
 function YandexLeaderboardCurrentPlayerManager:_get_last_loaded_player()
-    local player = self.player_data_storage:get(FILE, KEY_LAST_LOADED_PLAYER_INFO)
+    local player = self.data_storage_use_cases:get(FILE, KEY_LAST_LOADED_PLAYER_INFO)
     player.photo = PlayerHelper.update_player_photo(player)
     return player
 end

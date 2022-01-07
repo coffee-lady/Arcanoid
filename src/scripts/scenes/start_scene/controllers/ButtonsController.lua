@@ -11,13 +11,10 @@ local ButtonsController = class('ButtonsController', SceneController)
 function ButtonsController:initialize(event_bus, presenters)
     SceneController.initialize(self, event_bus)
 
-    self:set_subscriptions_map({
-        [MSG.auth.success_auth] = self.on_authorized,
-    })
+    self:set_subscriptions_map({})
 end
 
 function ButtonsController:on_authorized()
-
 end
 
 return ButtonsController

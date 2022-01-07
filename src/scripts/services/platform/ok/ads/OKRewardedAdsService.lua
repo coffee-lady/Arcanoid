@@ -11,12 +11,12 @@ local DEBUG = App.config.debug_mode.RewardedAdsService
 --- @class OKRewardedAdsService
 local OKRewardedAdsService = class('OKRewardedAdsService')
 
-OKRewardedAdsService.__cparams = {'player_data_storage'}
+OKRewardedAdsService.__cparams = {'data_storage_use_cases'}
 
-function OKRewardedAdsService:initialize(player_data_storage)
+function OKRewardedAdsService:initialize(data_storage_use_cases)
     self.debug = Debug('[OK] RewardedAdsService', DEBUG)
 
-    RewardedAdsAdapter:init_timer(RewardedConfig.delay, player_data_storage)
+    RewardedAdsAdapter:init_timer(RewardedConfig.delay, data_storage_use_cases)
 end
 
 function OKRewardedAdsService:show(callbacks)

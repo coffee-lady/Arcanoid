@@ -10,6 +10,7 @@ width = 640
 height = 1136
 update_frequency = 60
 samples = 2
+high_dpi = 1
 
 [android]
 input_method = HiddenInputField
@@ -24,6 +25,7 @@ dependencies#1 = https://github.com/d954mas/defold-utf8/archive/master.zip
 dependencies#2 = https://github.com/britzl/defold-richtext/archive/master.zip
 dependencies#3 = https://github.com/rgrams/rendercam/archive/v1.0.1.zip
 dependencies#4 = https://github.com/indiesoftby/defold-yagames/archive/master.zip
+dependencies#5 = https://github.com/DanEngelbrecht/LuaScriptInstance/archive/0.1.1.zip
 
 [input]
 game_binding = /settings/input/game.input_bindingc

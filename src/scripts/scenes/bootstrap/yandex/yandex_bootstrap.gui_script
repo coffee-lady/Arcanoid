@@ -13,11 +13,24 @@ function Scene:initialize()
 end
 
 function Scene:init()
+    self.messages_queue = {}
+
     AppInstaller:install()
 
-    Async.bootstrap(function()
-        self.bootstrap = Luject:resolve_class(Bootstrap)
-    end)
+    Async.bootstrap(
+        function()
+            self.bootstrap = Luject:resolve_class(Bootstrap)
+            self:_resolve_messages()
+        end
+    )
+end
+
+function Scene:_resolve_messages()
+    for i = 1, #self.messages_queue do
+        local msg_data = self.messages_queue[i]
+
+        self.bootstrap:on_message(msg_data.message_id, msg_data.message)
+    end
 end
 
 function Scene:update(dt)
@@ -29,6 +42,8 @@ end
 function Scene:on_message(message_id, message)
     if self.bootstrap then
         self.bootstrap:on_message(message_id, message)
+    else
+        table.insert(self.messages_queue, {message_id = message_id, message = message})
     end
 end
 

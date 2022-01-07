@@ -12,8 +12,6 @@ GameSceneGUI.__cparams = {'event_bus_gui', 'scenes_strategies_service', 'auth_se
 
 function GameSceneGUI:initialize(event_bus, scenes_strategies_service, auth_service)
     StrategizedSceneGUI.initialize(self, event_bus, scenes_strategies_service, URL.game_scene, RENDER_ORDER)
-
-    self:set_services_subscriptions(auth_service)
 end
 
 Luject:resolve_class(GameSceneGUI)

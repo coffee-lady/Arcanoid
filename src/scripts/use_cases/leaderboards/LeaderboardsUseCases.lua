@@ -5,8 +5,9 @@ local LeaderboardEntity = App.entities.LeaderboardEntity
 local LeaderboardPlayerEntity = App.entities.LeaderboardPlayerEntity
 
 local Async = App.libs.async
-local Notifier = App.libs.notifier
+
 local Luject = App.libs.luject
+local Event = App.libs.Event
 
 local MSG = App.constants.msg
 local LeaderboardsConfig = App.config.leaderboards
@@ -27,24 +28,9 @@ function LeaderboardsUseCases:initialize(auth_service, leaderboards_service)
 
     self.get_leaderboard_use_cases = Luject:resolve_class(GetLeaderboardUseCases)
 
-    self.score_update_notifier = Notifier(MSG.leaderboards.score_updated)
+    self.event_score_update = Event()
 
     self:update_user_score_async()
-
-    self.global_gui_caller_service:set_callback(
-        MSG.leaderboards._emit_score_updated,
-        function()
-            self.score_update_notifier:emit()
-        end
-    )
-end
-
-function LeaderboardsUseCases:subscribe()
-    self.score_update_notifier:subscribe()
-end
-
-function LeaderboardsUseCases:unsubscribe()
-    self.score_update_notifier:unsubscribe()
 end
 
 function LeaderboardsUseCases:update_user_score_async()
@@ -55,7 +41,7 @@ function LeaderboardsUseCases:update_user_score_async()
     local score = 0
     self.leaderboards_service:set_current_player_score_async(LeaderboardsConfig.id, score)
 
-    self.global_gui_caller_service:call(MSG.leaderboards._emit_score_updated)
+    self.event_score_update:emit()
 end
 
 function LeaderboardsUseCases:get_main_leaderboard_current_player_async()

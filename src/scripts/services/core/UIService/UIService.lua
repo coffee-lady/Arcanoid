@@ -13,8 +13,8 @@ local DEFAULT_THEME = App.config.ui.default_theme
 local MSG = App.constants.msg
 
 local BoxNode = GUI.BoxNode
-local Notifier = App.libs.notifier
 local ColorLib = App.libs.color
+local Event = App.libs.Event
 
 local DEFAULT_UNLOCKED_THEMES = {
     light = true,
@@ -24,39 +24,24 @@ local DEFAULT_UNLOCKED_THEMES = {
 --- @class UIService
 local UIService = class('UIService')
 
-UIService.__cparams = {'player_data_storage', 'event_bus_gui', 'global_gui_caller_service', 'scenes_service'}
+UIService.__cparams = {'auth_service', 'data_storage_use_cases', 'scenes_service'}
 
-UIService.MSG_THEME_CHANGED = MSG.themes.theme_changed
-
-function UIService:initialize(player_data_storage, event_bus, global_gui_caller_service, scenes_service)
-    self.player_data_storage = player_data_storage
-    self.global_gui_caller_service = global_gui_caller_service
+function UIService:initialize(auth_service, data_storage_use_cases, scenes_service)
+    --- @type AuthService
+    self.auth_service = auth_service
+    --- @type DataStorageUseCases
+    self.data_storage_use_cases = data_storage_use_cases
+    --- @type ScenesService
     self.scenes_service = scenes_service
 
     self.unlocked_all = false
-    self.theme_changed_notifier = Notifier(MSG.themes.theme_changed)
-    self.themes_unlocked_notifier = Notifier(MSG.themes.all_unlocked)
+    self.event_theme_changed = Event()
+    self.event_themes_unlocked = Event()
+
+    self.auth_service.event_auth_success:add(self.on_authorized, self)
 
     self:_convert_themes()
-    self:_set_global_callers()
     self:set_current_user_theme()
-end
-
-function UIService:_set_global_callers()
-    self.global_gui_caller_service:set_callback(
-        MSG.themes._theme_changed_emit,
-        function()
-            -- BoxNode(BootstrapID.container):set_color(self.theme_colors.common.background)
-            self.theme_changed_notifier:emit()
-        end
-    )
-
-    self.global_gui_caller_service:set_callback(
-        MSG.themes._unlocked_emit_msg,
-        function()
-            self.themes_unlocked_notifier:emit()
-        end
-    )
 end
 
 function UIService:_convert_themes()
@@ -74,13 +59,14 @@ function UIService:on_authorized()
 end
 
 function UIService:set_current_user_theme()
-    local theme_key = self.player_data_storage:get(FILE, KEY_THEME)
+    local theme_key = self.data_storage_use_cases:get(FILE, KEY_THEME)
     self:change_theme(theme_key)
 end
 
 function UIService:unlock_all_themes()
     self.unlocked_all = true
-    self.global_gui_caller_service:call(MSG.themes._unlocked_emit_msg)
+
+    self.event_themes_unlocked:emit()
 end
 
 function UIService:is_unlocked_theme(theme_key)
@@ -92,29 +78,21 @@ function UIService:_load_theme(theme)
     self.theme_colors = Themes[self.theme_key]
 end
 
-function UIService:subscribe()
-    self.theme_changed_notifier:subscribe()
-    self.themes_unlocked_notifier:subscribe()
-end
-
-function UIService:unsubscribe()
-    self.theme_changed_notifier:unsubscribe()
-    self.themes_unlocked_notifier:unsubscribe()
-end
-
 function UIService:change_theme(theme_key)
     self.is_on_preview_theme = false
-    self.player_data_storage:set(FILE, KEY_THEME, theme_key)
+    self.data_storage_use_cases:set(FILE, KEY_THEME, theme_key)
     self:_load_theme(theme_key)
     self:_run_web_change_theme(true)
-    self.global_gui_caller_service:call(MSG.themes._theme_changed_emit)
+
+    self.event_theme_changed:emit()
 end
 
 function UIService:change_theme_without_saving(theme_key)
     self.is_on_preview_theme = true
     self:_load_theme(theme_key)
     self:_run_web_change_theme(false)
-    self.global_gui_caller_service:call(MSG.themes._theme_changed_emit)
+
+    self.event_theme_changed:emit()
 end
 
 function UIService:_run_web_change_theme(is_saving)

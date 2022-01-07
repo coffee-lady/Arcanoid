@@ -3,6 +3,7 @@ local YandexAdapter = require('src.scripts.include.yandex.yandex')
 
 local YandexInterstitialAds = YandexAdapter.YandexInterstitialAds
 
+local Event = App.libs.Event
 local Debug = App.libs.debug
 
 local DataStorageConfig = App.config.data_storage
@@ -21,24 +22,23 @@ end
 --- @class InterstitialAdsService
 local YandexInterstitialAdsService = class('YandexInterstitialAdsService')
 
-YandexInterstitialAdsService.__cparams = {'player_data_storage', 'global_gui_caller_service', 'use_case_interstitial_ad'}
+YandexInterstitialAdsService.__cparams = {'data_storage_use_cases'}
 
-function YandexInterstitialAdsService:initialize(player_data_storage, global_gui_caller_service, use_case_interstitial_ad)
+function YandexInterstitialAdsService:initialize(data_storage_use_cases)
     self.debug = Debug('[Yandex] InterstitialAdsService', DEBUG)
-    self.player_data_storage = player_data_storage
-    self.global_gui_caller_service = global_gui_caller_service
-    self.use_case_interstitial_ad = use_case_interstitial_ad
+    self.data_storage_use_cases = data_storage_use_cases
 
     self.yandex_interstitial = YandexInterstitialAds()
 
-    self.yandex_interstitial:init_timer(IntConfig.delay, FILE, KEY_TIMER, self.player_data_storage)
+    self.yandex_interstitial:init_timer(IntConfig.delay, FILE, KEY_TIMER, self.data_storage_use_cases)
 
-    self.global_gui_caller_service:set_callback(
-        MSG.ads._resume_interstitial_timer,
-        function()
-            self.yandex_interstitial:resume_timer()
-        end
-    )
+    self.event_resume_timer = Event()
+
+    self.event_resume_timer:add(self.on_resume_timer, self)
+end
+
+function YandexInterstitialAdsService:on_resume_timer()
+    self.yandex_interstitial:resume_timer()
 end
 
 function YandexInterstitialAdsService:show(callbacks)
@@ -56,11 +56,6 @@ function YandexInterstitialAdsService:show_on_game_end(callbacks)
 end
 
 function YandexInterstitialAdsService:show_with_probability(probability, callbacks)
-    if not self.use_case_interstitial_ad:is_available() then
-        self.debug:log('passed_levels < start_level - 1')
-        return
-    end
-
     self.yandex_interstitial:show_with_probability(probability, self:_get_callbacks(callbacks))
 end
 
@@ -82,8 +77,7 @@ function YandexInterstitialAdsService:_get_callbacks(callbacks)
 end
 
 function YandexInterstitialAdsService:_on_was_shown()
-    self.global_gui_caller_service:call(MSG.ads._resume_interstitial_timer)
-    self.use_case_interstitial_ad:on_interstitial_view()
+    self.event_resume_timer:emit()
 end
 
 return YandexInterstitialAdsService

@@ -17,9 +17,9 @@ end
 --- @class YandexRewardedAds
 local YandexRewardedAds = class('YandexRewardedAds')
 
-function YandexRewardedAds:init(delay, file, key_timer, player_data_storage)
+function YandexRewardedAds:initialize(delay, file, key_timer, storage)
     self.timer = AutosaveTimeoutTimer(delay)
-    self.timer:enable_saving(file, key_timer, player_data_storage)
+    self.timer:enable_saving(file, key_timer, storage)
     self.timer:restore_unfinished()
 end
 

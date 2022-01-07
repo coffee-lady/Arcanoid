@@ -11,8 +11,6 @@ GameSceneGO.__cparams = {'event_bus_go', 'scenes_strategies_service', 'auth_serv
 
 function GameSceneGO:initialize(event_bus, scenes_strategies_service, auth_service)
     StrategizedSceneGO.initialize(self, event_bus, scenes_strategies_service, URL.game_scene)
-
-    self:set_services_subscriptions(auth_service)
 end
 
 Luject:resolve_class(GameSceneGO)

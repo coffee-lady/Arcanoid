@@ -1,9 +1,10 @@
 local App = require('src.app')
 local YandexAdapter = require('src.scripts.include.yandex.yandex')
 
+local Event = App.libs.Event
+
 local UserEntity = App.entities.UserEntity
 local YandexAuth = YandexAdapter.YandexAuth
-local Notifier = App.libs.notifier
 
 local MSG = App.constants.msg
 local IMAGES_URL = App.config.images_url
@@ -11,85 +12,46 @@ local IMAGES_URL = App.config.images_url
 --- @class AuthService
 local YandexAuthService = class('YandexAuthService')
 
-YandexAuthService.__cparams = {'global_gui_caller_service'}
+YandexAuthService.__cparams = {}
 
 YandexAuthService.IMAGE_SIZE = YandexAuth.IMAGE_SIZE
 
-function YandexAuthService:initialize(global_gui_caller_service)
-    self.global_gui_caller_service = global_gui_caller_service
-    self.success_auth_notifier = Notifier(MSG.auth.success_auth)
-    self.auth_attempt_notifier = Notifier(MSG.auth.auth_attempt)
-
+function YandexAuthService:initialize()
     self.yandex_auth = YandexAuth()
 
-    self.global_gui_caller_service:set_callback(
-        MSG.auth._success_emit_msg,
-        function()
-            self.success_auth_notifier:emit()
-        end
-    )
+    self.event_auth_success = Event()
+    self.event_auth_attempt = Event()
 
-    self.global_gui_caller_service:set_callback(
-        MSG.auth._attempt_emit_msg,
-        function(data)
-            self.auth_attempt_notifier:emit(data)
-        end
-    )
+    self.yandex_auth:init_async()
 
-    local is_authorized = self.yandex_auth:init_async()
+    local is_authorized = self.yandex_auth:is_authorized()
     if is_authorized then
         self:_set_current_user_data()
     end
 end
 
-function YandexAuthService:on_authenticate(cb)
-    self._on_authenticate = cb
-end
-
-function YandexAuthService:on_auth_error(cb)
-    self._on_auth_error = cb
-end
-
-function YandexAuthService:subscribe()
-    self.success_auth_notifier:subscribe()
-    self.auth_attempt_notifier:subscribe()
-end
-
-function YandexAuthService:unsubscribe()
-    self.success_auth_notifier:unsubscribe()
-    self.auth_attempt_notifier:unsubscribe()
-end
-
 function YandexAuthService:authenticate()
-    local _on_success_auth = function()
+    local cb_success_auth = function()
         self:_set_current_user_data()
 
-        if self._on_authenticate then
-            self._on_authenticate()
-        end
-
-        self.global_gui_caller_service:call(
-            MSG.auth._attempt_emit_msg,
+        self.event_auth_attempt:emit(
             {
                 success = true
             }
         )
-        self.global_gui_caller_service:call(MSG.auth._success_emit_msg)
+
+        self.event_auth_success:emit()
     end
 
-    local _on_auth_fail = function()
-        if self._on_auth_error then
-            self._on_auth_error()
-        end
-        self.global_gui_caller_service:call(
-            MSG.auth._attempt_emit_msg,
+    local cb_auth_fail = function()
+        self.event_auth_attempt:emit(
             {
                 success = false
             }
         )
     end
 
-    self.yandex_auth:authenticate(_on_success_auth, _on_auth_fail)
+    self.yandex_auth:authenticate(cb_success_auth, cb_auth_fail)
 end
 
 function YandexAuthService:_set_current_user_data()

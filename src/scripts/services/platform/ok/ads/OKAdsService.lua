@@ -3,21 +3,20 @@ local InterstitialAds = require('src.scripts.services.platform.ok.ads.OKIntersti
 local RewardedAds = require('src.scripts.services.platform.ok.ads.OKRewardedAdsService')
 
 local MSG = App.constants.msg
-
-local Notifier = App.libs.notifier
+local Event = App.libs.Event
 
 --- @class OKAdsService
 local OKAdsService = class('OKAdsService')
 
-OKAdsService.__cparams = {'player_data_storage', 'global_gui_caller_service'}
+OKAdsService.__cparams = {'data_storage_use_cases'}
 
-function OKAdsService:initialize(player_data_storage, global_gui_caller_service)
-    InterstitialAds:init(player_data_storage, global_gui_caller_service)
-    RewardedAds:init(player_data_storage)
+function OKAdsService:initialize(data_storage_use_cases)
+    InterstitialAds:init(data_storage_use_cases)
+    RewardedAds:init(data_storage_use_cases)
 
     self.enabled = true
     self.is_online = false
-    self.error_notifier = Notifier(MSG.ads.error)
+    self.event_error = Event()
 end
 
 function OKAdsService:enable_ads()
@@ -29,16 +28,10 @@ function OKAdsService:disable_ads()
     self:hide_banner()
 end
 
-function OKAdsService:subscribe()
-    self.error_notifier:subscribe()
-end
-
 function OKAdsService:show_banner()
-
 end
 
 function OKAdsService:hide_banner()
-
 end
 
 function OKAdsService:show_interstitial_on_game_start(callbacks)
@@ -71,7 +64,7 @@ end
 
 function OKAdsService:show_rewarded()
     if not self.is_online then
-        self.error_notifier:emit()
+        self.event_error:emit()
         return false, false
     end
 

@@ -13,13 +13,13 @@ local KEY_ENERGY_TIMER = DataStorageConfig.keys.energy_timer
 --- @class EnergyUseCases
 local EnergyUseCases = class('EnergyUseCases')
 
-EnergyUseCases.__cparams = {'player_data_storage'}
+EnergyUseCases.__cparams = {'data_storage_use_cases'}
 
-function EnergyUseCases:initialize(player_data_storage)
+function EnergyUseCases:initialize(data_storage_use_cases)
     --- @type ServerDataStorage
-    self.player_data_storage = player_data_storage
+    self.data_storage_use_cases = data_storage_use_cases
 
-    self.current_energy = self.player_data_storage:get(FILE, KEY_ENERGY_COUNT) or EnergyConfig.max_count
+    self.current_energy = self.data_storage_use_cases:get(FILE, KEY_ENERGY_COUNT) or EnergyConfig.max_count
 
     self:_set_timer()
     self:_update_bonus_for_expired_time()
@@ -69,10 +69,10 @@ function EnergyUseCases:change_energy_count(delta_count)
     local energy_count = self.current_energy + delta_count
 
     self.current_energy = energy_count
-    self.player_data_storage:set(FILE, KEY_ENERGY_COUNT, self.current_energy)
+    self.data_storage_use_cases:set(FILE, KEY_ENERGY_COUNT, self.current_energy)
 
     if self.current_energy >= EnergyConfig.max_count and self.current_timer then
-        self.player_data_storage:set(FILE, KEY_ENERGY_TIMER, nil)
+        self.data_storage_use_cases:set(FILE, KEY_ENERGY_TIMER, nil)
         self.current_timer = nil
     else
         self:_check_timer()

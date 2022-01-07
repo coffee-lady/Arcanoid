@@ -1,4 +1,5 @@
 local YandexAPI = {
+    YandexInitializer = require('src.scripts.include.yandex.initializer.YandexInitializer'),
     YandexBannerAds = require('src.scripts.include.yandex.ads.YandexBannerAds'),
     YandexInterstitialAds = require('src.scripts.include.yandex.ads.YandexInterstitialAds'),
     YandexRewardedAds = require('src.scripts.include.yandex.ads.YandexRewardedAds'),

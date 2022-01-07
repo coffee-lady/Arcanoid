@@ -9,36 +9,44 @@ local DEBUG = App.config.debug_mode.SoundService
 local GATE_TIME = 0.3
 
 local Async = App.libs.async
+local Event = App.libs.Event
 local Debug = App.libs.debug
 
 --- @class SoundService
 local SoundService = class('SoundService')
 
-SoundService.__cparams = {'global_go_caller_service', 'player_data_storage'}
+SoundService.__cparams = {'data_storage_use_cases'}
 
-function SoundService:initialize(global_go_caller_service, player_data_storage)
-    self.global_go_caller_service = global_go_caller_service
-    self.player_data_storage = player_data_storage
-    self.sounds_disabled = self.player_data_storage:get(FILE, KEY_SOUNDS_DISABLED)
+function SoundService:initialize(data_storage_use_cases)
+    self.data_storage_use_cases = data_storage_use_cases
+    self.sounds_disabled = self.data_storage_use_cases:get(FILE, KEY_SOUNDS_DISABLED)
 
     self.debug = Debug('[SoundService]', DEBUG)
 
     self.gated_sounds = {}
 
-    self.global_go_caller_service:set_callback(SoundsMSG._play_sound, function(url, play_properties)
-        self.debug:log('play', url, self.debug:inspect(play_properties))
-        sound.play(url, play_properties)
-    end)
+    self.event_play_sound = Event()
+    self.event_pause_sound = Event()
+    self.event_stop_sound = Event()
 
-    self.global_go_caller_service:set_callback(SoundsMSG._pause_sound, function(url, is_paused)
-        self.debug:log('pause', url, is_paused)
-        sound.pause(url, is_paused)
-    end)
+    self.event_play_sound:add(self.on_play_sound, self)
+    self.event_pause_sound:add(self.on_pause_sound, self)
+    self.event_stop_sound:add(self.on_stop_sound, self)
+end
 
-    self.global_go_caller_service:set_callback(SoundsMSG._stop_sound, function(url)
-        self.debug:log('stop', url)
-        sound.stop(url)
-    end)
+function SoundService:on_play_sound(url, play_properties, callback)
+    self.debug:log('play', url, self.debug:inspect(play_properties))
+    sound.play(url, play_properties, callback)
+end
+
+function SoundService:on_pause_sound(url, is_paused)
+    self.debug:log('pause', url, is_paused)
+    sound.pause(url, is_paused)
+end
+
+function SoundService:on_stop_sound(url)
+    self.debug:log('stop', url)
+    sound.stop(url)
 end
 
 function SoundService:toggle_sounds()
@@ -51,28 +59,28 @@ end
 
 function SoundService:enable_sounds()
     self.sounds_disabled = false
-    self.player_data_storage:set(FILE, KEY_SOUNDS_DISABLED, self.sounds_disabled)
+    self.data_storage_use_cases:set(FILE, KEY_SOUNDS_DISABLED, self.sounds_disabled)
 end
 
 function SoundService:disable_sounds()
     self.sounds_disabled = true
-    self.player_data_storage:set(FILE, KEY_SOUNDS_DISABLED, self.sounds_disabled)
+    self.data_storage_use_cases:set(FILE, KEY_SOUNDS_DISABLED, self.sounds_disabled)
 end
 
 function SoundService:is_sound_enabled()
     return not self.sounds_disabled
 end
 
-function SoundService:play(url, play_properties)
+function SoundService:play(url, play_properties, callback)
     if self.sounds_disabled then
         return
     end
 
-    self.global_go_caller_service:call(SoundsMSG._play_sound, url, play_properties)
+    self.event_play_sound:emit(url, play_properties, callback)
 end
 
-function SoundService:play_force(url, play_properties)
-    self.global_go_caller_service:call(SoundsMSG._play_sound, url, play_properties)
+function SoundService:play_force(url, play_properties, callback)
+    self.event_play_sound:emit(url, play_properties, callback)
 end
 
 function SoundService:play_async(url, play_properties)
@@ -82,15 +90,11 @@ function SoundService:play_async(url, play_properties)
 
     local tmp_play_sound = hash('_tmp_play_sound')
 
-    Async(function(done)
-        self.global_go_caller_service:set_callback(tmp_play_sound, function()
-            sound.play(url, play_properties, function()
-                done()
-            end)
-        end)
-
-        self.global_go_caller_service:call(tmp_play_sound, url, play_properties)
-    end)
+    Async(
+        function(done)
+            self.event_play_sound:emit(url, play_properties, done)
+        end
+    )
 end
 
 function SoundService:pause(url)
@@ -98,7 +102,7 @@ function SoundService:pause(url)
         return
     end
 
-    self.global_go_caller_service:call(SoundsMSG._pause_sound, url, true)
+    self.event_pause_sound:emit(url, true)
 end
 
 function SoundService:resume(url)
@@ -106,7 +110,7 @@ function SoundService:resume(url)
         return
     end
 
-    self.global_go_caller_service:call(SoundsMSG._pause_sound, url, false)
+    self.event_pause_sound:emit(url, false)
 end
 
 function SoundService:stop(url)
@@ -114,7 +118,7 @@ function SoundService:stop(url)
         return
     end
 
-    self.global_go_caller_service:call(SoundsMSG._stop_sound, url)
+    self.event_stop_sound:emit(url)
 end
 
 function SoundService:update(dt)
@@ -132,7 +136,7 @@ function SoundService:play_gated_sound(url, play_properties)
     end
 
     self.gated_sounds[url] = GATE_TIME
-    self.global_go_caller_service:call(SoundsMSG._play_sound, url, play_properties)
+    self.event_play_sound:emit(url, play_properties)
 end
 
 return SoundService

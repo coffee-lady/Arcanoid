@@ -3,7 +3,7 @@ local App = require('src.app')
 local ItemAddHints = class('ItemAddHints')
 
 function ItemAddHints:initialize(context_services, key, count)
-    self.player_data_storage = context_services.player_data_storage
+    self.data_storage_use_cases = context_services.data_storage_use_cases
     self.count = count
     self.is_consumable = true
     self.ui_key = key
@@ -18,7 +18,6 @@ function ItemAddHints:get_ui_key()
 end
 
 function ItemAddHints:apply()
-
 end
 
 return ItemAddHints

@@ -10,11 +10,11 @@ local DEBUG = App.config.debug_mode.BannerAdsService
 --- @class YandexBannerAdsService
 local YandexBannerAdsService = class('YandexBannerAdsService')
 
-YandexBannerAdsService.__cparams = {'player_data_storage', 'use_case_banner_ad'}
+YandexBannerAdsService.__cparams = {'data_storage_use_cases', 'use_case_banner_ad'}
 
-function YandexBannerAdsService:initialize(player_data_storage, use_case_banner_ad)
+function YandexBannerAdsService:initialize(data_storage_use_cases, use_case_banner_ad)
     self.debug = Debug('[Yandex] BannerAdsService', DEBUG)
-    self.player_data_storage = player_data_storage
+    self.data_storage_use_cases = data_storage_use_cases
     self.use_case_banner_ad = use_case_banner_ad
 
     self.yandex_banner_ads = YandexBannerAds

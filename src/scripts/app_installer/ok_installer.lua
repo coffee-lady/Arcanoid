@@ -2,7 +2,7 @@ local App = require('src.app')
 local CommonServicesInstaller = require('src.scripts.app_installer.common_services_installer')
 local UseCasesInstaller = require('src.scripts.app_installer.use_cases_installer')
 local Services = require('src.scripts.services.services')
-local PlayerDataStorage = require('src.scripts.services.platform.ok.player_data_storage.OKPlayerDataStorage')
+local ServerDataStorage = require('src.scripts.services.platform.ok.server_data_storage.OKServerDataStorage')
 local AuthService = require('src.scripts.services.platform.ok.auth.OKAuthService')
 local AdsService = require('src.scripts.services.platform.ok.ads.OKAdsService')
 local PaymentsService = require('src.scripts.services.platform.ok.payments.OKPaymentsService')
@@ -23,11 +23,10 @@ function OkInstaller:_install_services()
 
     CommonServicesInstaller:install_services()
 
-    Luject:bind('player_data_storage'):to(PlayerDataStorage):as_single()
+    Luject:bind('server_data_storage'):to(ServerDataStorage):as_single()
     Luject:bind('payments_service'):to(PaymentsService):as_single()
     Luject:bind('auth_service'):to(AuthService):as_single()
     Luject:bind('ads_service'):to(AdsService):as_single()
-    Luject:bind('store_service'):to(StoreService):as_single()
 end
 
 return OkInstaller

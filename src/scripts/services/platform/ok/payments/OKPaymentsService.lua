@@ -7,7 +7,7 @@ local PaymentsAdapter = OkAdapter.Payments
 
 local Array = App.libs.array
 local Debug = App.libs.debug
-local Notifier = App.libs.notifier
+
 local Async = App.libs.async
 local Luject = App.libs.luject
 
@@ -27,11 +27,10 @@ local WALLET_KEY_TO_FILE_KEY = {}
 --- @class OKPaymentsService
 local OKPaymentsService = class('OKPaymentsService')
 
-OKPaymentsService.__cparams = {'player_data_storage', 'global_gui_caller_service', 'auth_service', 'local_storage'}
+OKPaymentsService.__cparams = {'data_storage_use_cases', 'auth_service', 'local_storage'}
 
-function OKPaymentsService:initialize(player_data_storage, global_gui_caller_service, auth_service, local_storage)
-    self.player_data_storage = player_data_storage
-    self.global_gui_caller_service = global_gui_caller_service
+function OKPaymentsService:initialize(data_storage_use_cases, auth_service, local_storage)
+    self.data_storage_use_cases = data_storage_use_cases
     self.auth_service = auth_service
     self.local_storage = local_storage
     self.debug = Debug('[OK] PaymentsService', DEBUG)
@@ -43,30 +42,34 @@ function OKPaymentsService:initialize(player_data_storage, global_gui_caller_ser
 end
 
 function OKPaymentsService:on_online()
-    Async.bootstrap(function()
-        self:_check_wallet_events()
-    end)
+    Async.bootstrap(
+        function()
+            self:_check_wallet_events()
+        end
+    )
 end
 
 function OKPaymentsService:on_item_spent(item_key)
-    Async.bootstrap(function()
-        local wallet_events_to_sync = self.local_storage:get(FILE, KEY_WALLET_TO_SYNC)
+    Async.bootstrap(
+        function()
+            local wallet_events_to_sync = self.local_storage:get(FILE, KEY_WALLET_TO_SYNC)
 
-        if not wallet_events_to_sync then
-            wallet_events_to_sync = {}
+            if not wallet_events_to_sync then
+                wallet_events_to_sync = {}
+            end
+
+            if not wallet_events_to_sync[item_key] then
+                wallet_events_to_sync[item_key] = 1
+            else
+                wallet_events_to_sync[item_key] = wallet_events_to_sync[item_key] + 1
+            end
+
+            self.debug:log('item spent', item_key, 'wallet events to sync', self.debug:inspect(wallet_events_to_sync))
+
+            self.local_storage:set(FILE, KEY_WALLET_TO_SYNC, wallet_events_to_sync)
+            self:_check_wallet_events()
         end
-
-        if not wallet_events_to_sync[item_key] then
-            wallet_events_to_sync[item_key] = 1
-        else
-            wallet_events_to_sync[item_key] = wallet_events_to_sync[item_key] + 1
-        end
-
-        self.debug:log('item spent', item_key, 'wallet events to sync', self.debug:inspect(wallet_events_to_sync))
-
-        self.local_storage:set(FILE, KEY_WALLET_TO_SYNC, wallet_events_to_sync)
-        self:_check_wallet_events()
-    end)
+    )
 end
 
 function OKPaymentsService:_check_wallet_events()
@@ -181,7 +184,6 @@ function OKPaymentsService:purchase_async(id)
 end
 
 function OKPaymentsService:consume_purchase_async()
-
 end
 
 function OKPaymentsService:get_catalog()
@@ -200,7 +202,7 @@ function OKPaymentsService:_sync_wallet()
     for key, value in pairs(self.wallet) do
         if WALLET_KEY_TO_FILE_KEY[key] then
             self.debug:log('synced wallet: update', WALLET_KEY_TO_FILE_KEY[key], value)
-            self.player_data_storage:set(FILE, WALLET_KEY_TO_FILE_KEY[key], value)
+            self.data_storage_use_cases:set(FILE, WALLET_KEY_TO_FILE_KEY[key], value)
         end
     end
 end
@@ -237,9 +239,7 @@ function OKPaymentsService:_find_product_in_server_catalog(product_id)
         local item_id = product.id
 
         if item_id == product_id then
-            return Luject:resolve_class(PurchaseProductModel, product, function()
-                self.global_gui_caller_service:call(MSG.store._end_offer_timer)
-            end)
+            return Luject:resolve_class(PurchaseProductModel, product)
         end
     end
 end

@@ -16,9 +16,9 @@ end
 
 local InterstitialAdsAdapter = {}
 
-function InterstitialAdsAdapter:init_timer(delay, file, key_timer, player_data_storage)
+function InterstitialAdsAdapter:init_timer(delay, file, key_timer, data_storage_use_cases)
     self.timer = AutosaveTimeoutTimer(delay)
-    self.timer:enable_saving(file, key_timer, player_data_storage)
+    self.timer:enable_saving(file, key_timer, data_storage_use_cases)
     self.timer:restore_unfinished()
 end
 

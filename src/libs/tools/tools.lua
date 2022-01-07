@@ -11,7 +11,6 @@ local ToolLibs = {
     linked_list = require('src.libs.tools.types.linked_list.linked_list'),
     array = require('src.libs.tools.types.array.array'),
     async = require('src.libs.tools.async.async'),
-    notifier = require('src.libs.tools.notifier.notifier'),
     string = require('src.libs.tools.types.string.string'),
     json = require('src.libs.tools.data.json.json'),
     utf8 = require('src.libs.tools.data.utf8.utf8'),
@@ -22,13 +21,12 @@ local ToolLibs = {
     geometry = require('src.libs.tools.math.geometry.geometry'),
     rx = require('src.libs.tools.rx.rx'),
     matrix = {
-        grid_helper = require('src.libs.tools.math.matrix.matrix_grid_helper'),
+        grid_helper = require('src.libs.tools.math.matrix.matrix_grid_helper')
     },
-
     IntervalTimer = Timers.IntervalTimer,
     TimeoutTimer = Timers.TimeoutTimer,
     AutosaveIntervalTimer = Timers.AutosaveIntervalTimer,
-    AutosaveTimeoutTimer = Timers.AutosaveTimeoutTimer,
+    AutosaveTimeoutTimer = Timers.AutosaveTimeoutTimer
 }
 
 return ToolLibs

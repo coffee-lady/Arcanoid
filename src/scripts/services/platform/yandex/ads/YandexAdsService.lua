@@ -5,22 +5,22 @@ local RewardedAds = require('src.scripts.services.platform.yandex.ads.YandexRewa
 
 local MSG = App.constants.msg
 
-local Notifier = App.libs.notifier
 local Luject = App.libs.luject
+local Event = App.libs.Event
 
 --- @class AdsService
 local YandexAdsService = class('YandexAdsService')
 
-YandexAdsService.__cparams = {'player_data_storage', 'global_gui_caller_service'}
+YandexAdsService.__cparams = {'data_storage_use_cases'}
 
-function YandexAdsService:initialize(player_data_storage, global_gui_caller_service)
+function YandexAdsService:initialize(data_storage_use_cases)
     self.interstitial = Luject:resolve_class(InterstitialAds)
     self.rewarded = Luject:resolve_class(RewardedAds)
     self.banner = Luject:resolve_class(BannerAds)
 
     self.enabled = true
     self.is_online = false
-    self.error_notifier = Notifier(MSG.ads.error)
+    self.event_error = Event()
 end
 
 function YandexAdsService:enable_ads()
@@ -30,11 +30,6 @@ end
 function YandexAdsService:disable_ads()
     self.enabled = false
     self:hide_banner()
-end
-
-function YandexAdsService:subscribe()
-    self.rewarded:subscribe()
-    self.error_notifier:subscribe()
 end
 
 function YandexAdsService:show_banner()
@@ -87,7 +82,7 @@ end
 
 function YandexAdsService:show_rewarded()
     if not self.is_online then
-        self.error_notifier:emit()
+        self.event_error:emit()
         return false, false
     end
 

@@ -7,7 +7,7 @@ local KEY_PAID_CANCELING_ERRORS = DataStorageConfig.keys.paid_canceling_errors_c
 local ItemAddCancelingErrors = class('ItemAddCancelingErrors')
 
 function ItemAddCancelingErrors:initialize(context_services, key, count)
-    self.player_data_storage = context_services.player_data_storage
+    self.data_storage_use_cases = context_services.data_storage_use_cases
     self.count = count
     self.is_consumable = true
     self.ui_key = key
@@ -22,7 +22,6 @@ function ItemAddCancelingErrors:get_ui_key()
 end
 
 function ItemAddCancelingErrors:apply()
-
 end
 
 return ItemAddCancelingErrors

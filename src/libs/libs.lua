@@ -10,7 +10,6 @@ local Libs = {
     linked_list = Tools.linked_list,
     array = Tools.array,
     async = Tools.async,
-    notifier = Tools.notifier,
     IntervalTimer = Tools.IntervalTimer,
     TimeoutTimer = Tools.TimeoutTimer,
     AutosaveIntervalTimer = Tools.AutosaveIntervalTimer,
@@ -26,15 +25,15 @@ local Libs = {
     currency = Tools.currency,
     geometry = Tools.geometry,
     rx = Tools.rx,
-
     debug = require('src.libs.debug.debug'),
     event_bus = require('src.libs.event_bus.event_bus'),
     SubscriptionsMap = require('src.libs.event_bus.subscriptions_map'),
     resources_storage = require('src.libs.resources_storage.resources_storage'),
     ScriptWrapper = require('src.libs.script_wrapper.ScriptWrapper'),
+    ScriptInstance = require('src.libs.ScriptInstance.ScriptInstance'),
+    Event = require('src.libs.Event.Event'),
     luject = require('src.libs.luject.luject'),
-
-    scenes = require('src.libs.scenes.scenes'),
+    scenes = require('src.libs.scenes.scenes')
 }
 
 return Libs

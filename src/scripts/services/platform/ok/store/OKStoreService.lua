@@ -15,7 +15,7 @@ local KEY_TO_ITEM = {
     hints = Items.ItemAddHints,
     canceling_errors = Items.ItemAddCancelingErrors,
     all_themes = Items.ItemUnlockThemes,
-    no_ads = Items.ItemDisableAds,
+    no_ads = Items.ItemDisableAds
 }
 
 --- @class OKStoreService
@@ -38,12 +38,6 @@ function OKStoreService:initialize(payments_service, event_bus, use_case_get_sho
 
     self:_process_payments_catalog()
     self:apply_purchased_not_consumable_items()
-
-    self.event_bus:on(MSG.auth.auth_attempt, self.on_auth_attempt, self)
-end
-
-function OKStoreService:subscribe()
-
 end
 
 function OKStoreService:apply_purchased_not_consumable_items()

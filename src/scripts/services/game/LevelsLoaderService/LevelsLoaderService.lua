@@ -11,11 +11,11 @@ local KEY_PROGRESS_LEVEL = DataStorageConfig.keys.progress_level
 --- @class LevelsLoaderService
 local LevelsLoaderService = class('LevelsLoaderService')
 
-LevelsLoaderService.__cparams = {'player_data_storage'}
+LevelsLoaderService.__cparams = {'data_storage_use_cases'}
 
-function LevelsLoaderService:initialize(player_data_storage)
+function LevelsLoaderService:initialize(data_storage_use_cases)
     --- @type ServerDataStorage
-    self.player_data_storage = player_data_storage
+    self.data_storage_use_cases = data_storage_use_cases
 end
 
 function LevelsLoaderService:load_level(level_index)

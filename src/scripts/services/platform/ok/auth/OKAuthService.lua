@@ -9,41 +9,33 @@ local IMAGES_URL = App.config.images_url
 --- @class OKAuthService
 local OKAuthService = class('OKAuthService')
 
-OKAuthService.__cparams = {'event_bus_gui', 'global_gui_caller_service'}
+OKAuthService.__cparams = {'event_bus_gui'}
 
 OKAuthService.IMAGE_SIZE = AuthAdapter.IMAGE_SIZE
 
-function OKAuthService:initialize(event_bus, global_gui_caller_service)
+function OKAuthService:initialize(event_bus)
     AuthAdapter:init()
 
     local photo, photo_url = AuthAdapter:get_current_user_photo_async(IMAGES_URL)
-    self.user = UserEntity({
-        id = AuthAdapter.get_user_id(),
-        name = AuthAdapter.get_user_name(),
-        photo = photo,
-        photo_url = photo_url,
-        lang = AuthAdapter.get_player_info().locale,
-    })
+    self.user =
+        UserEntity(
+        {
+            id = AuthAdapter.get_user_id(),
+            name = AuthAdapter.get_user_name(),
+            photo = photo,
+            photo_url = photo_url,
+            lang = AuthAdapter.get_player_info().locale
+        }
+    )
 end
 
 function OKAuthService:on_authenticate()
-
 end
 
 function OKAuthService:on_auth_error()
-
-end
-
-function OKAuthService:subscribe()
-
-end
-
-function OKAuthService:unsubscribe()
-
 end
 
 function OKAuthService:authenticate()
-
 end
 
 function OKAuthService:is_authorized()
