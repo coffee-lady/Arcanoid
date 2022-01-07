@@ -16,11 +16,14 @@ local LeaderboardsConfig = App.config.leaderboards
 local LeaderboardsUseCases = class('LeaderboardsUseCases')
 
 LeaderboardsUseCases.__cparams = {
+    'platform_service',
     'auth_service',
     'leaderboards_service'
 }
 
-function LeaderboardsUseCases:initialize(auth_service, leaderboards_service)
+function LeaderboardsUseCases:initialize(platform_service, auth_service, leaderboards_service)
+    --- @type PlatformService
+    self.platform_service = platform_service
     --- @type AuthService
     self.auth_service = auth_service
     --- @type LeaderboardsService
@@ -30,6 +33,17 @@ function LeaderboardsUseCases:initialize(auth_service, leaderboards_service)
 
     self.event_score_update = Event()
 
+    self.auth_service.event_auth_success:add(self.on_authorized, self)
+    self.platform_service.event_online:add(self.on_online, self)
+
+    self:update_user_score_async()
+end
+
+function LeaderboardsUseCases:on_authorized()
+    self:update_user_score_async()
+end
+
+function LeaderboardsUseCases:on_online()
     self:update_user_score_async()
 end
 

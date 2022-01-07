@@ -14,6 +14,7 @@ function UseCasesInstaller:install_use_cases()
     Luject:bind('levels_use_cases'):to(UseCases.Game.LevelsUseCases):as_single()
     Luject:bind('energy_use_cases'):to(UseCases.Game.EnergyUseCases):as_single()
     Luject:bind('leaderboards_use_cases'):to(UseCases.Leaderboards):as_single()
+    Luject:bind('feedback_use_cases'):to(UseCases.Feedback):as_single()
     Luject:bind('show_first_scene_use_case'):to(UseCases.App.ShowFirstSceneUseCase):as_single()
 end
 
