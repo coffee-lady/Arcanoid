@@ -10,22 +10,16 @@ local DEBUG = App.config.debug_mode.BannerAdsService
 --- @class YandexBannerAdsService
 local YandexBannerAdsService = class('YandexBannerAdsService')
 
-YandexBannerAdsService.__cparams = {'data_storage_use_cases', 'use_case_banner_ad'}
+YandexBannerAdsService.__cparams = {'data_storage_use_cases'}
 
-function YandexBannerAdsService:initialize(data_storage_use_cases, use_case_banner_ad)
+function YandexBannerAdsService:initialize(data_storage_use_cases)
     self.debug = Debug('[Yandex] BannerAdsService', DEBUG)
     self.data_storage_use_cases = data_storage_use_cases
-    self.use_case_banner_ad = use_case_banner_ad
 
     self.yandex_banner_ads = YandexBannerAds
 end
 
 function YandexBannerAdsService:show()
-    if not self.use_case_banner_ad:is_available() then
-        self.debug:log('trying show banner: passed_levels < BannerConfig.start_level - 1')
-        return
-    end
-
     if not self.yandex_banner_ads.initted then
         self:_load_banner()
     end

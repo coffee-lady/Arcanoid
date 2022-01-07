@@ -45,16 +45,6 @@ function YandexInterstitialAdsService:show(callbacks)
     self.yandex_interstitial:show(self:_get_callbacks(callbacks))
 end
 
-function YandexInterstitialAdsService:show_on_game_start(callbacks)
-    self.debug:log('show_on_game_start')
-    self:show_with_probability(IntConfig.prob_start_game, callbacks)
-end
-
-function YandexInterstitialAdsService:show_on_game_end(callbacks)
-    self.debug:log('show_on_game_end')
-    self:show_with_probability(IntConfig.prob_end_game, callbacks)
-end
-
 function YandexInterstitialAdsService:show_with_probability(probability, callbacks)
     self.yandex_interstitial:show_with_probability(probability, self:_get_callbacks(callbacks))
 end

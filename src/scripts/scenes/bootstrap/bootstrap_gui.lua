@@ -57,7 +57,6 @@ function BootstrapGUI:update(dt)
 end
 
 function BootstrapGUI:on_message(message_id, message)
-    print(message_id)
     self.scenes_service:on_message(message_id)
     self.screen_service:on_message(message_id)
     self.event_bus:emit(message_id, message)

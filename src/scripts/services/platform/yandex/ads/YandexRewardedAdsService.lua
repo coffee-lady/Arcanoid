@@ -25,12 +25,12 @@ function YandexRewardedAdsService:initialize(data_storage_use_cases)
     self.yandex_rewarded_algorithm = YandexRewardedAdsAlgorithm(RewardedConfig.min_time, data_storage_use_cases)
 end
 
-function YandexRewardedAdsService:show(callbacks)
+function YandexRewardedAdsService:show_video(callbacks)
     return self.yandex_rewarded_ads:show(callbacks)
 end
 
-function YandexRewardedAdsService:show_on_reward(callbacks)
-    return self.yandex_rewarded_ads:show(callbacks)
+function YandexRewardedAdsService:show_for_reward(callbacks)
+    return self.yandex_rewarded_algorithm:show(callbacks)
 end
 
 return YandexRewardedAdsService
