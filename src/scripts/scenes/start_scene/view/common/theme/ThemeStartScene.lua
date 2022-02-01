@@ -3,15 +3,12 @@ local GUI = require('gui.gui')
 
 local ThemeMap = GUI.ThemeMap
 local NodesList = GUI.NodesList
-local SubscriptionsMap = App.libs.SubscriptionsMap
-
-local MSG = App.constants.msg
 
 local Theme = class('ThemeMap', ThemeMap)
 
-Theme.__cparams = {'event_bus_gui', 'ui_service', 'scenes_service'}
+Theme.__cparams = {'ui_service', 'scenes_service'}
 
-function Theme:initialize(event_bus, ui_service, scenes_service, nodes_map)
+function Theme:initialize(ui_service, scenes_service, nodes_map)
     local nodes = nodes_map:get_table()
 
     local settings = {}
@@ -37,7 +34,7 @@ function Theme:initialize(event_bus, ui_service, scenes_service, nodes_map)
         }
     }
 
-    ThemeMap.initialize(self, event_bus, ui_service, scenes_service, settings, scheme)
+    ThemeMap.initialize(self, ui_service, scenes_service, settings, scheme)
 end
 
 return Theme

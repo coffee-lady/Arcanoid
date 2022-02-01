@@ -11,9 +11,9 @@ local RENDER_ORDER = App.config.render_order.start_scene
 
 local StartScene = class('StartScene', StandardScene)
 
-StartScene.__cparams = {'event_bus_gui', 'auth_service', 'ui_service'}
+StartScene.__cparams = {'event_bus_gui'}
 
-function StartScene:initialize(event_bus, auth_service, ui_service)
+function StartScene:initialize(event_bus)
     StandardScene.initialize(self, event_bus, Controllers, Presenters, View, UIMaps, RENDER_ORDER)
 end
 

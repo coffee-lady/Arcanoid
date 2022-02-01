@@ -1,13 +1,10 @@
 local ThemeObject = require('gui.core.theme_objects.theme_object.theme_object')
 local StaticThemeObject = require('gui.core.theme_objects.static_theme_object.static_theme_object')
 local NodesList = require('gui.core.nodes.nodes_list.nodes_list')
-local SubscriptionsMap = require('src.libs.event_bus.subscriptions_map')
 
 local ThemeMap = class('ThemeMap')
 
-function ThemeMap:initialize(event_bus, ui_service, scenes_service, settings, scheme)
-    --- @type EventBus
-    self.event_bus = event_bus
+function ThemeMap:initialize(ui_service, scenes_service, settings, scheme)
     --- @type UIService
     self.ui_service = ui_service
     --- @type ScenesService

@@ -5,15 +5,13 @@ local SubscriptionsMap = require('src.libs.event_bus.subscriptions_map')
 
 local SceneLocalization = class('SceneLocalization')
 
-SceneLocalization.__cparams = {'localization_service', 'event_bus_gui', 'ui_service'}
+SceneLocalization.__cparams = {'localization_service', 'event_bus_gui'}
 
-function SceneLocalization:initialize(localization_service, event_bus, ui_service, text_key)
+function SceneLocalization:initialize(localization_service, event_bus, text_key)
     --- @type LocalizationService
     self.localization_service = localization_service
     --- @type EventBus
     self.event_bus = event_bus
-    --- @type UIService
-    self.ui_service = ui_service
 
     self.text_key = text_key
 
@@ -40,7 +38,7 @@ function SceneLocalization:set_rich_map(map)
 end
 
 function SceneLocalization:_set_subscriptions()
-    self.localization_service.event_lang_changed:add(self.on_language_changed, self)
+    self.localization_service.event_language_changed:add(self.on_language_changed, self)
 end
 
 function SceneLocalization:on_language_changed()
@@ -53,7 +51,7 @@ function SceneLocalization:on_language_changed()
 end
 
 function SceneLocalization:final()
-    self.localization_service.event_lang_changed:remove(self.on_language_changed, self)
+    self.localization_service.event_language_changed:remove(self.on_language_changed, self)
 end
 
 return SceneLocalization

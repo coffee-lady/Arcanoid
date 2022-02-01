@@ -35,7 +35,7 @@ function LocalizationService:initialize(data_storage_use_cases, auth_service)
     --- @type AuthService
     self.auth_service = auth_service
 
-    self.event_lang_changed = Event()
+    self.event_language_changed = Event()
 
     self.auth_service.event_auth_success:add(self.on_authorized, self)
 
@@ -71,7 +71,7 @@ function LocalizationService:change_lang(lang)
 
     self:_run_web_change_lang()
 
-    self.event_lang_changed:emit()
+    self.event_language_changed:emit()
 end
 
 function LocalizationService:_run_web_change_lang()

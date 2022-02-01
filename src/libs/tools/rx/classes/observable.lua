@@ -37,9 +37,15 @@ function Observable:next_with_exceptions(value, exceptions)
 end
 
 function Observable:subscribe(object_self, next, complete)
-    local subscription = Subscription(object_self, next, complete, function(subscriber)
-        self:remove(subscriber)
-    end)
+    local subscription =
+        Subscription(
+        object_self,
+        next,
+        complete,
+        function(subscriber)
+            self:remove(subscriber)
+        end
+    )
 
     table.insert(self.subscribers, subscription)
 
@@ -59,8 +65,9 @@ function Observable:complete()
     for i = 1, #self.subscribers do
         self.subscribers[i]:complete()
         self.subscribers[i]:unsubscribe()
-        self.completed = true
     end
+
+    self.completed = true
 
     self.subscribers = {}
 end
